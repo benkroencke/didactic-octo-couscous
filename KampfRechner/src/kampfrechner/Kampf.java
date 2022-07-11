@@ -232,7 +232,7 @@ public class Kampf {
 		System.out.println("---------------------------------------------------");
 		System.out.println("*                                                 *");
 		System.out.println("*                                                 *");
-		System.out.println("*              ANGREIFER VERLIERT                 *");
+		System.out.println("*              VERTEIDIGER GEWINNT                *");
 		System.out.println("*                                                 *");
 		System.out.println("*                                                 *");
 		System.out.println("---------------------------------------------------");
@@ -248,7 +248,7 @@ public class Kampf {
 		System.out.println("---------------------------------------------------");
 		System.out.println("*                                                 *");
 		System.out.println("*                                                 *");
-		System.out.println("*              VERTEIDIGER VERLIERT               *");
+		System.out.println("*                ANGREIFER GEWINNT                *");
 		System.out.println("*                                                 *");
 		System.out.println("*                                                 *");
 		System.out.println("---------------------------------------------------");
