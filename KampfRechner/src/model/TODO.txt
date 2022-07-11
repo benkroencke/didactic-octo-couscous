@@ -1,0 +1,6 @@
+Erstelle einfach eine Klasse anstelle von Kommandant und Einheiten mit boolean ob Held oder nicht
+lebenbonus rauslassen, das gibt nur probleme mit der damagecalc und bringt sowieso nicht so viel
+schadenszusammenrechner für jede truppe
+passive effekte
+fähigkeiten
+kommandanten level up muss man kaufen --> dann darf er sich pro level eine fähigkeit aussuchen
