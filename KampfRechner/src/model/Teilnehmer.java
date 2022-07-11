@@ -402,6 +402,28 @@ public class Teilnehmer {
 		this.erlittenerSchaden = erlittenerSchaden;
 	}
 
+	public void addTruppen(Teilnehmer teilnehmer) {
+		
+		if(this.einheitenListe.size()<this.kommandoWert) {
+			
+			this.einheitenListe.add(teilnehmer);
+			
+		} else {
+			System.out.println("Diese Kommandant hat bereits maximalen Kommandowert erreicht! " + teilnehmer.getName() + " konnte nicht hinzugefügt werden!");
+		}
+		
+	}
+	
+	public void removeTruppen(ArrayList<Teilnehmer> einheitenListe, Teilnehmer teilnhemer) {
+		
+		for(int i=0;i<einheitenListe.size();i++) {
+			
+			if(einheitenListe.get(i).equals(teilnhemer))
+				einheitenListe.remove(i);
+			
+		}
+	}
+
 
 	
 	
