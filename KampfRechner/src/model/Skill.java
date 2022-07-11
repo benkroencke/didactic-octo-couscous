@@ -79,7 +79,7 @@ public class Skill {
 		this.armorBoost = 0;
 		this.damageBonus = 0;
 		this.cooldown = 3;
-		this.numberOfTargets = 3;
+		this.numberOfTargets = 2;
 		this.hatEile = false;
 		this.ignoresArmor = false;
 		this.isActive = true;
