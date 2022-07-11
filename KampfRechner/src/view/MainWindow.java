@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.AbstractListModel;
 import javax.swing.UIManager;
+import javax.swing.DefaultComboBoxModel;
 
 public class MainWindow {
 
@@ -64,6 +65,31 @@ public class MainWindow {
 		panelKampfErstellen.setBounds(0, 0, 1184, 761);
 		frame.getContentPane().add(panelKampfErstellen);
 		panelKampfErstellen.setLayout(null);
+		
+		JComboBox comboBoxCommander2Artefakt2 = new JComboBox();
+		comboBoxCommander2Artefakt2.setBounds(914, 566, 200, 30);
+		panelKampfErstellen.add(comboBoxCommander2Artefakt2);
+		
+		JComboBox comboBoxCommander2Artefakt3 = new JComboBox();
+		comboBoxCommander2Artefakt3.setBounds(914, 607, 200, 30);
+		panelKampfErstellen.add(comboBoxCommander2Artefakt3);
+		
+		JComboBox comboBoxCommander2Artefakt1 = new JComboBox();
+		comboBoxCommander2Artefakt1.setBounds(914, 525, 200, 30);
+		panelKampfErstellen.add(comboBoxCommander2Artefakt1);
+		
+		JComboBox comboBoxCommander1Artefakt3 = new JComboBox();
+		comboBoxCommander1Artefakt3.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
+		comboBoxCommander1Artefakt3.setBounds(70, 607, 200, 30);
+		panelKampfErstellen.add(comboBoxCommander1Artefakt3);
+		
+		JComboBox comboBoxCommander1Artefakt2 = new JComboBox();
+		comboBoxCommander1Artefakt2.setBounds(69, 566, 200, 30);
+		panelKampfErstellen.add(comboBoxCommander1Artefakt2);
+		
+		JComboBox comboBoxCommander1Artefakt1 = new JComboBox();
+		comboBoxCommander1Artefakt1.setBounds(70, 525, 200, 30);
+		panelKampfErstellen.add(comboBoxCommander1Artefakt1);
 		
 		JLabel lblCommander2Artefakt3 = new JLabel("");
 		lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Donner.png")));
