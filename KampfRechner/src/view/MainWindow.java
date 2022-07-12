@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.AbstractListModel;
@@ -65,6 +66,130 @@ public class MainWindow {
 		panelKampfErstellen.setBounds(0, 0, 1184, 761);
 		frame.getContentPane().add(panelKampfErstellen);
 		panelKampfErstellen.setLayout(null);
+		
+		JLabel lblUnitPreview = new JLabel("");
+		lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource("/source/RedanienRitter.png")));
+		lblUnitPreview.setBounds(542, 634, 100, 100);
+		panelKampfErstellen.add(lblUnitPreview);
+		
+		JButton btnTakeLeft = new JButton("entferne links");
+		btnTakeLeft.setBackground(new Color(230, 230, 250));
+		btnTakeLeft.setBounds(510, 570, 164, 23);
+		panelKampfErstellen.add(btnTakeLeft);
+		
+		JButton btnTakeRight = new JButton("entferne rechts");
+		btnTakeRight.setBackground(new Color(230, 230, 250));
+		btnTakeRight.setBounds(510, 600, 164, 23);
+		panelKampfErstellen.add(btnTakeRight);
+		
+		JButton btnGiveLeft = new JButton("Gebe links");
+		btnGiveLeft.setBackground(new Color(230, 230, 250));
+		btnGiveLeft.setBounds(510, 505, 164, 23);
+		panelKampfErstellen.add(btnGiveLeft);
+		
+		JComboBox comboBoxTroops = new JComboBox();
+		comboBoxTroops.setBounds(510, 454, 164, 40);
+		panelKampfErstellen.add(comboBoxTroops);
+		
+		JButton btnGiveRight = new JButton("Gebe rechts");
+		btnGiveRight.setBackground(new Color(230, 230, 250));
+		btnGiveRight.setBounds(510, 537, 164, 23);
+		panelKampfErstellen.add(btnGiveRight);
+		
+		JLabel lblCommander2Einheit2 = new JLabel("");
+		lblCommander2Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit2.setBounds(904, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit2);
+		
+		JLabel lblCommander2Einheit1 = new JLabel("");
+		lblCommander2Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit1.setBounds(1014, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit1);
+		
+		JLabel lblCommander2Einheit6 = new JLabel("");
+		lblCommander2Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit6.setBounds(684, 537, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit6);
+		
+		JLabel lblCommander2Einheit4 = new JLabel("");
+		lblCommander2Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit4.setBounds(684, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit4);
+		
+		JLabel lblCommander2Einheit3 = new JLabel("");
+		lblCommander2Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit3.setBounds(794, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit3);
+		
+		JLabel lblCommander2Einheit8 = new JLabel("");
+		lblCommander2Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit8.setBounds(684, 431, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit8);
+		
+		JLabel lblCommander2Einheit5 = new JLabel("");
+		lblCommander2Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit5.setBounds(794, 537, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit5);
+		
+		JLabel lblCommander2Einheit7 = new JLabel("");
+		lblCommander2Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit7.setBounds(794, 431, 100, 100);
+		panelKampfErstellen.add(lblCommander2Einheit7);
+		
+		JLabel lblCommander1Einheit7 = new JLabel("");
+		
+		lblCommander1Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit7.setBounds(290, 431, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit7);
+		
+		JLabel lblCommander1Einheit8 = new JLabel("");
+		lblCommander1Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit8.setBounds(400, 431, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit8);
+		
+		JLabel lblCommander1Einheit4 = new JLabel("");
+		lblCommander1Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit4.setBounds(400, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit4);
+		
+		JLabel lblCommander1Einheit6 = new JLabel("");
+		lblCommander1Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit6.setBounds(400, 537, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit6);
+		
+		JLabel lblCommander1Einheit2 = new JLabel("New label");
+		lblCommander1Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit2.setBounds(180, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit2);
+		
+		JLabel lblCommander1Einheit3 = new JLabel("New label");
+		lblCommander1Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit3.setBounds(290, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit3);
+		
+		JLabel lblCommander1Einheit5 = new JLabel("");
+		lblCommander1Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit5.setBounds(290, 537, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit5);
+		
+		JLabel lblCommander1Einheit1 = new JLabel("New label");
+		lblCommander1Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander1Einheit1.setBounds(70, 648, 100, 100);
+		panelKampfErstellen.add(lblCommander1Einheit1);
+		
+		JLabel lblCommander2Name = new JLabel("K\u00F6nig Foltest");
+		lblCommander2Name.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCommander2Name.setForeground(Color.WHITE);
+		lblCommander2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
+		lblCommander2Name.setBounds(602, 110, 512, 67);
+		panelKampfErstellen.add(lblCommander2Name);
+		
+		JLabel lblCommander1Name = new JLabel("Geralt von Riva");
+		lblCommander1Name.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCommander1Name.setForeground(Color.WHITE);
+		lblCommander1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
+		lblCommander1Name.setBounds(70, 110, 512, 67);
+		panelKampfErstellen.add(lblCommander1Name);
 		
 		JComboBox comboBoxCommander2Artefakt2 = new JComboBox();
 		comboBoxCommander2Artefakt2.setBounds(914, 566, 200, 30);
@@ -117,12 +242,13 @@ public class MainWindow {
 		panelKampfErstellen.add(lblCommander1Artefakt3);
 		
 		JLabel lblCommander1Artefakt1 = new JLabel("");
+		lblCommander1Artefakt1.setToolTipText("Krumms\u00E4bel: (+25 Angriff f\u00FCr den Helden)");
 		lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Krummsaebel.png")));
 		lblCommander1Artefakt1.setBounds(70, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander1Artefakt1);
 		
 		JComboBox comboBoxSkillCommander2 = new JComboBox();
-		comboBoxSkillCommander2.setBounds(649, 388, 200, 40);
+		comboBoxSkillCommander2.setBounds(649, 380, 200, 40);
 		panelKampfErstellen.add(comboBoxSkillCommander2);
 		
 		JPanel panel_1 = new JPanel();
@@ -179,12 +305,13 @@ public class MainWindow {
 		panel.add(listCommander1Skills);
 		
 		JButton btnAddSkills = new JButton("Hinzuf\u00FCgen");
-		btnAddSkills.setBackground(Color.GRAY);
-		btnAddSkills.setBounds(538, 388, 108, 40);
+		btnAddSkills.setToolTipText("Mit Hinzuf\u00FCgen werden die ausgew\u00E4hlten F\u00E4higkeiten den jeweiligen Kommandanten hinzugef\u00FCgt.");
+		btnAddSkills.setBackground(new Color(230, 230, 250));
+		btnAddSkills.setBounds(538, 380, 108, 40);
 		panelKampfErstellen.add(btnAddSkills);
 		
 		JComboBox comboBoxSkillCommander1 = new JComboBox();
-		comboBoxSkillCommander1.setBounds(335, 388, 200, 40);
+		comboBoxSkillCommander1.setBounds(335, 380, 200, 40);
 		panelKampfErstellen.add(comboBoxSkillCommander1);
 		
 		JButton btnCommander2Down = new JButton("");
@@ -211,19 +338,19 @@ public class MainWindow {
 		btnCommander1Up.setBounds(280, 206, 45, 40);
 		panelKampfErstellen.add(btnCommander1Up);
 		
-		JLabel lblCommander2Name = new JLabel("K\u00F6nig Foltest");
-		lblCommander2Name.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCommander2Name.setForeground(Color.WHITE);
-		lblCommander2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
-		lblCommander2Name.setBounds(914, 388, 200, 55);
-		panelKampfErstellen.add(lblCommander2Name);
+		JLabel lblCommander2Specialty = new JLabel("Unterst\u00FCtzer");
+		lblCommander2Specialty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCommander2Specialty.setForeground(Color.WHITE);
+		lblCommander2Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+		lblCommander2Specialty.setBounds(914, 388, 200, 55);
+		panelKampfErstellen.add(lblCommander2Specialty);
 		
-		JLabel lblCommander1Name = new JLabel("Geralt");
-		lblCommander1Name.setForeground(new Color(255, 255, 255));
-		lblCommander1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
-		lblCommander1Name.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCommander1Name.setBounds(70, 388, 200, 55);
-		panelKampfErstellen.add(lblCommander1Name);
+		JLabel lblCommander1Specialty = new JLabel("K\u00E4mpfer");
+		lblCommander1Specialty.setForeground(new Color(255, 255, 255));
+		lblCommander1Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+		lblCommander1Specialty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCommander1Specialty.setBounds(70, 388, 200, 55);
+		panelKampfErstellen.add(lblCommander1Specialty);
 		
 		JLabel lblCommander2 = new JLabel("");
 		lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/foltest.png")));
@@ -231,15 +358,16 @@ public class MainWindow {
 		panelKampfErstellen.add(lblCommander2);
 		
 		JLabel lblCommander1 = new JLabel("New label");
+		lblCommander1.setToolTipText("Geralt von Riva: K\u00E4mpfer, Angriff: 250, Initiative: 150, Kommandowert: 6");
 		lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/geralt.png")));
 		lblCommander1.setBounds(70, 177, 200, 200);
 		panelKampfErstellen.add(lblCommander1);
 		
-		JLabel lblUberschriftCreateBattle = new JLabel("Erstelle Kommandanten und verteile Einheiten");
+		JLabel lblUberschriftCreateBattle = new JLabel("Kampf erstellen");
 		lblUberschriftCreateBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUberschriftCreateBattle.setForeground(Color.WHITE);
 		lblUberschriftCreateBattle.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 52));
-		lblUberschriftCreateBattle.setBounds(10, 89, 1164, 77);
+		lblUberschriftCreateBattle.setBounds(10, 22, 1164, 77);
 		panelKampfErstellen.add(lblUberschriftCreateBattle);
 		
 		JLabel lblNewLabel = new JLabel("");
