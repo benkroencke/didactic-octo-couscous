@@ -23,26 +23,29 @@ import javax.swing.JComboBox;
 import javax.swing.AbstractListModel;
 import javax.swing.UIManager;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWindow {
 
-	private JFrame frame;
+	public JFrame frame;
+	private JPanel panelMainMenu;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MainWindow window = new MainWindow();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -57,6 +60,7 @@ public class MainWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/source/gwent-nilfgaard-icon-01-ps4-us-16nov18.png")));
+		frame.setTitle("Kampfrechner");
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.getContentPane().setForeground(Color.DARK_GRAY);
@@ -66,6 +70,25 @@ public class MainWindow {
 		panelKampfErstellen.setBounds(0, 0, 1184, 761);
 		frame.getContentPane().add(panelKampfErstellen);
 		panelKampfErstellen.setLayout(null);
+		panelKampfErstellen.hide();
+		
+		JButton btnBerechne = new JButton("Berechne");
+		btnBerechne.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 18));
+		btnBerechne.setBackground(new Color(230, 230, 250));
+		btnBerechne.setBounds(492, 110, 200, 56);
+		panelKampfErstellen.add(btnBerechne);
+		
+		JButton btnNewButton = new JButton("Zur\u00FCck");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelKampfErstellen.hide();
+				panelMainMenu.show();
+			}
+		});
+		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+		btnNewButton.setBackground(new Color(230, 230, 250));
+		btnNewButton.setBounds(10, 22, 164, 40);
+		panelKampfErstellen.add(btnNewButton);
 		
 		JLabel lblUnitPreview = new JLabel("");
 		lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource("/source/RedanienRitter.png")));
@@ -375,7 +398,7 @@ public class MainWindow {
 		lblNewLabel.setBounds(0, 0, 1184, 761);
 		panelKampfErstellen.add(lblNewLabel);
 		
-		JPanel panelMainMenu = new JPanel();
+		panelMainMenu = new JPanel();
 		panelMainMenu.setBounds(0, 0, 1184, 761);
 		frame.getContentPane().add(panelMainMenu);
 		panelMainMenu.setLayout(null);
@@ -395,6 +418,12 @@ public class MainWindow {
 		panelMainMenu.add(lblueberschrift_1);
 		
 		JButton btnKampferstellen_1 = new JButton("Kampf erstellen");
+		btnKampferstellen_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panelKampfErstellen.show();
+				panelMainMenu.hide();
+			}
+		});
 		btnKampferstellen_1.setForeground(Color.BLACK);
 		btnKampferstellen_1.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 28));
 		btnKampferstellen_1.setBackground(new Color(230, 230, 250));

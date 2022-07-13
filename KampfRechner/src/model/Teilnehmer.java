@@ -7,6 +7,9 @@ public class Teilnehmer {
 	
 	private Spieler besitzer;
 	private String name;
+	private String beschreibung;
+	private String pictureURI;
+	private String klasse;
 	private int rang;
 	private List<Skill> skillListe;
 	private Skill skill1;
@@ -47,13 +50,16 @@ public class Teilnehmer {
 		this.initActual = initActual;
 	}
 	
-	public Teilnehmer(Spieler besitzer, String name, int rang, List<Skill> skillListe, Skill skill1, Skill skill2,
+	public Teilnehmer(Spieler besitzer, String name, String beschreibung, String klasse, String pictureURI, int rang, List<Skill> skillListe, Skill skill1, Skill skill2,
 			Skill skill3, Skill skill4, Skill ultimate, int schaden, int init, int kommandoWert,
 			ArrayList<Teilnehmer> einheitenListe, boolean istKommandant, int id, int leben, int ruestungProzent,
 			int counter, int lebenActual, int schadenActual, int ruestungProzentActual, int initActual) {
 		super();
 		this.besitzer = besitzer;
 		this.name = name;
+		this.beschreibung = beschreibung;
+		this.klasse = klasse;
+		this.pictureURI = pictureURI;
 		this.rang = rang;
 		this.skillListe = skillListe;
 		this.skill1 = skill1;
@@ -81,18 +87,20 @@ public class Teilnehmer {
 		System.out.println("TeilnehmerPool erstellt! Hier können nun neue Teilnehmer (Einheiten und Kommandanten generiert werden!");
 	}
 
-	public Teilnehmer achilleus(Spieler besitzer) {
+	public Teilnehmer geralt(Spieler besitzer) {
 		
 		this.skillListe = new ArrayList<Skill>();
 		this.einheitenListe = new ArrayList<Teilnehmer>();
 				
-		this.name = "Achilleus";
+		this.name = "Geralt von Riva";
+		this.klasse = "Kämpfer";
+		this.pictureURI = "/source/geralt.png";
 		this.id = 100;
 		this.leben = 1;
-		this.schaden = 225;
+		this.schaden = 250;
 		this.rang = 1;
 		this.ruestungProzent = 0;
-		this.init = 125;
+		this.init = 150;
 		this.kommandoWert = 6;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
 		
@@ -101,17 +109,50 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
 		
-		return new Teilnehmer(besitzer, name, rang, skillListe, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
 			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
 		
 	}
 	
-	public Teilnehmer heckenschuetze(Spieler besitzer) {
+	public Teilnehmer foltest(Spieler besitzer) {
 		
-		this.name = "Heckenschütze";
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "König Foltest";
+		this.klasse = "Unterstützer";
+		this.pictureURI = "/source/foltest.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 180;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 115;
+		this.kommandoWert = 7;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+				null, null, null, schaden, init, kommandoWert,
+				einheitenListe, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer heckenschuetzen(Spieler besitzer) {
+		
+		this.name = "Heckenschützen";
+		this.pictureURI = "/source/Heckenschuetzen.png";
 		this.id = 0;
 		this.leben = 1000;
 		this.schaden = 200;
@@ -124,8 +165,9 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
 		
-		return new Teilnehmer(besitzer, name, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -134,6 +176,7 @@ public class Teilnehmer {
 	public Teilnehmer hueter(Spieler besitzer) {
 		
 		this.name = "Hüter";
+		this.pictureURI = "/source/hueter.png";
 		this.id = 2;
 		this.leben = 1800;
 		this.schaden = 100;
@@ -146,16 +189,18 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		
-		return new Teilnehmer(besitzer, name, 0, null, null, null,
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
 	}
 	
-	public Teilnehmer phalanxinfanterie(Spieler besitzer) {
+	public Teilnehmer pikeniere(Spieler besitzer) {
 		
-		this.name = "Phalanxinfanterie";
+		this.name = "Pikeniere";
+		this.pictureURI = "/source/pikeniere.png";
 		this.id = 1;
 		this.leben = 2000;
 		this.schaden = 120;
@@ -168,8 +213,9 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		
-		return new Teilnehmer(besitzer, name, 0, null, null, null,
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -178,6 +224,7 @@ public class Teilnehmer {
 	public Teilnehmer kuerassiere(Spieler besitzer) {
 		
 		this.name = "Kürassiere";
+		this.pictureURI = "/source/RedanienRitter.png";
 		this.id = 3;
 		this.leben = 1500;
 		this.schaden = 165;
@@ -190,8 +237,9 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		
-		return new Teilnehmer(besitzer, name, 0, null, null, null,
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -422,6 +470,30 @@ public class Teilnehmer {
 				einheitenListe.remove(i);
 			
 		}
+	}
+
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+
+	public void setBeschreibung(String beschreibung) {
+		this.beschreibung = beschreibung;
+	}
+
+	public String getPictureURI() {
+		return pictureURI;
+	}
+
+	public void setPictureURI(String pictureURI) {
+		this.pictureURI = pictureURI;
+	}
+
+	public String getKlasse() {
+		return klasse;
+	}
+
+	public void setKlasse(String klasse) {
+		this.klasse = klasse;
 	}
 
 
