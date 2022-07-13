@@ -13,6 +13,7 @@ import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
@@ -21,16 +22,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 import javax.swing.UIManager;
+
+import main.Main;
+import model.Teilnehmer;
+
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class MainWindow {
 
+	Main main = new Main();
 	public JFrame frame;
 	private JPanel panelMainMenu;
-
+	ArrayList<Teilnehmer> spieler1kampfEinheiten = new ArrayList<Teilnehmer>();
+	ArrayList<Teilnehmer> spieler2kampfEinheiten = new ArrayList<Teilnehmer>();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -81,8 +92,10 @@ public class MainWindow {
 		JButton btnNewButton = new JButton("Zur\u00FCck");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				panelKampfErstellen.hide();
 				panelMainMenu.show();
+				
 			}
 		});
 		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
@@ -106,11 +119,32 @@ public class MainWindow {
 		panelKampfErstellen.add(btnTakeRight);
 		
 		JButton btnGiveLeft = new JButton("Gebe links");
+		btnGiveLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
 		btnGiveLeft.setBackground(new Color(230, 230, 250));
 		btnGiveLeft.setBounds(510, 505, 164, 23);
 		panelKampfErstellen.add(btnGiveLeft);
 		
 		JComboBox comboBoxTroops = new JComboBox();
+		comboBoxTroops.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+				Teilnehmer einheit = null;
+				
+				for(int i=0;i<main.getPreviewTroops().size();i++) {
+					if(main.getPreviewTroops().get(i).getName().equals(comboBoxTroops.getSelectedItem()))
+						einheit = main.getPreviewTroops().get(i);
+				}
+				lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+				
+			}
+		});
+
 		comboBoxTroops.setBounds(510, 454, 164, 40);
 		panelKampfErstellen.add(comboBoxTroops);
 		
@@ -420,6 +454,18 @@ public class MainWindow {
 		JButton btnKampferstellen_1 = new JButton("Kampf erstellen");
 		btnKampferstellen_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Fülle Combobox für Truppen
+				String[] einheitenNamen = new String[main.getPreviewTroops().size()];
+				
+				for(int i=0;i<main.getPreviewTroops().size();i++) {
+					
+					einheitenNamen[i] = main.getPreviewTroops().get(i).getName();
+					
+				}
+				DefaultComboBoxModel dm = new DefaultComboBoxModel(einheitenNamen);
+				comboBoxTroops.setModel(dm);
+				
 				panelKampfErstellen.show();
 				panelMainMenu.hide();
 			}
@@ -460,4 +506,5 @@ public class MainWindow {
 		frame.setBounds(100, 100, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 }

@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.Window;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,6 +14,20 @@ import model.Skill;
 import model.Spieler;
 
 public class Main {
+	
+	
+	private static ArrayList<Teilnehmer> previewTruppen;
+	private static ArrayList<Teilnehmer> previewKommandanten;
+	private static ArrayList<Artefakt> previewArtefakte;
+	
+	
+	
+	public ArrayList<Teilnehmer> getPreviewTroops(){
+		
+		return previewTruppen;
+		
+	}
+	
 
 	public static void main(String[] args) {
 		
@@ -23,16 +38,23 @@ public class Main {
 		Teilnehmer teilnehmerPool = new Teilnehmer();
 		Skill skillPool = new Skill();
 		
-		ArrayList<Teilnehmer> previewTruppen = new ArrayList<Teilnehmer>();
-		ArrayList<Teilnehmer> previewKommandanten = new ArrayList<Teilnehmer>();
+		previewTruppen = new ArrayList<Teilnehmer>();
+		previewKommandanten = new ArrayList<Teilnehmer>();
+		previewArtefakte = new ArrayList<Artefakt>();
+		
+		previewKommandanten.add(teilnehmerPool.geralt(main));
+		previewKommandanten.add(teilnehmerPool.foltest(main));
+		
+		previewTruppen.add(teilnehmerPool.heckenschuetzen(main));
+		previewTruppen.add(teilnehmerPool.hueter(main));
+		previewTruppen.add(teilnehmerPool.pikeniere(main));
+		previewTruppen.add(teilnehmerPool.kuerassiere(main));
+		
+		
+		
+		
 
-		
-		Teilnehmer previewGeralt = teilnehmerPool.geralt(main);
-		Teilnehmer previewFoltest = teilnehmerPool.foltest(main);
-		Teilnehmer previewHeckenschuetzen = teilnehmerPool.heckenschuetzen(main);
-		Teilnehmer previewHueter = teilnehmerPool.hueter(main);
-		
-		
+
 
 
 			EventQueue.invokeLater(new Runnable() {
@@ -40,6 +62,9 @@ public class Main {
 					try {
 						MainWindow window = new MainWindow();
 						window.frame.setVisible(true);
+						
+						
+						
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
