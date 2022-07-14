@@ -179,7 +179,7 @@ public class Teilnehmer {
 		this.pictureURI = "/source/hueter.png";
 		this.id = 2;
 		this.leben = 1800;
-		this.schaden = 100;
+		this.schaden = 110;
 		this.ruestungProzent = 20;
 		this.init = 100;
 		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
@@ -203,7 +203,7 @@ public class Teilnehmer {
 		this.pictureURI = "/source/pikeniere.png";
 		this.id = 1;
 		this.leben = 2000;
-		this.schaden = 120;
+		this.schaden = 140;
 		this.ruestungProzent = 12;
 		this.init = 115;
 		this.counter = 2; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
