@@ -28,6 +28,18 @@ public class Main {
 		
 	}
 	
+	public ArrayList<Teilnehmer> getPreviewCommanders(){
+		
+		return previewKommandanten;
+		
+	}
+	
+	public ArrayList<Artefakt> getPreviewArtefakte(){
+		
+		return previewArtefakte;
+		
+	}
+	
 
 	public static void main(String[] args) {
 		

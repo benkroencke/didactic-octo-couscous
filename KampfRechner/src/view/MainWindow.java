@@ -41,6 +41,10 @@ public class MainWindow {
 	private JPanel panelMainMenu;
 	ArrayList<Teilnehmer> spieler1kampfEinheiten = new ArrayList<Teilnehmer>();
 	ArrayList<Teilnehmer> spieler2kampfEinheiten = new ArrayList<Teilnehmer>();
+	private Teilnehmer heldSpieler1;
+	private Teilnehmer heldSpieler2;
+	private int arrayCommander1Stelle = 0;
+	private int arrayCommander2Stelle = 0;
 	
 	/**
 	 * Launch the application.
@@ -108,38 +112,13 @@ public class MainWindow {
 		lblUnitPreview.setBounds(542, 634, 100, 100);
 		panelKampfErstellen.add(lblUnitPreview);
 		
-		JButton btnTakeLeft = new JButton("entferne links");
-		btnTakeLeft.setBackground(new Color(230, 230, 250));
-		btnTakeLeft.setBounds(510, 570, 164, 23);
-		panelKampfErstellen.add(btnTakeLeft);
-		
-		JButton btnTakeRight = new JButton("entferne rechts");
-		btnTakeRight.setBackground(new Color(230, 230, 250));
-		btnTakeRight.setBounds(510, 600, 164, 23);
-		panelKampfErstellen.add(btnTakeRight);
-		
-		JButton btnGiveLeft = new JButton("Gebe links");
-		btnGiveLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-			}
-		});
-		btnGiveLeft.setBackground(new Color(230, 230, 250));
-		btnGiveLeft.setBounds(510, 505, 164, 23);
-		panelKampfErstellen.add(btnGiveLeft);
-		
 		JComboBox comboBoxTroops = new JComboBox();
 		comboBoxTroops.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
 				Teilnehmer einheit = null;
 				
-				for(int i=0;i<main.getPreviewTroops().size();i++) {
-					if(main.getPreviewTroops().get(i).getName().equals(comboBoxTroops.getSelectedItem()))
-						einheit = main.getPreviewTroops().get(i);
-				}
+				einheit = declareUnit(comboBoxTroops, einheit);
 				lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
 				
 			}
@@ -147,11 +126,6 @@ public class MainWindow {
 
 		comboBoxTroops.setBounds(510, 454, 164, 40);
 		panelKampfErstellen.add(comboBoxTroops);
-		
-		JButton btnGiveRight = new JButton("Gebe rechts");
-		btnGiveRight.setBackground(new Color(230, 230, 250));
-		btnGiveRight.setBounds(510, 537, 164, 23);
-		panelKampfErstellen.add(btnGiveRight);
 		
 		JLabel lblCommander2Einheit2 = new JLabel("");
 		lblCommander2Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
@@ -234,14 +208,131 @@ public class MainWindow {
 		lblCommander1Einheit1.setBounds(70, 648, 100, 100);
 		panelKampfErstellen.add(lblCommander1Einheit1);
 		
-		JLabel lblCommander2Name = new JLabel("K\u00F6nig Foltest");
+		JButton btnGiveLeft = new JButton("Gebe links");
+		btnGiveLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Teilnehmer einheit = null;
+				einheit = declareUnit(comboBoxTroops, einheit);
+				
+				if(heldSpieler1 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(spieler1kampfEinheiten.size()>=heldSpieler1.getKommandoWert())
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Einheiten befehligen!");
+					else if(spieler1kampfEinheiten.size()<heldSpieler1.getKommandoWert() && spieler1kampfEinheiten != null) {
+						
+						spieler1kampfEinheiten.add(einheit);
+						
+						setTroopIconsLeft(lblCommander1Einheit7, lblCommander1Einheit8, lblCommander1Einheit4,
+								lblCommander1Einheit6, lblCommander1Einheit2, lblCommander1Einheit3,
+								lblCommander1Einheit5, lblCommander1Einheit1, einheit);
+						
+					}
+				}
+				
+				
+			}
+		});
+		btnGiveLeft.setBackground(new Color(230, 230, 250));
+		btnGiveLeft.setBounds(510, 505, 164, 23);
+		panelKampfErstellen.add(btnGiveLeft);
+		
+		JButton btnGiveRight = new JButton("Gebe rechts");
+		btnGiveRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Teilnehmer einheit = null;
+				einheit = declareUnit(comboBoxTroops, einheit);
+				
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(spieler2kampfEinheiten.size()>=heldSpieler2.getKommandoWert())
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Einheiten befehligen!");
+					else if(spieler2kampfEinheiten.size()<heldSpieler2.getKommandoWert() && spieler2kampfEinheiten != null) {
+						
+						spieler2kampfEinheiten.add(einheit);
+						
+						setTroopIconsRight(lblCommander2Einheit2, lblCommander2Einheit1, lblCommander2Einheit6,
+								lblCommander2Einheit4, lblCommander2Einheit3, lblCommander2Einheit8,
+								lblCommander2Einheit5, lblCommander2Einheit7, einheit);
+						
+					}
+				}
+				
+				
+			}
+		});
+		btnGiveRight.setBackground(new Color(230, 230, 250));
+		btnGiveRight.setBounds(510, 537, 164, 23);
+		panelKampfErstellen.add(btnGiveRight);
+		
+		JButton btnTakeLeft = new JButton("entferne links");
+		btnTakeLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(heldSpieler1 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(spieler1kampfEinheiten.size() == 0)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Einheiten zum befehligen!");
+					else if(spieler1kampfEinheiten.size()>0 && spieler1kampfEinheiten != null) {
+						
+						spieler1kampfEinheiten.remove(spieler1kampfEinheiten.size()-1);
+						
+						removeTroopIconsLeft(lblCommander1Einheit7, lblCommander1Einheit8, lblCommander1Einheit4,
+								lblCommander1Einheit6, lblCommander1Einheit2, lblCommander1Einheit3,
+								lblCommander1Einheit5, lblCommander1Einheit1);
+						
+					}
+				}
+				
+			}
+		});
+		btnTakeLeft.setBackground(new Color(230, 230, 250));
+		btnTakeLeft.setBounds(510, 570, 164, 23);
+		panelKampfErstellen.add(btnTakeLeft);
+		
+		JButton btnTakeRight = new JButton("entferne rechts");
+		btnTakeRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(spieler2kampfEinheiten.size() == 0)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Einheiten zum befehligen!");
+					else if(spieler2kampfEinheiten.size()>0 && spieler2kampfEinheiten != null) {
+						
+						spieler2kampfEinheiten.remove(spieler2kampfEinheiten.size()-1);
+						
+						removeTroopIconsRight(lblCommander2Einheit2, lblCommander2Einheit1, lblCommander2Einheit6,
+								lblCommander2Einheit4, lblCommander2Einheit3, lblCommander2Einheit8,
+								lblCommander2Einheit5, lblCommander2Einheit7);
+						
+					}
+				}
+				
+			}
+		});
+		btnTakeRight.setBackground(new Color(230, 230, 250));
+		btnTakeRight.setBounds(510, 600, 164, 23);
+		panelKampfErstellen.add(btnTakeRight);
+		
+		
+		JLabel lblCommander2Name = new JLabel("Bitte w\u00E4hlen");
 		lblCommander2Name.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCommander2Name.setForeground(Color.WHITE);
 		lblCommander2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
 		lblCommander2Name.setBounds(602, 110, 512, 67);
 		panelKampfErstellen.add(lblCommander2Name);
 		
-		JLabel lblCommander1Name = new JLabel("Geralt von Riva");
+		JLabel lblCommander1Name = new JLabel("Bitte w\u00E4hlen");
 		lblCommander1Name.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCommander1Name.setForeground(Color.WHITE);
 		lblCommander1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
@@ -371,38 +462,14 @@ public class MainWindow {
 		comboBoxSkillCommander1.setBounds(335, 380, 200, 40);
 		panelKampfErstellen.add(comboBoxSkillCommander1);
 		
-		JButton btnCommander2Down = new JButton("");
-		btnCommander2Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
-		btnCommander2Down.setBackground(Color.BLACK);
-		btnCommander2Down.setBounds(859, 308, 45, 40);
-		panelKampfErstellen.add(btnCommander2Down);
-		
-		JButton btnCommander2Up = new JButton("");
-		btnCommander2Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
-		btnCommander2Up.setBackground(Color.BLACK);
-		btnCommander2Up.setBounds(859, 206, 45, 40);
-		panelKampfErstellen.add(btnCommander2Up);
-		
-		JButton btnCommander1Down = new JButton("");
-		btnCommander1Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
-		btnCommander1Down.setBackground(new Color(0, 0, 0));
-		btnCommander1Down.setBounds(280, 308, 45, 40);
-		panelKampfErstellen.add(btnCommander1Down);
-		
-		JButton btnCommander1Up = new JButton("");
-		btnCommander1Up.setBackground(new Color(0, 0, 0));
-		btnCommander1Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
-		btnCommander1Up.setBounds(280, 206, 45, 40);
-		panelKampfErstellen.add(btnCommander1Up);
-		
-		JLabel lblCommander2Specialty = new JLabel("Unterst\u00FCtzer");
+		JLabel lblCommander2Specialty = new JLabel("-----");
 		lblCommander2Specialty.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCommander2Specialty.setForeground(Color.WHITE);
 		lblCommander2Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		lblCommander2Specialty.setBounds(914, 388, 200, 55);
 		panelKampfErstellen.add(lblCommander2Specialty);
 		
-		JLabel lblCommander1Specialty = new JLabel("K\u00E4mpfer");
+		JLabel lblCommander1Specialty = new JLabel("-----");
 		lblCommander1Specialty.setForeground(new Color(255, 255, 255));
 		lblCommander1Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		lblCommander1Specialty.setHorizontalAlignment(SwingConstants.CENTER);
@@ -410,15 +477,123 @@ public class MainWindow {
 		panelKampfErstellen.add(lblCommander1Specialty);
 		
 		JLabel lblCommander2 = new JLabel("");
-		lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/foltest.png")));
+		lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
 		lblCommander2.setBounds(914, 177, 200, 200);
 		panelKampfErstellen.add(lblCommander2);
 		
 		JLabel lblCommander1 = new JLabel("New label");
-		lblCommander1.setToolTipText("Geralt von Riva: K\u00E4mpfer, Angriff: 250, Initiative: 150, Kommandowert: 6");
-		lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/geralt.png")));
+		lblCommander1.setToolTipText("");
+		lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
 		lblCommander1.setBounds(70, 177, 200, 200);
 		panelKampfErstellen.add(lblCommander1);
+		
+		JButton btnCommander1Down = new JButton("");
+		btnCommander1Down.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				heldSpieler1 = null;
+				
+				if(arrayCommander1Stelle==0)
+					arrayCommander1Stelle=main.getPreviewCommanders().size()-1;
+				else
+					arrayCommander1Stelle--;
+				
+				heldSpieler1 = main.getPreviewCommanders().get(arrayCommander1Stelle);
+				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
+				lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
+				lblCommander1Name.setText(heldSpieler1.getName());
+				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
+				
+				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+				
+			}
+		});
+		btnCommander1Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
+		btnCommander1Down.setBackground(new Color(0, 0, 0));
+		btnCommander1Down.setBounds(280, 308, 45, 40);
+		panelKampfErstellen.add(btnCommander1Down);
+		
+		JButton btnCommander1Up = new JButton("");
+		btnCommander1Up.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				heldSpieler1 = null;
+				
+				if(arrayCommander1Stelle==main.getPreviewCommanders().size()-1)
+					arrayCommander1Stelle=0;
+				else
+					arrayCommander1Stelle++;
+				
+				heldSpieler1 = main.getPreviewCommanders().get(arrayCommander1Stelle);
+				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
+				lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
+				lblCommander1Name.setText(heldSpieler1.getName());
+				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
+				
+				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+				
+			}
+		});
+		btnCommander1Up.setBackground(new Color(0, 0, 0));
+		btnCommander1Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
+		btnCommander1Up.setBounds(280, 206, 45, 40);
+		panelKampfErstellen.add(btnCommander1Up);
+		
+		JButton btnCommander2Down = new JButton("");
+		btnCommander2Down.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				heldSpieler2 = null;
+				
+				if(arrayCommander2Stelle==0)
+					arrayCommander2Stelle=main.getPreviewCommanders().size()-1;
+				else
+					arrayCommander2Stelle--;
+				
+				heldSpieler2 = main.getPreviewCommanders().get(arrayCommander2Stelle);
+				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
+				lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
+				lblCommander2Name.setText(heldSpieler2.getName());
+				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
+				
+				if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+				
+			}
+		});
+		btnCommander2Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
+		btnCommander2Down.setBackground(Color.BLACK);
+		btnCommander2Down.setBounds(859, 308, 45, 40);
+		panelKampfErstellen.add(btnCommander2Down);
+		
+		JButton btnCommander2Up = new JButton("");
+		btnCommander2Up.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				heldSpieler2 = null;
+				
+				if(arrayCommander2Stelle==main.getPreviewCommanders().size()-1)
+					arrayCommander2Stelle=0;
+				else
+					arrayCommander2Stelle++;
+				
+				heldSpieler2 = main.getPreviewCommanders().get(arrayCommander2Stelle);
+				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
+				lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
+				lblCommander2Name.setText(heldSpieler2.getName());
+				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
+				
+				if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+				
+			}
+		});
+		btnCommander2Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
+		btnCommander2Up.setBackground(Color.BLACK);
+		btnCommander2Up.setBounds(859, 206, 45, 40);
+		panelKampfErstellen.add(btnCommander2Up);
 		
 		JLabel lblUberschriftCreateBattle = new JLabel("Kampf erstellen");
 		lblUberschriftCreateBattle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -505,6 +680,168 @@ public class MainWindow {
 		frame.setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	private Teilnehmer declareUnit(JComboBox comboBoxTroops, Teilnehmer einheit) {
+		for(int i=0;i<main.getPreviewTroops().size();i++) {
+			if(main.getPreviewTroops().get(i).getName().equals(comboBoxTroops.getSelectedItem()))
+				einheit = main.getPreviewTroops().get(i);
+		}
+		return einheit;
+	}
+
+	private void setTroopIconsLeft(JLabel lblCommander1Einheit7, JLabel lblCommander1Einheit8, JLabel lblCommander1Einheit4,
+			JLabel lblCommander1Einheit6, JLabel lblCommander1Einheit2, JLabel lblCommander1Einheit3,
+			JLabel lblCommander1Einheit5, JLabel lblCommander1Einheit1, Teilnehmer einheit) {
+		if (spieler1kampfEinheiten.size() == 1) {
+			lblCommander1Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit1.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 2) {
+			lblCommander1Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit2.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 3) {
+			lblCommander1Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit3.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 4) {
+			lblCommander1Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit4.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 5) {
+			lblCommander1Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit5.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 6) {
+			lblCommander1Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit6.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 7) {
+			lblCommander1Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit7.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler1kampfEinheiten.size() == 8) {
+			lblCommander1Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander1Einheit8.setToolTipText(einheit.getBeschreibung());
+		}
+	}
+
+	private void removeTroopIconsLeft(JLabel lblCommander1Einheit7, JLabel lblCommander1Einheit8,
+			JLabel lblCommander1Einheit4, JLabel lblCommander1Einheit6, JLabel lblCommander1Einheit2,
+			JLabel lblCommander1Einheit3, JLabel lblCommander1Einheit5, JLabel lblCommander1Einheit1) {
+		
+		String uri = "/source/unknownTroop.png";
+		
+		if (spieler1kampfEinheiten.size() == 0) {
+			lblCommander1Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit1.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 1) {
+			lblCommander1Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit2.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 2) {
+			lblCommander1Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit3.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 3) {
+			lblCommander1Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit4.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 4) {
+			lblCommander1Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit5.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 5) {
+			lblCommander1Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit6.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 6) {
+			lblCommander1Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit7.setToolTipText("");
+		}
+		if (spieler1kampfEinheiten.size() == 7) {
+			lblCommander1Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Einheit8.setToolTipText("");
+		}
+	}
+
+	private void setTroopIconsRight(JLabel lblCommander2Einheit2, JLabel lblCommander2Einheit1,
+			JLabel lblCommander2Einheit6, JLabel lblCommander2Einheit4, JLabel lblCommander2Einheit3,
+			JLabel lblCommander2Einheit8, JLabel lblCommander2Einheit5, JLabel lblCommander2Einheit7,
+			Teilnehmer einheit) {
+		if (spieler2kampfEinheiten.size() == 1) {
+			lblCommander2Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit1.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 2) {
+			lblCommander2Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit2.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 3) {
+			lblCommander2Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit3.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 4) {
+			lblCommander2Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit4.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 5) {
+			lblCommander2Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit5.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 6) {
+			lblCommander2Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit6.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 7) {
+			lblCommander2Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit7.setToolTipText(einheit.getBeschreibung());
+		}
+		if (spieler2kampfEinheiten.size() == 8) {
+			lblCommander2Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+			lblCommander2Einheit8.setToolTipText(einheit.getBeschreibung());
+		}
+	}
+
+	private void removeTroopIconsRight(JLabel lblCommander2Einheit2, JLabel lblCommander2Einheit1,
+			JLabel lblCommander2Einheit6, JLabel lblCommander2Einheit4, JLabel lblCommander2Einheit3,
+			JLabel lblCommander2Einheit8, JLabel lblCommander2Einheit5, JLabel lblCommander2Einheit7) {
+		String uri = "/source/unknownTroop.png";
+		
+		if (spieler2kampfEinheiten.size() == 0) {
+			lblCommander2Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit1.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 1) {
+			lblCommander2Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit2.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 2) {
+			lblCommander2Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit3.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 3) {
+			lblCommander2Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit4.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 4) {
+			lblCommander2Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit5.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 5) {
+			lblCommander2Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit6.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 6) {
+			lblCommander2Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit7.setToolTipText("");
+		}
+		if (spieler2kampfEinheiten.size() == 7) {
+			lblCommander2Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander2Einheit8.setToolTipText("");
+		}
 	}
 	
 }
