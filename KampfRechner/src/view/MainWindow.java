@@ -26,6 +26,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.UIManager;
 
 import main.Main;
+import model.Artefakt;
 import model.Teilnehmer;
 
 import javax.swing.DefaultComboBoxModel;
@@ -87,6 +88,7 @@ public class MainWindow {
 		panelKampfErstellen.setLayout(null);
 		panelKampfErstellen.hide();
 		
+
 		JButton btnBerechne = new JButton("Berechne");
 		btnBerechne.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 18));
 		btnBerechne.setBackground(new Color(230, 230, 250));
@@ -108,7 +110,7 @@ public class MainWindow {
 		panelKampfErstellen.add(btnNewButton);
 		
 		JLabel lblUnitPreview = new JLabel("");
-		lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource("/source/RedanienRitter.png")));
+		lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
 		lblUnitPreview.setBounds(542, 634, 100, 100);
 		panelKampfErstellen.add(lblUnitPreview);
 		
@@ -339,59 +341,42 @@ public class MainWindow {
 		lblCommander1Name.setBounds(70, 110, 512, 67);
 		panelKampfErstellen.add(lblCommander1Name);
 		
-		JComboBox comboBoxCommander2Artefakt2 = new JComboBox();
-		comboBoxCommander2Artefakt2.setBounds(914, 566, 200, 30);
-		panelKampfErstellen.add(comboBoxCommander2Artefakt2);
+		JComboBox comboBoxArtefakte2 = new JComboBox();
+		comboBoxArtefakte2.setBounds(914, 537, 200, 30);
+		panelKampfErstellen.add(comboBoxArtefakte2);
 		
-		JComboBox comboBoxCommander2Artefakt3 = new JComboBox();
-		comboBoxCommander2Artefakt3.setBounds(914, 607, 200, 30);
-		panelKampfErstellen.add(comboBoxCommander2Artefakt3);
-		
-		JComboBox comboBoxCommander2Artefakt1 = new JComboBox();
-		comboBoxCommander2Artefakt1.setBounds(914, 525, 200, 30);
-		panelKampfErstellen.add(comboBoxCommander2Artefakt1);
-		
-		JComboBox comboBoxCommander1Artefakt3 = new JComboBox();
-		comboBoxCommander1Artefakt3.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
-		comboBoxCommander1Artefakt3.setBounds(70, 607, 200, 30);
-		panelKampfErstellen.add(comboBoxCommander1Artefakt3);
-		
-		JComboBox comboBoxCommander1Artefakt2 = new JComboBox();
-		comboBoxCommander1Artefakt2.setBounds(69, 566, 200, 30);
-		panelKampfErstellen.add(comboBoxCommander1Artefakt2);
-		
-		JComboBox comboBoxCommander1Artefakt1 = new JComboBox();
-		comboBoxCommander1Artefakt1.setBounds(70, 525, 200, 30);
-		panelKampfErstellen.add(comboBoxCommander1Artefakt1);
+		JComboBox comboBoxArtefakte1 = new JComboBox();
+		comboBoxArtefakte1.setBounds(70, 537, 200, 30);
+		panelKampfErstellen.add(comboBoxArtefakte1);
 		
 		JLabel lblCommander2Artefakt3 = new JLabel("");
-		lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Donner.png")));
+		lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 		lblCommander2Artefakt3.setBounds(1054, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander2Artefakt3);
 		
 		JLabel lblCommander2Artefakt2 = new JLabel("");
-		lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Koenigsamulett.png")));
+		lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 		lblCommander2Artefakt2.setBounds(984, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander2Artefakt2);
 		
 		JLabel lblCommander2Artefakt1 = new JLabel("");
-		lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Widerhaken.png")));
+		lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 		lblCommander2Artefakt1.setBounds(914, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander2Artefakt1);
 		
 		JLabel lblCommander1Artefakt2 = new JLabel("");
-		lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Mittagserscheinung.png")));
+		lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 		lblCommander1Artefakt2.setBounds(139, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander1Artefakt2);
 		
 		JLabel lblCommander1Artefakt3 = new JLabel("");
-		lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Nachtwache.png")));
+		lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 		lblCommander1Artefakt3.setBounds(209, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander1Artefakt3);
 		
 		JLabel lblCommander1Artefakt1 = new JLabel("");
 		lblCommander1Artefakt1.setToolTipText("Krumms\u00E4bel: (+25 Angriff f\u00FCr den Helden)");
-		lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Krummsaebel.png")));
+		lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 		lblCommander1Artefakt1.setBounds(70, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander1Artefakt1);
 		
@@ -486,6 +471,198 @@ public class MainWindow {
 		lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
 		lblCommander1.setBounds(70, 177, 200, 200);
 		panelKampfErstellen.add(lblCommander1);
+		
+		JButton btnCommander2ArtefaktPlus = new JButton("+");
+		btnCommander2ArtefaktPlus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Artefakt artefakt = null;
+				artefakt = declareArtefakt(comboBoxArtefakte2, artefakt);
+				 
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+					Artefakt[] artefakte = heldSpieler2.getArtefakte();
+					if(artefakte[2] != null)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
+
+					if(heldSpieler2.getArtefakte()[0] == null) {
+						
+						heldSpieler2.getArtefakte()[0] = artefakt;
+						setIconArtefakt("2-1", artefakt);
+					}
+					else if(heldSpieler2.getArtefakte()[1] == null) {
+						
+						heldSpieler2.getArtefakte()[1] = artefakt;
+						setIconArtefakt("2-2", artefakt);
+					}
+					else if(heldSpieler2.getArtefakte()[2] == null) {
+						
+						heldSpieler2.getArtefakte()[2] = artefakt;
+						setIconArtefakt("2-3", artefakt);
+					}
+					
+				}
+					
+			}
+			
+			private void setIconArtefakt(String labelID, Artefakt artefakt) {
+				if(labelID.equals("2-1")) {
+					lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+					lblCommander2Artefakt1.setToolTipText(artefakt.getBeschreibung());
+				}
+				if(labelID.equals("2-2")) {
+					lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+					lblCommander2Artefakt2.setToolTipText(artefakt.getBeschreibung());
+				}
+				if(labelID.equals("2-3")) {
+					lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+					lblCommander2Artefakt3.setToolTipText(artefakt.getBeschreibung());
+				}
+			
+			}
+		});
+		btnCommander2ArtefaktPlus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnCommander2ArtefaktPlus.setBackground(new Color(230, 230, 250));
+		btnCommander2ArtefaktPlus.setBounds(914, 589, 89, 34);
+		panelKampfErstellen.add(btnCommander2ArtefaktPlus);
+		
+		JButton btnCommander2ArtefaktMinus = new JButton("-");
+		btnCommander2ArtefaktMinus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Artefakt artefakt = null;
+				artefakt = declareArtefakt(comboBoxArtefakte2, artefakt);
+				 
+				
+				if(heldSpieler2 == null) {
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+					return;
+				}
+				if(heldSpieler2.getArtefakte()[0] == null)
+					JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Artefakte!");
+				else if (heldSpieler2.getArtefakte()[0] != null && heldSpieler2 != null) {
+				
+
+					
+					Artefakt[] artefakte = heldSpieler2.getArtefakte();
+					
+					if(heldSpieler2.getArtefakte()[1] == null)
+						heldSpieler2.getArtefakte()[0] = null;
+					if(heldSpieler2.getArtefakte()[2] == null)
+						heldSpieler2.getArtefakte()[1] = null;
+					if(heldSpieler2.getArtefakte()[2] != null)
+						heldSpieler2.getArtefakte()[2] = null;
+						
+						
+						resetArtefakt1Icons(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1,
+								artefakt, artefakte);
+						
+					
+				}
+				
+			}
+		});
+		btnCommander2ArtefaktMinus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnCommander2ArtefaktMinus.setBackground(new Color(230, 230, 250));
+		btnCommander2ArtefaktMinus.setBounds(1025, 589, 89, 34);
+		panelKampfErstellen.add(btnCommander2ArtefaktMinus);
+		
+		JButton btnCommander1ArtefaktPlus = new JButton("+");
+		btnCommander1ArtefaktPlus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Artefakt artefakt = null;
+				artefakt = declareArtefakt(comboBoxArtefakte1, artefakt);
+				 
+				if(heldSpieler1 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+					Artefakt[] artefakte = heldSpieler1.getArtefakte();
+					if(artefakte[2] != null)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
+
+					if(heldSpieler1.getArtefakte()[0] == null) {
+						
+						heldSpieler1.getArtefakte()[0] = artefakt;
+						setIconArtefakt("1-1", artefakt);
+					}
+					else if(heldSpieler1.getArtefakte()[1] == null) {
+						
+						heldSpieler1.getArtefakte()[1] = artefakt;
+						setIconArtefakt("1-2", artefakt);
+					}
+					else if(heldSpieler1.getArtefakte()[2] == null) {
+						
+						heldSpieler1.getArtefakte()[2] = artefakt;
+						setIconArtefakt("1-3", artefakt);
+					}
+					
+				}
+					
+			}
+			
+			private void setIconArtefakt(String labelID, Artefakt artefakt) {
+				if(labelID.equals("1-1")) {
+					lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+					lblCommander1Artefakt1.setToolTipText(artefakt.getBeschreibung());
+				}
+				if(labelID.equals("1-2")) {
+					lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+					lblCommander1Artefakt2.setToolTipText(artefakt.getBeschreibung());
+				}
+				if(labelID.equals("1-3")) {
+					lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+					lblCommander1Artefakt3.setToolTipText(artefakt.getBeschreibung());
+				}
+			}
+
+		});
+		btnCommander1ArtefaktPlus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnCommander1ArtefaktPlus.setBackground(new Color(230, 230, 250));
+		btnCommander1ArtefaktPlus.setBounds(70, 589, 89, 34);
+		panelKampfErstellen.add(btnCommander1ArtefaktPlus);
+		
+		JButton btnCommander1ArtefaktMinus = new JButton("-");
+		btnCommander1ArtefaktMinus.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Artefakt artefakt = null;
+				artefakt = declareArtefakt(comboBoxArtefakte1, artefakt);
+				 
+				
+				if(heldSpieler1 == null) {
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+					return;
+				}
+				if(heldSpieler1.getArtefakte()[0] == null)
+					JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Artefakte!");
+				else if (heldSpieler1.getArtefakte()[0] != null && heldSpieler1 != null) {
+				
+
+					
+					Artefakt[] artefakte = heldSpieler1.getArtefakte();
+					
+					if(heldSpieler1.getArtefakte()[1] == null)
+						heldSpieler1.getArtefakte()[0] = null;
+					if(heldSpieler1.getArtefakte()[2] == null)
+						heldSpieler1.getArtefakte()[1] = null;
+					if(heldSpieler1.getArtefakte()[2] != null)
+						heldSpieler1.getArtefakte()[2] = null;
+						
+						
+						resetArtefakt1Icons(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1,
+								artefakt, artefakte);
+						
+					
+				}
+				
+			}
+		});
+		btnCommander1ArtefaktMinus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnCommander1ArtefaktMinus.setBackground(new Color(230, 230, 250));
+		btnCommander1ArtefaktMinus.setBounds(181, 589, 89, 34);
+		panelKampfErstellen.add(btnCommander1ArtefaktMinus);
+		
 		
 		JButton btnCommander1Down = new JButton("");
 		btnCommander1Down.addActionListener(new ActionListener() {
@@ -641,6 +818,18 @@ public class MainWindow {
 				DefaultComboBoxModel dm = new DefaultComboBoxModel(einheitenNamen);
 				comboBoxTroops.setModel(dm);
 				
+				//Fülle Combobox für Artefakte
+				String[] artefaktNamen = new String[main.getPreviewArtefakte().size()];
+				
+				for(int i=0;i<main.getPreviewArtefakte().size();i++) {
+					
+					artefaktNamen[i] = main.getPreviewArtefakte().get(i).getName();
+					
+				}
+				DefaultComboBoxModel dmArtefakte = new DefaultComboBoxModel(artefaktNamen);
+				comboBoxArtefakte1.setModel(dmArtefakte);
+				comboBoxArtefakte2.setModel(dmArtefakte);
+				
 				panelKampfErstellen.show();
 				panelMainMenu.hide();
 			}
@@ -688,6 +877,14 @@ public class MainWindow {
 				einheit = main.getPreviewTroops().get(i);
 		}
 		return einheit;
+	}
+	
+	private Artefakt declareArtefakt(JComboBox comboBoxArtefakt, Artefakt artefakt) {
+		for(int i=0;i<main.getPreviewArtefakte().size();i++) {
+			if(main.getPreviewArtefakte().get(i).getName().equals(comboBoxArtefakt.getSelectedItem()))
+				artefakt = main.getPreviewArtefakte().get(i);
+		}
+		return artefakt;
 	}
 
 	private void setTroopIconsLeft(JLabel lblCommander1Einheit7, JLabel lblCommander1Einheit8, JLabel lblCommander1Einheit4,
@@ -844,4 +1041,22 @@ public class MainWindow {
 		}
 	}
 	
+	private void resetArtefakt1Icons(JLabel lblCommander1Artefakt2, JLabel lblCommander1Artefakt3,
+			JLabel lblCommander1Artefakt1, Artefakt artefakt, Artefakt[] artefakte) {
+		
+		String uri = "/source/noitem.png";
+		
+		if(artefakte[0] != null && artefakte[1] != null && artefakte[2] == null) {
+			lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Artefakt3.setToolTipText("");
+		}
+		if(artefakte[0] != null && artefakte[1] == null && artefakte[2] == null) {
+			lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Artefakt2.setToolTipText("");
+		}
+		if(artefakte[0] == null && artefakte[1] == null && artefakte[2] == null) {
+			lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
+			lblCommander1Artefakt1.setToolTipText("");
+		}
+	}
 }

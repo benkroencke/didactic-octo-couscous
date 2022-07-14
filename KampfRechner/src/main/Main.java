@@ -49,6 +49,7 @@ public class Main {
 		
 		Teilnehmer teilnehmerPool = new Teilnehmer();
 		Skill skillPool = new Skill();
+		Artefakt artefaktPool = new Artefakt();
 		
 		previewTruppen = new ArrayList<Teilnehmer>();
 		previewKommandanten = new ArrayList<Teilnehmer>();
@@ -62,7 +63,9 @@ public class Main {
 		previewTruppen.add(teilnehmerPool.pikeniere(main));
 		previewTruppen.add(teilnehmerPool.kuerassiere(main));
 		
-		
+		previewArtefakte.add(artefaktPool.donner());
+		previewArtefakte.add(artefaktPool.koenigsamulett());
+		previewArtefakte.add(artefaktPool.krummsaebel());
 		
 		
 
