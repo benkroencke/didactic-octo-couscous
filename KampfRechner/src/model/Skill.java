@@ -118,13 +118,13 @@ public class Skill {
 		
 		this.name = "Wirbelwind";
 		this.effectKey = "damage";
-		this.beschreibung = "Ein wahrer Klingentanz. Alle 4 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
+		this.beschreibung = "Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
 		this.schadensmulitplikator = 8;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
-		this.cooldown = 4;
+		this.cooldown = 5;
 		this.numberOfTargets = 4;
 		this.hatEile = false;
 		this.ignoresArmor = false;

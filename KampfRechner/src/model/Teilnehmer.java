@@ -35,6 +35,7 @@ public class Teilnehmer {
 	
 	private int angerichteterSchaden;
 	private int erlittenerSchaden;
+	private int geheilterSchaden;
 	
 	public Teilnehmer(Spieler besitzer, String name, int rang, List<Skill> skillListe,
 			int schaden, int init, int kommandoWert, ArrayList<Teilnehmer> einheitenListe,
@@ -253,7 +254,7 @@ public class Teilnehmer {
 		if(name.equals("König Foltest"))
 			return this.foltest(besitzer);
 		
-		if(name.equals("Heckenschütze"))
+		if(name.equals("Heckenschützen"))
 			return this.heckenschuetzen(besitzer);
 		if(name.equals("Hüter"))
 			return this.hueter(besitzer);
@@ -513,6 +514,14 @@ public class Teilnehmer {
 
 	public void setKlasse(String klasse) {
 		this.klasse = klasse;
+	}
+
+	public int getGeheilterSchaden() {
+		return geheilterSchaden;
+	}
+
+	public void setGeheilterSchaden(int geheilterSchaden) {
+		this.geheilterSchaden = geheilterSchaden;
 	}
 
 

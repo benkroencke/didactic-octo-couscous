@@ -57,6 +57,18 @@ public class MainWindow {
 	private Teilnehmer teilnehmerFabrik = new Teilnehmer();
 	private Skill skillFabrik = new Skill();
 	private Artefakt artefaktFabrik = new Artefakt();
+	private Artefakt[] artefakteSpieler1 = new Artefakt[3];
+	private Artefakt[] artefakteSpieler2 = new Artefakt[3];
+	private Skill s1skill1 = null;
+	private Skill s1skill2 = null;
+	private Skill s1skill3 = null;
+	private Skill s1skill4 = null;
+	private Skill s1Ulti = null;
+	private Skill s2skill1 = null;
+	private Skill s2skill2 = null;
+	private Skill s2skill3 = null;
+	private Skill s2skill4 = null;
+	private Skill s2Ulti = null;
 	
 	/**
 	 * Launch the application.
@@ -118,7 +130,7 @@ public class MainWindow {
 						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
 						return;
 					}
-					setSkill(heldSpieler2, skill);
+					setSkill(heldSpieler2, skill, "r");
 					skillsRight.addElement(skill.getName());
 				}
 				
@@ -143,7 +155,7 @@ public class MainWindow {
 					else {
 						
 					}
-						removeSkill(heldSpieler1, skillsLeft);
+						removeSkill(heldSpieler1, skillsLeft, "l");
 						
 
 					}
@@ -169,7 +181,7 @@ public class MainWindow {
 					else {
 						
 					}
-						removeSkill(heldSpieler2, skillsRight);
+						removeSkill(heldSpieler2, skillsRight, "r");
 						
 
 					}
@@ -194,29 +206,8 @@ public class MainWindow {
 				ArrayList<Teilnehmer> spieler2Einheiten = new ArrayList<Teilnehmer>();
 				
 				
-				int anzArtefakte1 = 0;
-				while (!(heldSpieler1.getArtefakte()[anzArtefakte1] == null)) {
-					anzArtefakte1+=1;
-				}
-				int anzArtefakte2 = 0;
-				while (!(heldSpieler2.getArtefakte()[anzArtefakte2] == null)) {
-					anzArtefakte2+=1;
-				}
-				
-				Artefakt[] artefakte1 = new Artefakt[anzArtefakte1];
-				Artefakt[] artefakte2 = new Artefakt[anzArtefakte2];
-				
-				Skill skill11 = heldSpieler1.getSkill1();
-				Skill skill12 = heldSpieler1.getSkill2();
-				Skill skill13 = heldSpieler1.getSkill3();
-				Skill skill14 = heldSpieler1.getSkill4();
-				Skill skill15 = heldSpieler1.getUltimate();
-				
-				Skill skill21 = heldSpieler2.getSkill1();
-				Skill skill22 = heldSpieler2.getSkill2();
-				Skill skill23 = heldSpieler2.getSkill3();
-				Skill skill24 = heldSpieler2.getSkill4();
-				Skill skill25 = heldSpieler2.getUltimate();
+				Artefakt[] artefakte1 = artefakteSpieler1;
+				Artefakt[] artefakte2 = artefakteSpieler2;
 				
 				
 				if(heldSpieler1 == null || heldSpieler2 == null || heldSpieler1.getEinheitenListe() == null || heldSpieler2.getEinheitenListe() == null) {
@@ -230,11 +221,13 @@ public class MainWindow {
 				for(int i=0; i<spieler2kampfEinheiten.size();i++) {
 					spieler2Einheiten.add(teilnehmerFabrik.erstelle(spieler2kampfEinheiten.get(i).getName(), spieler2));
 				}
-				for(int i=0; i<anzArtefakte1;i++) {
-					artefakte1[i] = artefaktFabrik.erstelle(heldSpieler1.getArtefakte()[i].getName());
+				for(int i=0; i<artefakte1.length;i++) {
+					if(!(artefakte1[i] == null))
+						artefakte1[i] = artefaktFabrik.erstelle(heldSpieler1.getArtefakte()[i].getName());
 				}
-				for(int i=0; i<anzArtefakte2;i++) {
-					artefakte2[i] = artefaktFabrik.erstelle(heldSpieler2.getArtefakte()[i].getName());
+				for(int i=0; i<artefakte2.length;i++) {
+					if(!(artefakte2[i] == null))
+						artefakte2[i] = artefaktFabrik.erstelle(heldSpieler2.getArtefakte()[i].getName());
 				}
 				
 				
@@ -245,27 +238,28 @@ public class MainWindow {
 				heldSpieler1.setArtefakte(artefakte1);
 				heldSpieler2.setArtefakte(artefakte2);
 				
-				if(!(heldSpieler1.getSkill1() == null))
-					heldSpieler1.setSkill1(skillFabrik.erstelle(skill11.getName()));
-				if(!(heldSpieler1.getSkill2() == null))
-					heldSpieler1.setSkill2(skillFabrik.erstelle(skill12.getName()));
-				if(!(heldSpieler1.getSkill3() == null))
-					heldSpieler1.setSkill3(skillFabrik.erstelle(skill13.getName()));
-				if(!(heldSpieler1.getSkill4() == null))
-					heldSpieler1.setSkill4(skillFabrik.erstelle(skill14.getName()));
-				if(!(heldSpieler1.getUltimate() == null))
-					heldSpieler1.setUltimate(skillFabrik.erstelle(skill15.getName()));
 				
-				if(!(heldSpieler2.getSkill1() == null))
-					heldSpieler2.setSkill1(skillFabrik.erstelle(skill21.getName()));
-				if(!(heldSpieler2.getSkill2() == null))
-					heldSpieler2.setSkill2(skillFabrik.erstelle(skill22.getName()));
-				if(!(heldSpieler2.getSkill3() == null))
-					heldSpieler2.setSkill3(skillFabrik.erstelle(skill23.getName()));
-				if(!(heldSpieler2.getSkill4() == null))
-					heldSpieler2.setSkill4(skillFabrik.erstelle(skill24.getName()));
-				if(!(heldSpieler2.getUltimate() == null))
-					heldSpieler2.setUltimate(skillFabrik.erstelle(skill25.getName()));
+				if(!(s1skill1 == null))
+					heldSpieler1.setSkill1(skillFabrik.erstelle(s1skill1.getName()));
+				if(!(s1skill2 == null))
+					heldSpieler1.setSkill2(skillFabrik.erstelle(s1skill2.getName()));
+				if(!(s1skill3 == null))
+					heldSpieler1.setSkill3(skillFabrik.erstelle(s1skill2.getName()));
+				if(!(s1skill4 == null))
+					heldSpieler1.setSkill4(skillFabrik.erstelle(s1skill2.getName()));
+				if(!(s1Ulti == null))
+					heldSpieler1.setUltimate(skillFabrik.erstelle(s1Ulti.getName()));
+				
+				if(!(s2skill1 == null))
+					heldSpieler2.setSkill1(skillFabrik.erstelle(s2skill1.getName()));
+				if(!(s2skill2 == null))
+					heldSpieler2.setSkill2(skillFabrik.erstelle(s2skill2.getName()));
+				if(!(s2skill3 == null))
+					heldSpieler2.setSkill3(skillFabrik.erstelle(s2skill3.getName()));
+				if(!(s2skill4 == null))
+					heldSpieler2.setSkill4(skillFabrik.erstelle(s2skill4.getName()));
+				if(!(s2Ulti == null))
+					heldSpieler2.setUltimate(skillFabrik.erstelle(s1Ulti.getName()));
 				
 				
 				ArrayList<Teilnehmer> teilnehmer = new ArrayList<Teilnehmer>();
@@ -658,7 +652,7 @@ public class MainWindow {
 						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
 						return;
 					}
-					setSkill(heldSpieler1, skill);
+					setSkill(heldSpieler1, skill, "l");
 					skillsLeft.addElement(skill.getName());
 				}
 			}
@@ -705,25 +699,28 @@ public class MainWindow {
 					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
 				else {
 					Artefakt[] artefakte = heldSpieler2.getArtefakte();
-					if(artefakte[2] != null)
+					if(artefakte[2] != null) {
 						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
+						return;
+					}
 
-					if(heldSpieler2.getArtefakte()[0] == null) {
+					if(artefakte[0] == null) {
 						
-						heldSpieler2.getArtefakte()[0] = artefakt;
+						artefakte[0] = artefakt;
 						setIconArtefakt("2-1", artefakt);
 					}
-					else if(heldSpieler2.getArtefakte()[1] == null) {
+					else if(artefakte[1] == null) {
 						
-						heldSpieler2.getArtefakte()[1] = artefakt;
+						artefakte[1] = artefakt;
 						setIconArtefakt("2-2", artefakt);
 					}
-					else if(heldSpieler2.getArtefakte()[2] == null) {
+					else if(artefakte[2] == null) {
 						
-						heldSpieler2.getArtefakte()[2] = artefakt;
+						artefakte[2] = artefakt;
 						setIconArtefakt("2-3", artefakt);
 					}
 					heldSpieler2.setArtefakte(artefakte);
+					artefakteSpieler2 = artefakte;
 				}
 					
 			}
@@ -769,13 +766,15 @@ public class MainWindow {
 					
 					Artefakt[] artefakte = heldSpieler2.getArtefakte();
 					
-					if(heldSpieler2.getArtefakte()[1] == null)
-						heldSpieler2.getArtefakte()[0] = null;
-					if(heldSpieler2.getArtefakte()[2] == null)
-						heldSpieler2.getArtefakte()[1] = null;
-					if(heldSpieler2.getArtefakte()[2] != null)
-						heldSpieler2.getArtefakte()[2] = null;
+					if(artefakte[1] == null)
+						artefakte[0] = null;
+					if(artefakte[2] == null)
+						artefakte[1] = null;
+					if(artefakte[2] != null)
+						artefakte[2] = null;
 						
+					heldSpieler2.setArtefakte(artefakte);
+					artefakteSpieler2 = artefakte;
 						
 						resetArtefakt1Icons(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1,
 								artefakt, artefakte);
@@ -801,28 +800,31 @@ public class MainWindow {
 					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
 				else {
 					Artefakt[] artefakte = heldSpieler1.getArtefakte();
-					if(artefakte[2] != null)
+					if(artefakte[2] != null) {
 						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
+						return;
+					}
 
-					if(heldSpieler1.getArtefakte()[0] == null) {
+					if(artefakte[0] == null) {
 						
-						heldSpieler1.getArtefakte()[0] = artefakt;
+						artefakte[0] = artefakt;
 						setIconArtefakt("1-1", artefakt);
 					}
-					else if(heldSpieler1.getArtefakte()[1] == null) {
+					else if(artefakte[1] == null) {
 						
-						heldSpieler1.getArtefakte()[1] = artefakt;
+						artefakte[1] = artefakt;
 						setIconArtefakt("1-2", artefakt);
 					}
-					else if(heldSpieler1.getArtefakte()[2] == null) {
+					else if(artefakte[2] == null) {
 						
-						heldSpieler1.getArtefakte()[2] = artefakt;
+						artefakte[2] = artefakt;
 						setIconArtefakt("1-3", artefakt);
 					}
 					heldSpieler1.setArtefakte(artefakte);
+					artefakteSpieler1 = artefakte;
 				}
 				
-					
+				
 			}
 			
 			private void setIconArtefakt(String labelID, Artefakt artefakt) {
@@ -866,13 +868,15 @@ public class MainWindow {
 					
 					Artefakt[] artefakte = heldSpieler1.getArtefakte();
 					
-					if(heldSpieler1.getArtefakte()[1] == null)
-						heldSpieler1.getArtefakte()[0] = null;
-					if(heldSpieler1.getArtefakte()[2] == null)
-						heldSpieler1.getArtefakte()[1] = null;
-					if(heldSpieler1.getArtefakte()[2] != null)
-						heldSpieler1.getArtefakte()[2] = null;
-						
+					if(artefakte[1] == null)
+						artefakte[0] = null;
+					if(artefakte[2] == null)
+						artefakte[1] = null;
+					if(artefakte[2] != null)
+						artefakte[2] = null;
+					
+					heldSpieler1.setArtefakte(artefakte);
+					artefakteSpieler1 = artefakte;
 						
 						resetArtefakt1Icons(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1,
 								artefakt, artefakte);
@@ -899,7 +903,7 @@ public class MainWindow {
 				else
 					arrayCommander1Stelle--;
 				
-				heldSpieler1 = main.getPreviewCommanders().get(arrayCommander1Stelle);
+				heldSpieler1 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander1Stelle).getName(), main.getSpieler1());
 				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
 				lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
 				lblCommander1Name.setText(heldSpieler1.getName());
@@ -907,6 +911,8 @@ public class MainWindow {
 				
 				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
 					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+				
+				
 				
 			}
 		});
@@ -926,7 +932,7 @@ public class MainWindow {
 				else
 					arrayCommander1Stelle++;
 				
-				heldSpieler1 = main.getPreviewCommanders().get(arrayCommander1Stelle);
+				heldSpieler1 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander1Stelle).getName(), main.getSpieler1());
 				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
 				lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
 				lblCommander1Name.setText(heldSpieler1.getName());
@@ -953,7 +959,7 @@ public class MainWindow {
 				else
 					arrayCommander2Stelle--;
 				
-				heldSpieler2 = main.getPreviewCommanders().get(arrayCommander2Stelle);
+				heldSpieler2 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander2Stelle).getName(), main.getSpieler2());
 				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
 				lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
 				lblCommander2Name.setText(heldSpieler2.getName());
@@ -980,7 +986,7 @@ public class MainWindow {
 				else
 					arrayCommander2Stelle++;
 				
-				heldSpieler2 = main.getPreviewCommanders().get(arrayCommander2Stelle);
+				heldSpieler2 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander2Stelle).getName(), main.getSpieler2());
 				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
 				lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
 				lblCommander2Name.setText(heldSpieler2.getName());
@@ -1109,30 +1115,50 @@ public class MainWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	protected void removeSkill(Teilnehmer held, DefaultListModel model) {
+	protected void removeSkill(Teilnehmer held, DefaultListModel model, String seite) {
 		if(!(held.getUltimate() == null)) {
 			held.setUltimate(null);
 			model.remove(4);
+			if(seite.equals("l"))
+				s1Ulti = null;
+			else
+				s2Ulti = null;
 			return;
 		}
 		if(!(held.getSkill4() == null)) {
 			held.setSkill4(null);
 			model.remove(3);
+			if(seite.equals("l"))
+				s1skill4 = null;
+			else
+				s2skill4 = null;
 			return;
 		}
 		if(!(held.getSkill3() == null)) {
 			held.setSkill3(null);
 			model.remove(2);
+			if(seite.equals("l"))
+				s1skill3 = null;
+			else
+				s2skill3 = null;
 			return;
 		}
 		if(!(held.getSkill2() == null)) {
 			held.setSkill2(null);
 			model.remove(1);
+			if(seite.equals("l"))
+				s1skill2 = null;
+			else
+				s2skill2 = null;
 			return;
 		}
 		if(!(held.getSkill1() == null)) {
 			held.setSkill1(null);
 			model.remove(0);
+			if(seite.equals("l"))
+				s1skill1 = null;
+			else
+				s2skill1 = null;
 			return;
 		}
 		
@@ -1335,26 +1361,46 @@ public class MainWindow {
 		}
 	}
 	
-	private void setSkill(Teilnehmer held, Skill skill) {
+	private void setSkill(Teilnehmer held, Skill skill, String seite) {
 		
 		if(held.getSkill1() == null) {
 			held.setSkill1(skill);
+			if(seite.equals("l"))
+				s1skill1 = skill;
+			else
+				s2skill1 = skill;
 			return;
 		}
 		if(held.getSkill2() == null) {
 			held.setSkill2(skill);
+			if(seite.equals("l"))
+				s1skill2 = skill;
+			else
+				s2skill2 = skill;
 			return;
 		}	
 		if(held.getSkill3() == null) {
 			held.setSkill3(skill);
+			if(seite.equals("l"))
+				s1skill3 = skill;
+			else
+				s2skill3 = skill;
 			return;
 		}	
 		if(held.getSkill4() == null) {
 			held.setSkill4(skill);
+			if(seite.equals("l"))
+				s1skill4 = skill;
+			else
+				s2skill4 = skill;
 			return;
 		}
 		if(held.getUltimate() == null) {
 			held.setUltimate(skill);
+			if(seite.equals("l"))
+				s1Ulti = skill;
+			else
+				s2Ulti = skill;
 			return;
 		}
 		

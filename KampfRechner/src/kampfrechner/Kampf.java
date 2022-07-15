@@ -264,6 +264,8 @@ public class Kampf {
 			System.out.println(teilnehmer.get(zeigeschaden).getBesitzer().getName() + "'s " + teilnehmer.get(zeigeschaden).getName() + " hat " + teilnehmer.get(zeigeschaden).getAngerichteterSchaden() + " Schaden angerichtet!");
 			if(teilnehmer.get(zeigeschaden).getErlittenerSchaden()>0)
 				System.out.println(teilnehmer.get(zeigeschaden).getBesitzer().getName() + "'s " + teilnehmer.get(zeigeschaden).getName() + " hat " + teilnehmer.get(zeigeschaden).getErlittenerSchaden() + " Schaden erlitten!");
+			if(teilnehmer.get(zeigeschaden).getGeheilterSchaden()>0)
+				System.out.println(teilnehmer.get(zeigeschaden).getBesitzer().getName() + "'s " + teilnehmer.get(zeigeschaden).getName() + " hat " + teilnehmer.get(zeigeschaden).getGeheilterSchaden() + " Leben geheilt!");
 			
 		}
 	}

@@ -66,18 +66,20 @@ public class Effekt {
 		
 		}
 		
-		public static void heallAll(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill) {
+		public static void heallAll(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster) {
 			
 			for (int i = 0; i<einheiten.size(); i++) {
 				
 				int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
 				
+				
 				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
 					einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
+					int actualHeal = einheiten.get(i).getLeben()-einheiten.get(i).getLebenActual()+heal;
 					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben())
 						einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
-					System.out.println("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-heal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
-
+					System.out.println("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
+					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
 				}
 			}
 		}
@@ -120,7 +122,7 @@ public class Effekt {
 		public static void skillAufloesen(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, String effectKey, Teilnehmer teilnehmer) {
 
 			if(effectKey == "healAll")
-				heallAll(einheiten, spieler, skill);
+				heallAll(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "damage")
 				damage(einheiten, spieler, skill, teilnehmer);
 			

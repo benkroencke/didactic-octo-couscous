@@ -4,3 +4,6 @@ schadenszusammenrechner für jede truppe
 passive effekte
 fähigkeiten
 kommandanten level up muss man kaufen --> dann darf er sich pro level eine fähigkeit aussuchen
+
+
+globale klassenvariable für helden (helden und alles andere direkt sofort neu erstellen)
