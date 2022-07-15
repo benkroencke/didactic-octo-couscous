@@ -78,7 +78,13 @@ public class Main {
 		previewTruppen.add(teilnehmerPool.hueter(main));
 		previewTruppen.add(teilnehmerPool.pikeniere(main));
 		previewTruppen.add(teilnehmerPool.kuerassiere(main));
-		
+		previewTruppen.add(teilnehmerPool.blaueStreifen(main));
+		previewTruppen.add(teilnehmerPool.ardfeain(main));
+		previewTruppen.add(teilnehmerPool.imperaArmbrueste(main));
+		previewTruppen.add(teilnehmerPool.ardfeainSchildkroete(main));
+		previewTruppen.add(teilnehmerPool.nilfgaardRitter(main));
+		previewTruppen.add(teilnehmerPool.imperaBrigade(main));
+
 		previewArtefakte.add(artefaktPool.donner());
 		previewArtefakte.add(artefaktPool.koenigsamulett());
 		previewArtefakte.add(artefaktPool.krummsaebel());

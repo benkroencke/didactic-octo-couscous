@@ -152,7 +152,7 @@ public class Teilnehmer {
 	
 	public Teilnehmer heckenschuetzen(Spieler besitzer) {
 		
-		this.name = "Heckenschützen";
+		this.name = "Temerische Heckenschützen";
 		this.pictureURI = "/source/Heckenschuetzen.png";
 		this.id = 0;
 		this.leben = 1000;
@@ -176,7 +176,7 @@ public class Teilnehmer {
 	
 	public Teilnehmer hueter(Spieler besitzer) {
 		
-		this.name = "Hüter";
+		this.name = "Tridam Infanterie";
 		this.pictureURI = "/source/hueter.png";
 		this.id = 2;
 		this.leben = 1800;
@@ -200,7 +200,7 @@ public class Teilnehmer {
 	
 	public Teilnehmer pikeniere(Spieler besitzer) {
 		
-		this.name = "Pikeniere";
+		this.name = "Temerische Pikeniere";
 		this.pictureURI = "/source/pikeniere.png";
 		this.id = 1;
 		this.leben = 2000;
@@ -224,14 +224,158 @@ public class Teilnehmer {
 	
 	public Teilnehmer kuerassiere(Spieler besitzer) {
 		
-		this.name = "Kürassiere";
+		this.name = "Redanische Ritter";
 		this.pictureURI = "/source/RedanienRitter.png";
 		this.id = 3;
 		this.leben = 1500;
-		this.schaden = 165;
+		this.schaden = 190;
 		this.ruestungProzent = 15;
 		this.init = 200;
 		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer blaueStreifen(Spieler besitzer) {
+		
+		this.name = "Blaue Streifen";
+		this.pictureURI = "/source/blauestreifen.png";
+		this.id = 2;
+		this.leben = 2250;
+		this.schaden = 225;
+		this.ruestungProzent = 15;
+		this.init = 180;
+		this.counter = 0; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer ardfeain(Spieler besitzer) {
+		
+		this.name = "Ard Feain Infanterie";
+		this.pictureURI = "/source/ardfeain.png";
+		this.id = 2;
+		this.leben = 1950;
+		this.schaden = 85;
+		this.ruestungProzent = 25;
+		this.init = 90;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer imperaArmbrueste(Spieler besitzer) {
+		
+		this.name = "Impera Armbrustschützen";
+		this.pictureURI = "/source/imperaarmbrueste.png";
+		this.id = 0;
+		this.leben = 1250;
+		this.schaden = 175;
+		this.ruestungProzent = 7;
+		this.init = 120;
+		this.counter = 3; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer ardfeainSchildkroete(Spieler besitzer) {
+		
+		this.name = "Ard Feain Schildkröte";
+		this.pictureURI = "/source/ardfeainschildkroete.png";
+		this.id = 1;
+		this.leben = 2500;
+		this.schaden = 115;
+		this.ruestungProzent = 14;
+		this.init = 105;
+		this.counter = 2; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer nilfgaardRitter(Spieler besitzer) {
+		
+		this.name = "Nilfgaardische Ritter";
+		this.pictureURI = "/source/nilfgaardritter.png";
+		this.id = 3;
+		this.leben = 1650;
+		this.schaden = 165;
+		this.ruestungProzent = 17;
+		this.init = 175;
+		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer imperaBrigade(Spieler besitzer) {
+		
+		this.name = "Impera Brigade";
+		this.pictureURI = "/source/imperabrigade.png";
+		this.id = 2;
+		this.leben = 3000;
+		this.schaden = 75;
+		this.ruestungProzent = 30;
+		this.init = 50;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
 		
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
@@ -254,14 +398,26 @@ public class Teilnehmer {
 		if(name.equals("König Foltest"))
 			return this.foltest(besitzer);
 		
-		if(name.equals("Heckenschützen"))
+		if(name.equals("Temerische Heckenschützen"))
 			return this.heckenschuetzen(besitzer);
-		if(name.equals("Hüter"))
+		if(name.equals("Tridam Infanterie"))
 			return this.hueter(besitzer);
-		if(name.equals("Pikeniere"))
+		if(name.equals("Temerische Pikeniere"))
 			return this.pikeniere(besitzer);
-		if(name.equals("Kürassiere"))
+		if(name.equals("Redanische Ritter"))
 			return this.kuerassiere(besitzer);
+		if(name.equals("Blaue Streifen"))
+			return this.blaueStreifen(besitzer);
+		if(name.equals("Ard Feain Infanterie"))
+			return this.ardfeain(besitzer);
+		if(name.equals("Impera Armbrustschützen"))
+			return this.imperaArmbrueste(besitzer);
+		if(name.equals("Ard Feain Schildkröte"))
+			return this.ardfeainSchildkroete(besitzer);
+		if(name.equals("Nilfgaardische Ritter"))
+			return this.nilfgaardRitter(besitzer);
+		if(name.equals("Impera Brigade"))
+			return this.nilfgaardRitter(besitzer);
 		
 		return null;
 	}
