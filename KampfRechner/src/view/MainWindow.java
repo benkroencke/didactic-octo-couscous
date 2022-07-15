@@ -24,12 +24,18 @@ import javax.swing.JComboBox;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 import javax.swing.UIManager;
+import javax.swing.plaf.synth.SynthFormattedTextFieldUI;
 
+import kampfrechner.Kampf;
 import main.Main;
 import model.Artefakt;
+import model.Skill;
+import model.Spieler;
 import model.Teilnehmer;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -46,6 +52,11 @@ public class MainWindow {
 	private Teilnehmer heldSpieler2;
 	private int arrayCommander1Stelle = 0;
 	private int arrayCommander2Stelle = 0;
+	private DefaultListModel skillsLeft = new DefaultListModel();
+	private DefaultListModel skillsRight = new DefaultListModel();
+	private Teilnehmer teilnehmerFabrik = new Teilnehmer();
+	private Skill skillFabrik = new Skill();
+	private Artefakt artefaktFabrik = new Artefakt();
 	
 	/**
 	 * Launch the application.
@@ -88,8 +99,204 @@ public class MainWindow {
 		panelKampfErstellen.setLayout(null);
 		panelKampfErstellen.hide();
 		
+		JComboBox comboBoxSkills = new JComboBox();
+		comboBoxSkills.setBounds(510, 383, 164, 40);
+		panelKampfErstellen.add(comboBoxSkills);
+		
+		JButton btnAddSkillsRight = new JButton("+");
+		btnAddSkillsRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Skill skill = null;
+				skill = declareSkill(comboBoxSkills, skill);
+				
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(!(heldSpieler2.getUltimate() == null)) {
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
+						return;
+					}
+					setSkill(heldSpieler2, skill);
+					skillsRight.addElement(skill.getName());
+				}
+				
+			}
+		});
+		btnAddSkillsRight.setToolTipText("Skill hinzuf\u00FCgen");
+		btnAddSkillsRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnAddSkillsRight.setBackground(new Color(230, 230, 250));
+		btnAddSkillsRight.setBounds(684, 383, 70, 40);
+		panelKampfErstellen.add(btnAddSkillsRight);
+		
+		JButton btnRemoveSkillsLeft = new JButton("-");
+		btnRemoveSkillsLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(heldSpieler1 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(heldSpieler1.getSkill1() == null)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Skills zum entfernen!");
+					else {
+						
+					}
+						removeSkill(heldSpieler1, skillsLeft);
+						
+
+					}
+				
+			}
+		});
+		btnRemoveSkillsLeft.setToolTipText("Skill entfernen");
+		btnRemoveSkillsLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnRemoveSkillsLeft.setBackground(new Color(230, 230, 250));
+		btnRemoveSkillsLeft.setBounds(430, 383, 70, 40);
+		panelKampfErstellen.add(btnRemoveSkillsLeft);
+		
+		JButton btnRemoveSkillsRight = new JButton("-");
+		btnRemoveSkillsRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(heldSpieler2.getSkill1() == null)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Skills zum entfernen!");
+					else {
+						
+					}
+						removeSkill(heldSpieler2, skillsRight);
+						
+
+					}
+				
+			}
+		});
+		btnRemoveSkillsRight.setToolTipText("Skill entfernen");
+		btnRemoveSkillsRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnRemoveSkillsRight.setBackground(new Color(230, 230, 250));
+		btnRemoveSkillsRight.setBounds(779, 383, 70, 40);
+		panelKampfErstellen.add(btnRemoveSkillsRight);
+		
 
 		JButton btnBerechne = new JButton("Berechne");
+		btnBerechne.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Spieler spieler1 = Main.getSpieler1();
+				Spieler spieler2 = Main.getSpieler2();
+				
+				ArrayList<Teilnehmer> spieler1Einheiten = new ArrayList<Teilnehmer>();
+				ArrayList<Teilnehmer> spieler2Einheiten = new ArrayList<Teilnehmer>();
+				
+				
+				int anzArtefakte1 = 0;
+				while (!(heldSpieler1.getArtefakte()[anzArtefakte1] == null)) {
+					anzArtefakte1+=1;
+				}
+				int anzArtefakte2 = 0;
+				while (!(heldSpieler2.getArtefakte()[anzArtefakte2] == null)) {
+					anzArtefakte2+=1;
+				}
+				
+				Artefakt[] artefakte1 = new Artefakt[anzArtefakte1];
+				Artefakt[] artefakte2 = new Artefakt[anzArtefakte2];
+				
+				Skill skill11 = heldSpieler1.getSkill1();
+				Skill skill12 = heldSpieler1.getSkill2();
+				Skill skill13 = heldSpieler1.getSkill3();
+				Skill skill14 = heldSpieler1.getSkill4();
+				Skill skill15 = heldSpieler1.getUltimate();
+				
+				Skill skill21 = heldSpieler2.getSkill1();
+				Skill skill22 = heldSpieler2.getSkill2();
+				Skill skill23 = heldSpieler2.getSkill3();
+				Skill skill24 = heldSpieler2.getSkill4();
+				Skill skill25 = heldSpieler2.getUltimate();
+				
+				
+				if(heldSpieler1 == null || heldSpieler2 == null || heldSpieler1.getEinheitenListe() == null || heldSpieler2.getEinheitenListe() == null) {
+					JOptionPane.showMessageDialog(null, "Bitte Konfiguriere eine Schlacht!");
+					return;
+				}
+				
+				for(int i=0; i<spieler1kampfEinheiten.size();i++) {
+					spieler1Einheiten.add(teilnehmerFabrik.erstelle(spieler1kampfEinheiten.get(i).getName(), spieler1));
+				}
+				for(int i=0; i<spieler2kampfEinheiten.size();i++) {
+					spieler2Einheiten.add(teilnehmerFabrik.erstelle(spieler2kampfEinheiten.get(i).getName(), spieler2));
+				}
+				for(int i=0; i<anzArtefakte1;i++) {
+					artefakte1[i] = artefaktFabrik.erstelle(heldSpieler1.getArtefakte()[i].getName());
+				}
+				for(int i=0; i<anzArtefakte2;i++) {
+					artefakte2[i] = artefaktFabrik.erstelle(heldSpieler2.getArtefakte()[i].getName());
+				}
+				
+				
+				heldSpieler1 = teilnehmerFabrik.erstelle(heldSpieler1.getName(), spieler1);
+				heldSpieler2 = teilnehmerFabrik.erstelle(heldSpieler2.getName(), spieler2);
+				heldSpieler1.setEinheitenListe(spieler1Einheiten);
+				heldSpieler2.setEinheitenListe(spieler2Einheiten);
+				heldSpieler1.setArtefakte(artefakte1);
+				heldSpieler2.setArtefakte(artefakte2);
+				
+				if(!(heldSpieler1.getSkill1() == null))
+					heldSpieler1.setSkill1(skillFabrik.erstelle(skill11.getName()));
+				if(!(heldSpieler1.getSkill2() == null))
+					heldSpieler1.setSkill2(skillFabrik.erstelle(skill12.getName()));
+				if(!(heldSpieler1.getSkill3() == null))
+					heldSpieler1.setSkill3(skillFabrik.erstelle(skill13.getName()));
+				if(!(heldSpieler1.getSkill4() == null))
+					heldSpieler1.setSkill4(skillFabrik.erstelle(skill14.getName()));
+				if(!(heldSpieler1.getUltimate() == null))
+					heldSpieler1.setUltimate(skillFabrik.erstelle(skill15.getName()));
+				
+				if(!(heldSpieler2.getSkill1() == null))
+					heldSpieler2.setSkill1(skillFabrik.erstelle(skill21.getName()));
+				if(!(heldSpieler2.getSkill2() == null))
+					heldSpieler2.setSkill2(skillFabrik.erstelle(skill22.getName()));
+				if(!(heldSpieler2.getSkill3() == null))
+					heldSpieler2.setSkill3(skillFabrik.erstelle(skill23.getName()));
+				if(!(heldSpieler2.getSkill4() == null))
+					heldSpieler2.setSkill4(skillFabrik.erstelle(skill24.getName()));
+				if(!(heldSpieler2.getUltimate() == null))
+					heldSpieler2.setUltimate(skillFabrik.erstelle(skill25.getName()));
+				
+				
+				ArrayList<Teilnehmer> teilnehmer = new ArrayList<Teilnehmer>();
+				for(int i=0; i<spieler1Einheiten.size();i++) {
+					teilnehmer.add(spieler1Einheiten.get(i));
+				}
+				for(int i=0; i<spieler2Einheiten.size();i++) {
+					teilnehmer.add(spieler2Einheiten.get(i));
+				}
+				teilnehmer.add((Teilnehmer) heldSpieler1);
+				teilnehmer.add((Teilnehmer) heldSpieler2);
+				
+				System.out.println(teilnehmer.toString());
+				
+				Kampf kampf = new Kampf(spieler1Einheiten, spieler2Einheiten, heldSpieler1, heldSpieler2);
+				
+					
+				
+				System.out.println("---------------------------------------------------");
+				System.out.println("*                                                 *");
+				System.out.println("*                                                 *");
+				System.out.println("---------------------------------------------------");
+				
+				System.out.println("Kampf erstellen...");
+				
+				teilnehmer = kampf.vorKriegsPhase(teilnehmer);
+		
+				teilnehmer = kampf.kriegsPhase(teilnehmer, spieler1, spieler2);
+				
+			}
+		});
 		btnBerechne.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 18));
 		btnBerechne.setBackground(new Color(230, 230, 250));
 		btnBerechne.setBounds(492, 110, 200, 56);
@@ -380,10 +587,6 @@ public class MainWindow {
 		lblCommander1Artefakt1.setBounds(70, 454, 60, 60);
 		panelKampfErstellen.add(lblCommander1Artefakt1);
 		
-		JComboBox comboBoxSkillCommander2 = new JComboBox();
-		comboBoxSkillCommander2.setBounds(649, 380, 200, 40);
-		panelKampfErstellen.add(comboBoxSkillCommander2);
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(602, 177, 247, 200);
@@ -437,15 +640,35 @@ public class MainWindow {
 		listCommander1Skills.setBounds(10, 37, 227, 152);
 		panel.add(listCommander1Skills);
 		
-		JButton btnAddSkills = new JButton("Hinzuf\u00FCgen");
-		btnAddSkills.setToolTipText("Mit Hinzuf\u00FCgen werden die ausgew\u00E4hlten F\u00E4higkeiten den jeweiligen Kommandanten hinzugef\u00FCgt.");
-		btnAddSkills.setBackground(new Color(230, 230, 250));
-		btnAddSkills.setBounds(538, 380, 108, 40);
-		panelKampfErstellen.add(btnAddSkills);
+
+
 		
-		JComboBox comboBoxSkillCommander1 = new JComboBox();
-		comboBoxSkillCommander1.setBounds(335, 380, 200, 40);
-		panelKampfErstellen.add(comboBoxSkillCommander1);
+		JButton btnAddSkillsLeft = new JButton("+");
+		btnAddSkillsLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Skill skill = null;
+				skill = declareSkill(comboBoxSkills, skill);
+				
+				if(heldSpieler1 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(!(heldSpieler1.getUltimate() == null)) {
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
+						return;
+					}
+					setSkill(heldSpieler1, skill);
+					skillsLeft.addElement(skill.getName());
+				}
+			}
+		});
+		btnAddSkillsLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnAddSkillsLeft.setToolTipText("Skill hinzuf\u00FCgen");
+		btnAddSkillsLeft.setBackground(new Color(230, 230, 250));
+		btnAddSkillsLeft.setBounds(335, 383, 70, 40);
+		panelKampfErstellen.add(btnAddSkillsLeft);
+		
 		
 		JLabel lblCommander2Specialty = new JLabel("-----");
 		lblCommander2Specialty.setHorizontalAlignment(SwingConstants.CENTER);
@@ -500,7 +723,7 @@ public class MainWindow {
 						heldSpieler2.getArtefakte()[2] = artefakt;
 						setIconArtefakt("2-3", artefakt);
 					}
-					
+					heldSpieler2.setArtefakte(artefakte);
 				}
 					
 			}
@@ -596,8 +819,9 @@ public class MainWindow {
 						heldSpieler1.getArtefakte()[2] = artefakt;
 						setIconArtefakt("1-3", artefakt);
 					}
-					
+					heldSpieler1.setArtefakte(artefakte);
 				}
+				
 					
 			}
 			
@@ -789,11 +1013,11 @@ public class MainWindow {
 		frame.getContentPane().add(panelMainMenu);
 		panelMainMenu.setLayout(null);
 		
-		JLabel lblVersion = new JLabel("V1.0.0");
+		JLabel lblVersion = new JLabel("V0.9.1_ALPHA");
 		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblVersion.setForeground(new Color(255, 255, 255));
-		lblVersion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVersion.setBounds(0, 718, 109, 43);
+		lblVersion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblVersion.setBounds(10, 718, 290, 43);
 		panelMainMenu.add(lblVersion);
 		
 		JLabel lblueberschrift_1 = new JLabel("Geiler Kampfrechner");
@@ -829,6 +1053,20 @@ public class MainWindow {
 				DefaultComboBoxModel dmArtefakte = new DefaultComboBoxModel(artefaktNamen);
 				comboBoxArtefakte1.setModel(dmArtefakte);
 				comboBoxArtefakte2.setModel(dmArtefakte);
+				
+				//Fülle Combobox für Skills
+				String[] skillNamen = new String[main.getPreviewSkills().size()];
+				
+				for(int i=0;i<main.getPreviewSkills().size();i++) {
+					
+					skillNamen[i] = main.getPreviewSkills().get(i).getName();
+					
+				}
+				DefaultComboBoxModel dmSkills = new DefaultComboBoxModel(skillNamen);
+				comboBoxSkills.setModel(dmSkills);
+				
+				listCommander1Skills.setModel(skillsLeft);
+				listCommander2Skills.setModel(skillsRight);
 				
 				panelKampfErstellen.show();
 				panelMainMenu.hide();
@@ -871,6 +1109,35 @@ public class MainWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	protected void removeSkill(Teilnehmer held, DefaultListModel model) {
+		if(!(held.getUltimate() == null)) {
+			held.setUltimate(null);
+			model.remove(4);
+			return;
+		}
+		if(!(held.getSkill4() == null)) {
+			held.setSkill4(null);
+			model.remove(3);
+			return;
+		}
+		if(!(held.getSkill3() == null)) {
+			held.setSkill3(null);
+			model.remove(2);
+			return;
+		}
+		if(!(held.getSkill2() == null)) {
+			held.setSkill2(null);
+			model.remove(1);
+			return;
+		}
+		if(!(held.getSkill1() == null)) {
+			held.setSkill1(null);
+			model.remove(0);
+			return;
+		}
+		
+	}
+
 	private Teilnehmer declareUnit(JComboBox comboBoxTroops, Teilnehmer einheit) {
 		for(int i=0;i<main.getPreviewTroops().size();i++) {
 			if(main.getPreviewTroops().get(i).getName().equals(comboBoxTroops.getSelectedItem()))
@@ -885,6 +1152,14 @@ public class MainWindow {
 				artefakt = main.getPreviewArtefakte().get(i);
 		}
 		return artefakt;
+	}
+	
+	private Skill declareSkill(JComboBox comboBoxSkills, Skill skill) {
+		for(int i=0;i<main.getPreviewSkills().size();i++) {
+			if(main.getPreviewSkills().get(i).getName().equals(comboBoxSkills.getSelectedItem()))
+				skill = main.getPreviewSkills().get(i);
+		}
+		return skill;
 	}
 
 	private void setTroopIconsLeft(JLabel lblCommander1Einheit7, JLabel lblCommander1Einheit8, JLabel lblCommander1Einheit4,
@@ -1058,5 +1333,30 @@ public class MainWindow {
 			lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(uri)));
 			lblCommander1Artefakt1.setToolTipText("");
 		}
+	}
+	
+	private void setSkill(Teilnehmer held, Skill skill) {
+		
+		if(held.getSkill1() == null) {
+			held.setSkill1(skill);
+			return;
+		}
+		if(held.getSkill2() == null) {
+			held.setSkill2(skill);
+			return;
+		}	
+		if(held.getSkill3() == null) {
+			held.setSkill3(skill);
+			return;
+		}	
+		if(held.getSkill4() == null) {
+			held.setSkill4(skill);
+			return;
+		}
+		if(held.getUltimate() == null) {
+			held.setUltimate(skill);
+			return;
+		}
+		
 	}
 }

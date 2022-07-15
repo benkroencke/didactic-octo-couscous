@@ -67,6 +67,29 @@ public class Skill {
 			isPassive);
 	}
 	
+	public Skill verstaerkung() {
+		
+		this.name = "Verstärkung";
+		this.effectKey = "healAll";
+		this.beschreibung = "Bei Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 50% der fehlenden Leben.";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 65;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 4;
+		this.numberOfTargets = 99;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive);
+	}
+	
 	
 	public Skill dezimieren() {
 		
@@ -91,6 +114,29 @@ public class Skill {
 			isPassive);
 	}
 	
+	public Skill wirbelwind() {
+		
+		this.name = "Wirbelwind";
+		this.effectKey = "damage";
+		this.beschreibung = "Ein wahrer Klingentanz. Alle 4 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
+		this.schadensmulitplikator = 8;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 4;
+		this.numberOfTargets = 4;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive);
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -98,7 +144,20 @@ public class Skill {
 		
 	}
 
-	
+	public Skill erstelle(String name) {
+		
+		if(name.equals("Wirbelwind"))
+			return this.wirbelwind();
+		if(name.equals("Dezimieren"))
+			return this.dezimieren();
+		if(name.equals("Verstärkung"))
+			return this.verstaerkung();
+		if(name.equals("Schlachtruf"))
+			return this.schlachtruf();
+		
+		
+		return null;
+	}
 	
 	
 	public int getSchadensMulitplikator() {

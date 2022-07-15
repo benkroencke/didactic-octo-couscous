@@ -246,6 +246,25 @@ public class Teilnehmer {
 	}
 	
 	
+	public Teilnehmer erstelle(String name, Spieler besitzer) {
+		
+		if(name.equals("Geralt von Riva"))
+			return this.geralt(besitzer);
+		if(name.equals("König Foltest"))
+			return this.foltest(besitzer);
+		
+		if(name.equals("Heckenschütze"))
+			return this.heckenschuetzen(besitzer);
+		if(name.equals("Hüter"))
+			return this.hueter(besitzer);
+		if(name.equals("Pikeniere"))
+			return this.pikeniere(besitzer);
+		if(name.equals("Kürassiere"))
+			return this.kuerassiere(besitzer);
+		
+		return null;
+	}
+	
 	
 	
 	//Getter-Setter

@@ -70,6 +70,18 @@ public class Artefakt {
 	}
 
 
+	public Artefakt erstelle(String name) {
+		
+		if(name.equals("Donner"))
+			return this.donner();
+		if(name.equals("Königsamulett"))
+			return this.koenigsamulett();
+		if(name.equals("Krummsäbel"))
+			return this.krummsaebel();
+
+		
+		return null;
+	}
 
 
 

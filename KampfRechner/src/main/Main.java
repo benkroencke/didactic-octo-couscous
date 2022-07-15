@@ -19,6 +19,9 @@ public class Main {
 	private static ArrayList<Teilnehmer> previewTruppen;
 	private static ArrayList<Teilnehmer> previewKommandanten;
 	private static ArrayList<Artefakt> previewArtefakte;
+	private static ArrayList<Skill> previewSkills;
+	private static Spieler spieler1;
+	private static Spieler spieler2;
 	
 	
 	
@@ -40,12 +43,24 @@ public class Main {
 		
 	}
 	
+	public ArrayList<Skill> getPreviewSkills(){
+		
+		return previewSkills;
+		
+	}
+	public static Spieler getSpieler1() {
+		return spieler1;
+	}
+	public static Spieler getSpieler2() {
+		return spieler2;
+	}
+	
 
 	public static void main(String[] args) {
 		
 		Spieler main = new Spieler("Main");
-		Spieler spieler1 = new Spieler("Spieler 1");
-		Spieler spieler2 = new Spieler("Spieler 2");
+		spieler1 = new Spieler("Spieler 1");
+		spieler2 = new Spieler("Spieler 2");
 		
 		Teilnehmer teilnehmerPool = new Teilnehmer();
 		Skill skillPool = new Skill();
@@ -54,6 +69,7 @@ public class Main {
 		previewTruppen = new ArrayList<Teilnehmer>();
 		previewKommandanten = new ArrayList<Teilnehmer>();
 		previewArtefakte = new ArrayList<Artefakt>();
+		previewSkills = new ArrayList<Skill>();
 		
 		previewKommandanten.add(teilnehmerPool.geralt(main));
 		previewKommandanten.add(teilnehmerPool.foltest(main));
@@ -67,7 +83,10 @@ public class Main {
 		previewArtefakte.add(artefaktPool.koenigsamulett());
 		previewArtefakte.add(artefaktPool.krummsaebel());
 		
-		
+		previewSkills.add(skillPool.dezimieren());
+		previewSkills.add(skillPool.schlachtruf());
+		previewSkills.add(skillPool.wirbelwind());
+		previewSkills.add(skillPool.verstaerkung());
 
 
 
