@@ -95,6 +95,12 @@ public class Main {
 		previewTruppen.add(teilnehmerPool.ardfeainSchildkroete(main));
 		previewTruppen.add(teilnehmerPool.nilfgaardRitter(main));
 		previewTruppen.add(teilnehmerPool.imperaBrigade(main));
+		previewTruppen.add(teilnehmerPool.brokvarbogenschutze(main));
+		previewTruppen.add(teilnehmerPool.drummondschildmaid(main));
+		previewTruppen.add(teilnehmerPool.druiden(main));
+		previewTruppen.add(teilnehmerPool.ancraitlangschiff(main));
+		previewTruppen.add(teilnehmerPool.svulblodfanatiker(main));
+		
 
 		previewArtefakte.add(artefaktPool.donner());
 		previewArtefakte.add(artefaktPool.koenigsamulett());

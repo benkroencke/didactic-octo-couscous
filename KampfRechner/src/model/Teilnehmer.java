@@ -731,6 +731,126 @@ public class Teilnehmer {
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
 	}
 	
+	public Teilnehmer brokvarbogenschutze(Spieler besitzer) {
+		
+		this.name = "Brokvar Bogenschütze";
+		this.pictureURI = "/source/brokvarbogenschutze.png";
+		this.id = 0;
+		this.leben = 1100;
+		this.schaden = 190;
+		this.ruestungProzent = 4;
+		this.init = 155;
+		this.counter = 3; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer drummondschildmaid(Spieler besitzer) {
+		
+		this.name = "Drummond Schildmaid";
+		this.pictureURI = "/source/drummondschildmaid.png";
+		this.id = 2;
+		this.leben = 1750;
+		this.schaden = 130;
+		this.ruestungProzent = 20;
+		this.init = 95;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer druiden(Spieler besitzer) {
+		
+		this.name = "Druiden";
+		this.pictureURI = "/source/druiden.png";
+		this.id = 1;
+		this.leben = 1900;
+		this.schaden = 60;
+		this.ruestungProzent = 8;
+		this.init = 100;
+		this.counter = 2; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer ancraitlangschiff(Spieler besitzer) {
+		
+		this.name = "An Crait Langschiff";
+		this.pictureURI = "/source/ancraitlangschiff.png";
+		this.id = 3;
+		this.leben = 2000;
+		this.schaden = 250;
+		this.ruestungProzent = 20;
+		this.init = 125;
+		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer svulblodfanatiker(Spieler besitzer) {
+		
+		this.name = "Svulblod Fanatiker";
+		this.pictureURI = "/source/svulblodfanatiker.png";
+		this.id = 3;
+		this.leben = 2200;
+		this.schaden = 150;
+		this.ruestungProzent = 0;
+		this.init = 150;
+		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
 	
 	public Teilnehmer erstelle(String name, Spieler besitzer) {
 		
@@ -781,6 +901,16 @@ public class Teilnehmer {
 			return this.nilfgaardRitter(besitzer);
 		if(name.equals("Impera Brigade"))
 			return this.nilfgaardRitter(besitzer);
+		if(name.equals("Drummond Schildmaid"))
+			return this.drummondschildmaid(besitzer);
+		if(name.equals("Brokvar Bogenschütze"))
+			return this.brokvarbogenschutze(besitzer);
+		if(name.equals("Svulblod Fanatiker"))
+			return this.svulblodfanatiker(besitzer);
+		if(name.equals("Druiden"))
+			return this.druiden(besitzer);
+		if(name.equals("An Crait Langschiff"))
+			return this.ancraitlangschiff(besitzer);
 		
 		return null;
 	}
