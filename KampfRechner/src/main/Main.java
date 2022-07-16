@@ -22,7 +22,7 @@ public class Main {
 	private static ArrayList<Skill> previewSkills;
 	private static Spieler spieler1;
 	private static Spieler spieler2;
-	
+	public static ArrayList<String> battlelog = new ArrayList<String>();
 	
 	
 	public ArrayList<Teilnehmer> getPreviewTroops(){
