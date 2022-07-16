@@ -7,3 +7,7 @@ kommandanten level up muss man kaufen --> dann darf er sich pro level eine fähig
 
 
 globale klassenvariable für helden (helden und alles andere direkt sofort neu erstellen)
+jlist inhalte löschen nach heldenwechsel
+artefakte löschen nach heldenwechsel oder beibehalten einführen
+nach kampf grafische auflösung einbauen
+effekte und artefakte
