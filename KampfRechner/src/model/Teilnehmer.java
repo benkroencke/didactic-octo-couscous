@@ -900,7 +900,7 @@ public class Teilnehmer {
 		if(name.equals("Nilfgaardische Ritter"))
 			return this.nilfgaardRitter(besitzer);
 		if(name.equals("Impera Brigade"))
-			return this.nilfgaardRitter(besitzer);
+			return this.imperaBrigade(besitzer);
 		if(name.equals("Drummond Schildmaid"))
 			return this.drummondschildmaid(besitzer);
 		if(name.equals("Brokvar Bogenschütze"))
