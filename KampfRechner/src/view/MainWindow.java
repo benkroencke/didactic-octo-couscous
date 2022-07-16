@@ -909,12 +909,16 @@ public class MainWindow {
 				lblCommander1Name.setText(heldSpieler1.getName());
 				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
 				
+				clearArtefakteSkills(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1, artefakteSpieler1, skillsLeft);
+				
 				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
 				
 				
 				
 			}
+
+
 		});
 		btnCommander1Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
 		btnCommander1Down.setBackground(new Color(0, 0, 0));
@@ -938,8 +942,10 @@ public class MainWindow {
 				lblCommander1Name.setText(heldSpieler1.getName());
 				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
 				
+				clearArtefakteSkills(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1, artefakteSpieler1, skillsLeft);
+				
 				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
 				
 			}
 		});
@@ -965,8 +971,11 @@ public class MainWindow {
 				lblCommander2Name.setText(heldSpieler2.getName());
 				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
 				
+				clearArtefakteSkills(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1, artefakteSpieler2, skillsRight);
+
+				
 				if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
 				
 			}
 		});
@@ -992,8 +1001,10 @@ public class MainWindow {
 				lblCommander2Name.setText(heldSpieler2.getName());
 				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
 				
+				clearArtefakteSkills(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1, artefakteSpieler2, skillsRight);
+				
 				if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Zu dem Kampf werden die überschüssigen Einheiten entfallen!");
+					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
 				
 			}
 		});
@@ -1404,5 +1415,19 @@ public class MainWindow {
 			return;
 		}
 		
+	}
+	
+	private void clearArtefakteSkills(JLabel lblCommanderArtefakt2, JLabel lblCommanderArtefakt3,
+			JLabel lblCommanderArtefakt1, Artefakt[] artefakte, DefaultListModel skills) {
+		skills.clear();
+		int i = 0;
+		while(i<3) {
+			artefakte[i]=null;
+			i++;
+		}
+
+        lblCommanderArtefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+        lblCommanderArtefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+        lblCommanderArtefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 	}
 }
