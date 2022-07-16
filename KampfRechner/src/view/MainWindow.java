@@ -293,7 +293,7 @@ public class MainWindow {
 		});
 		btnBerechne.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 18));
 		btnBerechne.setBackground(new Color(230, 230, 250));
-		btnBerechne.setBounds(492, 110, 200, 56);
+		btnBerechne.setBounds(984, 13, 190, 56);
 		panelKampfErstellen.add(btnBerechne);
 		
 		JButton btnNewButton = new JButton("Zur\u00FCck");
@@ -307,7 +307,7 @@ public class MainWindow {
 		});
 		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
 		btnNewButton.setBackground(new Color(230, 230, 250));
-		btnNewButton.setBounds(10, 22, 164, 40);
+		btnNewButton.setBounds(10, 13, 189, 56);
 		panelKampfErstellen.add(btnNewButton);
 		
 		JLabel lblUnitPreview = new JLabel("");

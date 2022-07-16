@@ -72,7 +72,18 @@ public class Main {
 		previewSkills = new ArrayList<Skill>();
 		
 		previewKommandanten.add(teilnehmerPool.geralt(main));
+		previewKommandanten.add(teilnehmerPool.ciri(main));
+		previewKommandanten.add(teilnehmerPool.yennefer(main));
+		previewKommandanten.add(teilnehmerPool.triss(main));
 		previewKommandanten.add(teilnehmerPool.foltest(main));
+		previewKommandanten.add(teilnehmerPool.vernonroche(main));
+		previewKommandanten.add(teilnehmerPool.johan(main));
+		previewKommandanten.add(teilnehmerPool.emhyr(main));
+		previewKommandanten.add(teilnehmerPool.voorhis(main));
+		previewKommandanten.add(teilnehmerPool.letho(main));
+		previewKommandanten.add(teilnehmerPool.crach(main));
+		previewKommandanten.add(teilnehmerPool.cerys(main));
+		previewKommandanten.add(teilnehmerPool.maussack(main));
 		
 		previewTruppen.add(teilnehmerPool.heckenschuetzen(main));
 		previewTruppen.add(teilnehmerPool.hueter(main));

@@ -133,7 +133,7 @@ public class Teilnehmer {
 		this.rang = 1;
 		this.ruestungProzent = 0;
 		this.init = 115;
-		this.kommandoWert = 7;
+		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
 		
 		this.lebenActual = leben;
@@ -147,6 +147,347 @@ public class Teilnehmer {
 				null, null, null, schaden, init, kommandoWert,
 				einheitenListe, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer yennefer(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Yennefer von Vengerberg";
+		this.klasse = "Zauberin";
+		this.pictureURI = "/source/yennefer.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 150;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 190;
+		this.kommandoWert = 6;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer triss(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Triss Merigold";
+		this.klasse = "Zauberin";
+		this.pictureURI = "/source/triss.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 150;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 150;
+		this.kommandoWert = 7;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer vernonroche(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Vernon Roche";
+		this.klasse = "Kämpfer";
+		this.pictureURI = "/source/vernonroche.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 200;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 200;
+		this.kommandoWert = 7;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer emhyr(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Emhyr var Emreis";
+		this.klasse = "Stratege";
+		this.pictureURI = "/source/emhyr.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 50;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 100;
+		this.kommandoWert = 8;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer voorhis(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Morvran Voorhis";
+		this.klasse = "Stratege";
+		this.pictureURI = "/source/voorhis.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 115;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 175;
+		this.kommandoWert = 7;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer letho(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Letho von Guleta";
+		this.klasse = "Kämpfer";
+		this.pictureURI = "/source/letho.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 290;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 115;
+		this.kommandoWert = 6;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer johan(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Johan Natalis";
+		this.klasse = "Stratege";
+		this.pictureURI = "/source/johan.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 130;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 140;
+		this.kommandoWert = 7;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer ciri(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Hexerin Ciri";
+		this.klasse = "Kämpferin";
+		this.pictureURI = "/source/ciri.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 240;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 175;
+		this.kommandoWert = 6;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer crach(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Crach an Craite";
+		this.klasse = "Kämpfer";
+		this.pictureURI = "/source/crach.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 225;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 155;
+		this.kommandoWert = 7;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer cerys(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Cerys an Craite";
+		this.klasse = "Strategin";
+		this.pictureURI = "/source/cerys.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 200;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 145;
+		this.kommandoWert = 8;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+		
+	}
+	
+	public Teilnehmer maussack(Spieler besitzer) {
+		
+		this.skillListe = new ArrayList<Skill>();
+		this.einheitenListe = new ArrayList<Teilnehmer>();
+				
+		this.name = "Mäussack";
+		this.klasse = "Unterstützer";
+		this.pictureURI = "/source/maussack.png";
+		this.id = 100;
+		this.leben = 1;
+		this.schaden = 115;
+		this.rang = 1;
+		this.ruestungProzent = 0;
+		this.init = 55;
+		this.kommandoWert = 6;
+		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = true;
+		this.beschreibung = this.name + " - " + "Klasse: " + this.klasse + ", Schaden: " + this.schaden + ", Initiative: " + this.init + ", Kommandowert: " + this.kommandoWert + ".";
+		
+		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
+			null, null, null, schaden, init, kommandoWert,
+			einheitenListe, istKommandant, id, leben, ruestungProzent,
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
 		
 	}
 	
@@ -397,6 +738,28 @@ public class Teilnehmer {
 			return this.geralt(besitzer);
 		if(name.equals("König Foltest"))
 			return this.foltest(besitzer);
+		if(name.equals("Vernon Roche"))
+			return this.vernonroche(besitzer);
+		if(name.equals("Triss Merigold"))
+			return this.triss(besitzer);
+		if(name.equals("Yennefer von Vengerberg"))
+			return this.yennefer(besitzer);
+		if(name.equals("Emhyr var Emreis"))
+			return this.emhyr(besitzer);
+		if(name.equals("Letho von Guleta"))
+			return this.letho(besitzer);
+		if(name.equals("Morvran Voorhis"))
+			return this.voorhis(besitzer);
+		if(name.equals("Johan Natalis"))
+			return this.johan(besitzer);
+		if(name.equals("Hexerin Ciri"))
+			return this.ciri(besitzer);
+		if(name.equals("Crach an Craite"))
+			return this.crach(besitzer);
+		if(name.equals("Cerys an Craite"))
+			return this.cerys(besitzer);
+		if(name.equals("Mäussack"))
+			return this.maussack(besitzer);
 		
 		if(name.equals("Temerische Heckenschützen"))
 			return this.heckenschuetzen(besitzer);
