@@ -75,28 +75,80 @@ public class MainWindow {
 	private Skill s2skill3 = null;
 	private Skill s2skill4 = null;
 	private Skill s2Ulti = null;
-	private JLabel lblCommander1Einheit1Statistik;
 	private JPanel panelLog;
 	
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MainWindow window = new MainWindow();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	private JLabel lblFraktionLinks;
+	private JLabel lblFraktionRechts;
+	
+	private JLabel lblCommander1Statistik;
+	private JLabel lblCommander2Statistik;
+	
+	private JLabel lblCommander1Einheit1Statistik;
+	private JLabel lblCommander1Einheit2Statistik;
+	private JLabel lblCommander1Einheit3Statistik;
+	private JLabel lblCommander1Einheit4Statistik;
+	private JLabel lblCommander1Einheit5Statistik;
+	private JLabel lblCommander1Einheit6Statistik;
+	private JLabel lblCommander1Einheit7Statistik;
+	private JLabel lblCommander1Einheit8Statistik;
+	
+	private JLabel lblCommander2Einheit1Statistik;
+	private JLabel lblCommander2Einheit2Statistik;
+	private JLabel lblCommander2Einheit3Statistik;
+	private JLabel lblCommander2Einheit4Statistik;
+	private JLabel lblCommander2Einheit5Statistik;
+	private JLabel lblCommander2Einheit6Statistik;
+	private JLabel lblCommander2Einheit7Statistik;
+	private JLabel lblCommander2Einheit8Statistik;
+	
+	private JLabel lblCommander1Skill1;
+	private JLabel lblCommander1Skill2;
+	private JLabel lblCommander1Skill3;
+	private JLabel lblCommander1Skill4;
+	private JLabel lblCommander1Ultimate;
+	
+	private JLabel lblCommander2Skill1;
+	private JLabel lblCommander2Skill2;
+	private JLabel lblCommander2Skill3;
+	private JLabel lblCommander2Skill4;
+	private JLabel lblCommander2Ultimate;
+	
+	private JLabel lblCommander1Artefakt1Statistik;
+	private JLabel lblCommander1Artefakt2Statistik;
+	private JLabel lblCommander1Artefakt3Statistik;
+	
+	private JLabel lblCommander2Artefakt1Statistik;
+	private JLabel lblCommander2Artefakt2Statistik;
+	private JLabel lblCommander2Artefakt3Statistik;
+	
+	private JProgressBar hpC1E1;
+	private JProgressBar hpC1E2;
+	private JProgressBar hpC1E3;
+	private JProgressBar hpC1E4;
+	private JProgressBar hpC1E5;
+	private JProgressBar hpC1E6;
+	private JProgressBar hpC1E7;
+	private JProgressBar hpC1E8;
+	
+	private JProgressBar hpC2E1;
+	private JProgressBar hpC2E2;
+	private JProgressBar hpC2E3;
+	private JProgressBar hpC2E4;
+	private JProgressBar hpC2E5;
+	private JProgressBar hpC2E6;
+	private JProgressBar hpC2E7;
+	private JProgressBar hpC2E8;
+	
+	private JProgressBar healthAllLeft;
+	private JProgressBar healthAllRight;
+	
+	private JLabel lblCommander1Level;
+	private JLabel lblCommander2Level;
+	
+	private JLabel lblAfterCommander1Name;
+	private JLabel lblAfterCommander2Name;
 
-	/**
-	 * Create the application.
-	 */
+	
 	public MainWindow() {
 		initialize();
 	}
@@ -148,48 +200,33 @@ public class MainWindow {
 		btnKampfbericht.setBounds(490, 596, 204, 88);
 		panelStatistik.add(btnKampfbericht);
 		
-		panelLog = new JPanel();
-		panelLog.setBackground(new Color(105, 105, 105));
-		panelLog.setBounds(10, 78, 1164, 507);
-		panelLog.hide();
-		panelStatistik.add(panelLog);
-		panelLog.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 1144, 485);
-		panelLog.add(scrollPane);
-		
-		JTextArea logTextBox = new JTextArea();
-		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
-		scrollPane.setViewportView(logTextBox);
-		
 		JButton btnStatistik = new JButton("Statistik");
 		btnStatistik.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		btnStatistik.setBackground(new Color(230, 230, 250));
 		btnStatistik.setBounds(490, 485, 204, 88);
 		panelStatistik.add(btnStatistik);
 		
-		JLabel lblCommander2Ultimate = new JLabel("New label");
+		lblCommander2Ultimate = new JLabel("New label");
 		lblCommander2Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander2Ultimate.setBounds(704, 341, 50, 88);
 		panelStatistik.add(lblCommander2Ultimate);
 		
-		JLabel lblCommander2Skill3 = new JLabel("New label");
+		lblCommander2Skill3 = new JLabel("New label");
 		lblCommander2Skill3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander2Skill3.setBounds(775, 341, 40, 40);
 		panelStatistik.add(lblCommander2Skill3);
 		
-		JLabel lblCommander2Skill1 = new JLabel("New label");
+		lblCommander2Skill1 = new JLabel("New label");
 		lblCommander2Skill1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander2Skill1.setBounds(775, 239, 40, 40);
 		panelStatistik.add(lblCommander2Skill1);
 		
-		JLabel lblCommander2Skill2 = new JLabel("New label");
+		lblCommander2Skill2 = new JLabel("New label");
 		lblCommander2Skill2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander2Skill2.setBounds(775, 290, 40, 40);
 		panelStatistik.add(lblCommander2Skill2);
 		
-		JLabel lblCommander2Skill4 = new JLabel("New label");
+		lblCommander2Skill4 = new JLabel("New label");
 		lblCommander2Skill4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander2Skill4.setBounds(775, 389, 40, 40);
 		panelStatistik.add(lblCommander2Skill4);
@@ -204,279 +241,280 @@ public class MainWindow {
 		
 		panelStatistik.add(lblVictory);
 		
-		JLabel lblCommander1Skill4 = new JLabel("New label");
+		lblCommander1Skill4 = new JLabel("New label");
 		lblCommander1Skill4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander1Skill4.setBounds(369, 389, 40, 40);
 		panelStatistik.add(lblCommander1Skill4);
 		
-		JLabel lblCommander1Skill2 = new JLabel("New label");
+		lblCommander1Skill2 = new JLabel("New label");
 		lblCommander1Skill2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander1Skill2.setBounds(369, 290, 40, 40);
 		panelStatistik.add(lblCommander1Skill2);
 		
-		JLabel lblCommander1Skill3 = new JLabel("New label");
+		lblCommander1Skill3 = new JLabel("New label");
 		lblCommander1Skill3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander1Skill3.setBounds(369, 341, 40, 40);
 		panelStatistik.add(lblCommander1Skill3);
 		
-		JLabel lblCommander1Skill1 = new JLabel("New label");
+		lblCommander1Skill1 = new JLabel("New label");
 		lblCommander1Skill1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander1Skill1.setBounds(369, 239, 40, 40);
 		panelStatistik.add(lblCommander1Skill1);
 		
-		JLabel lblCommander1Ultimate = new JLabel("New label");
+		lblCommander1Ultimate = new JLabel("New label");
 		lblCommander1Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource("/source/damageSkill1.png")));
 		lblCommander1Ultimate.setBounds(430, 341, 50, 88);
 		panelStatistik.add(lblCommander1Ultimate);
 		
-		JLabel lblCommander2Artefakt3Statistik = new JLabel("New label");
+		lblCommander2Artefakt3Statistik = new JLabel("New label");
 		lblCommander2Artefakt3Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Mittagserscheinung.png")));
 		lblCommander2Artefakt3Statistik.setBounds(1057, 379, 60, 60);
 		lblCommander2Artefakt3Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander2Artefakt3Statistik);
 		
-		JLabel lblCommander2Artefakt2Statistik = new JLabel("New label");
+		lblCommander2Artefakt2Statistik = new JLabel("New label");
 		lblCommander2Artefakt2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Mittagserscheinung.png")));
 		lblCommander2Artefakt2Statistik.setBounds(1057, 310, 60, 60);
 		lblCommander2Artefakt2Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander2Artefakt2Statistik);
 		
-		JLabel lblCommander2Artefakt1Statistik = new JLabel("New label");
+		lblCommander2Artefakt1Statistik = new JLabel("New label");
 		lblCommander2Artefakt1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Mittagserscheinung.png")));
 		lblCommander2Artefakt1Statistik.setBounds(1057, 239, 60, 60);
 		lblCommander2Artefakt1Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander2Artefakt1Statistik);
 		
-		JProgressBar hpC1E4_1 = new JProgressBar();
-		hpC1E4_1.setValue(60);
-		hpC1E4_1.setForeground(new Color(30, 144, 255));
-		hpC1E4_1.setBackground(new Color(128, 0, 0));
-		hpC1E4_1.setBounds(1034, 572, 100, 14);
-		panelStatistik.add(hpC1E4_1);
+		hpC2E4 = new JProgressBar();
+		hpC2E4.setValue(60);
+		hpC2E4.setForeground(new Color(30, 144, 255));
+		hpC2E4.setBackground(new Color(128, 0, 0));
+		hpC2E4.setBounds(1034, 572, 100, 14);
+		panelStatistik.add(hpC2E4);
 		
-		JProgressBar hpC1E7_1 = new JProgressBar();
-		hpC1E7_1.setValue(60);
-		hpC1E7_1.setForeground(new Color(30, 144, 255));
-		hpC1E7_1.setBackground(new Color(128, 0, 0));
-		hpC1E7_1.setBounds(924, 682, 100, 14);
-		panelStatistik.add(hpC1E7_1);
+		hpC2E7 = new JProgressBar();
+		hpC2E7.setValue(60);
+		hpC2E7.setForeground(new Color(30, 144, 255));
+		hpC2E7.setBackground(new Color(128, 0, 0));
+		hpC2E7.setBounds(924, 682, 100, 14);
+		panelStatistik.add(hpC2E7);
 		
-		JProgressBar healthAllLeft_1 = new JProgressBar();
-		healthAllLeft_1.setValue(60);
-		healthAllLeft_1.setForeground(Color.BLUE);
-		healthAllLeft_1.setBackground(new Color(128, 0, 0));
-		healthAllLeft_1.setBounds(704, 450, 430, 24);
-		panelStatistik.add(healthAllLeft_1);
+		healthAllRight = new JProgressBar();
+		healthAllRight.setValue(60);
+		healthAllRight.setForeground(Color.BLUE);
+		healthAllRight.setBackground(new Color(128, 0, 0));
+		healthAllRight.setBounds(704, 450, 430, 24);
+		panelStatistik.add(healthAllRight);
 		
-		JProgressBar hpC1E8_1 = new JProgressBar();
-		hpC1E8_1.setValue(60);
-		hpC1E8_1.setForeground(new Color(30, 144, 255));
-		hpC1E8_1.setBackground(new Color(128, 0, 0));
-		hpC1E8_1.setBounds(1034, 682, 100, 14);
-		panelStatistik.add(hpC1E8_1);
+		hpC2E8 = new JProgressBar();
+		hpC2E8.setValue(60);
+		hpC2E8.setForeground(new Color(30, 144, 255));
+		hpC2E8.setBackground(new Color(128, 0, 0));
+		hpC2E8.setBounds(1034, 682, 100, 14);
+		panelStatistik.add(hpC2E8);
 		
-		JProgressBar hpC1E6_1 = new JProgressBar();
-		hpC1E6_1.setValue(60);
-		hpC1E6_1.setForeground(new Color(30, 144, 255));
-		hpC1E6_1.setBackground(new Color(128, 0, 0));
-		hpC1E6_1.setBounds(814, 682, 100, 14);
-		panelStatistik.add(hpC1E6_1);
+		hpC2E6 = new JProgressBar();
+		hpC2E6.setValue(60);
+		hpC2E6.setForeground(new Color(30, 144, 255));
+		hpC2E6.setBackground(new Color(128, 0, 0));
+		hpC2E6.setBounds(814, 682, 100, 14);
+		panelStatistik.add(hpC2E6);
 		
-		JProgressBar hpC1E1_1 = new JProgressBar();
-		hpC1E1_1.setValue(60);
-		hpC1E1_1.setForeground(new Color(30, 144, 255));
-		hpC1E1_1.setBackground(new Color(128, 0, 0));
-		hpC1E1_1.setBounds(704, 572, 100, 14);
-		panelStatistik.add(hpC1E1_1);
+		hpC2E1 = new JProgressBar();
+		hpC2E1.setValue(60);
+		hpC2E1.setForeground(new Color(30, 144, 255));
+		hpC2E1.setBackground(new Color(128, 0, 0));
+		hpC2E1.setBounds(704, 572, 100, 14);
+		panelStatistik.add(hpC2E1);
 		
-		JProgressBar hpC1E5_1 = new JProgressBar();
-		hpC1E5_1.setValue(60);
-		hpC1E5_1.setForeground(new Color(30, 144, 255));
-		hpC1E5_1.setBackground(new Color(128, 0, 0));
-		hpC1E5_1.setBounds(704, 682, 100, 14);
-		panelStatistik.add(hpC1E5_1);
+		hpC2E5 = new JProgressBar();
+		hpC2E5.setValue(60);
+		hpC2E5.setForeground(new Color(30, 144, 255));
+		hpC2E5.setBackground(new Color(128, 0, 0));
+		hpC2E5.setBounds(704, 682, 100, 14);
+		panelStatistik.add(hpC2E5);
 		
-		JProgressBar hpC1E2_1 = new JProgressBar();
-		hpC1E2_1.setValue(60);
-		hpC1E2_1.setForeground(new Color(30, 144, 255));
-		hpC1E2_1.setBackground(new Color(128, 0, 0));
-		hpC1E2_1.setBounds(814, 572, 100, 14);
-		panelStatistik.add(hpC1E2_1);
+		hpC2E2 = new JProgressBar();
+		hpC2E2.setValue(60);
+		hpC2E2.setForeground(new Color(30, 144, 255));
+		hpC2E2.setBackground(new Color(128, 0, 0));
+		hpC2E2.setBounds(814, 572, 100, 14);
+		panelStatistik.add(hpC2E2);
 		
-		JProgressBar hpC1E3_1 = new JProgressBar();
-		hpC1E3_1.setValue(60);
-		hpC1E3_1.setForeground(new Color(30, 144, 255));
-		hpC1E3_1.setBackground(new Color(128, 0, 0));
-		hpC1E3_1.setBounds(924, 572, 100, 14);
-		panelStatistik.add(hpC1E3_1);
+		hpC2E3 = new JProgressBar();
+		hpC2E3.setValue(60);
+		hpC2E3.setForeground(new Color(30, 144, 255));
+		hpC2E3.setBackground(new Color(128, 0, 0));
+		hpC2E3.setBounds(924, 572, 100, 14);
+		panelStatistik.add(hpC2E3);
 		
-		JLabel lblCommander1Einheit7Statistik_1 = new JLabel("");
-		lblCommander1Einheit7Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit7Statistik_1.setBounds(924, 596, 100, 100);
-		lblCommander1Einheit7Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit7Statistik_1);
+		lblCommander2Einheit7Statistik = new JLabel("");
+		lblCommander2Einheit7Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit7Statistik.setBounds(924, 596, 100, 100);
+		lblCommander2Einheit7Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit7Statistik);
 		
 		
-		JLabel lblCommander1Einheit8Statistik_1 = new JLabel("");
-		lblCommander1Einheit8Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit8Statistik_1.setBounds(1034, 596, 100, 100);
-		lblCommander1Einheit8Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit8Statistik_1);
+		lblCommander2Einheit8Statistik = new JLabel("");
+		lblCommander2Einheit8Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+		lblCommander2Einheit8Statistik.setBounds(1034, 596, 100, 100);
+		lblCommander2Einheit8Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit8Statistik);
 		
-		JLabel lblCommander1Einheit3Statistik_1 = new JLabel("");
-		lblCommander1Einheit3Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit3Statistik_1.setBounds(924, 485, 100, 100);
-		lblCommander1Einheit3Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit3Statistik_1);
+		lblCommander2Einheit3Statistik = new JLabel("");
+		lblCommander2Einheit3Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
+		lblCommander2Einheit3Statistik.setBounds(924, 485, 100, 100);
+		lblCommander2Einheit3Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit3Statistik);
 		
-		JLabel lblCommander1Einheit1Statistik_1 = new JLabel("");
-		lblCommander1Einheit1Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit1Statistik_1.setBounds(704, 485, 100, 100);
-		lblCommander1Einheit1Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit1Statistik_1);
+		lblCommander2Einheit1Statistik = new JLabel("");
+		lblCommander2Einheit1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
+		lblCommander2Einheit1Statistik.setBounds(704, 485, 100, 100);
+		lblCommander2Einheit1Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit1Statistik);
 		
-		JLabel lblCommander1Einheit4Statistik_1 = new JLabel("");
-		lblCommander1Einheit4Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit4Statistik_1.setBounds(1034, 485, 100, 100);
-		lblCommander1Einheit4Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit4Statistik_1);
+		lblCommander2Einheit4Statistik = new JLabel("");
+		lblCommander2Einheit4Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
+		lblCommander2Einheit4Statistik.setBounds(1034, 485, 100, 100);
+		lblCommander2Einheit4Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit4Statistik);
 		
-		JLabel lblCommander1Einheit2Statistik_1 = new JLabel("");
-		lblCommander1Einheit2Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit2Statistik_1.setBounds(814, 485, 100, 100);
-		lblCommander1Einheit2Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit2Statistik_1);
+		lblCommander2Einheit2Statistik = new JLabel("");
+		lblCommander2Einheit2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
+		lblCommander2Einheit2Statistik.setBounds(814, 485, 100, 100);
+		lblCommander2Einheit2Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit2Statistik);
 		
-		JLabel lblCommander1Einheit5Statistik_1 = new JLabel("");
-		lblCommander1Einheit5Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit5Statistik_1.setBounds(704, 596, 100, 100);
-		lblCommander1Einheit5Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit5Statistik_1);
+		lblCommander2Einheit5Statistik = new JLabel("");
+		lblCommander2Einheit5Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
+		lblCommander2Einheit5Statistik.setBounds(704, 596, 100, 100);
+		lblCommander2Einheit5Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit5Statistik);
 		
-		JLabel lblCommander1Einheit6Statistik_1 = new JLabel("");
-		lblCommander1Einheit6Statistik_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
-		lblCommander1Einheit6Statistik_1.setBounds(814, 596, 100, 100);
-		lblCommander1Einheit6Statistik_1.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		panelStatistik.add(lblCommander1Einheit6Statistik_1);
+		lblCommander2Einheit6Statistik = new JLabel("");
+		lblCommander2Einheit6Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/ancraitlangschiff.png")));
+		lblCommander2Einheit6Statistik.setBounds(814, 596, 100, 100);
+		lblCommander2Einheit6Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		panelStatistik.add(lblCommander2Einheit6Statistik);
 		
-		JLabel lblCommander1Artefakt1Statistik = new JLabel("New label");
+		lblCommander1Artefakt1Statistik = new JLabel("New label");
 		lblCommander1Artefakt1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Krummsaebel.png")));
 		lblCommander1Artefakt1Statistik.setBounds(67, 239, 60, 60);
 		lblCommander1Artefakt1Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Artefakt1Statistik);
 		
-		JLabel lblCommander1Artefakt2Statistik = new JLabel("New label");
+		lblCommander1Artefakt2Statistik = new JLabel("New label");
 		lblCommander1Artefakt2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Krummsaebel.png")));
 		lblCommander1Artefakt2Statistik.setBounds(67, 310, 60, 60);
 		lblCommander1Artefakt2Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Artefakt2Statistik);
 		
-		JLabel lblCommander1Artefakt3Statistik = new JLabel("New label");
+		lblCommander1Artefakt3Statistik = new JLabel("New label");
 		lblCommander1Artefakt3Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Krummsaebel.png")));
 		lblCommander1Artefakt3Statistik.setBounds(67, 379, 60, 60);
 		lblCommander1Artefakt3Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Artefakt3Statistik);
 		
-		JProgressBar hpC1E5 = new JProgressBar();
+		hpC1E5 = new JProgressBar();
 		hpC1E5.setValue(60);
 		hpC1E5.setForeground(new Color(30, 144, 255));
 		hpC1E5.setBackground(new Color(128, 0, 0));
 		hpC1E5.setBounds(50, 682, 100, 14);
 		panelStatistik.add(hpC1E5);
 		
-		JProgressBar hpC1E6 = new JProgressBar();
+		hpC1E6 = new JProgressBar();
 		hpC1E6.setValue(60);
 		hpC1E6.setForeground(new Color(30, 144, 255));
 		hpC1E6.setBackground(new Color(128, 0, 0));
 		hpC1E6.setBounds(160, 682, 100, 14);
 		panelStatistik.add(hpC1E6);
 		
-		JProgressBar hpC1E8 = new JProgressBar();
+		hpC1E8 = new JProgressBar();
 		hpC1E8.setValue(60);
 		hpC1E8.setForeground(new Color(30, 144, 255));
 		hpC1E8.setBackground(new Color(128, 0, 0));
 		hpC1E8.setBounds(380, 682, 100, 14);
 		panelStatistik.add(hpC1E8);
 		
-		JProgressBar hpC1E7 = new JProgressBar();
+		hpC1E7 = new JProgressBar();
 		hpC1E7.setValue(60);
 		hpC1E7.setForeground(new Color(30, 144, 255));
 		hpC1E7.setBackground(new Color(128, 0, 0));
 		hpC1E7.setBounds(270, 682, 100, 14);
 		panelStatistik.add(hpC1E7);
 		
-		JProgressBar hpC1E2 = new JProgressBar();
+		hpC1E2 = new JProgressBar();
 		hpC1E2.setValue(60);
 		hpC1E2.setForeground(new Color(30, 144, 255));
 		hpC1E2.setBackground(new Color(128, 0, 0));
 		hpC1E2.setBounds(160, 572, 100, 14);
 		panelStatistik.add(hpC1E2);
 		
-		JProgressBar hpC1E4 = new JProgressBar();
+		hpC1E4 = new JProgressBar();
 		hpC1E4.setValue(60);
 		hpC1E4.setForeground(new Color(30, 144, 255));
 		hpC1E4.setBackground(new Color(128, 0, 0));
 		hpC1E4.setBounds(380, 572, 100, 14);
 		panelStatistik.add(hpC1E4);
 		
-		JProgressBar hpC1E3 = new JProgressBar();
+		hpC1E3 = new JProgressBar();
 		hpC1E3.setValue(60);
 		hpC1E3.setForeground(new Color(30, 144, 255));
 		hpC1E3.setBackground(new Color(128, 0, 0));
 		hpC1E3.setBounds(270, 572, 100, 14);
 		panelStatistik.add(hpC1E3);
 		
-		JProgressBar hpC1E1 = new JProgressBar();
+		hpC1E1 = new JProgressBar();
 		hpC1E1.setForeground(new Color(30, 144, 255));
 		hpC1E1.setValue(60);
 		hpC1E1.setBackground(new Color(128, 0, 0));
 		hpC1E1.setBounds(50, 572, 100, 14);
 		panelStatistik.add(hpC1E1);
 		
-		JProgressBar healthAllLeft = new JProgressBar();
+		healthAllLeft = new JProgressBar();
+		healthAllLeft.setMaximum(2500);
 		healthAllLeft.setForeground(Color.BLUE);
 		healthAllLeft.setBackground(new Color(128, 0, 0));
-		healthAllLeft.setValue(60);
+		healthAllLeft.setValue(1800);
 		healthAllLeft.setBounds(50, 450, 430, 24);
 		panelStatistik.add(healthAllLeft);
 		
-		JLabel lblCommander1Einheit6Statistik = new JLabel("");
+		lblCommander1Einheit6Statistik = new JLabel("");
 		lblCommander1Einheit6Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
 		lblCommander1Einheit6Statistik.setBounds(160, 596, 100, 100);
 		lblCommander1Einheit6Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit6Statistik);
 		
-		JLabel lblCommander1Einheit8Statistik = new JLabel("");
-		lblCommander1Einheit8Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
+		lblCommander1Einheit8Statistik = new JLabel("");
+		lblCommander1Einheit8Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
 		lblCommander1Einheit8Statistik.setBounds(380, 596, 100, 100);
 		lblCommander1Einheit8Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit8Statistik);
 		
-		JLabel lblCommander1Einheit7Statistik = new JLabel("");
-		lblCommander1Einheit7Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
+		lblCommander1Einheit7Statistik = new JLabel("");
+		lblCommander1Einheit7Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
 		lblCommander1Einheit7Statistik.setBounds(270, 596, 100, 100);
 		lblCommander1Einheit7Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit7Statistik);
 		
-		JLabel lblCommander1Einheit5Statistik = new JLabel("");
+		lblCommander1Einheit5Statistik = new JLabel("");
 		lblCommander1Einheit5Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
 		lblCommander1Einheit5Statistik.setBounds(50, 596, 100, 100);
 		lblCommander1Einheit5Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit5Statistik);
 		
-		JLabel lblCommander1Einheit3Statistik = new JLabel("");
+		lblCommander1Einheit3Statistik = new JLabel("");
 		lblCommander1Einheit3Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
 		lblCommander1Einheit3Statistik.setBounds(270, 485, 100, 100);
 		lblCommander1Einheit3Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit3Statistik);
 		
-		JLabel lblCommander1Einheit4Statistik = new JLabel("");
+		lblCommander1Einheit4Statistik = new JLabel("");
 		lblCommander1Einheit4Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
 		lblCommander1Einheit4Statistik.setBounds(380, 485, 100, 100);
 		lblCommander1Einheit4Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit4Statistik);
 		
-		JLabel lblCommander1Einheit2Statistik = new JLabel("");
+		lblCommander1Einheit2Statistik = new JLabel("");
 		lblCommander1Einheit2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
 		lblCommander1Einheit2Statistik.setBounds(160, 485, 100, 100);
 		lblCommander1Einheit2Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -488,27 +526,27 @@ public class MainWindow {
 		lblCommander1Einheit1Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander1Einheit1Statistik);
 		
-		JLabel lblCommander1Level = new JLabel("1");
+		lblCommander1Level = new JLabel("1");
 		lblCommander1Level.setForeground(Color.WHITE);
 		lblCommander1Level.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		lblCommander1Level.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCommander1Level.setBounds(159, 389, 50, 50);
 		panelStatistik.add(lblCommander1Level);
 		
-		JLabel lblCommander2Level = new JLabel("1");
+		lblCommander2Level = new JLabel("1");
 		lblCommander2Level.setForeground(Color.WHITE);
 		lblCommander2Level.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		lblCommander2Level.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCommander2Level.setBounds(825, 389, 50, 50);
 		panelStatistik.add(lblCommander2Level);
 		
-		JLabel lblCommander2Statistik = new JLabel("");
+		lblCommander2Statistik = new JLabel("");
 		lblCommander2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/yennefer.png")));
 		lblCommander2Statistik.setBounds(825, 239, 200, 200);
 		lblCommander2Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		panelStatistik.add(lblCommander2Statistik);
 		
-		JLabel lblCommander1Statistik = new JLabel("");
+		lblCommander1Statistik = new JLabel("");
 		lblCommander1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource("/source/geralt.png")));
 		lblCommander1Statistik.setBounds(159, 239, 200, 200);
 		lblCommander1Statistik.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -520,14 +558,14 @@ public class MainWindow {
 		blackStripe.setBounds(0, 217, 1184, 14);
 		panelStatistik.add(blackStripe);
 		
-		JLabel lblAfterCommander2Name = new JLabel("Yennefer von Vengerberg");
+		lblAfterCommander2Name = new JLabel("Yennefer von Vengerberg");
 		lblAfterCommander2Name.setForeground(Color.WHITE);
 		lblAfterCommander2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		lblAfterCommander2Name.setHorizontalAlignment(SwingConstants.LEFT);
 		lblAfterCommander2Name.setBounds(825, 172, 349, 56);
 		panelStatistik.add(lblAfterCommander2Name);
 		
-		JLabel lblAfterCommander1Name = new JLabel("Geralt von Riva");
+		lblAfterCommander1Name = new JLabel("Geralt von Riva");
 		lblAfterCommander1Name.setForeground(Color.WHITE);
 		lblAfterCommander1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		lblAfterCommander1Name.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -541,13 +579,13 @@ public class MainWindow {
 		lblUeberschriftStatistik.setBounds(369, 22, 446, 139);
 		panelStatistik.add(lblUeberschriftStatistik);
 		
-		JLabel lblFraktionLinks = new JLabel("");
+		lblFraktionLinks = new JLabel("");
 		lblFraktionLinks.setIcon(new ImageIcon(MainWindow.class.getResource("/source/nilfgaardIcon.png")));
 		lblFraktionLinks.setBounds(209, 11, 150, 150);
 		lblFraktionLinks.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 		panelStatistik.add(lblFraktionLinks);
 		
-		JLabel lblFraktionRechts = new JLabel("");
+		lblFraktionRechts = new JLabel("");
 		lblFraktionRechts.setIcon(new ImageIcon(MainWindow.class.getResource("/source/temerienIcon.png")));
 		lblFraktionRechts.setBounds(825, 11, 150, 150);
 		lblFraktionRechts.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
@@ -575,6 +613,21 @@ public class MainWindow {
 		statisticBackground.setIcon(new ImageIcon(MainWindow.class.getResource("/source/statistic_background.jpg")));
 		statisticBackground.setBounds(0, 0, 1184, 761);
 		panelStatistik.add(statisticBackground);
+		
+		panelLog = new JPanel();
+		panelLog.setBackground(new Color(105, 105, 105));
+		panelLog.setBounds(10, 78, 1164, 507);
+		panelLog.hide();
+		panelStatistik.add(panelLog);
+		panelLog.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 1144, 485);
+		panelLog.add(scrollPane);
+		
+		JTextArea logTextBox = new JTextArea();
+		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
+		scrollPane.setViewportView(logTextBox);
 		
 		panelKampfErstellen = new JPanel();
 		panelKampfErstellen.setBounds(0, 0, 1184, 761);
@@ -770,6 +823,8 @@ public class MainWindow {
 				}
 				
 				logTextBox.setText(t);
+				
+				setDataForStatistik(teilnehmer);
 				
 				panelKampfErstellen.hide();
 				panelStatistik.show();
@@ -1915,4 +1970,157 @@ public class MainWindow {
         lblCommanderArtefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
         lblCommanderArtefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 	}
+	
+	private void setDataForStatistik(ArrayList<Teilnehmer> teilnehmer){
+		
+		ArrayList<Teilnehmer> spieler1Truppen = new ArrayList<Teilnehmer>();
+		ArrayList<Teilnehmer> spieler2Truppen = new ArrayList<Teilnehmer>();
+		
+		for(int i=0; i<teilnehmer.size();i++) {
+			if(teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && !teilnehmer.get(i).isIstKommandant())
+			spieler1Truppen.add(teilnehmer.get(i));
+			if(teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && !teilnehmer.get(i).isIstKommandant())
+				spieler2Truppen.add(teilnehmer.get(i));
+		}
+		
+		lblCommander1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
+		lblCommander2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
+		
+		for(int i=0;i<teilnehmer.size();i++) {
+			if(teilnehmer.get(i).getLebenActual()<0)
+				teilnehmer.get(i).setLebenActual(0);
+		}
+		
+		int max1 = 0;
+		int actual1 = 0;
+		int max2 = 0;
+		int actual2 = 0;
+		
+		for(int i=0; i<teilnehmer.size();i++) {
+			
+			if(teilnehmer.get(i).getBesitzer().equals(Main.getSpieler1()) && !teilnehmer.get(i).isIstKommandant()) {
+				max1 += teilnehmer.get(i).getLeben();
+				actual1 += teilnehmer.get(i).getLebenActual();
+			}
+			
+			if(teilnehmer.get(i).getBesitzer().equals(Main.getSpieler2()) && !teilnehmer.get(i).isIstKommandant()) {
+				max2 += teilnehmer.get(i).getLeben();
+				actual2 += teilnehmer.get(i).getLebenActual();
+			}
+			
+		}
+
+		lblAfterCommander1Name.setText(heldSpieler1.getName());
+		lblAfterCommander2Name.setText(heldSpieler2.getName());
+		
+		healthAllLeft.setMaximum(max1);
+		healthAllLeft.setValue(actual1);
+		healthAllLeft.setToolTipText(actual1 + "/" + max1);
+		
+		healthAllRight.setMaximum(max2);
+		healthAllRight.setValue(actual2);
+		healthAllRight.setToolTipText(actual2 + "/" + max2);
+		
+		if(spieler1Truppen.size()>0) {
+			lblCommander1Einheit1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(0).getPictureURI())));
+			hpC1E1.setMaximum(spieler1Truppen.get(0).getLeben());
+			hpC1E1.setValue(spieler1Truppen.get(0).getLebenActual());
+			hpC1E1.setToolTipText(spieler1Truppen.get(0).getLebenActual() + "/" + spieler1Truppen.get(0).getLeben());
+		}
+		if(spieler1Truppen.size()>1) {
+			lblCommander1Einheit2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(1).getPictureURI())));
+			hpC1E2.setMaximum(spieler1Truppen.get(1).getLeben());
+			hpC1E2.setValue(spieler1Truppen.get(1).getLebenActual());
+			hpC1E2.setToolTipText(spieler1Truppen.get(1).getLebenActual() + "/" + spieler1Truppen.get(1).getLeben());
+		}
+		if(spieler1Truppen.size()>2) {
+			lblCommander1Einheit3Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(2).getPictureURI())));
+			hpC1E3.setMaximum(spieler1Truppen.get(2).getLeben());
+			hpC1E3.setValue(spieler1Truppen.get(2).getLebenActual());
+			hpC1E3.setToolTipText(spieler1Truppen.get(2).getLebenActual() + "/" + spieler1Truppen.get(2).getLeben());
+		}
+		if(spieler1Truppen.size()>3) {
+			lblCommander1Einheit4Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(3).getPictureURI())));
+			hpC1E4.setMaximum(spieler1Truppen.get(3).getLeben());
+			hpC1E4.setValue(spieler1Truppen.get(3).getLebenActual());
+			hpC1E4.setToolTipText(spieler1Truppen.get(3).getLebenActual() + "/" + spieler1Truppen.get(3).getLeben());
+		}
+		if(spieler1Truppen.size()>4) {
+			lblCommander1Einheit5Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(4).getPictureURI())));
+			hpC1E5.setMaximum(spieler1Truppen.get(4).getLeben());
+			hpC1E5.setValue(spieler1Truppen.get(4).getLebenActual());
+			hpC1E5.setToolTipText(spieler1Truppen.get(4).getLebenActual() + "/" + spieler1Truppen.get(4).getLeben());
+		}
+		if(spieler1Truppen.size()>5) {
+			lblCommander1Einheit6Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(5).getPictureURI())));
+			hpC1E6.setMaximum(spieler1Truppen.get(5).getLeben());
+			hpC1E6.setValue(spieler1Truppen.get(5).getLebenActual());
+			hpC1E6.setToolTipText(spieler1Truppen.get(5).getLebenActual() + "/" + spieler1Truppen.get(5).getLeben());
+		}
+		if(spieler1Truppen.size()>6) {
+			lblCommander1Einheit7Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(6).getPictureURI())));
+			hpC1E7.setMaximum(spieler1Truppen.get(6).getLeben());
+			hpC1E7.setValue(spieler1Truppen.get(6).getLebenActual());
+			hpC1E7.setToolTipText(spieler1Truppen.get(6).getLebenActual() + "/" + spieler1Truppen.get(6).getLeben());
+		}
+		if(spieler1Truppen.size()>7) {
+			lblCommander1Einheit8Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler1Truppen.get(7).getPictureURI())));
+			hpC1E8.setMaximum(spieler1Truppen.get(7).getLeben());
+			hpC1E8.setValue(spieler1Truppen.get(7).getLebenActual());
+			hpC1E8.setToolTipText(spieler1Truppen.get(7).getLebenActual() + "/" + spieler1Truppen.get(7).getLeben());
+		}
+		
+		
+		if(spieler2Truppen.size()>0) {
+			lblCommander2Einheit1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(0).getPictureURI())));
+			hpC2E1.setMaximum(spieler2Truppen.get(0).getLeben());
+			hpC2E1.setValue(spieler2Truppen.get(0).getLebenActual());
+			hpC2E1.setToolTipText(spieler2Truppen.get(0).getLebenActual() + "/" + spieler2Truppen.get(0).getLeben());
+		}
+		if(spieler2Truppen.size()>1) {
+			lblCommander2Einheit2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(1).getPictureURI())));
+			hpC2E2.setMaximum(spieler2Truppen.get(1).getLeben());
+			hpC2E2.setValue(spieler2Truppen.get(1).getLebenActual());
+			hpC2E2.setToolTipText(spieler2Truppen.get(1).getLebenActual() + "/" + spieler2Truppen.get(1).getLeben());
+		}
+		if(spieler2Truppen.size()>2) {
+			lblCommander2Einheit3Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(2).getPictureURI())));
+			hpC2E3.setMaximum(spieler2Truppen.get(2).getLeben());
+			hpC2E3.setValue(spieler2Truppen.get(2).getLebenActual());
+			hpC2E3.setToolTipText(spieler2Truppen.get(2).getLebenActual() + "/" + spieler2Truppen.get(2).getLeben());
+		}
+		if(spieler2Truppen.size()>3) {
+			lblCommander2Einheit4Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(3).getPictureURI())));
+			hpC2E4.setMaximum(spieler2Truppen.get(3).getLeben());
+			hpC2E4.setValue(spieler2Truppen.get(3).getLebenActual());
+			hpC2E4.setToolTipText(spieler2Truppen.get(3).getLebenActual() + "/" + spieler2Truppen.get(3).getLeben());
+		}
+		if(spieler2Truppen.size()>4) {
+			lblCommander2Einheit5Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(4).getPictureURI())));
+			hpC2E5.setMaximum(spieler2Truppen.get(4).getLeben());
+			hpC2E5.setValue(spieler2Truppen.get(4).getLebenActual());
+			hpC2E5.setToolTipText(spieler2Truppen.get(4).getLebenActual() + "/" + spieler2Truppen.get(4).getLeben());
+		}
+		if(spieler2Truppen.size()>5) {
+			lblCommander2Einheit6Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(5).getPictureURI())));
+			hpC2E6.setMaximum(spieler2Truppen.get(5).getLeben());
+			hpC2E6.setValue(spieler2Truppen.get(5).getLebenActual());
+			hpC2E6.setToolTipText(spieler2Truppen.get(5).getLebenActual() + "/" + spieler2Truppen.get(5).getLeben());
+		}
+		if(spieler2Truppen.size()>6) {
+			lblCommander2Einheit7Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(6).getPictureURI())));
+			hpC2E7.setMaximum(spieler2Truppen.get(6).getLeben());
+			hpC2E7.setValue(spieler2Truppen.get(6).getLebenActual());
+			hpC2E7.setToolTipText(spieler2Truppen.get(6).getLebenActual() + "/" + spieler2Truppen.get(6).getLeben());
+		}
+		if(spieler2Truppen.size()>7) {
+			lblCommander2Einheit8Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(spieler2Truppen.get(7).getPictureURI())));
+			hpC2E8.setMaximum(spieler2Truppen.get(7).getLeben());
+			hpC2E8.setValue(spieler2Truppen.get(7).getLebenActual());
+			hpC2E8.setToolTipText(spieler2Truppen.get(7).getLebenActual() + "/" + spieler2Truppen.get(7).getLeben());
+		}
+		
+	}
+	
+	
 }
