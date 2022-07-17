@@ -5,9 +5,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
+
 import main.Main;
 import model.Spieler;
 import model.Teilnehmer;
+import view.MainWindow;
 
 public class Kampf {
 
@@ -220,7 +223,7 @@ public class Kampf {
 		Main.battlelog.add("                                                   ");
 		Main.battlelog.add("                                                   ");
 		Main.battlelog.add("---------------------------------------------------");
-		
+		MainWindow.lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/draw.png")));
 		showDamage(teilnehmer);
 		
 		return teilnehmer;
@@ -237,7 +240,7 @@ public class Kampf {
 		Main.battlelog.add("                                                   ");
 		Main.battlelog.add("                                                   ");
 		Main.battlelog.add("---------------------------------------------------");
-		
+		MainWindow.lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/defeat.png")));
 		showDamage(teilnehmer);
 		
 		return teilnehmer;
@@ -253,7 +256,7 @@ public class Kampf {
 		Main.battlelog.add("                                                   ");
 		Main.battlelog.add("                                                   ");
 		Main.battlelog.add("---------------------------------------------------");
-		
+		MainWindow.lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/victory.png")));
 		showDamage(teilnehmer);
 		
 		return teilnehmer;
