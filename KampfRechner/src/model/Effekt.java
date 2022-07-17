@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import main.Main;
+
 public class Effekt {
 	
 	private String name;
@@ -35,7 +37,7 @@ public class Effekt {
 		for(int i = 0; i < groesse; i++) {
 			int neuerWert = einheiten.get(i).getRuestungProzentActual()+armorBonus;
 			einheiten.get(i).setRuestungProzentActual(neuerWert);
-			System.out.println("Mehr Rüstung wurde verteilt durch einen Effekt.");
+			Main.battlelog.add("Mehr Rüstung wurde verteilt durch einen Effekt.");
 		}
 	}
 	
@@ -45,7 +47,7 @@ public class Effekt {
 			
 			if(einheiten.get(i).getBesitzer().equals(spieler)) {
 				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
-				System.out.println("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
 
 			}
 		}
@@ -58,7 +60,7 @@ public class Effekt {
 				if(einheiten.get(i).getBesitzer().equals(spieler)) {
 					
 					einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()+bonus);
-					System.out.println("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
+					Main.battlelog.add("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
 					
 				}
 					
@@ -78,7 +80,7 @@ public class Effekt {
 					int actualHeal = einheiten.get(i).getLeben()-einheiten.get(i).getLebenActual()+heal;
 					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben())
 						einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
-					System.out.println("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
+					Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
 					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
 				}
 			}
@@ -102,7 +104,7 @@ public class Effekt {
 						
 						targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
 						
-						System.out.println("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+						Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
 						teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
 						targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
 		

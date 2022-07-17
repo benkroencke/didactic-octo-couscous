@@ -41,6 +41,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JTextArea;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class MainWindow {
 
@@ -73,6 +76,7 @@ public class MainWindow {
 	private Skill s2skill4 = null;
 	private Skill s2Ulti = null;
 	private JLabel lblCommander1Einheit1Statistik;
+	private JPanel panelLog;
 	
 	/**
 	 * Launch the application.
@@ -125,10 +129,39 @@ public class MainWindow {
 		});
 		
 		JButton btnKampfbericht = new JButton("Kampflog");
+		btnKampfbericht.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(panelLog.isVisible()) {
+					panelLog.hide();
+					btnKampfbericht.setBackground(new Color(230, 230, 250));
+				}
+				else {
+					panelLog.show();
+					btnKampfbericht.setBackground(Color.BLACK);
+				}
+				
+			}
+		});
 		btnKampfbericht.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		btnKampfbericht.setBackground(new Color(230, 230, 250));
 		btnKampfbericht.setBounds(490, 596, 204, 88);
 		panelStatistik.add(btnKampfbericht);
+		
+		panelLog = new JPanel();
+		panelLog.setBackground(new Color(105, 105, 105));
+		panelLog.setBounds(10, 78, 1164, 507);
+		panelLog.hide();
+		panelStatistik.add(panelLog);
+		panelLog.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 1144, 485);
+		panelLog.add(scrollPane);
+		
+		JTextArea logTextBox = new JTextArea();
+		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
+		scrollPane.setViewportView(logTextBox);
 		
 		JButton btnStatistik = new JButton("Statistik");
 		btnStatistik.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
@@ -710,22 +743,33 @@ public class MainWindow {
 				teilnehmer.add((Teilnehmer) heldSpieler1);
 				teilnehmer.add((Teilnehmer) heldSpieler2);
 				
-				System.out.println(teilnehmer.toString());
 				
 				Kampf kampf = new Kampf(spieler1Einheiten, spieler2Einheiten, heldSpieler1, heldSpieler2);
 				
 					
 				
-				System.out.println("---------------------------------------------------");
-				System.out.println("*                                                 *");
-				System.out.println("*                                                 *");
-				System.out.println("---------------------------------------------------");
+				Main.battlelog.add("---------------------------------------------------");
+				Main.battlelog.add("                                                   ");
+				Main.battlelog.add("                                                   ");
+				Main.battlelog.add("---------------------------------------------------");
 				
-				System.out.println("Kampf erstellen...");
+				Main.battlelog.add("Kampf erstellen...");
 				
 				teilnehmer = kampf.vorKriegsPhase(teilnehmer);
 		
 				teilnehmer = kampf.kriegsPhase(teilnehmer, spieler1, spieler2);
+				
+				String t = "";
+				
+				for(int i = 0; i<Main.battlelog.size(); i++) {
+					
+					if(i==0)
+						t = Main.battlelog.get(i);
+					else
+						t = t + System.getProperty("line.separator") + Main.battlelog.get(i);
+				}
+				
+				logTextBox.setText(t);
 				
 				panelKampfErstellen.hide();
 				panelStatistik.show();

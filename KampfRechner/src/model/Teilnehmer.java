@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.Main;
+
 public class Teilnehmer {
 	
 	private Spieler besitzer;
@@ -85,7 +87,7 @@ public class Teilnehmer {
 
 	
 	public Teilnehmer() {
-		System.out.println("TeilnehmerPool erstellt! Hier können nun neue Teilnehmer (Einheiten und Kommandanten generiert werden!");
+		
 	}
 
 	public Teilnehmer geralt(Spieler besitzer) {
@@ -1126,7 +1128,7 @@ public class Teilnehmer {
 			this.einheitenListe.add(teilnehmer);
 			
 		} else {
-			System.out.println("Diese Kommandant hat bereits maximalen Kommandowert erreicht! " + teilnehmer.getName() + " konnte nicht hinzugefügt werden!");
+			Main.battlelog.add("Diese Kommandant hat bereits maximalen Kommandowert erreicht! " + teilnehmer.getName() + " konnte nicht hinzugefügt werden!");
 		}
 		
 	}
