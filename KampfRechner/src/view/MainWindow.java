@@ -185,6 +185,7 @@ public class MainWindow {
 		panelStatistik.setBounds(0, 0, 1184, 761);
 		frame.getContentPane().add(panelStatistik);
 		panelStatistik.setLayout(null);
+		panelStatistik.hide();
 		
 		JButton statisticMainMenu = new JButton("Hauptmen\u00FC");
 		statisticMainMenu.addActionListener(new ActionListener() {

@@ -137,6 +137,28 @@ public class Skill {
 			isPassive);
 	}
 	
+	public Skill svulblod() {
+		
+		this.name = "Svulblod";
+		this.effectKey = "pinchBoostFactorHeal";
+		this.beschreibung = "Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert und ihre Initative erhöhen sich um 100%.";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 25;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive);
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -154,6 +176,12 @@ public class Skill {
 			return this.verstaerkung();
 		if(name.equals("Schlachtruf"))
 			return this.schlachtruf();
+		
+		
+		
+		
+		if(name.equals("Svulblod"))
+			return this.svulblod();
 		
 		
 		return null;
@@ -250,6 +278,5 @@ public class Skill {
 	public void setBeschreibung(String beschreibung) {
 		this.beschreibung = beschreibung;
 	}
-	
 
 }

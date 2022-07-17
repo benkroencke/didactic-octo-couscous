@@ -110,7 +110,46 @@ public class Effekt {
 		
 					}
 					
+		}
+		
+		public static void pinchBoostFactorHeal(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			//Vielleicht verbugt, scheint aber richtig zu funktionieren (Es triggern eigentlich immer nur 4 Fanatiker, aber das sieht immer legit aus später mal schauen
+
+
+			if((teilnehmer.getLeben()/2)>=teilnehmer.getLebenActual() && teilnehmer.getLebenActual()>0 && !skill.isActive()) {
+					
+				int heal = ((teilnehmer.getLeben()*skill.getHealPercent()/100));
+				int erhoehungSchaden = teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator();
+					
+				teilnehmer.setLebenActual(teilnehmer.getLebenActual()+heal);
+					
+				if(teilnehmer.getLebenActual()>teilnehmer.getLeben()) {
+						heal = heal - teilnehmer.getLebenActual()-teilnehmer.getLeben();
+						teilnehmer.setLebenActual(teilnehmer.getLeben());
+						
 				}
+						
+				teilnehmer.setSchadenActual(teilnehmer.getSchadenActual()+erhoehungSchaden);
+					
+					
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + 
+							" wurden um " + skill.getHealPercent() + "% erhöht: " + heal + " Leben geheilt! " + "Ihr Angriffswert  wurde um " + skill.getSchadensMulitplikator()*100 + "% auf " + teilnehmer.getSchadenActual() + " erhöht!");
+				teilnehmer.setGeheilterSchaden(teilnehmer.getGeheilterSchaden()+heal);
+					
+				if(teilnehmer.getSkill1() != null && teilnehmer.getSkill1().equals(skill))
+					teilnehmer.getSkill1().setActive(true);
+				if(teilnehmer.getSkill2() != null && teilnehmer.getSkill2().equals(skill))
+					teilnehmer.getSkill2().setActive(true);
+				if(teilnehmer.getSkill3() != null && teilnehmer.getSkill3().equals(skill))
+					teilnehmer.getSkill3().setActive(true);
+				if(teilnehmer.getSkill4() != null && teilnehmer.getSkill4().equals(skill))
+					teilnehmer.getSkill4().setActive(true);
+				if(teilnehmer.getUltimate() != null && teilnehmer.getUltimate().equals(skill))
+					teilnehmer.getUltimate().setActive(true);
+				}
+		}
+			
 	
 		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey) {
 		
@@ -127,6 +166,8 @@ public class Effekt {
 				heallAll(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "damage")
 				damage(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "pinchBoostFactorHeal")
+				pinchBoostFactorHeal(einheiten, spieler, skill, teilnehmer);
 			
 		}
 

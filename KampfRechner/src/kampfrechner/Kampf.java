@@ -161,15 +161,15 @@ public class Kampf {
 				
 				
 				if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
-					if(teilnehmer.get(i).getSkill1() != null && teilnehmer.get(i).getSkill1().isActive() && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
+					if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
 						teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getSkill2() != null && teilnehmer.get(i).getSkill2().isActive() && runde % teilnehmer.get(i).getSkill2().getCooldown() == 0)
+					if(teilnehmer.get(i).getSkill2() != null && runde % teilnehmer.get(i).getSkill2().getCooldown() == 0)
 						teilnehmer.get(i).getSkill2().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill2().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getSkill3() != null && teilnehmer.get(i).getSkill3().isActive() && runde % teilnehmer.get(i).getSkill3().getCooldown() == 0)
+					if(teilnehmer.get(i).getSkill3() != null && runde % teilnehmer.get(i).getSkill3().getCooldown() == 0)
 						teilnehmer.get(i).getSkill3().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill3().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getSkill4() != null && teilnehmer.get(i).getSkill4().isActive() && runde % teilnehmer.get(i).getSkill4().getCooldown() == 0)
+					if(teilnehmer.get(i).getSkill4() != null && runde % teilnehmer.get(i).getSkill4().getCooldown() == 0)
 						teilnehmer.get(i).getSkill4().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill4().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getUltimate() != null && teilnehmer.get(i).getUltimate().isActive() && runde % teilnehmer.get(i).getUltimate().getCooldown() == 0)
+					if(teilnehmer.get(i).getUltimate() != null && runde % teilnehmer.get(i).getUltimate().getCooldown() == 0)
 						teilnehmer.get(i).getUltimate().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getUltimate().getEffectKey(), teilnehmer.get(i));
 					
 					

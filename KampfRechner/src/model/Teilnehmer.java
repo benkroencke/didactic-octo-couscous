@@ -39,6 +39,8 @@ public class Teilnehmer {
 	private int erlittenerSchaden;
 	private int geheilterSchaden;
 	
+	private Skill skillFabrik = new Skill();
+	
 	public Teilnehmer(Spieler besitzer, String name, int rang, List<Skill> skillListe,
 			int schaden, int init, int kommandoWert, ArrayList<Teilnehmer> einheitenListe,
 			int schadenActual, int initActual) {
@@ -845,9 +847,10 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Svulblod");
 		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
 
-		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
