@@ -72,10 +72,10 @@ public class Effekt {
 			
 			for (int i = 0; i<einheiten.size(); i++) {
 				
-				int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
 				
 				
 				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+					int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
 					einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
 					int actualHeal = einheiten.get(i).getLeben()-einheiten.get(i).getLebenActual()+heal;
 					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben())
@@ -147,7 +147,20 @@ public class Effekt {
 					teilnehmer.getSkill4().setActive(true);
 				if(teilnehmer.getUltimate() != null && teilnehmer.getUltimate().equals(skill))
 					teilnehmer.getUltimate().setActive(true);
+
+			}
+			
+		}
+		
+		public static void boostDamage1(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getName().equals(teilnehmer.getName()) && !einheiten.get(i).equals(teilnehmer)) {
+					einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+skill.getDamageBonus());
+					Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-skill.getDamageBonus()) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
 				}
+			}
 		}
 			
 	
@@ -168,6 +181,8 @@ public class Effekt {
 				damage(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "pinchBoostFactorHeal")
 				pinchBoostFactorHeal(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "boostDamage1")
+				boostDamage1(einheiten, spieler, skill, teilnehmer);
 			
 		}
 

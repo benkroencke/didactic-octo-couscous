@@ -48,7 +48,7 @@ public class Skill {
 		
 		this.name = "Schlachtruf";
 		this.effectKey = "healAll";
-		this.beschreibung = "Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 20% der fehlenden Leben).";
+		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 20% der fehlenden Leben).";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 20;
 		this.damageReduction = 0;
@@ -71,7 +71,7 @@ public class Skill {
 		
 		this.name = "Verstärkung";
 		this.effectKey = "healAll";
-		this.beschreibung = "Bei Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 50% der fehlenden Leben.";
+		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 50% der fehlenden Leben.";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 45;
 		this.damageReduction = 0;
@@ -95,7 +95,7 @@ public class Skill {
 		
 		this.name = "Dezimieren";
 		this.effectKey = "damage";
-		this.beschreibung = "Ein schwerer Schwung mit der Waffe. Alle 3 Runden werden an 2 Gegnern 200% Schaden angerichtet.";
+		this.beschreibung = name + ": Ein schwerer Schwung mit der Waffe. Alle 3 Runden werden an 2 Gegnern 200% Schaden angerichtet.";
 		this.schadensmulitplikator = 2;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -118,7 +118,7 @@ public class Skill {
 		
 		this.name = "Wirbelwind";
 		this.effectKey = "damage";
-		this.beschreibung = "Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
+		this.beschreibung = name + ": Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
 		this.schadensmulitplikator = 6;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -141,7 +141,7 @@ public class Skill {
 		
 		this.name = "Svulblod";
 		this.effectKey = "pinchBoostFactorHeal";
-		this.beschreibung = "Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert und ihre Initative erhöhen sich um 100%.";
+		this.beschreibung = name + ": Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert erhöht sich um 100%.";
 		this.schadensmulitplikator = 1;
 		this.healPercent = 25;
 		this.damageReduction = 0;
@@ -153,6 +153,28 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = false;
 		this.isPassive = false;
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive);
+	}
+	
+	public Skill blutsbruder() {
+		
+		this.name = "Blutsbruder";
+		this.effectKey = "boostDamage1";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 10;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.beschreibung = name + ": Für jede weitere Einheit dieser Art, wird der Schaden um " + damageBonus + " erhöht";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -182,6 +204,8 @@ public class Skill {
 		
 		if(name.equals("Svulblod"))
 			return this.svulblod();
+		if(name.equals("Blutsbruder"))
+			return this.blutsbruder();
 		
 		
 		return null;

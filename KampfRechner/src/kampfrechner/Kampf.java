@@ -67,7 +67,20 @@ public class Kampf {
 		Main.battlelog.add("Passive Effekte werden ausgeführt:");
 		Main.battlelog.add("---------------------------------------------------");
 		
-		//TODO
+		for(int passiveEffekt=0;passiveEffekt<teilnehmer.size();passiveEffekt++) {
+		
+
+			if(teilnehmer.get(passiveEffekt).getSkill1() != null && teilnehmer.get(passiveEffekt).getSkill1().isPassive())
+				teilnehmer.get(passiveEffekt).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(passiveEffekt).getBesitzer(), teilnehmer.get(passiveEffekt).getSkill1().getEffectKey(), teilnehmer.get(passiveEffekt));
+			if(teilnehmer.get(passiveEffekt).getSkill2() != null && teilnehmer.get(passiveEffekt).getSkill2().isPassive())
+				teilnehmer.get(passiveEffekt).getSkill2().triggerEffekt(teilnehmer, teilnehmer.get(passiveEffekt).getBesitzer(), teilnehmer.get(passiveEffekt).getSkill2().getEffectKey(), teilnehmer.get(passiveEffekt));
+			if(teilnehmer.get(passiveEffekt).getSkill3() != null && teilnehmer.get(passiveEffekt).getSkill3().isPassive())
+				teilnehmer.get(passiveEffekt).getSkill3().triggerEffekt(teilnehmer, teilnehmer.get(passiveEffekt).getBesitzer(), teilnehmer.get(passiveEffekt).getSkill3().getEffectKey(), teilnehmer.get(passiveEffekt));
+			if(teilnehmer.get(passiveEffekt).getSkill4() != null && teilnehmer.get(passiveEffekt).getSkill4().isPassive())
+				teilnehmer.get(passiveEffekt).getSkill4().triggerEffekt(teilnehmer, teilnehmer.get(passiveEffekt).getBesitzer(), teilnehmer.get(passiveEffekt).getSkill4().getEffectKey(), teilnehmer.get(passiveEffekt));
+			if(teilnehmer.get(passiveEffekt).getUltimate() != null && teilnehmer.get(passiveEffekt).getUltimate().isPassive())
+				teilnehmer.get(passiveEffekt).getUltimate().triggerEffekt(teilnehmer, teilnehmer.get(passiveEffekt).getBesitzer(), teilnehmer.get(passiveEffekt).getUltimate().getEffectKey(), teilnehmer.get(passiveEffekt));
+		}
 		
 		Main.battlelog.add("---------------------------------------------------");
 		
