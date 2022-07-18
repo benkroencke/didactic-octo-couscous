@@ -113,7 +113,6 @@ public class Effekt {
 			targets = targets2;
 			if(targets.size()>0) {
 				for (int i = 0; i<targets.size(); i++) {
-					System.out.println(targets.get(i).getName());
 					int heal = (targets.get(i).getLeben()*skill.getHealPercent())/100;
 					targets.get(i).setLebenActual(targets.get(i).getLebenActual()+heal);
 					int actualHeal = 0;
@@ -225,13 +224,22 @@ public class Effekt {
 			
 		}
 		
-		public static void boostDamage1(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+		public static void united(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
 			for (int i = 0; i<einheiten.size(); i++) {
 				
 				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getName().equals(teilnehmer.getName()) && !einheiten.get(i).equals(teilnehmer)) {
-					einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+skill.getDamageBonus());
-					Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-skill.getDamageBonus()) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+					
+					if(skill.getName() == "Blutsbruder") {
+						einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+skill.getDamageBonus());
+						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-skill.getDamageBonus()) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+					}
+					
+					if(skill.getName() == "Schildwall") {
+						einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()+skill.getArmorBoost());
+						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()-skill.getArmorBoost()) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+					}
+					
 				}
 			}
 		}
@@ -254,8 +262,8 @@ public class Effekt {
 				damage(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "pinchBoostFactorHeal")
 				pinchBoostFactorHeal(einheiten, spieler, skill, teilnehmer);
-			if(effectKey == "boostDamage1")
-				boostDamage1(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "united")
+				united(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "damageSpecificRound")
 				damageSpecificRound(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "healTargetsUnder50")

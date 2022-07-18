@@ -165,7 +165,7 @@ public class Skill {
 	public Skill blutsbruder() {
 		
 		this.name = "Blutsbruder";
-		this.effectKey = "boostDamage1";
+		this.effectKey = "united";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -252,6 +252,29 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill schildwall() {
+		
+		this.name = "Schildwall";
+		this.effectKey = "united";
+		this.beschreibung = name + ": Für jede weitere Einheit dieser Art, wird die Rüstung um " + armorBoost + "% erhöht.";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 5;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -283,6 +306,8 @@ public class Skill {
 			return this.pfeilsalve();
 		if(name.equals("Heilkraut"))
 			return this.heilkraut();
+		if(name.equals("Schildwall"))
+			return this.schildwall();
 		
 		
 		return null;
