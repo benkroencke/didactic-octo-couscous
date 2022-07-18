@@ -164,6 +164,7 @@ public class MainWindow {
 	private JPanel schaden1Statistik;
 	private JPanel schaden2Statistik;
 	
+	private JButton btnStatistik;
 	
 	public MainWindow() {
 		initialize();
@@ -200,7 +201,6 @@ public class MainWindow {
 		JButton btnKampfbericht = new JButton("Kampflog");
 		btnKampfbericht.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				if(panelLog.isVisible()) {
 					panelLog.hide();
 					btnKampfbericht.setBackground(new Color(230, 230, 250));
@@ -217,7 +217,7 @@ public class MainWindow {
 		btnKampfbericht.setBounds(490, 596, 204, 88);
 		panelStatistik.add(btnKampfbericht);
 		
-		JButton btnStatistik = new JButton("Schaden");
+		btnStatistik = new JButton("Schaden");
 		btnStatistik.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -647,21 +647,6 @@ public class MainWindow {
 		statisticBackground.setBounds(0, 0, 1184, 761);
 		panelStatistik.add(statisticBackground);
 		
-		panelLog = new JPanel();
-		panelLog.setBackground(new Color(105, 105, 105));
-		panelLog.setBounds(10, 78, 1164, 507);
-		panelLog.hide();
-		panelStatistik.add(panelLog);
-		panelLog.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 1144, 485);
-		panelLog.add(scrollPane);
-		
-		JTextArea logTextBox = new JTextArea();
-		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
-		scrollPane.setViewportView(logTextBox);
-		
 		schaden1Statistik = new JPanel();
 		schaden1Statistik.setBounds(50, 500, 430, 211);
 		panelStatistik.add(schaden1Statistik);
@@ -795,6 +780,21 @@ public class MainWindow {
 		lblNewLabel_2_1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/schadenStatistikBackground.png")));
 		lblNewLabel_2_1.setBounds(0, 0, 430, 211);
 		schaden2Statistik.add(lblNewLabel_2_1);
+		
+		panelLog = new JPanel();
+		panelLog.setBackground(new Color(105, 105, 105));
+		panelLog.setBounds(10, 73, 1164, 401);
+		panelLog.hide();
+		panelStatistik.add(panelLog);
+		panelLog.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 1144, 379);
+		panelLog.add(scrollPane);
+		
+		JTextArea logTextBox = new JTextArea();
+		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
+		scrollPane.setViewportView(logTextBox);
 		
 		panelKampfErstellen = new JPanel();
 		panelKampfErstellen.setBounds(0, 0, 1184, 761);

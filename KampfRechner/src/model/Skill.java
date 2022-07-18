@@ -210,7 +210,7 @@ public class Skill {
 		
 		this.name = "Pfeilsalve";
 		this.effectKey = "damage";
-		this.beschreibung = name + ": Diese Einheit verursacht jeder Runde " + " +" + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
+		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
 		this.schadensmulitplikator = 1;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -275,6 +275,29 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill ueberfall() {
+		
+		this.name = "Überfall";
+		this.effectKey = "damage";
+		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an gegnerischer Schwerer Infanterie.";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 5;
+		this.numberOfTargets = 1;
+		this.hatEile = true;
+		this.ignoresArmor = true;
+		this.isActive = true;
+		this.isPassive = false;
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -308,6 +331,8 @@ public class Skill {
 			return this.heilkraut();
 		if(name.equals("Schildwall"))
 			return this.schildwall();
+		if(name.equals("Überfall"))
+			return this.ueberfall();
 		
 		
 		return null;

@@ -136,6 +136,9 @@ public class Effekt {
 					
 					ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
 					
+					
+						
+					
 					for(int a=0; a<einheiten.size();a++) {
 						
 						if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
@@ -144,6 +147,17 @@ public class Effekt {
 					while(targets.size()>skill.getNumberOfTargets())
 						targets.remove(targets.size()-1);
 			
+					//Falls Skill == Überfall
+					if(skill.getName() == "Überfall") {
+						ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+						for(int i=0;i<einheiten.size();i++) {
+							if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+								uberfallTargets.add(einheiten.get(i));
+						}
+						targets = uberfallTargets;
+						
+					}
+					
 					for (int i = 0; i<targets.size(); i++) {
 						
 						int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
