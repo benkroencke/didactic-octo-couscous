@@ -159,7 +159,7 @@ public class Kampf {
 					
 					if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(verteidiger))
 						verteidigerHasLeben = true;
-					
+
 				}
 				
 				if(angreiferHasLeben == false) {

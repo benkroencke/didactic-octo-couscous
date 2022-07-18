@@ -18,6 +18,7 @@ public class Skill {
 	private boolean ignoresArmor;
 	private boolean isActive;
 	private boolean isPassive;
+	private String pictureURI;
 	
 	public Skill() {
 		
@@ -25,7 +26,7 @@ public class Skill {
 	
 	public Skill(String name, String effectKey, String beschreibung, int schadensmultiplikator, int healPercent, int damageReduction, int armorBoost, int damageBonus,
 			int cooldown, int numberOfTargets, boolean hatEile, boolean ignoresArmor, boolean isActive,
-			boolean isPassive) {
+			boolean isPassive, String pictureURI) {
 		super();
 		this.name = name;
 		this.effectKey = effectKey;
@@ -41,6 +42,7 @@ public class Skill {
 		this.ignoresArmor = ignoresArmor;
 		this.isActive = isActive;
 		this.isPassive = isPassive;
+		this.pictureURI = pictureURI;
 	}
 	
 	
@@ -48,9 +50,9 @@ public class Skill {
 		
 		this.name = "Schlachtruf";
 		this.effectKey = "healAll";
-		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 20% der fehlenden Leben).";
+		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 10% der fehlenden Leben).";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 20;
+		this.healPercent = 10;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -60,20 +62,20 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		
+		this.pictureURI = "/source/schlachtruf.png";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
-			isPassive);
+			isPassive, pictureURI);
 	}
 	
 	public Skill verstaerkung() {
 		
 		this.name = "Verstärkung";
 		this.effectKey = "healAll";
-		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 50% der fehlenden Leben.";
+		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 35% der fehlenden Leben.";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 45;
+		this.healPercent = 35;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -83,11 +85,11 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		
+		this.pictureURI = "/source/verstarkung.png";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
-			isPassive);
+			isPassive, pictureURI);
 	}
 	
 	
@@ -107,11 +109,12 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		
+		this.pictureURI = "/source/dezimieren.png";
+
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
-			isPassive);
+			isPassive, pictureURI);
 	}
 	
 	public Skill wirbelwind() {
@@ -130,11 +133,11 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		
+		this.pictureURI = "/source/spinning-blades.png";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
-			isPassive);
+			isPassive, pictureURI);
 	}
 	
 	public Skill svulblod() {
@@ -156,7 +159,7 @@ public class Skill {
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
-			isPassive);
+			isPassive, "");
 	}
 	
 	public Skill blutsbruder() {
@@ -178,7 +181,52 @@ public class Skill {
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
-			isPassive);
+			isPassive, "");
+	}
+	
+	public Skill stampede() {
+		
+		this.name = "Stampede";
+		this.effectKey = "damageSpecificRound";
+		this.schadensmulitplikator = 6;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.beschreibung = name + ": Diese Einheit verursacht in der " + cooldown + ". Runde " + " +" + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel(en).";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
+	public Skill pfeilsalve() {
+		
+		this.name = "Pfeilsalve";
+		this.effectKey = "damage";
+		this.beschreibung = name + ": Diese Einheit verursacht jeder Runde " + " +" + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 2;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
 	}
 	
 	
@@ -206,6 +254,10 @@ public class Skill {
 			return this.svulblod();
 		if(name.equals("Blutsbruder"))
 			return this.blutsbruder();
+		if(name.equals("Stampede"))
+			return this.stampede();
+		if(name.equals("Pfeilsalve"))
+			return this.pfeilsalve();
 		
 		
 		return null;
@@ -301,6 +353,14 @@ public class Skill {
 
 	public void setBeschreibung(String beschreibung) {
 		this.beschreibung = beschreibung;
+	}
+
+	public String getPictureURI() {
+		return pictureURI;
+	}
+
+	public void setPictureURI(String pictureURI) {
+		this.pictureURI = pictureURI;
 	}
 
 }

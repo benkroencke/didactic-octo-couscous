@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 
 import main.Main;
@@ -77,9 +78,14 @@ public class Effekt {
 				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
 					int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
 					einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
-					int actualHeal = einheiten.get(i).getLeben()-einheiten.get(i).getLebenActual()+heal;
-					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben())
+					int actualHeal = 0;
+					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
+						actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
 						einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
+					} else {
+						actualHeal = heal;
+					}
+					
 					Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
 					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
 				}
@@ -112,10 +118,36 @@ public class Effekt {
 					
 		}
 		
-		public static void pinchBoostFactorHeal(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+		public static void damageSpecificRound(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
-			//Vielleicht verbugt, scheint aber richtig zu funktionieren (Es triggern eigentlich immer nur 4 Fanatiker, aber das sieht immer legit aus später mal schauen
-
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			if(!skill.isActive()) {
+			
+				for(int a=0; a<einheiten.size();a++) {
+					
+					if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+						targets.add(einheiten.get(a));
+				}
+				while(targets.size()>skill.getNumberOfTargets())
+					targets.remove(targets.size()-1);
+		
+				for (int i = 0; i<targets.size(); i++) {
+					
+					int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
+					
+					targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+					
+					Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+					teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+					targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+	
+				}
+				skill.setActive(true);
+			}
+		}
+		
+		public static void pinchBoostFactorHeal(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 
 			if((teilnehmer.getLeben()/2)>=teilnehmer.getLebenActual() && teilnehmer.getLebenActual()>0 && !skill.isActive()) {
 					
@@ -183,6 +215,8 @@ public class Effekt {
 				pinchBoostFactorHeal(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "boostDamage1")
 				boostDamage1(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "damageSpecificRound")
+				damageSpecificRound(einheiten, spieler, skill, teilnehmer);
 			
 		}
 

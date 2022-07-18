@@ -937,9 +937,9 @@ public class MainWindow {
 				if(!(s1skill2 == null))
 					heldSpieler1.setSkill2(skillFabrik.erstelle(s1skill2.getName()));
 				if(!(s1skill3 == null))
-					heldSpieler1.setSkill3(skillFabrik.erstelle(s1skill2.getName()));
+					heldSpieler1.setSkill3(skillFabrik.erstelle(s1skill3.getName()));
 				if(!(s1skill4 == null))
-					heldSpieler1.setSkill4(skillFabrik.erstelle(s1skill2.getName()));
+					heldSpieler1.setSkill4(skillFabrik.erstelle(s1skill4.getName()));
 				if(!(s1Ulti == null))
 					heldSpieler1.setUltimate(skillFabrik.erstelle(s1Ulti.getName()));
 				
@@ -952,7 +952,7 @@ public class MainWindow {
 				if(!(s2skill4 == null))
 					heldSpieler2.setSkill4(skillFabrik.erstelle(s2skill4.getName()));
 				if(!(s2Ulti == null))
-					heldSpieler2.setUltimate(skillFabrik.erstelle(s1Ulti.getName()));
+					heldSpieler2.setUltimate(skillFabrik.erstelle(s2Ulti.getName()));
 				
 				
 				ArrayList<Teilnehmer> teilnehmer = new ArrayList<Teilnehmer>();
@@ -992,6 +992,7 @@ public class MainWindow {
 				}
 				
 				logTextBox.setText(t);
+				Main.battlelog.clear();
 				
 				setDataForStatistik(teilnehmer);
 				
@@ -2343,6 +2344,8 @@ public class MainWindow {
 			
 		}
 		
+		setSkillIconsRaiseLevel(teilnehmer);
+		
 		setSchadenValues(truppenAngerichtet1, erlitten1, geheilt1, kommandant1Schaden, lblSchaden11Value, lblSchaden12Value, lblSchaden13Value, lblSchaden14Value);
 		setSchadenValues(truppenAngerichtet2, erlitten2, geheilt2, kommandant2Schaden, lblSchaden21Value, lblSchaden22Value, lblSchaden23Value, lblSchaden24Value);
 		
@@ -2360,6 +2363,67 @@ public class MainWindow {
 		
 	}
 	
+	private void setSkillIconsRaiseLevel(ArrayList<Teilnehmer> teilnehmer) {
+		
+		for(int i = 0; i<teilnehmer.size(); i++) {
+			
+			if(teilnehmer.get(i).getSkill1() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill1.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill1().getPictureURI())));
+				lblCommander1Skill1.setToolTipText(teilnehmer.get(i).getSkill1().getBeschreibung());
+				lblCommander1Level.setText(""+1);
+			}
+			if(teilnehmer.get(i).getSkill2() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill2.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill2().getPictureURI())));
+				lblCommander1Skill2.setToolTipText(teilnehmer.get(i).getSkill2().getBeschreibung());
+				lblCommander1Level.setText(""+2);
+			}
+			if(teilnehmer.get(i).getSkill3() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill3.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill3().getPictureURI())));
+				lblCommander1Skill3.setToolTipText(teilnehmer.get(i).getSkill3().getBeschreibung());
+				lblCommander1Level.setText(""+3);
+			}
+			if(teilnehmer.get(i).getSkill4() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill4.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill4().getPictureURI())));
+				lblCommander1Skill4.setToolTipText(teilnehmer.get(i).getSkill4().getBeschreibung());
+				lblCommander1Level.setText(""+4);
+			}
+			if(teilnehmer.get(i).getUltimate() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getUltimate().getPictureURI())));
+				lblCommander1Ultimate.setToolTipText(teilnehmer.get(i).getUltimate().getBeschreibung());
+				lblCommander1Level.setText(""+5);
+			}
+			
+			
+			if(teilnehmer.get(i).getSkill1() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill1.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill1().getPictureURI())));
+				lblCommander2Skill1.setToolTipText(teilnehmer.get(i).getSkill1().getBeschreibung());
+				lblCommander2Level.setText(""+1);
+			}
+			if(teilnehmer.get(i).getSkill2() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill2.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill2().getPictureURI())));
+				lblCommander2Skill2.setToolTipText(teilnehmer.get(i).getSkill2().getBeschreibung());
+				lblCommander2Level.setText(""+2);
+			}
+			if(teilnehmer.get(i).getSkill3() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill3.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill3().getPictureURI())));
+				lblCommander2Skill3.setToolTipText(teilnehmer.get(i).getSkill3().getBeschreibung());
+				lblCommander2Level.setText(""+3);
+			}
+			if(teilnehmer.get(i).getSkill4() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill4.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill4().getPictureURI())));
+				lblCommander2Skill4.setToolTipText(teilnehmer.get(i).getSkill4().getBeschreibung());
+				lblCommander2Level.setText(""+4);
+			}
+			if(teilnehmer.get(i).getUltimate() != null && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getUltimate().getPictureURI())));
+				lblCommander2Ultimate.setToolTipText(teilnehmer.get(i).getUltimate().getBeschreibung());
+				lblCommander2Level.setText(""+5);
+			}
+			
+		}
+		
+	}
+
 	private void setSchadenValues(int angerichtet, int erlitten, int geheilt, int kommandantAngerichtet, JLabel label1, JLabel label2, JLabel label3, JLabel label4) {
 		
 		label1.setText("" + kommandantAngerichtet);
