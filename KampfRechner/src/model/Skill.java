@@ -229,6 +229,29 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill heilkraut() {
+		
+		this.name = "Heilkraut";
+		this.effectKey = "healTargetsUnder50";
+		this.beschreibung = name + ": Mächtige Heilkräuter heilen deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel.";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 25;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 2;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -258,6 +281,8 @@ public class Skill {
 			return this.stampede();
 		if(name.equals("Pfeilsalve"))
 			return this.pfeilsalve();
+		if(name.equals("Heilkraut"))
+			return this.heilkraut();
 		
 		
 		return null;

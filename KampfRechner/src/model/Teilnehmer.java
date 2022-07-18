@@ -791,7 +791,7 @@ public class Teilnehmer {
 		this.name = "Druiden";
 		this.pictureURI = "/source/druiden.png";
 		this.id = 1;
-		this.leben = 1900;
+		this.leben = 2600;
 		this.schaden = 60;
 		this.ruestungProzent = 8;
 		this.init = 100;
@@ -802,9 +802,10 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Heilkraut");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
-		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -827,7 +828,7 @@ public class Teilnehmer {
 		this.initActual = init;
 		this.istKommandant = false;
 		this.skill1 = skillFabrik.erstelle("Pfeilsalve");
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,

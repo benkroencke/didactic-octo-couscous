@@ -92,6 +92,47 @@ public class Effekt {
 			}
 		}
 		
+		public static void healTargetsUnder50(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			ArrayList<Teilnehmer> targets2 = new ArrayList<Teilnehmer>();
+				
+			for(int i = 0; i<einheiten.size(); i++) {
+				Random rand = new Random();
+				Teilnehmer random = einheiten.get(rand.nextInt(einheiten.size()));
+				
+				if((einheiten.get(i).getLebenActual())<(einheiten.get(i).getLeben()/2))
+						targets.add(einheiten.get(i));
+				
+			}
+			for(int i = 0; i<targets.size();i++) {
+				if(targets.get(i).getBesitzer() == caster.getBesitzer() && !targets.get(i).isIstKommandant()) {
+					targets2.add(targets.get(i));
+				}
+			}
+			targets = targets2;
+			if(targets.size()>0) {
+				for (int i = 0; i<targets.size(); i++) {
+					System.out.println(targets.get(i).getName());
+					int heal = (targets.get(i).getLeben()*skill.getHealPercent())/100;
+					targets.get(i).setLebenActual(targets.get(i).getLebenActual()+heal);
+					int actualHeal = 0;
+					if(targets.get(i).getLebenActual()>targets.get(i).getLeben()) {
+						actualHeal = heal-(targets.get(i).getLebenActual()-targets.get(i).getLeben());
+						targets.get(i).setLebenActual(targets.get(i).getLeben());
+					} else {
+						actualHeal = heal;
+					}
+					Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + targets.get(i).getName() + " wurde von " + (targets.get(i).getLebenActual()-actualHeal) + " auf " + targets.get(i).getLebenActual() + " gesetzt!");
+					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
+				}
+			}
+			
+				
+			
+			
+		}
+		
 		public static void damage(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 					
 					ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
@@ -217,6 +258,8 @@ public class Effekt {
 				boostDamage1(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "damageSpecificRound")
 				damageSpecificRound(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "healTargetsUnder50")
+				healTargetsUnder50(einheiten, spieler, skill, teilnehmer);
 			
 		}
 

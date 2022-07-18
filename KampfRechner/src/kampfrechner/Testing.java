@@ -3,8 +3,12 @@ package kampfrechner;
 public class Testing {
 
 	public static void main(String[] args) {
-		 double a = Math.random() * 200;
-		 System.out.println(a);
+		int i = 0;
+		while(i<1000) {
+			int a = (int) (Math.random() * 100);
+			System.out.println(a);
+			i++;
+		}
 
 		 
 		 System.out.println(9 % 3);

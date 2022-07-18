@@ -172,7 +172,6 @@ public class Kampf {
 					return writeAttackerWin(teilnehmer);
 				}
 				
-				
 				if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
 					if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
 						teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
