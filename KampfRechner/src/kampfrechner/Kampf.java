@@ -305,6 +305,13 @@ public class Kampf {
 			schaden = schaden/10000;
 			schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
 			
+			if(ziel.getSkill1().getEffectKey() == "reduceDamagePercent") {
+				int vorher = schaden;
+				int reduction = ziel.getSkill1().getDamageReduction();
+				schaden = schaden*(100-reduction)/100;
+				Main.battlelog.add("Effekt von: " + ziel.getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
+			}
+			
 			ziel.setLebenActual(ziel.getLebenActual()-schaden);
 			angreifer.setAngerichteterSchaden(angreifer.getAngerichteterSchaden()+schaden);
 			ziel.setErlittenerSchaden(ziel.getErlittenerSchaden()+schaden);

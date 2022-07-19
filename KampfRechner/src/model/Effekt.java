@@ -162,6 +162,10 @@ public class Effekt {
 						
 						int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
 						
+						if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+							damage = reduceDamagePercent(targets.get(i), damage);
+						}
+						
 						targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
 						
 						Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
@@ -170,6 +174,18 @@ public class Effekt {
 		
 					}
 					
+		}
+		
+		public static int reduceDamagePercent(Teilnehmer teilnehmer, int damage) {
+			
+			int vorher = damage;
+			int reduction = teilnehmer.getSkill1().getDamageReduction();
+			damage = damage*(100-reduction)/100;
+			
+			Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + teilnehmer.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + damage + " reduziert.");
+			
+			return damage;
+			
 		}
 		
 		public static void damageSpecificRound(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
@@ -189,6 +205,10 @@ public class Effekt {
 				for (int i = 0; i<targets.size(); i++) {
 					
 					int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
+					
+					if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+						damage = reduceDamagePercent(targets.get(i), damage);
+					}
 					
 					targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
 					

@@ -298,6 +298,28 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill stahlpanzer() {
+		
+		this.name = "Stahlpanzer";
+		this.effectKey = "reduceDamagePercent";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 10;
+		this.armorBoost = 0;
+		this.damageBonus = 10;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.beschreibung = name + ": Jeglicher Schaden wird um " + damageReduction + "% reduziert.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -333,6 +355,8 @@ public class Skill {
 			return this.schildwall();
 		if(name.equals("Überfall"))
 			return this.ueberfall();
+		if(name.equals("Stahlpanzer"))
+			return this.stahlpanzer();
 		
 		
 		return null;
