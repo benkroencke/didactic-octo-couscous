@@ -367,6 +367,29 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill doubleAttack() {
+		
+		this.name = "Doppelschlag";
+		this.effectKey = "doubleAttack";
+		this.schadensmulitplikator = 40;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.beschreibung = name + ": Diese Einheit hat eine " + (100-schadensmulitplikator) + "% Chance 2 Mal anzugreifen.";
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -408,6 +431,8 @@ public class Skill {
 			return this.stachelschwein();
 		if(name.equals("Konterstellung"))
 			return this.konterstellung();
+		if(name.equals("Doppelschlag"))
+			return this.doubleAttack();
 		
 		return null;
 	}

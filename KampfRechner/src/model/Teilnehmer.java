@@ -511,9 +511,10 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Doppelschlag");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 		
-		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -535,7 +536,8 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Schildwall");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,
@@ -559,9 +561,10 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Konterstellung");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
-		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -583,7 +586,8 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Stampede");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,
@@ -632,7 +636,8 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Schildwall");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
 				null, null, null, schaden, init, 0,

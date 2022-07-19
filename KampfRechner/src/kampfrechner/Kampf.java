@@ -308,69 +308,122 @@ public class Kampf {
 		}
 	}
 	
+	public int checkDouble(Teilnehmer angreifer, int doubleAttack) {
+		
+		if(angreifer.getSkill1() != null) {
+			if(angreifer.getSkill1().getEffectKey() == "doubleAttack") {
+				doubleAttack = (int) ((Math.random()*100)+1)/(angreifer.getSkill1().getSchadensMulitplikator());
+				if(doubleAttack>0)
+					doubleAttack = -1;
+			}
+		}
+		
+		if(angreifer.getSkill2() != null) {
+			if(angreifer.getSkill2().getEffectKey() == "doubleAttack") {
+				doubleAttack = (int) ((Math.random()*100)+1)/(angreifer.getSkill2().getSchadensMulitplikator());
+				if(doubleAttack>0)
+					doubleAttack = -1;
+			}
+		}
+		
+		if(angreifer.getSkill3() != null) {
+			if(angreifer.getSkill3().getEffectKey() == "doubleAttack") {
+				doubleAttack = (int) ((Math.random()*100)+1)/(angreifer.getSkill3().getSchadensMulitplikator());
+				if(doubleAttack>0)
+					doubleAttack = -1;
+			}
+		}
+		
+		if(angreifer.getSkill4() != null) {
+			if(angreifer.getSkill4().getEffectKey() == "doubleAttack") {
+				doubleAttack = (int) ((Math.random()*100)+1)/(angreifer.getSkill4().getSchadensMulitplikator());
+				if(doubleAttack>0)
+					doubleAttack = -1;
+			}
+		}
+		
+		if(angreifer.getUltimate() != null) {
+			if(angreifer.getUltimate().getEffectKey() == "doubleAttack") {
+				doubleAttack = (int) ((Math.random()*100)+1)/(angreifer.getUltimate().getSchadensMulitplikator());
+				if(doubleAttack>0)
+					doubleAttack = -1;
+			}
+		}
+		if(doubleAttack == -1)
+			Main.battlelog.add("Doppelschlag von: " + angreifer.getBesitzer().getName() + " " + angreifer.getName() + "'s " + angreifer.getSkill1().getName() + ". Es folgen 2 Angriffe!");
+		return doubleAttack;
+		
+	}
+	
 	public void angriff(Teilnehmer angreifer, ArrayList<Teilnehmer> teilnehmer) {
-		ArrayList<Teilnehmer> opportunities = new ArrayList<Teilnehmer>();
-		for(int i =0;i<teilnehmer.size();i++) {
-			if(teilnehmer.get(i).getBesitzer() != angreifer.getBesitzer() && !teilnehmer.get(i).isIstKommandant() && teilnehmer.get(i).getLebenActual()>0)
-				opportunities.add(teilnehmer.get(i));
-		}
-		for(int i =0;i<opportunities.size();i++) {
-			Main.battlelog.add("Mögliche Ziele für " + angreifer.getBesitzer().getName() + "'s " + angreifer.getName() + ": " + opportunities.get(i).getBesitzer().getName() + "'s " + opportunities.get(i).getName());
-		}
 		
-		Teilnehmer ziel = zielauswaehlen(opportunities);
+		int doubleAttack = 0;
+		doubleAttack = checkDouble(angreifer, doubleAttack);
 		
-		if(ziel.getCounter() != (angreifer.getId())) {
+		for(int doubleAA = doubleAttack;doubleAA < 1; doubleAA++) {
+		
+			ArrayList<Teilnehmer> opportunities = new ArrayList<Teilnehmer>();
+			for(int i =0;i<teilnehmer.size();i++) {
+				if(teilnehmer.get(i).getBesitzer() != angreifer.getBesitzer() && !teilnehmer.get(i).isIstKommandant() && teilnehmer.get(i).getLebenActual()>0)
+					opportunities.add(teilnehmer.get(i));
+			}
+			for(int i =0;i<opportunities.size();i++) {
+				Main.battlelog.add("Mögliche Ziele für " + angreifer.getBesitzer().getName() + "'s " + angreifer.getName() + ": " + opportunities.get(i).getBesitzer().getName() + "'s " + opportunities.get(i).getName());
+			}
 			
-			int schwaechung = (100*angreifer.getLebenActual()/angreifer.getLeben());
-			int schaden = ((angreifer.getSchadenActual()*((100-ziel.getRuestungProzentActual()))))*(schwaechung);
-			schaden = schaden/10000;
-			schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
+			Teilnehmer ziel = zielauswaehlen(opportunities);
 			
-			if(ziel.getSkill1() != null) {
-				if(ziel.getSkill1().getEffectKey() == "reduceDamagePercent") {
-					int vorher = schaden;
-					int reduction = ziel.getSkill1().getDamageReduction();
-					schaden = schaden*(100-reduction)/100;
-					Main.battlelog.add("Effekt von: " + ziel.getBesitzer().getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
+			if(ziel.getCounter() != (angreifer.getId())) {
+				
+				int schwaechung = (100*angreifer.getLebenActual()/angreifer.getLeben());
+				int schaden = ((angreifer.getSchadenActual()*((100-ziel.getRuestungProzentActual()))))*(schwaechung);
+				schaden = schaden/10000;
+				schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
+				
+				if(ziel.getSkill1() != null) {
+					if(ziel.getSkill1().getEffectKey() == "reduceDamagePercent") {
+						int vorher = schaden;
+						int reduction = ziel.getSkill1().getDamageReduction();
+						schaden = schaden*(100-reduction)/100;
+						Main.battlelog.add("Effekt von: " + ziel.getBesitzer().getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
+					}
+				}
+				
+				ziel.setLebenActual(ziel.getLebenActual()-schaden);
+				angreifer.setAngerichteterSchaden(angreifer.getAngerichteterSchaden()+schaden);
+				ziel.setErlittenerSchaden(ziel.getErlittenerSchaden()+schaden);
+				Main.battlelog.add(ziel.getName() + " wurden getroffen und verlieren " + schaden + " Leben!" + ziel.getName() + " hat noch " + ziel.getLebenActual() + " Leben. Der Schaden wird dementsprechend reduziert.");
+				if(ziel.getLebenActual()<=0) {
+					Main.battlelog.add( ziel.getBesitzer().getName() + "'s " + ziel.getName() + " wurden getötet! Solange diese Einheit nicht geheilt wird, wird sie nach dem Kampf aus der Truppenliste entfernt.");
+				}
+				
+			}
+				
+			if(ziel.getCounter() == (angreifer.getId())) {
+				
+				int schwaechung = (100*angreifer.getLebenActual()/angreifer.getLeben());
+				int schaden = angreifer.getSchadenActual()*schwaechung;
+				schaden = schaden/100;
+				schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
+				
+				ziel.setLebenActual(ziel.getLebenActual()-schaden);
+				angreifer.setAngerichteterSchaden(angreifer.getAngerichteterSchaden()+schaden);
+				ziel.setErlittenerSchaden(ziel.getErlittenerSchaden()+schaden);
+				Main.battlelog.add("Ein guter Treffer! Die Rüstung wird von einer Kontereinheit ignoriert!" + angreifer.getName() + " kontern " + ziel.getName());
+				Main.battlelog.add(ziel.getName() + " wurden getroffen und verlieren " + schaden + " Leben!" + ziel.getName() + " hat noch " + ziel.getLebenActual() + " Leben. Der Schaden wird dementsprechend reduziert.");
+				if(ziel.getLebenActual()<=0) {
+					Main.battlelog.add(ziel.getBesitzer().getName() + "'s " + ziel.getName() + " wurden getötet! Solange diese Einheit nicht geheilt wird, wird sie nach dem Kampf aus der Truppenliste entfernt.");
 				}
 			}
 			
-			ziel.setLebenActual(ziel.getLebenActual()-schaden);
-			angreifer.setAngerichteterSchaden(angreifer.getAngerichteterSchaden()+schaden);
-			ziel.setErlittenerSchaden(ziel.getErlittenerSchaden()+schaden);
-			Main.battlelog.add(ziel.getName() + " wurden getroffen und verlieren " + schaden + " Leben!" + ziel.getName() + " hat noch " + ziel.getLebenActual() + " Leben. Der Schaden wird dementsprechend reduziert.");
-			if(ziel.getLebenActual()<=0) {
-				Main.battlelog.add( ziel.getBesitzer().getName() + "'s " + ziel.getName() + " wurden getötet! Solange diese Einheit nicht geheilt wird, wird sie nach dem Kampf aus der Truppenliste entfernt.");
-			}
-			
-		}
-			
-		if(ziel.getCounter() == (angreifer.getId())) {
-			
-			int schwaechung = (100*angreifer.getLebenActual()/angreifer.getLeben());
-			int schaden = angreifer.getSchadenActual()*schwaechung;
-			schaden = schaden/100;
-			schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
-			
-			ziel.setLebenActual(ziel.getLebenActual()-schaden);
-			angreifer.setAngerichteterSchaden(angreifer.getAngerichteterSchaden()+schaden);
-			ziel.setErlittenerSchaden(ziel.getErlittenerSchaden()+schaden);
-			Main.battlelog.add("Ein guter Treffer! Die Rüstung wird von einer Kontereinheit ignoriert!" + angreifer.getName() + " kontern " + ziel.getName());
-			Main.battlelog.add(ziel.getName() + " wurden getroffen und verlieren " + schaden + " Leben!" + ziel.getName() + " hat noch " + ziel.getLebenActual() + " Leben. Der Schaden wird dementsprechend reduziert.");
-			if(ziel.getLebenActual()<=0) {
-				Main.battlelog.add(ziel.getBesitzer().getName() + "'s " + ziel.getName() + " wurden getötet! Solange diese Einheit nicht geheilt wird, wird sie nach dem Kampf aus der Truppenliste entfernt.");
+			if(ziel.getSkill1() != null) {
+				if(ziel.getSkill1().getEffectKey() == "konter") {
+					int schaden = 0;
+					schaden = (ziel.getSchadenActual() * ziel.getSkill1().getSchadensMulitplikator())/100;
+					konter(angreifer, ziel, schaden);
+				}
 			}
 		}
-		
-		if(ziel.getSkill1() != null) {
-			if(ziel.getSkill1().getEffectKey() == "konter") {
-				int schaden = 0;
-				schaden = (ziel.getSchadenActual() * ziel.getSkill1().getSchadensMulitplikator())/100;
-				konter(angreifer, ziel, schaden);
-			}
-		}
-		
 	}
 
 	private Teilnehmer zielauswaehlen(ArrayList<Teilnehmer> opportunities) {
