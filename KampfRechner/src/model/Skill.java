@@ -50,7 +50,6 @@ public class Skill {
 		
 		this.name = "Schlachtruf";
 		this.effectKey = "healAll";
-		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 10% der fehlenden Leben).";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 10;
 		this.damageReduction = 0;
@@ -63,6 +62,8 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/schlachtruf.png";
+		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 10% der fehlenden Leben).";
+
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -73,7 +74,6 @@ public class Skill {
 		
 		this.name = "Verstärkung";
 		this.effectKey = "healAll";
-		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 35% der fehlenden Leben.";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 35;
 		this.damageReduction = 0;
@@ -86,6 +86,8 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/verstarkung.png";
+		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 35% der fehlenden Leben.";
+
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -97,7 +99,6 @@ public class Skill {
 		
 		this.name = "Dezimieren";
 		this.effectKey = "damage";
-		this.beschreibung = name + ": Ein schwerer Schwung mit der Waffe. Alle 3 Runden werden an 2 Gegnern 200% Schaden angerichtet.";
 		this.schadensmulitplikator = 2;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -110,6 +111,8 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/dezimieren.png";
+		this.beschreibung = name + ": Ein schwerer Schwung mit der Waffe. Alle 3 Runden werden an 2 Gegnern 200% Schaden angerichtet.";
+
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -121,7 +124,6 @@ public class Skill {
 		
 		this.name = "Wirbelwind";
 		this.effectKey = "damage";
-		this.beschreibung = name + ": Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
 		this.schadensmulitplikator = 6;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -134,6 +136,8 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/spinning-blades.png";
+		this.beschreibung = name + ": Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
+
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -144,7 +148,6 @@ public class Skill {
 		
 		this.name = "Svulblod";
 		this.effectKey = "pinchBoostFactorHeal";
-		this.beschreibung = name + ": Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert erhöht sich um 100%.";
 		this.schadensmulitplikator = 1;
 		this.healPercent = 25;
 		this.damageReduction = 0;
@@ -156,6 +159,8 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = false;
 		this.isPassive = false;
+		this.beschreibung = name + ": Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert erhöht sich um 100%.";
+
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -232,7 +237,6 @@ public class Skill {
 		
 		this.name = "Heilkraut";
 		this.effectKey = "healTargetsUnder50";
-		this.beschreibung = name + ": Mächtige Heilkräuter heilen deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel.";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 25;
 		this.damageReduction = 0;
@@ -244,6 +248,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
+		this.beschreibung = name + ": Mächtige Heilkräuter heilen deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel.";
 		
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -255,7 +260,6 @@ public class Skill {
 		
 		this.name = "Schildwall";
 		this.effectKey = "united";
-		this.beschreibung = name + ": Für jede weitere Einheit dieser Art, wird die Rüstung um " + armorBoost + "% erhöht.";
 		this.schadensmulitplikator = 0;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -267,6 +271,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = false;
 		this.isPassive = true;
+		this.beschreibung = name + ": Für jede weitere Einheit dieser Art, wird die Rüstung um " + armorBoost + "% erhöht.";
 		
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -278,7 +283,6 @@ public class Skill {
 		
 		this.name = "Überfall";
 		this.effectKey = "damage";
-		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an gegnerischer Schwerer Infanterie.";
 		this.schadensmulitplikator = 1;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -290,6 +294,7 @@ public class Skill {
 		this.ignoresArmor = true;
 		this.isActive = true;
 		this.isPassive = false;
+		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an gegnerischer Schwerer Infanterie.";
 		
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -340,6 +345,28 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill konterstellung() {
+		
+		this.name = "Konterstellung";
+		this.effectKey = "konter";
+		this.schadensmulitplikator = 30;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.beschreibung = name + ": Diese Einheit verursacht nachdem sie angegriffen wird, an dem Angreifer " + schadensmulitplikator + "% Schaden.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -379,6 +406,8 @@ public class Skill {
 			return this.stahlpanzer();
 		if(name.equals("Stachelschwein"))
 			return this.stachelschwein();
+		if(name.equals("Konterstellung"))
+			return this.konterstellung();
 		
 		return null;
 	}

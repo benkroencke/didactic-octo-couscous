@@ -295,6 +295,19 @@ public class Kampf {
 		}
 	}
 	
+	private void konter(Teilnehmer angreifer, Teilnehmer konterer, int schaden) {
+		
+		if(!angreifer.isIstKommandant()) {
+			
+			angreifer.setLebenActual(angreifer.getLebenActual()-schaden);
+			konterer.setAngerichteterSchaden(konterer.getAngerichteterSchaden()+schaden);
+			angreifer.setErlittenerSchaden(angreifer.getErlittenerSchaden()+schaden);
+			Main.battlelog.add("Effekt von: " + konterer.getBesitzer().getName() + " " + konterer.getName() + "'s " + konterer.getSkill1().getName() + " - Ein Konterangriff wurde ausgeführt: " + 
+					angreifer.getName() + " wurden getroffen und verlieren " + schaden + " Leben!" + angreifer.getName() + " hat noch " + angreifer.getLebenActual() + " Leben. Der Schaden wird dementsprechend reduziert.");
+			
+		}
+	}
+	
 	public void angriff(Teilnehmer angreifer, ArrayList<Teilnehmer> teilnehmer) {
 		ArrayList<Teilnehmer> opportunities = new ArrayList<Teilnehmer>();
 		for(int i =0;i<teilnehmer.size();i++) {
@@ -319,7 +332,7 @@ public class Kampf {
 					int vorher = schaden;
 					int reduction = ziel.getSkill1().getDamageReduction();
 					schaden = schaden*(100-reduction)/100;
-					Main.battlelog.add("Effekt von: " + ziel.getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
+					Main.battlelog.add("Effekt von: " + ziel.getBesitzer().getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
 				}
 			}
 			
@@ -347,6 +360,14 @@ public class Kampf {
 			Main.battlelog.add(ziel.getName() + " wurden getroffen und verlieren " + schaden + " Leben!" + ziel.getName() + " hat noch " + ziel.getLebenActual() + " Leben. Der Schaden wird dementsprechend reduziert.");
 			if(ziel.getLebenActual()<=0) {
 				Main.battlelog.add(ziel.getBesitzer().getName() + "'s " + ziel.getName() + " wurden getötet! Solange diese Einheit nicht geheilt wird, wird sie nach dem Kampf aus der Truppenliste entfernt.");
+			}
+		}
+		
+		if(ziel.getSkill1() != null) {
+			if(ziel.getSkill1().getEffectKey() == "konter") {
+				int schaden = 0;
+				schaden = (ziel.getSchadenActual() * ziel.getSkill1().getSchadensMulitplikator())/100;
+				konter(angreifer, ziel, schaden);
 			}
 		}
 		
