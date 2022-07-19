@@ -169,7 +169,6 @@ public class Kampf {
 				if(runde == 2) {
 					
 					if(teilnehmer.get(i).getSkill1() != null) {
-						System.out.println("Drinne");
 						if(teilnehmer.get(i).getSkill1().getEffectKey() == "noDamageFirstRound") {
 							
 							teilnehmer.get(i).setGeheilterSchaden(teilnehmer.get(i).getLeben()-teilnehmer.get(i).getLebenActual());
