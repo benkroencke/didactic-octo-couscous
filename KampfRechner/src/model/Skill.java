@@ -210,7 +210,6 @@ public class Skill {
 		
 		this.name = "Pfeilsalve";
 		this.effectKey = "damage";
-		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
 		this.schadensmulitplikator = 1;
 		this.healPercent = 0;
 		this.damageReduction = 0;
@@ -222,7 +221,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		
+		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -320,6 +319,27 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill stachelschwein() {
+		
+		this.name = "Stachelschwein";
+		this.effectKey = "eileDamage";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = true;
+		this.ignoresArmor = true;
+		this.isActive = false;
+		this.isPassive = false;
+		this.beschreibung = name + ": Diese Einheit verursacht vor dem Kampf  " + schadensmulitplikator*100 + "% Schaden an gegnerischer Kavallerie. Rüstung wird ignoriert";
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -357,7 +377,8 @@ public class Skill {
 			return this.ueberfall();
 		if(name.equals("Stahlpanzer"))
 			return this.stahlpanzer();
-		
+		if(name.equals("Stachelschwein"))
+			return this.stachelschwein();
 		
 		return null;
 	}

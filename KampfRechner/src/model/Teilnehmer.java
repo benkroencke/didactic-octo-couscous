@@ -670,7 +670,7 @@ public class Teilnehmer {
 		this.pictureURI = "/source/ardfeainschildkroete.png";
 		this.id = 1;
 		this.leben = 2500;
-		this.schaden = 115;
+		this.schaden = 130;
 		this.ruestungProzent = 14;
 		this.init = 105;
 		this.counter = 2; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
@@ -680,9 +680,10 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + ".";
+		this.skill1 = skillFabrik.erstelle("Stachelschwein");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
-		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);

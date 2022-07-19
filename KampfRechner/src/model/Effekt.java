@@ -221,6 +221,43 @@ public class Effekt {
 			}
 		}
 		
+		public static void eileDamage(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			if(!skill.isActive()) {
+			
+				for(int a=0; a<einheiten.size();a++) {
+					
+					if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant() && einheiten.get(a).getId() == 3)
+						targets.add(einheiten.get(a));
+				}
+				while(targets.size()>skill.getNumberOfTargets())
+					targets.remove(targets.size()-1);
+		
+				for (int i = 0; i<targets.size(); i++) {
+					int damage = 0;
+					if(skill.isIgnoresArmor())
+						damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()));
+					else
+						damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
+					
+					if(targets.get(i).getSkill1() != null){
+						if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+							damage = reduceDamagePercent(targets.get(i), damage);
+						}
+					}
+					
+					targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+					
+					Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+					teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+					targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+	
+				}
+				skill.setActive(true);
+			}
+		}
+		
 		public static void pinchBoostFactorHeal(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 
 			if((teilnehmer.getLeben()/2)>=teilnehmer.getLebenActual() && teilnehmer.getLebenActual()>0 && !skill.isActive()) {
@@ -302,6 +339,8 @@ public class Effekt {
 				damageSpecificRound(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "healTargetsUnder50")
 				healTargetsUnder50(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "eileDamage")
+				eileDamage(einheiten, spieler, skill, teilnehmer);
 			
 		}
 

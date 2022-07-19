@@ -172,6 +172,15 @@ public class Kampf {
 					return writeAttackerWin(teilnehmer);
 				}
 				
+				if(runde == 1) {
+					
+					if(teilnehmer.get(i).getSkill1() != null) {
+						if(teilnehmer.get(i).getSkill1().isHatEile())
+							teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
+					}
+					
+				}
+				
 				if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
 					if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
 						teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
@@ -305,11 +314,13 @@ public class Kampf {
 			schaden = schaden/10000;
 			schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
 			
-			if(ziel.getSkill1().getEffectKey() == "reduceDamagePercent") {
-				int vorher = schaden;
-				int reduction = ziel.getSkill1().getDamageReduction();
-				schaden = schaden*(100-reduction)/100;
-				Main.battlelog.add("Effekt von: " + ziel.getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
+			if(ziel.getSkill1() != null) {
+				if(ziel.getSkill1().getEffectKey() == "reduceDamagePercent") {
+					int vorher = schaden;
+					int reduction = ziel.getSkill1().getDamageReduction();
+					schaden = schaden*(100-reduction)/100;
+					Main.battlelog.add("Effekt von: " + ziel.getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
+				}
 			}
 			
 			ziel.setLebenActual(ziel.getLebenActual()-schaden);
