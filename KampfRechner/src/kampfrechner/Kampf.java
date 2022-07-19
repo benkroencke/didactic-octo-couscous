@@ -148,6 +148,43 @@ public class Kampf {
 			Main.battlelog.add("---------------------------------------------------");
 			
 			for(int i=0;i<teilnehmer.size();i++) {
+
+			
+				if(runde == 1) {
+					
+					if(teilnehmer.get(i).getSkill1() != null) {
+						if(teilnehmer.get(i).getSkill1().isHatEile())
+							teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
+					}
+					
+					if(teilnehmer.get(i).getSkill1() != null) {
+						if(teilnehmer.get(i).getSkill1().getEffectKey() == "noDamageFirstRound") {
+							teilnehmer.get(i).setLebenActual(teilnehmer.get(i).getLeben());
+							Main.battlelog.add("Effekt von: " + teilnehmer.get(i).getBesitzer().getName() + " " + teilnehmer.get(i).getName() + "'s " + teilnehmer.get(i).getSkill1().getName() + " - Die Einheit regeneriert jeglichen Schaden zum Anfang nächster Runde!");
+						}
+					}
+					
+				}
+				
+				if(runde == 2) {
+					
+					if(teilnehmer.get(i).getSkill1() != null) {
+						System.out.println("Drinne");
+						if(teilnehmer.get(i).getSkill1().getEffectKey() == "noDamageFirstRound") {
+							
+							teilnehmer.get(i).setGeheilterSchaden(teilnehmer.get(i).getLeben()-teilnehmer.get(i).getLebenActual());
+							teilnehmer.get(i).setLebenActual(teilnehmer.get(i).getLeben());
+							teilnehmer.get(i).setErlittenerSchaden(0);
+							
+							Main.battlelog.add(teilnehmer.get(i).getBesitzer().getName() + " " + teilnehmer.get(i).getName() + "'s " + teilnehmer.get(i).getSkill1().getName() + " - Die Werte wurden wiederhergestellt!");
+						}
+					}
+					
+				}
+			}
+			
+			
+			for(int i=0;i<teilnehmer.size();i++) {
 				
 				angreiferHasLeben = false;
 				verteidigerHasLeben = false;
@@ -172,14 +209,7 @@ public class Kampf {
 					return writeAttackerWin(teilnehmer);
 				}
 				
-				if(runde == 1) {
-					
-					if(teilnehmer.get(i).getSkill1() != null) {
-						if(teilnehmer.get(i).getSkill1().isHatEile())
-							teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
-					}
-					
-				}
+				
 				
 				if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
 					if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
@@ -381,12 +411,14 @@ public class Kampf {
 				schaden = (int) (schaden * (1 + Math.random() * angreifer.getInitActual()/1000));
 				
 				if(ziel.getSkill1() != null) {
+					
 					if(ziel.getSkill1().getEffectKey() == "reduceDamagePercent") {
 						int vorher = schaden;
 						int reduction = ziel.getSkill1().getDamageReduction();
 						schaden = schaden*(100-reduction)/100;
 						Main.battlelog.add("Effekt von: " + ziel.getBesitzer().getName() + " " + ziel.getName() + "'s " + ziel.getSkill1().getName() + " - Der Schaden wurde von " + vorher + " auf " + schaden + " reduziert.");
 					}
+					
 				}
 				
 				ziel.setLebenActual(ziel.getLebenActual()-schaden);

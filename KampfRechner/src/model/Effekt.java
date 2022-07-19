@@ -206,8 +206,10 @@ public class Effekt {
 					
 					int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
 					
-					if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
-						damage = reduceDamagePercent(targets.get(i), damage);
+					if(targets.get(i).getSkill1() != null) {
+						if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+							damage = reduceDamagePercent(targets.get(i), damage);
+						}
 					}
 					
 					targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);

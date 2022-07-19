@@ -390,6 +390,28 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill vorbereitung() {
+		
+		this.name = "Vorbereitung";
+		this.effectKey = "noDamageFirstRound";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 100;
+		this.armorBoost = 0;
+		this.damageBonus = 10;
+		this.cooldown = 1;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.beschreibung = name + ": Der Schaden der 1. Runde wird in der 2. Runde wiederhergestellt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -433,6 +455,8 @@ public class Skill {
 			return this.konterstellung();
 		if(name.equals("Doppelschlag"))
 			return this.doubleAttack();
+		if(name.equals("Vorbereitung"))
+			return this.vorbereitung();
 		
 		return null;
 	}
