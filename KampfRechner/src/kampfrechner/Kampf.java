@@ -19,6 +19,7 @@ public class Kampf {
 	private Teilnehmer spieler1Kommandant;
 	private ArrayList<Teilnehmer> spieler2Einheiten = new ArrayList<Teilnehmer>();
 	private Teilnehmer spieler2Kommandant;
+	private ArrayList<Teilnehmer> prioListe = new ArrayList<Teilnehmer>();
 	
 	public Kampf(ArrayList<Teilnehmer> einheiten1, ArrayList<Teilnehmer> einheiten2, Teilnehmer spieler1Kommandant, Teilnehmer spieler2Kommandant) {
 		super();
@@ -52,6 +53,34 @@ public class Kampf {
 		
 		for(int i=1; i<=sortierListe.size(); i++) {
 			Main.battlelog.add(sortierListe.get(i-1).getBesitzer().getName() + "'s " + sortierListe.get(i-1).getName() + " agiert an " + i + ". Stelle jeder Runde!" + " --- Initiativewert: " + sortierListe.get(i-1).getInitActual());
+		}
+		
+		return sortierListe;
+		
+	}
+	
+	public ArrayList<Teilnehmer> prioRechner(ArrayList<Teilnehmer> teilnehmer) {
+		
+		Main.battlelog.add("---------------------------------------------------");
+		Main.battlelog.add("Kalkuliert Priorität...");
+		Main.battlelog.add("---------------------------------------------------");
+		
+		ArrayList<Teilnehmer> sortierListe = new ArrayList<Teilnehmer>();
+			
+		
+		Collections.sort(teilnehmer, new Comparator<Teilnehmer>() {
+
+			@Override
+			public int compare(Teilnehmer arg0, Teilnehmer arg1) {
+				return Integer.valueOf(Integer.valueOf(arg1.getRuestungProzentActual()).compareTo(arg0.getRuestungProzentActual()));
+			}
+			
+		});
+		
+		sortierListe = teilnehmer;
+		
+		for(int i=1; i<=sortierListe.size(); i++) {
+			Main.battlelog.add(sortierListe.get(i-1).getBesitzer().getName() + "'s " + sortierListe.get(i-1).getName() + " wird als " + i + ". für Fähigkeiten priorisiert!" + " --- Rüstungswert: " + sortierListe.get(i-1).getRuestungProzentActual());
 		}
 		
 		return sortierListe;
@@ -124,6 +153,12 @@ public class Kampf {
 			
 		}
 		
+		this.prioListe = new ArrayList<Teilnehmer>();
+		Main.battlelog.add("Berechnung der Prioritätsliste:");
+		Main.battlelog.add("---------------------------------------------------");
+		prioListe = (ArrayList<Teilnehmer>) teilnehmer.clone();
+		prioListe = prioRechner(prioListe);
+		Main.battlelog.add("---------------------------------------------------");
 		
 		Main.battlelog.add("---------------------------------------------------");
 		Main.battlelog.add("Die Vorkriegsphase Endet...");
@@ -209,49 +244,56 @@ public class Kampf {
 				}
 				
 				
-				
-				if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
-					if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
-						teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getSkill2() != null && runde % teilnehmer.get(i).getSkill2().getCooldown() == 0)
-						teilnehmer.get(i).getSkill2().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill2().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getSkill3() != null && runde % teilnehmer.get(i).getSkill3().getCooldown() == 0)
-						teilnehmer.get(i).getSkill3().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill3().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getSkill4() != null && runde % teilnehmer.get(i).getSkill4().getCooldown() == 0)
-						teilnehmer.get(i).getSkill4().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill4().getEffectKey(), teilnehmer.get(i));
-					if(teilnehmer.get(i).getUltimate() != null && runde % teilnehmer.get(i).getUltimate().getCooldown() == 0)
-						teilnehmer.get(i).getUltimate().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getUltimate().getEffectKey(), teilnehmer.get(i));
-					
-					
-					for(int a=0;a<teilnehmer.size();a++) {
+				if(teilnehmer.get(i).getTurnsStunned() == 0) {
+					if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
+						if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
+							teilnehmer.get(i).getSkill1().triggerEffekt(prioListe, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
+						if(teilnehmer.get(i).getSkill2() != null && runde % teilnehmer.get(i).getSkill2().getCooldown() == 0)
+							teilnehmer.get(i).getSkill2().triggerEffekt(prioListe, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill2().getEffectKey(), teilnehmer.get(i));
+						if(teilnehmer.get(i).getSkill3() != null && runde % teilnehmer.get(i).getSkill3().getCooldown() == 0)
+							teilnehmer.get(i).getSkill3().triggerEffekt(prioListe, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill3().getEffectKey(), teilnehmer.get(i));
+						if(teilnehmer.get(i).getSkill4() != null && runde % teilnehmer.get(i).getSkill4().getCooldown() == 0)
+							teilnehmer.get(i).getSkill4().triggerEffekt(prioListe, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill4().getEffectKey(), teilnehmer.get(i));
+						if(teilnehmer.get(i).getUltimate() != null && runde % teilnehmer.get(i).getUltimate().getCooldown() == 0)
+							teilnehmer.get(i).getUltimate().triggerEffekt(prioListe, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getUltimate().getEffectKey(), teilnehmer.get(i));
 						
-						angreiferHasLeben = false;
-						verteidigerHasLeben = false;
 						
-						for(int j = 0;j<teilnehmer.size();j++) {
+						for(int a=0;a<teilnehmer.size();a++) {
 							
-							if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(angreifer))
-								angreiferHasLeben = true;
+							angreiferHasLeben = false;
+							verteidigerHasLeben = false;
 							
-							if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(verteidiger))
-								verteidigerHasLeben = true;
+							for(int j = 0;j<teilnehmer.size();j++) {
+								
+								if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(angreifer))
+									angreiferHasLeben = true;
+								
+								if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(verteidiger))
+									verteidigerHasLeben = true;
+								
+							}
 							
-						}
-						
-						if(angreiferHasLeben == false) {
+							if(angreiferHasLeben == false) {
+								
+								return writeDefenderWin(teilnehmer);
+							}
 							
-							return writeDefenderWin(teilnehmer);
-						}
-						
-						if(verteidigerHasLeben == false) {
-							
-							return writeAttackerWin(teilnehmer);
+							if(verteidigerHasLeben == false) {
+								
+								return writeAttackerWin(teilnehmer);
+							}
 						}
 					}
 					
 					
 					
+					
 					angriff(teilnehmer.get(i), teilnehmer);
+				}
+				else if (teilnehmer.get(i).getTurnsStunned() > 0) {
+					Main.battlelog.add(teilnehmer.get(i).getBesitzer().getName() + "'s " + teilnehmer.get(i).getName() + " sind betäubt! sie können nicht agieren!");
+					int turnsStunned = (teilnehmer.get(i).getTurnsStunned())-1;
+					teilnehmer.get(i).setTurnsStunned(turnsStunned);
 				}
 					
 				

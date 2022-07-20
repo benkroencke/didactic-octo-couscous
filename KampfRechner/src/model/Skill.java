@@ -434,6 +434,28 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill festnageln() {
+		
+		this.name = "Festnageln";
+		this.effectKey = "stunOnce";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.beschreibung = name + ": Betäubt " + numberOfTargets + " Gegner in der " + cooldown + ". Runde .";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -481,6 +503,8 @@ public class Skill {
 			return this.vorbereitung();
 		if(name.equals("Steinhagel"))
 			return this.steinhagel();
+		if(name.equals("Festnageln"))
+			return this.festnageln();
 		
 		return null;
 	}

@@ -316,7 +316,39 @@ public class Effekt {
 				}
 			}
 		}
+		
+		public static void stunOnce(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			if(!skill.isActive()) {
+				
+				
+			
+				for(int a=0; a<einheiten.size();a++) {
+					
+					if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant() && einheiten.get(a).getTurnsStunned()<skill.getSchadensMulitplikator())
+						targets.add(einheiten.get(a));
+				}
+				while(targets.size()>skill.getNumberOfTargets())
+					targets.remove(targets.size()-1);
+		
+				
+				
+				for (int i = 0; i<targets.size(); i++) {
+					
+					if(targets.get(i).getTurnsStunned()<skill.getSchadensMulitplikator()) {
+						
+						targets.get(i).setTurnsStunned(skill.getSchadensMulitplikator());;
+						Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " sind für " + skill.getSchadensMulitplikator() + " Runden betäubt!");
+					
+					}
+				}
+				skill.setActive(true);
+			}
+		}
+		
+		
 	
 		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey) {
 		
@@ -343,6 +375,8 @@ public class Effekt {
 				healTargetsUnder50(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "eileDamage")
 				eileDamage(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "stunOnce")
+				stunOnce(einheiten, spieler, skill, teilnehmer);
 			
 		}
 
