@@ -110,6 +110,8 @@ public class Main {
 		previewSkills.add(skillPool.schlachtruf());
 		previewSkills.add(skillPool.wirbelwind());
 		previewSkills.add(skillPool.verstaerkung());
+		previewSkills.add(skillPool.verhaften());
+		previewSkills.add(skillPool.ungeduldige());
 
 
 

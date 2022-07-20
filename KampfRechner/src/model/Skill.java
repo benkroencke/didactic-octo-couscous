@@ -144,6 +144,54 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill verhaften() {
+		
+		this.name = "Verhaften";
+		this.effectKey = "stunOnce";
+		this.schadensmulitplikator = 3;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 4;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/verhaften.png";
+
+		this.beschreibung = name + ": Betäubt " + numberOfTargets + " Gegner in der " + cooldown + ". Runde für " + schadensmulitplikator + " Runden.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill ungeduldige() {
+		
+		this.name = "Der Ungeduldige";
+		this.effectKey = "speedBuffCommander";
+		this.schadensmulitplikator = 50;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/ungeduldige.png";
+		
+		this.beschreibung = name + ": Die Initative des Kommandanten wird um " + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill svulblod() {
 		
 		this.name = "Svulblod";
@@ -473,7 +521,10 @@ public class Skill {
 			return this.verstaerkung();
 		if(name.equals("Schlachtruf"))
 			return this.schlachtruf();
-		
+		if(name.equals("Verhaften"))
+			return this.verhaften();
+		if(name.equals("Der Ungeduldige"))
+			return this.ungeduldige();
 		
 		
 		
@@ -504,7 +555,7 @@ public class Skill {
 		if(name.equals("Steinhagel"))
 			return this.steinhagel();
 		if(name.equals("Festnageln"))
-			return this.festnageln();
+			return this.verhaften();
 		
 		return null;
 	}
