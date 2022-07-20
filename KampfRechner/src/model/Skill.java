@@ -412,6 +412,28 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill steinhagel() {
+		
+		this.name = "Steinhagel";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 5;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 8;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.beschreibung = name + ": Diese Einheit verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -457,6 +479,8 @@ public class Skill {
 			return this.doubleAttack();
 		if(name.equals("Vorbereitung"))
 			return this.vorbereitung();
+		if(name.equals("Steinhagel"))
+			return this.steinhagel();
 		
 		return null;
 	}

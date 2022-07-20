@@ -572,13 +572,13 @@ public class Teilnehmer {
 	
 	public Teilnehmer kuerassiere(Spieler besitzer) {
 		
-		this.name = "Redanische Ritter";
-		this.pictureURI = "/source/RedanienRitter.png";
+		this.name = "Foltests Stolz";
+		this.pictureURI = "/source/foltestpride.png";
 		this.id = 3;
 		this.leben = 1500;
-		this.schaden = 190;
-		this.ruestungProzent = 15;
-		this.init = 200;
+		this.schaden = 300;
+		this.ruestungProzent = 8;
+		this.init = 45;
 		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
 		
 		this.lebenActual = leben;
@@ -586,10 +586,10 @@ public class Teilnehmer {
 		this.ruestungProzentActual = ruestungProzent;
 		this.initActual = init;
 		this.istKommandant = false;
-		this.skill1 = skillFabrik.erstelle("Stampede");
+		this.skill1 = skillFabrik.erstelle("Steinhagel");
 		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
 
-		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, null, null,
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
@@ -907,7 +907,7 @@ public class Teilnehmer {
 			return this.hueter(besitzer);
 		if(name.equals("Temerische Pikeniere"))
 			return this.pikeniere(besitzer);
-		if(name.equals("Redanische Ritter"))
+		if(name.equals("Foltests Stolz"))
 			return this.kuerassiere(besitzer);
 		if(name.equals("Blaue Streifen"))
 			return this.blaueStreifen(besitzer);
