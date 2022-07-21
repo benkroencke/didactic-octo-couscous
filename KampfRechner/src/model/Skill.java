@@ -555,7 +555,7 @@ public class Skill {
 		if(name.equals("Steinhagel"))
 			return this.steinhagel();
 		if(name.equals("Festnageln"))
-			return this.verhaften();
+			return this.festnageln();
 		
 		return null;
 	}
