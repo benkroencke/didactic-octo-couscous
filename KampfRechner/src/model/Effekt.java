@@ -78,6 +78,18 @@ public class Effekt {
 			}
 		}
 	}
+	
+	public static void buffArmorSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()+bonus);
+				Main.battlelog.add("Der Rüstungswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()-bonus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
 		
 	public static void speedBuffAll(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 			
@@ -428,6 +440,8 @@ public class Effekt {
 
 		public static void skillAufloesen(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, String effectKey, Teilnehmer teilnehmer) {
 
+			Main.battlelog.add(skill.getName() + " prüft auf Bedingungen...");
+			
 			if(effectKey == "healAll")
 				heallAll(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "damage")
@@ -452,7 +466,10 @@ public class Effekt {
 				buffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
 			if(effectKey == "stunHero")
 				stunHero(einheiten, spieler, skill, teilnehmer);
-			
+			if(effectKey == "buffDamageAllLater")
+				buffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
+			if(effectKey == "buffArmorSpecificUnit")
+				buffArmorSpecificUnit(einheiten, skill.getArmorBoost(), spieler, skill.getSchadensMulitplikator());
 			
 			
 			

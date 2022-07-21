@@ -264,6 +264,56 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill grossoffensive() {
+		
+		this.name = "Großoffensive";
+		this.effectKey = "buffDamageAllLater";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 200; //Bei Schadensbonus
+		this.cooldown = 8;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/grossoffensive.png";
+		
+		this.beschreibung = name + ": Der Schaden von allen Einheiten wird ab Runde " + cooldown +" um " + damageBonus + "% erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill formationstaktiken() {
+		
+		this.name = "Formationstaktiken";
+		this.effectKey = "buffArmorSpecificUnit";
+		this.schadensmulitplikator = 2; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 15;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/formationstaktiken.png";
+		
+		this.beschreibung = name + ": Die Verteidigung von Schwerer Infanterie wird um " + armorBoost + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
+	
 	public Skill svulblod() {
 		
 		this.name = "Svulblod";
@@ -603,6 +653,10 @@ public class Skill {
 			return this.stratege();
 		if(name.equals("Intrige"))
 			return this.intrige();
+		if(name.equals("Großoffensive"))
+			return this.grossoffensive();
+		if(name.equals("Formationstaktiken"))
+			return this.formationstaktiken();
 		
 		
 		if(name.equals("Svulblod"))

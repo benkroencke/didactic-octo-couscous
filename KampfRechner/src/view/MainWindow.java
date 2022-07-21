@@ -166,6 +166,9 @@ public class MainWindow {
 	
 	private JButton btnStatistik;
 	
+	private JLabel  lblSpieler1Name;
+	private JLabel lblSpieler2Name;
+	
 	public MainWindow() {
 		initialize();
 	}
@@ -212,6 +215,13 @@ public class MainWindow {
 				
 			}
 		});
+		
+		lblSpieler2Name = new JLabel("Spieler 2");
+		lblSpieler2Name.setForeground(Color.WHITE);
+		lblSpieler2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+		lblSpieler2Name.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpieler2Name.setBounds(985, 73, 189, 88);
+		panelStatistik.add(lblSpieler2Name);
 		btnKampfbericht.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
 		btnKampfbericht.setBackground(new Color(230, 230, 250));
 		btnKampfbericht.setBounds(490, 596, 204, 88);
@@ -238,6 +248,13 @@ public class MainWindow {
 		btnStatistik.setBackground(new Color(230, 230, 250));
 		btnStatistik.setBounds(490, 485, 204, 88);
 		panelStatistik.add(btnStatistik);
+		
+		lblSpieler1Name = new JLabel("Spieler 1");
+		lblSpieler1Name.setForeground(Color.WHITE);
+		lblSpieler1Name.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpieler1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+		lblSpieler1Name.setBounds(10, 73, 190, 88);
+		panelStatistik.add(lblSpieler1Name);
 		
 		lblCommander2Ultimate = new JLabel("New label");
 		lblCommander2Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource("/source/lockedSkill.png")));
@@ -793,6 +810,8 @@ public class MainWindow {
 		panelLog.add(scrollPane);
 		
 		JTextArea logTextBox = new JTextArea();
+		logTextBox.setEditable(false);
+		logTextBox.setLineWrap(true);
 		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
 		scrollPane.setViewportView(logTextBox);
 		
@@ -2307,6 +2326,13 @@ public class MainWindow {
 			hpC2E8.setValue(spieler2Truppen.get(7).getLebenActual());
 			hpC2E8.setToolTipText(spieler2Truppen.get(7).getLebenActual() + "/" + spieler2Truppen.get(7).getLeben());
 		}
+		
+		lblSpieler1Name.setForeground(Main.getSpieler1().getFarbe());
+		lblSpieler2Name.setForeground(Main.getSpieler2().getFarbe());
+		
+		lblSpieler1Name.setText(Main.getSpieler1().getName());
+		lblSpieler2Name.setText(Main.getSpieler2().getName());
+		
 		int kommandant1Schaden = 0;
 		int kommandant2Schaden = 0;
 		int geheilt1 = 0;

@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Window;
 import java.util.ArrayList;
@@ -62,6 +63,9 @@ public class Main {
 		spieler1 = new Spieler("Spieler 1");
 		spieler2 = new Spieler("Spieler 2");
 		
+		spieler1.setFarbe(new Color(0, 0, 255));
+		spieler2.setFarbe(new Color(255, 0, 0));
+		
 		Teilnehmer teilnehmerPool = new Teilnehmer();
 		Skill skillPool = new Skill();
 		Artefakt artefaktPool = new Artefakt();
@@ -115,7 +119,8 @@ public class Main {
 		previewSkills.add(skillPool.kaisergarde());
 		previewSkills.add(skillPool.stratege());
 		previewSkills.add(skillPool.intrige());
-
+		previewSkills.add(skillPool.grossoffensive());
+		previewSkills.add(skillPool.formationstaktiken());
 
 
 

@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+
 public class Spieler {
 	
 	private String name;
@@ -11,6 +13,7 @@ public class Spieler {
 	private int wolle;
 	private int stoff;
 	private int papier;
+	private Color farbe;
 	
 	
 	public Spieler(String name) {
@@ -81,6 +84,16 @@ public class Spieler {
 	}
 	public void setPapier(int papier) {
 		this.papier = papier;
+	}
+
+
+	public Color getFarbe() {
+		return farbe;
+	}
+
+
+	public void setFarbe(Color farbe) {
+		this.farbe = farbe;
 	}
 
 }
