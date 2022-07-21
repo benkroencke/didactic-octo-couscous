@@ -67,6 +67,19 @@ public class Effekt {
 		}
 	}
 	
+	public static void debuffDamageAllPercent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = einheiten.get(i).getSchaden()*bonus/100;
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()-schadensBonus);
+				Main.battlelog.add("Der Angriffswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()+schadensBonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
 	public static void buffDamageSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -104,6 +117,19 @@ public class Effekt {
 		}
 	}
 	
+	public static void buffDamageArmorAll(ArrayList<Teilnehmer> einheiten, int bonusArmor, int bonusDamage, Spieler spieler, int id) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler)) {
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()+bonusArmor);
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonusDamage);
+				Main.battlelog.add("Der Schadenswert/Rüstungswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonusDamage) + "/" +(einheiten.get(i).getRuestungProzentActual()-bonusArmor) + " auf " + einheiten.get(i).getSchadenActual() + "/" + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
 	public static void speedBuffAll(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 			
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -127,6 +153,21 @@ public class Effekt {
 					
 					einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()+bonus);
 					Main.battlelog.add("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
+					
+				}
+					
+			}
+		
+		}
+		
+		public static void damageBuffCommander(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).isIstKommandant()) {
+					
+					einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
+					Main.battlelog.add("Der Schadenswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
 					
 				}
 					
@@ -511,6 +552,8 @@ public class Effekt {
 				stunOnce(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "speedBuffCommander")
 				speedBuffCommander(einheiten, skill.getSchadensMulitplikator(), spieler);
+			if(effectKey == "damageBuffCommander")
+				damageBuffCommander(einheiten, skill.getSchadensMulitplikator(), spieler);
 			if(effectKey == "buffDamageSpecificUnit")
 				buffDamageSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
 			if(effectKey == "buffDamageAllPercent")
@@ -525,8 +568,10 @@ public class Effekt {
 				buffDamageArmorSpecificUnit(einheiten, skill.getArmorBoost(), skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
 			if(effectKey == "spy")
 				spy(einheiten, spieler, skill, teilnehmer);
-			
-			
+			if(effectKey == "debuffDamageAllPercent")
+				debuffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
+			if(effectKey == "buffDamageArmorAll")
+				buffDamageArmorAll(einheiten, skill.getArmorBoost(), skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
 		}
 
 }

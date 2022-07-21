@@ -290,7 +290,7 @@ public class Teilnehmer {
 		this.pictureURI = "/source/voorhis.png";
 		this.id = 100;
 		this.leben = 1;
-		this.schaden = 115;
+		this.schaden = 150;
 		this.rang = 1;
 		this.ruestungProzent = 0;
 		this.init = 175;

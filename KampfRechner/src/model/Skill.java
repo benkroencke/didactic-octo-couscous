@@ -168,6 +168,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill hoffnung() {
+		
+		this.name = "Hoffnung nehmen";
+		this.effectKey = "stunOnce";
+		this.schadensmulitplikator = 3;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 8;
+		this.numberOfTargets = 4;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/hoffnung.png";
+
+		this.beschreibung = name + ": Betäubt " + numberOfTargets + " Gegner in der " + cooldown + ". Runde für " + schadensmulitplikator + " Runden.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill ungeduldige() {
 		
 		this.name = "Der Ungeduldige";
@@ -186,6 +210,30 @@ public class Skill {
 		this.pictureURI = "/source/ungeduldige.png";
 		
 		this.beschreibung = name + ": Die Initative des Kommandanten wird um " + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill loyal() {
+		
+		this.name = "Loyal";
+		this.effectKey = "damageBuffCommander";
+		this.schadensmulitplikator = 40;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/loyal.png";
+		
+		this.beschreibung = name + ": Der Schaden des Kommandanten wird um " + schadensmulitplikator + " erhöht";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -354,6 +402,127 @@ public class Skill {
 		this.pictureURI = "/source/spionage.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Ersetzt eine zufällige Einheit des gegnerischen Kommandanten durch einen Spion.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill artilleriebeschuss() {
+		
+		this.name = "Artilleriebeschuss";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 5;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 8;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/artillery.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill formation() {
+		
+		this.name = "Schildkrötenformation";
+		this.effectKey = "buffDamageArmorSpecificUnit";
+		this.schadensmulitplikator = 1; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 10;
+		this.damageBonus = 25; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/formationstaktiken.png";
+		
+		this.beschreibung = name + ": Der Schaden/Rüstung der Pikeniere wird um " + damageBonus + "/" + armorBoost + " erhöht.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill moral() {
+		
+		this.name = "Moral Steigern";
+		this.effectKey = "buffDamageArmorAll";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 10;
+		this.damageBonus = 20; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/moral.png";
+		
+		this.beschreibung = name + ": Der Schaden/Rüstung aller Einheiten wird um " + damageBonus + "/" + armorBoost + " erhöht.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill doppelAktion() {
+		
+		this.name = "Doppelaktion";
+		this.effectKey = "doubleAttack";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/doubleattack.png";
+
+		this.beschreibung = "Ultimate: " + name + ": Dieser Kommandant hat eine " + 100 + "% Chance 2 Mal anzugreifen.";
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill general() {
+		
+		this.name = "Berüchtigter General";
+		this.effectKey = "debuffDamageAllPercent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 20; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/general.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden von allen Einheiten wird um " + damageBonus + "% erhöht";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -708,8 +877,20 @@ public class Skill {
 			return this.ultiemhyr1();
 		if(name.equals("Spionage"))
 			return this.ultiemhyr2();
-		
-		
+		if(name.equals("Artilleriebeschuss"))
+			return this.artilleriebeschuss();
+		if(name.equals("Schildkrötenformation"))
+			return this.formation();
+		if(name.equals("Loyal"))
+			return this.loyal();
+		if(name.equals("Hoffnung nehmen"))
+			return this.hoffnung();
+		if(name.equals("Doppelaktion"))
+			return this.doppelAktion();
+		if(name.equals("Berüchtigter General"))
+			return this.general();
+		if(name.equals("Moral Steigern"))
+			return this.moral();
 		
 		
 		if(name.equals("Svulblod"))

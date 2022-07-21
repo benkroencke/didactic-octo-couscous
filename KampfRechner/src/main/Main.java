@@ -123,6 +123,13 @@ public class Main {
 		previewSkills.add(skillPool.formationstaktiken());
 		previewSkills.add(skillPool.ultiemhyr1());
 		previewSkills.add(skillPool.ultiemhyr2());
+		previewSkills.add(skillPool.artilleriebeschuss());
+		previewSkills.add(skillPool.formation());
+		previewSkills.add(skillPool.loyal());
+		previewSkills.add(skillPool.hoffnung());
+		previewSkills.add(skillPool.doppelAktion());
+		previewSkills.add(skillPool.general());
+		previewSkills.add(skillPool.moral());
 
 
 
