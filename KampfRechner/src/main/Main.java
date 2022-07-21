@@ -112,6 +112,9 @@ public class Main {
 		previewSkills.add(skillPool.verstaerkung());
 		previewSkills.add(skillPool.verhaften());
 		previewSkills.add(skillPool.ungeduldige());
+		previewSkills.add(skillPool.kaisergarde());
+		previewSkills.add(skillPool.stratege());
+		previewSkills.add(skillPool.intrige());
 
 
 

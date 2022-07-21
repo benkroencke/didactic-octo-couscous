@@ -136,7 +136,7 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/spinning-blades.png";
-		this.beschreibung = name + ": Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 800% Schaden angerichtet.";
+		this.beschreibung = name + ": Ein wahrer Klingentanz. Alle 5 Runden werden an bis zu 4 Gegnern 600% Schaden angerichtet.";
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -186,6 +186,78 @@ public class Skill {
 		this.pictureURI = "/source/ungeduldige.png";
 		
 		this.beschreibung = name + ": Die Initative des Kommandanten wird um " + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill kaisergarde() {
+		
+		this.name = "Kaiserliche Leibgarde";
+		this.effectKey = "buffDamageSpecificUnit";
+		this.schadensmulitplikator = 3; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 50; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/kaisergarde.png";
+		
+		this.beschreibung = name + ": Der Schaden von Rittern wird um " + damageBonus + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill stratege() {
+		
+		this.name = "Stratege";
+		this.effectKey = "buffDamageAllPercent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 15; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/stratege.png";
+		
+		this.beschreibung = name + ": Der Schaden von allen Einheiten wird um " + damageBonus + "% erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill intrige() {
+		
+		this.name = "Intrige";
+		this.effectKey = "stunHero";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 3;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/intrige.png";
+
+		this.beschreibung = name + ": Betäubt den generischen Helden in jeder " + cooldown + ". Runde für " + schadensmulitplikator + " Runden.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -525,7 +597,12 @@ public class Skill {
 			return this.verhaften();
 		if(name.equals("Der Ungeduldige"))
 			return this.ungeduldige();
-		
+		if(name.equals("Kaiserliche Leibgarde"))
+			return this.kaisergarde();
+		if(name.equals("Stratege"))
+			return this.stratege();
+		if(name.equals("Intrige"))
+			return this.intrige();
 		
 		
 		if(name.equals("Svulblod"))
@@ -556,6 +633,7 @@ public class Skill {
 			return this.steinhagel();
 		if(name.equals("Festnageln"))
 			return this.festnageln();
+		
 		
 		return null;
 	}

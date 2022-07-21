@@ -53,21 +53,46 @@ public class Effekt {
 			}
 		}
 	}
+	
+	public static void buffDamageAllPercent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 		
-		public static void speedBuffAll(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+		for (int i = 0; i<einheiten.size(); i++) {
 			
-			for (int i = 0; i<einheiten.size(); i++) {
+			if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = einheiten.get(i).getSchaden()*bonus/100;
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+schadensBonus);
+				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-schadensBonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
+	public static void buffDamageSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
+				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+
+			}
+		}
+	}
+		
+	public static void speedBuffAll(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+			
+		for (int i = 0; i<einheiten.size(); i++) {
 				
-				if(einheiten.get(i).getBesitzer().equals(spieler)) {
+			if(einheiten.get(i).getBesitzer().equals(spieler)) {
 					
-					einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()+bonus);
-					Main.battlelog.add("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
-					
-				}
+				einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()+bonus);
+				Main.battlelog.add("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
 					
 			}
-		
+					
 		}
+		
+	}
 		
 		public static void speedBuffCommander(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 			
@@ -354,7 +379,7 @@ public class Effekt {
 					
 					if(targets.get(i).getTurnsStunned()<skill.getSchadensMulitplikator()) {
 						
-						targets.get(i).setTurnsStunned(skill.getSchadensMulitplikator());;
+						targets.get(i).setTurnsStunned(skill.getSchadensMulitplikator());
 						Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " sind für " + skill.getSchadensMulitplikator() + " Runden betäubt!");
 					
 					}
@@ -363,6 +388,33 @@ public class Effekt {
 			}
 		}
 		
+		public static void stunHero(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+
+			for(int a=0; a<einheiten.size();a++) {
+					
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && einheiten.get(a).isIstKommandant() && einheiten.get(a).getTurnsStunned()<skill.getSchadensMulitplikator())
+						targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+		
+				
+				
+			for (int i = 0; i<targets.size(); i++) {
+					
+				if(targets.get(i).getTurnsStunned()<skill.getSchadensMulitplikator()) {
+					String mehrere = "Runde";
+					if(skill.getSchadensMulitplikator()>1)
+						mehrere = "Runden";
+					targets.get(i).setTurnsStunned(skill.getSchadensMulitplikator());
+					Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " ist für " + skill.getSchadensMulitplikator() + " " + mehrere + " betäubt!");
+					
+				}
+			}
+			
+		}
 		
 	
 		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey) {
@@ -394,6 +446,16 @@ public class Effekt {
 				stunOnce(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "speedBuffCommander")
 				speedBuffCommander(einheiten, skill.getSchadensMulitplikator(), spieler);
+			if(effectKey == "buffDamageSpecificUnit")
+				buffDamageSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
+			if(effectKey == "buffDamageAllPercent")
+				buffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
+			if(effectKey == "stunHero")
+				stunHero(einheiten, spieler, skill, teilnehmer);
+			
+			
+			
+			
 			
 		}
 

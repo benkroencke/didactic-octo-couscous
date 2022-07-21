@@ -291,7 +291,7 @@ public class Kampf {
 					angriff(teilnehmer.get(i), teilnehmer);
 				}
 				else if (teilnehmer.get(i).getTurnsStunned() > 0) {
-					Main.battlelog.add(teilnehmer.get(i).getBesitzer().getName() + "'s " + teilnehmer.get(i).getName() + " sind betäubt! sie können nicht agieren!");
+					Main.battlelog.add(teilnehmer.get(i).getBesitzer().getName() + "'s " + teilnehmer.get(i).getName() + " betäubt! keine Aktion möglich!");
 					int turnsStunned = (teilnehmer.get(i).getTurnsStunned())-1;
 					teilnehmer.get(i).setTurnsStunned(turnsStunned);
 				}
