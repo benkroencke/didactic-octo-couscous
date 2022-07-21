@@ -121,6 +121,8 @@ public class Main {
 		previewSkills.add(skillPool.intrige());
 		previewSkills.add(skillPool.grossoffensive());
 		previewSkills.add(skillPool.formationstaktiken());
+		previewSkills.add(skillPool.ultiemhyr1());
+		previewSkills.add(skillPool.ultiemhyr2());
 
 
 

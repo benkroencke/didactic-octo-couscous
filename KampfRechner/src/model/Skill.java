@@ -312,6 +312,53 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill ultiemhyr1() {
+		
+		this.name = "Der auf den Gräbern seiner Feinde tanzt";
+		this.effectKey = "buffDamageArmorSpecificUnit";
+		this.schadensmulitplikator = 4; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 15;
+		this.damageBonus = 50; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/graber.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden/Rüstung der Impera Brigade wird um " + damageBonus + "/" + armorBoost + " erhöht.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill ultiemhyr2() {
+		
+		this.name = "Spionage";
+		this.effectKey = "spy";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 1; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/spionage.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Ersetzt eine zufällige Einheit des gegnerischen Kommandanten durch einen Spion.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
 	
 	
 	public Skill svulblod() {
@@ -657,6 +704,12 @@ public class Skill {
 			return this.grossoffensive();
 		if(name.equals("Formationstaktiken"))
 			return this.formationstaktiken();
+		if(name.equals("Der auf den Gräbern seiner Feinde tanzt"))
+			return this.ultiemhyr1();
+		if(name.equals("Spionage"))
+			return this.ultiemhyr2();
+		
+		
 		
 		
 		if(name.equals("Svulblod"))

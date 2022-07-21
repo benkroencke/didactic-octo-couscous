@@ -90,7 +90,20 @@ public class Effekt {
 			}
 		}
 	}
+	
+	public static void buffDamageArmorSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonusArmor, int bonusDamage, Spieler spieler, int id) {
 		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()+bonusArmor);
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonusDamage);
+				Main.battlelog.add("Der Schadenswert/Rüstungswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonusDamage) + "/" +(einheiten.get(i).getRuestungProzentActual()-bonusArmor) + " auf " + einheiten.get(i).getSchadenActual() + "/" + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
 	public static void speedBuffAll(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 			
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -428,6 +441,44 @@ public class Effekt {
 			
 		}
 		
+		public static ArrayList<Teilnehmer> spy(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			boolean targetFound = false;
+			Teilnehmer target = null;
+			
+			while(targetFound == false) {
+				
+				
+	
+				int size = einheiten.size();
+				double chosen = Math.random()*size;
+				int check = (int) chosen;
+				
+				if(!einheiten.get(check).isIstKommandant() && einheiten.get(check).getBesitzer() != spieler) {
+					targetFound = true;
+					target = einheiten.get(check);
+				}
+			}
+			
+			Spieler ownerOfSpy = null;
+			if(spieler.equals(Main.getSpieler1()))
+				ownerOfSpy = Main.getSpieler2();
+			else
+				ownerOfSpy = Main.getSpieler1();
+			
+			
+			Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + "'s " + teilnehmer.getName() + " - " + skill.getName() + ": " + target.getBesitzer().getName() + "'s " + target.getName() + " hat sich als Spion herausgestellt!");
+			
+			Teilnehmer spy = target.erstelle("Spion", ownerOfSpy);
+			
+			einheiten.remove(target);
+			einheiten.add(spy);
+			
+			
+			
+			return einheiten;
+		}
+		
 	
 		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey) {
 		
@@ -470,8 +521,10 @@ public class Effekt {
 				buffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
 			if(effectKey == "buffArmorSpecificUnit")
 				buffArmorSpecificUnit(einheiten, skill.getArmorBoost(), spieler, skill.getSchadensMulitplikator());
-			
-			
+			if(effectKey == "buffDamageArmorSpecificUnit")
+				buffDamageArmorSpecificUnit(einheiten, skill.getArmorBoost(), skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
+			if(effectKey == "spy")
+				spy(einheiten, spieler, skill, teilnehmer);
 			
 			
 		}

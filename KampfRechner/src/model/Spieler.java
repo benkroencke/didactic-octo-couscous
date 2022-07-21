@@ -6,7 +6,7 @@ public class Spieler {
 	
 	private String name;
 	private int holz;
-	private int münzen;
+	private int muenzen;
 	private int eisen;
 	private int lehm;
 	private int weizen;
@@ -20,7 +20,7 @@ public class Spieler {
 		
 		this.name = name;
 		this.holz = 0;
-		this.münzen = 0;
+		this.muenzen = 0;
 		this.eisen = 0;
 		this.lehm = 0;
 		this.weizen = 0;
@@ -43,11 +43,11 @@ public class Spieler {
 	public void setHolz(int holz) {
 		this.holz = holz;
 	}
-	public int getMünzen() {
-		return münzen;
+	public int getMuenzen() {
+		return muenzen;
 	}
-	public void setMünzen(int münzen) {
-		this.münzen = münzen;
+	public void setMuenzen(int muenzen) {
+		this.muenzen = muenzen;
 	}
 	public int getEisen() {
 		return eisen;

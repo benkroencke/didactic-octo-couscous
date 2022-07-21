@@ -727,12 +727,12 @@ public class Teilnehmer {
 		
 		this.name = "Impera Brigade";
 		this.pictureURI = "/source/imperabrigade.png";
-		this.id = 2;
+		this.id = 4;
 		this.leben = 3000;
 		this.schaden = 75;
 		this.ruestungProzent = 30;
 		this.init = 50;
-		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3, Impera Brigade = 4
 		
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
@@ -873,6 +873,31 @@ public class Teilnehmer {
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
 	}
 	
+	public Teilnehmer spy(Spieler besitzer) {
+		
+		this.name = "Spion";
+		this.pictureURI = "/source/spy.png";
+		this.id = 2;
+		this.leben = 1850;
+		this.schaden = 120;
+		this.ruestungProzent = 12;
+		this.init = 160;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Vorbereitung");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
 	
 	public Teilnehmer erstelle(String name, Spieler besitzer) {
 		
@@ -933,6 +958,8 @@ public class Teilnehmer {
 			return this.druiden(besitzer);
 		if(name.equals("An Crait Langschiff"))
 			return this.ancraitlangschiff(besitzer);
+		if(name.equals("Spion"))
+			return this.spy(besitzer);
 		
 		return null;
 	}
