@@ -130,7 +130,15 @@ public class Main {
 		previewSkills.add(skillPool.doppelAktion());
 		previewSkills.add(skillPool.general());
 		previewSkills.add(skillPool.moral());
-
+		previewSkills.add(skillPool.viper());
+		previewSkills.add(skillPool.mordanschlag());
+		previewSkills.add(skillPool.hexerausbildung());
+		previewSkills.add(skillPool.wilderhieb());
+		previewSkills.add(skillPool.finalerschlag());
+		previewSkills.add(skillPool.quen());
+		previewSkills.add(skillPool.hexerausruestung());
+		previewSkills.add(skillPool.nordwind());
+		
 
 
 			EventQueue.invokeLater(new Runnable() {

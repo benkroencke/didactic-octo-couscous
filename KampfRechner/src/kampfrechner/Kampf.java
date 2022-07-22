@@ -191,6 +191,23 @@ public class Kampf {
 						if(teilnehmer.get(i).getSkill1().isHatEile())
 							teilnehmer.get(i).getSkill1().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));
 					}
+					if(teilnehmer.get(i).getSkill2() != null) {
+						if(teilnehmer.get(i).getSkill2().isHatEile())
+							teilnehmer.get(i).getSkill2().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill2().getEffectKey(), teilnehmer.get(i));
+					}
+					if(teilnehmer.get(i).getSkill3() != null) {
+						if(teilnehmer.get(i).getSkill3().isHatEile())
+							teilnehmer.get(i).getSkill3().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill3().getEffectKey(), teilnehmer.get(i));
+					}
+					if(teilnehmer.get(i).getSkill4() != null) {
+						if(teilnehmer.get(i).getSkill4().isHatEile())
+							teilnehmer.get(i).getSkill4().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill4().getEffectKey(), teilnehmer.get(i));
+					}
+					if(teilnehmer.get(i).getUltimate() != null) {
+						if(teilnehmer.get(i).getUltimate().isHatEile())
+							teilnehmer.get(i).getUltimate().triggerEffekt(teilnehmer, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getUltimate().getEffectKey(), teilnehmer.get(i));
+					}
+
 					
 					if(teilnehmer.get(i).getSkill1() != null) {
 						if(teilnehmer.get(i).getSkill1().getEffectKey() == "noDamageFirstRound") {
@@ -244,7 +261,7 @@ public class Kampf {
 				}
 				
 				
-				if(teilnehmer.get(i).getTurnsStunned() == 0) {
+				if(teilnehmer.get(i).getTurnsStunned() <= 0) {
 					if(teilnehmer.get(i).getLebenActual()>0 || teilnehmer.get(i).isIstKommandant()) {
 						if(teilnehmer.get(i).getSkill1() != null  && runde % teilnehmer.get(i).getSkill1().getCooldown() == 0)
 							teilnehmer.get(i).getSkill1().triggerEffekt(prioListe, teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getSkill1().getEffectKey(), teilnehmer.get(i));

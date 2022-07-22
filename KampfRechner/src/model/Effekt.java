@@ -80,6 +80,20 @@ public class Effekt {
 		}
 	}
 	
+	public static void debuffArmorAllPercent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = einheiten.get(i).getRuestungProzent()*bonus/100;
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()-schadensBonus);
+				Main.battlelog.add("Der Rüstungswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()+schadensBonus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
+	
 	public static void buffDamageSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -174,6 +188,40 @@ public class Effekt {
 			}
 		
 		}
+		
+		public static void stunImmune(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).isIstKommandant()) {
+					
+					einheiten.get(i).setTurnsStunned(-9999);
+					Main.battlelog.add("Dem Kommandanten wurde Immunität gegenüber betäuben gewährt.");
+					
+				}
+					
+			}
+		
+		}
+		
+		public static void damageInitBuffCommander(ArrayList<Teilnehmer> einheiten, int bonus, int schaden, Spieler spieler) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).isIstKommandant()) {
+					
+					einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+schaden);
+					einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()+bonus);
+
+					Main.battlelog.add("Der Schadenswert/Initiativewert " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-schaden) + "/" + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + "/" + einheiten.get(i).getInitActual() + " gesetzt!");
+
+				}
+					
+			}
+		
+		}
+		
+		
 		
 		public static void heallAll(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster) {
 			
@@ -474,7 +522,7 @@ public class Effekt {
 					String mehrere = "Runde";
 					if(skill.getSchadensMulitplikator()>1)
 						mehrere = "Runden";
-					targets.get(i).setTurnsStunned(skill.getSchadensMulitplikator());
+					targets.get(i).setTurnsStunned(targets.get(i).getTurnsStunned()+skill.getSchadensMulitplikator());
 					Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " ist für " + skill.getSchadensMulitplikator() + " " + mehrere + " betäubt!");
 					
 				}
@@ -572,6 +620,17 @@ public class Effekt {
 				debuffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
 			if(effectKey == "buffDamageArmorAll")
 				buffDamageArmorAll(einheiten, skill.getArmorBoost(), skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
+			if(effectKey == "damageInitBuffCommander")
+				damageInitBuffCommander(einheiten, skill.getSchadensMulitplikator(), skill.getDamageBonus(), spieler);
+			if(effectKey == "stunImmune")
+				stunImmune(einheiten, skill.getSchadensMulitplikator(), spieler);
+			if(effectKey == "debuffArmorAllPercent")
+				debuffArmorAllPercent(einheiten, skill.getDamageBonus(), spieler);
+			
+			
+			
+			
+			
 		}
 
 }

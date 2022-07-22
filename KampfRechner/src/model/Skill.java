@@ -240,6 +240,78 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill hexerausruestung() {
+		
+		this.name = "Hexerausrüstung";
+		this.effectKey = "damageBuffCommander";
+		this.schadensmulitplikator = 75;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/hexerausruestung.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden des Kommandanten wird um " + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill quen() {
+		
+		this.name = "Quen";
+		this.effectKey = "stunImmune";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/quen.png";
+		
+		this.beschreibung = name + ": Der Kommandant wird Immun gegen Betäuben.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill hexerausbildung() {
+		
+		this.name = "Hexerausbildung";
+		this.effectKey = "damageInitBuffCommander";
+		this.schadensmulitplikator = 30;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 30;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/moral.png";
+		
+		this.beschreibung = name + ": Der Schaden/Initiative des Kommandanten wird um " + damageBonus + "/" + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill kaisergarde() {
 		
 		this.name = "Kaiserliche Leibgarde";
@@ -432,6 +504,102 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill wilderhieb() {
+		
+		this.name = "Wilder Hieb";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 5;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/dezimieren.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill finalerschlag() {
+		
+		this.name = "Finaler Schlag";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 5;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 9;
+		this.numberOfTargets = 3;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/finalerschlag.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill viper() {
+		
+		this.name = "Viperntechnik";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/viper.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill mordanschlag() {
+		
+		this.name = "Mordanschlag";
+		this.effectKey = "damageSpecificRound";
+		this.schadensmulitplikator = 6;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = true;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/mordanschlag.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in der " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Ziel.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill formation() {
 		
 		this.name = "Schildkrötenformation";
@@ -523,6 +691,30 @@ public class Skill {
 		this.pictureURI = "/source/general.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Der Schaden von allen Einheiten wird um " + damageBonus + "% erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill nordwind() {
+		
+		this.name = "Nordwind";
+		this.effectKey = "debuffArmorAllPercent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 100; //Bei Schadensbonus
+		this.cooldown = 8;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/nordwind.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Die Rüstung von allen gegnerischen Einheiten wird in Runde " + cooldown + " um " + damageBonus + "% verringert";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -891,6 +1083,24 @@ public class Skill {
 			return this.general();
 		if(name.equals("Moral Steigern"))
 			return this.moral();
+		if(name.equals("Viperntechnik"))
+			return this.viper();
+		if(name.equals("Mordanschlag"))
+			return this.mordanschlag();
+		if(name.equals("Hexerausbildung"))
+			return this.hexerausbildung();
+		if(name.equals("Wilder Hieb"))
+			return this.wilderhieb();
+		if(name.equals("Finaler Schlag"))
+			return this.finalerschlag();
+		if(name.equals("Quen"))
+			return this.quen();
+		if(name.equals("Hexerausrüstung"))
+			return this.hexerausruestung();
+		if(name.equals("Nordwind"))
+			return this.nordwind();
+		
+		
 		
 		
 		if(name.equals("Svulblod"))
