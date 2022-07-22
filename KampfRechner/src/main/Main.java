@@ -142,6 +142,10 @@ public class Main {
 		previewSkills.add(skillPool.adel());
 		previewSkills.add(skillPool.gesicht());
 		previewSkills.add(skillPool.lazarett());
+		previewSkills.add(skillPool.speerfront());
+		previewSkills.add(skillPool.formationhalten());
+		previewSkills.add(skillPool.foltestsstolz());
+		previewSkills.add(skillPool.highground());
 
 
 		

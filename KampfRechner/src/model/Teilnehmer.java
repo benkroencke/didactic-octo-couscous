@@ -576,7 +576,7 @@ public class Teilnehmer {
 		
 		this.name = "Foltests Stolz";
 		this.pictureURI = "/source/foltestpride.png";
-		this.id = 3;
+		this.id = 4;
 		this.leben = 1500;
 		this.schaden = 300;
 		this.ruestungProzent = 8;

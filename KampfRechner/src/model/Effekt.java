@@ -120,6 +120,20 @@ public class Effekt {
 		}
 	}
 	
+	public static void buffDamageSkillSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
+				einheiten.get(i).getSkill1().setCooldown(cdNew);
+				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
+
+			}
+		}
+	}
+	
 	public static void buffArmorSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -144,6 +158,27 @@ public class Effekt {
 			}
 		}
 	}
+	
+	public static void buffDamageArmor2UnitsPercent(ArrayList<Teilnehmer> einheiten, int bonusArmor, int bonusDamage, Spieler spieler, int id, int id2) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()+bonusArmor);
+				Main.battlelog.add("Der Rüstungswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()-bonusArmor) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id2) {
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+einheiten.get(i).getSchadenActual()*15/100);
+				Main.battlelog.add("Der Schadenswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()/(100+bonusDamage)*100) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+
+			}
+			
+		}
+	}
+	
+	
 	
 	public static void buffDamageArmorAll(ArrayList<Teilnehmer> einheiten, int bonusArmor, int bonusDamage, Spieler spieler, int id) {
 		
@@ -260,6 +295,28 @@ public class Effekt {
 			}
 		}
 		
+		public static void heal2Units(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster, int id1, int id2) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant() && einheiten.get(i).getId() == id1 || einheiten.get(i).getId() == id2) {
+					int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
+					einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
+					int actualHeal = 0;
+					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
+						actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
+						einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
+					} else {
+						actualHeal = heal;
+					}
+					
+					Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
+					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
+				}
+			}
+		}
 
 		
 		public static void healTargetsUnder50(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster) {
@@ -645,10 +702,12 @@ public class Effekt {
 				debuffArmorAllPercent(einheiten, skill.getDamageBonus(), spieler);
 			if(effectKey == "debuffDamageHero")
 				debuffDamageHero(einheiten, skill.getDamageBonus(), spieler);
-
-			
-			
-			
+			if(effectKey == "buffDamageArmor2UnitsPercent")
+				buffDamageArmor2UnitsPercent(einheiten, skill.getArmorBoost(), skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getNumberOfTargets());
+			if(effectKey == "heal2Units")
+				heal2Units(einheiten, spieler, skill, teilnehmer, skill.getSchadensMulitplikator(), skill.getNumberOfTargets());
+			if(effectKey == "buffDamageSkillSpecificUnit")
+				buffDamageSkillSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
 			
 		}
 

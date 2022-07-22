@@ -70,6 +70,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill formationhalten() {
+		
+		this.name = "Formation Halten";
+		this.effectKey = "heal2Units";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 5;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 2;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/formationstaktiken.png";
+		this.beschreibung = name + ": Pikeniere halten die Formation. Pikeniere und Heckenschützen erhalten " + healPercent + "% Leben alle " + cooldown + " Runden ";
+
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill verstaerkung() {
 		
 		this.name = "Verstärkung";
@@ -498,6 +522,78 @@ public class Skill {
 		this.pictureURI = "/source/spionage.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Ersetzt eine zufällige Einheit des gegnerischen Kommandanten durch einen Spion.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill foltestsstolz() {
+		
+		this.name = "Foltests Stolz";
+		this.effectKey = "buffDamageSkillSpecificUnit";
+		this.schadensmulitplikator = 4; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 30; //Bei Schadensbonus
+		this.cooldown = 6;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/folteststolz.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden von Foltest Stolz wird um " + damageBonus + " erhöht und Steinhagel wird bereits in Folge 6 ausgelöst.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill highground() {
+		
+		this.name = "Taktische Höhenlage";
+		this.effectKey = "buffDamageArmorSpecificUnit";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 5;
+		this.damageBonus = 50; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/highground.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden/Rüstung der Heckenschützen wird um " + damageBonus + "/" + armorBoost + " erhöht.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill speerfront() {
+		
+		this.name = "Speerfront";
+		this.effectKey = "buffDamageArmor2UnitsPercent";
+		this.schadensmulitplikator = 1; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 15;
+		this.damageBonus = 15; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/speerfront.png";
+		
+		this.beschreibung = name + ": Der Schaden von Heckenschützen und die Rüstung der Pikeniere werden um " + damageBonus + "%/" + armorBoost + "% erhöht.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1204,6 +1300,15 @@ public class Skill {
 			return this.gesicht();
 		if(name.equals("Feldlazarett"))
 			return this.lazarett();
+		if(name.equals("Speerfront"))
+			return this.speerfront();
+		if(name.equals("Formation Halten"))
+			return this.formationhalten();
+		if(name.equals("Foltests Stolz"))
+			return this.foltestsstolz();
+		if(name.equals("Taktische Höhenlage"))
+			return this.highground();
+		
 		
 		
 		if(name.equals("Svulblod"))
