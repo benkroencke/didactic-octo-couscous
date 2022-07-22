@@ -67,11 +67,25 @@ public class Effekt {
 		}
 	}
 	
+	
 	public static void debuffDamageAllPercent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
 			
 			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = einheiten.get(i).getSchaden()*bonus/100;
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()-schadensBonus);
+				Main.battlelog.add("Der Angriffswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()+schadensBonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
+	public static void debuffDamageHero(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).isIstKommandant()) {
 				int schadensBonus = einheiten.get(i).getSchaden()*bonus/100;
 				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()-schadensBonus);
 				Main.battlelog.add("Der Angriffswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()+schadensBonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
@@ -246,6 +260,8 @@ public class Effekt {
 			}
 		}
 		
+
+		
 		public static void healTargetsUnder50(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster) {
 			
 			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
@@ -285,6 +301,7 @@ public class Effekt {
 			
 			
 		}
+		
 		
 		public static void damage(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 					
@@ -626,7 +643,9 @@ public class Effekt {
 				stunImmune(einheiten, skill.getSchadensMulitplikator(), spieler);
 			if(effectKey == "debuffArmorAllPercent")
 				debuffArmorAllPercent(einheiten, skill.getDamageBonus(), spieler);
-			
+			if(effectKey == "debuffDamageHero")
+				debuffDamageHero(einheiten, skill.getDamageBonus(), spieler);
+
 			
 			
 			

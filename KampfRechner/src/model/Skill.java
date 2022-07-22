@@ -75,7 +75,7 @@ public class Skill {
 		this.name = "Verstärkung";
 		this.effectKey = "healAll";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 35;
+		this.healPercent = 20;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -86,7 +86,7 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/verstarkung.png";
-		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 35% der fehlenden Leben.";
+		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 20% Leben.";
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -384,6 +384,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill belagerung() {
+		
+		this.name = "Belagerung";
+		this.effectKey = "stunHero";
+		this.schadensmulitplikator = 2;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 4;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/belagerung.png";
+
+		this.beschreibung = name + ": Betäubt den generischen Helden in jeder " + cooldown + ". Runde für " + schadensmulitplikator + " Runden.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill grossoffensive() {
 		
 		this.name = "Großoffensive";
@@ -648,6 +672,55 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill adel() {
+		
+		this.name = "Adel";
+		this.effectKey = "buffDamageAllPercent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 15; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/loyal.png";
+		
+		this.beschreibung = name + ": Der Schaden aller Einheiten wird um " + damageBonus + "% erhöht.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill lazarett() {
+		
+		this.name = "Feldlazarett";
+		this.effectKey = "healTargetsUnder50";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 10;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/lazarett.png";
+
+		this.beschreibung = name + ": Ein Feldlazarett heilt deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel.";
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill doppelAktion() {
 		
 		this.name = "Doppelaktion";
@@ -690,7 +763,31 @@ public class Skill {
 		this.isPassive = true;
 		this.pictureURI = "/source/general.png";
 		
-		this.beschreibung = "Ultimate: " + name + ": Der Schaden von allen Einheiten wird um " + damageBonus + "% erhöht";
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden von allen gegnerischen Einheiten wird um " + damageBonus + "% verringert,";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill gesicht() {
+		
+		this.name = "Hübsches Gesicht";
+		this.effectKey = "debuffDamageHero";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 10; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/hubschesgesicht.png";
+		
+		this.beschreibung = name + ": Der Schaden des gegnerischen Kommandanten wird um " + damageBonus + "% verringert.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -816,7 +913,7 @@ public class Skill {
 		this.name = "Heilkraut";
 		this.effectKey = "healTargetsUnder50";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 25;
+		this.healPercent = 7;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -1061,6 +1158,8 @@ public class Skill {
 			return this.stratege();
 		if(name.equals("Intrige"))
 			return this.intrige();
+		if(name.equals("Belagerung"))
+			return this.belagerung();
 		if(name.equals("Großoffensive"))
 			return this.grossoffensive();
 		if(name.equals("Formationstaktiken"))
@@ -1099,8 +1198,12 @@ public class Skill {
 			return this.hexerausruestung();
 		if(name.equals("Nordwind"))
 			return this.nordwind();
-		
-		
+		if(name.equals("Adel"))
+			return this.adel();
+		if(name.equals("Hübsches Gesicht"))
+			return this.gesicht();
+		if(name.equals("Feldlazarett"))
+			return this.lazarett();
 		
 		
 		if(name.equals("Svulblod"))

@@ -139,6 +139,11 @@ public class Kampf {
 			
 		}
 		
+		//Shuffle der Teilnehmerliste, um Spieler 1 Vorteil zu nehmen
+		Main.battlelog.add("---------------------------------------------------");
+		Main.battlelog.add("Durcheinanderwürfeln der Teilnehmer:");
+		Collections.shuffle(teilnehmer);
+
 		Main.battlelog.add("---------------------------------------------------");
 		
 		Main.battlelog.add("Berechnung der Initiative:");
@@ -446,13 +451,13 @@ public class Kampf {
 	public void angriff(Teilnehmer angreifer, ArrayList<Teilnehmer> teilnehmer) {
 		
 		if(angreifer.getLebenActual()>0) {
-		
+			
 			int schaden = angreifer.getSchadenActual();
 			int doubleAttack = 0;
 			doubleAttack = checkDouble(angreifer, doubleAttack);
 			
 			for(int doubleAA = doubleAttack;doubleAA < 1; doubleAA++) {
-				
+
 				ArrayList<Teilnehmer> opportunities = new ArrayList<Teilnehmer>();
 				for(int i =0;i<teilnehmer.size();i++) {
 					if(teilnehmer.get(i).getBesitzer() != angreifer.getBesitzer() && !teilnehmer.get(i).isIstKommandant() && teilnehmer.get(i).getLebenActual()>0)
@@ -462,6 +467,11 @@ public class Kampf {
 					Main.battlelog.add("Mögliche Ziele für " + angreifer.getBesitzer().getName() + "'s " + angreifer.getName() + ": " + opportunities.get(i).getBesitzer().getName() + "'s " + opportunities.get(i).getName());
 				}
 				
+				if(opportunities.size()==0) {
+					Main.battlelog.add("Keine Ziele für einen weiteren Angriff...");
+					return;
+				}
+					
 				Teilnehmer ziel = zielauswaehlen(opportunities);
 				
 				if(ziel.getCounter() != (angreifer.getId())) {

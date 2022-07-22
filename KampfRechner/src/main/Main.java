@@ -138,9 +138,19 @@ public class Main {
 		previewSkills.add(skillPool.quen());
 		previewSkills.add(skillPool.hexerausruestung());
 		previewSkills.add(skillPool.nordwind());
+		previewSkills.add(skillPool.belagerung());
+		previewSkills.add(skillPool.adel());
+		previewSkills.add(skillPool.gesicht());
+		previewSkills.add(skillPool.lazarett());
+
+
 		
-
-
+		
+		
+		
+		
+		
+		
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
