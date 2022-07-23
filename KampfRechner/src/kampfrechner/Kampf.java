@@ -94,6 +94,8 @@ public class Kampf {
 		Main.battlelog.add("---------------------------------------------------");
 
 		Teilnehmer ves = new Teilnehmer();
+		Teilnehmer zwerg1 = new Teilnehmer();
+		Teilnehmer zwerg2 = new Teilnehmer();
 		int belegt1 = 0;
 		int belegt2 = 0;
 		
@@ -111,7 +113,22 @@ public class Kampf {
 				}
 				if(teilnehmer.get(i).getUltimate().getEffectKey() == "spezialkommando" && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).getKommandoWert()>belegt2) {
 					teilnehmer.add(ves.erstelle("Ves", Main.getSpieler2()));
-				}	
+				}
+				if(teilnehmer.get(i).getUltimate().getEffectKey() == "zwerge" && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).getKommandoWert()>belegt1) {
+					teilnehmer.add(zwerg1.erstelle("Zwergensöldner", Main.getSpieler1()));
+					belegt1++;
+				}
+				if(teilnehmer.get(i).getUltimate().getEffectKey() == "zwerge" && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).getKommandoWert()>belegt2) {
+					teilnehmer.add(zwerg2.erstelle("Zwergensöldner", Main.getSpieler2()));
+					belegt2++;
+				}
+				
+				if(teilnehmer.get(i).getUltimate().getEffectKey() == "zwerge" && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).getKommandoWert()>belegt1) {
+					teilnehmer.add(zwerg1.erstelle("Zwergensöldner", Main.getSpieler1()));
+				}
+				if(teilnehmer.get(i).getUltimate().getEffectKey() == "zwerge" && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).getKommandoWert()>belegt2) {
+					teilnehmer.add(zwerg2.erstelle("Zwergensöldner", Main.getSpieler2()));
+				}
 			}
 		}
 		

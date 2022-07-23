@@ -151,7 +151,10 @@ public class Main {
 		previewSkills.add(skillPool.elite());
 		previewSkills.add(skillPool.spezialkommando());
 		previewSkills.add(skillPool.attentat());
-
+		previewSkills.add(skillPool.diversitaet());
+		previewSkills.add(skillPool.waffenexpertise());
+		previewSkills.add(skillPool.risiko());
+		previewSkills.add(skillPool.zwergensoeldner());
 
 		
 		

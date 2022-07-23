@@ -408,6 +408,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill risiko() {
+		
+		this.name = "Riskante Strategie";
+		this.effectKey = "risk";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 5;
+		this.damageBonus = 30; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/stratege.png";
+		
+		this.beschreibung = name + ": Der Schaden von allen Einheiten wird um " + damageBonus + "% erhöht und die Rüstung um " + armorBoost + "% verringert";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill intrige() {
 		
 		this.name = "Intrige";
@@ -570,7 +594,31 @@ public class Skill {
 		this.isPassive = true;
 		this.pictureURI = "/source/spezialkommando.png";
 		
-		this.beschreibung = "Ultimate: " + name + ": Füllt einen leeren Platzt mit Ves auf. (Eine Blaue Streifen Variante).";
+		this.beschreibung = "Ultimate: " + name + ": Füllt einen leeren Platz mit Ves auf. (Eine Blaue Streifen Variante).";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill zwergensoeldner() {
+		
+		this.name = "Zwergensöldner";
+		this.effectKey = "zwerge";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 1; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/diversity.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Füllt bis zu 2 leere Plätze mit Zwergensöldnern auf. (Schwere Infanterie).";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -939,6 +987,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill waffenexpertise() {
+		
+		this.name = "Waffenexpertise";
+		this.effectKey = "debuffArmorAllDependent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 3;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/waffenexpertise.png";
+		
+		this.beschreibung = name + ": Die Rüstung von allen gegnerischen Einheiten wird um " + damageBonus + "% für jede Unterschiedliche Einheit in deinem Kommando verringert.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill schwerttraining() {
 		
 		this.name = "Schwerttraining";
@@ -1030,6 +1102,30 @@ public class Skill {
 		this.pictureURI = "/source/general.png";
 
 		this.beschreibung = name + ": Für jeden Blauen Streifen oder Ves, wird der Schaden um " + damageBonus + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill diversitaet() {
+		
+		this.name = "Diversität";
+		this.effectKey = "diversity";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 20;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/diversity.png";
+
+		this.beschreibung = name + ": Für jede unterschiedliche Einheit wird der Schaden um " + damageBonus + " erhöht";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1440,6 +1536,14 @@ public class Skill {
 			return this.spezialkommando();
 		if(name.equals("Attentat"))
 			return this.attentat();
+		if(name.equals("Diversität"))
+			return this.diversitaet();
+		if(name.equals("Waffenexpertise"))
+			return this.waffenexpertise();
+		if(name.equals("Riskante Strategie"))
+			return this.risiko();
+		if(name.equals("Zwergensöldner"))
+			return this.zwergensoeldner();
 		
 		
 		

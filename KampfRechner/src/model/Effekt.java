@@ -1,8 +1,10 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import main.Main;
 
@@ -67,6 +69,21 @@ public class Effekt {
 		}
 	}
 	
+	public static void risk(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int malus) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = einheiten.get(i).getSchaden()*bonus/100;
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+schadensBonus);
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()-malus);
+				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-schadensBonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+				Main.battlelog.add("Der Rüstungswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()+malus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
 	
 	public static void debuffDamageAllPercent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 		
@@ -76,6 +93,27 @@ public class Effekt {
 				int schadensBonus = einheiten.get(i).getSchaden()*bonus/100;
 				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()-schadensBonus);
 				Main.battlelog.add("Der Angriffswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()+schadensBonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
+	public static void debuffArmorAllDependent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, Teilnehmer teilnehmer) {
+		
+		ArrayList<String> diverseUnits = new ArrayList<String>();
+		
+		List<String> newList = calcDiversity(einheiten, teilnehmer, diverseUnits);
+		
+		diverseUnits = (ArrayList<String>) newList;
+		
+		int faktor = diverseUnits.size();
+		
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()-faktor*bonus);
+				Main.battlelog.add("Der Rüstungswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()+faktor*bonus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
 
 			}
 		}
@@ -565,6 +603,41 @@ public class Effekt {
 			}
 		}
 		
+		
+		public static void diversity(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer, int id, int newValue) {
+			
+			ArrayList<String> diverseUnits = new ArrayList<String>();
+			
+			List<String> newList = calcDiversity(einheiten, teilnehmer, diverseUnits);
+			
+			diverseUnits = (ArrayList<String>) newList;
+			
+			System.out.println(diverseUnits.size());
+			
+			if(diverseUnits.size()>0) {
+				teilnehmer.setSchadenActual(teilnehmer.getSchadenActual()+skill.getDamageBonus()*diverseUnits.size());
+				Main.battlelog.add("Effekt von: " + spieler.getName() + " " + teilnehmer.getName() + " Schadenswert wurde von " + (teilnehmer.getSchadenActual()-skill.getDamageBonus()*diverseUnits.size()) + " auf " + teilnehmer.getSchadenActual() + " gesetzt!");
+			}
+			
+		}
+
+		private static List<String> calcDiversity(ArrayList<Teilnehmer> einheiten, Teilnehmer teilnehmer,
+				ArrayList<String> diverseUnits) {
+			for(int i=0;i<einheiten.size();i++) {
+
+				if(einheiten.get(i).getBesitzer() == teilnehmer.getBesitzer() && !einheiten.get(i).isIstKommandant())
+					diverseUnits.add(einheiten.get(i).getName());
+				
+			}
+			
+			List<String> newList = diverseUnits.stream()
+                    .distinct()
+                    .collect(Collectors.toList());
+			return newList;
+		}
+		
+		
+		
 		public static void stunOnce(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
 			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
@@ -727,7 +800,19 @@ public class Effekt {
 				heal2Units(einheiten, spieler, skill, teilnehmer, skill.getSchadensMulitplikator(), skill.getNumberOfTargets());
 			if(effectKey == "buffDamageSkillSpecificUnit")
 				buffDamageSkillSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
-
+			if(effectKey == "diversity")
+				diversity(einheiten, spieler, skill, teilnehmer, skill.getSchadensMulitplikator(), skill.getDamageBonus());
+			if(effectKey == "debuffArmorAllDependent")
+				debuffArmorAllDependent(einheiten, skill.getArmorBoost(), spieler, teilnehmer);
+			if(effectKey == "risk")
+				risk(einheiten, skill.getDamageBonus(), spieler, skill.getArmorBoost());
+			
+			
+			
+			
+			
+			
+			
 		}
 
 }
