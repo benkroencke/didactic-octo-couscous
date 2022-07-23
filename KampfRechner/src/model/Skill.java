@@ -616,7 +616,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = false;
 		this.isPassive = true;
-		this.pictureURI = "/source/diversity.png";
+		this.pictureURI = "/source/hammer.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Füllt bis zu 2 leere Plätze mit Zwergensöldnern auf. (Schwere Infanterie).";
 		
