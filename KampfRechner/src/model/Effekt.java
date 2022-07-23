@@ -134,6 +134,18 @@ public class Effekt {
 		}
 	}
 	
+	public static void changeSkill(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int newValue) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).getSkill1().setDamageBonus(newValue);
+				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " verteilt nun " + einheiten.get(i).getSkill1().getDamageBonus() + ".");
+
+			}
+		}
+	}
+	
 	public static void buffArmorSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -525,7 +537,7 @@ public class Effekt {
 			
 		}
 		
-		public static void united(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+		public static void united(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer, int id, int newValue) {
 			
 			for (int i = 0; i<einheiten.size(); i++) {
 				
@@ -533,14 +545,22 @@ public class Effekt {
 					
 					if(skill.getName() == "Blutsbruder") {
 						einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+skill.getDamageBonus());
-						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-skill.getDamageBonus()) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " Schadenswert wurde von " + (einheiten.get(i).getSchadenActual()-skill.getDamageBonus()) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
 					}
 					
 					if(skill.getName() == "Schildwall") {
 						einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()+skill.getArmorBoost());
-						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()-skill.getArmorBoost()) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(i).getName() + " Rüstungswert wurde von " + (einheiten.get(i).getRuestungProzentActual()-skill.getArmorBoost()) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
 					}
-					
+
+				}
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == 4 && !einheiten.get(i).equals(teilnehmer)) {
+
+					if(skill.getName() == "Anführer der Blauen Streifen") {
+						teilnehmer.setSchadenActual(teilnehmer.getSchadenActual()+skill.getDamageBonus());
+						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + teilnehmer.getName() + " Schadenswert wurde von " + (teilnehmer.getSchadenActual()-skill.getDamageBonus()) + " auf " + teilnehmer.getSchadenActual() + " gesetzt!");
+					}
 				}
 			}
 		}
@@ -642,7 +662,6 @@ public class Effekt {
 			return einheiten;
 		}
 		
-	
 		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey) {
 		
 			if(effectKey == "damageBuffall")
@@ -663,7 +682,7 @@ public class Effekt {
 			if(effectKey == "pinchBoostFactorHeal")
 				pinchBoostFactorHeal(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "united")
-				united(einheiten, spieler, skill, teilnehmer);
+				united(einheiten, spieler, skill, teilnehmer, skill.getSchadensMulitplikator(), skill.getDamageBonus());
 			if(effectKey == "damageSpecificRound")
 				damageSpecificRound(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "healTargetsUnder50")
@@ -708,7 +727,7 @@ public class Effekt {
 				heal2Units(einheiten, spieler, skill, teilnehmer, skill.getSchadensMulitplikator(), skill.getNumberOfTargets());
 			if(effectKey == "buffDamageSkillSpecificUnit")
 				buffDamageSkillSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
-			
+
 		}
 
 }

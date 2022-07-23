@@ -146,6 +146,11 @@ public class Main {
 		previewSkills.add(skillPool.formationhalten());
 		previewSkills.add(skillPool.foltestsstolz());
 		previewSkills.add(skillPool.highground());
+		previewSkills.add(skillPool.bluestripes());
+		previewSkills.add(skillPool.schwerttraining());
+		previewSkills.add(skillPool.elite());
+		previewSkills.add(skillPool.spezialkommando());
+		previewSkills.add(skillPool.attentat());
 
 
 		

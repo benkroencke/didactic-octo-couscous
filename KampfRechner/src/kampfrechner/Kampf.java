@@ -93,6 +93,29 @@ public class Kampf {
 		Main.battlelog.add("Die Vorkriegsphase beginnt:");
 		Main.battlelog.add("---------------------------------------------------");
 
+		Teilnehmer ves = new Teilnehmer();
+		int belegt1 = 0;
+		int belegt2 = 0;
+		
+		for(int i = 0; i<teilnehmer.size();i++) {
+			if(teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && !teilnehmer.get(i).isIstKommandant())
+				belegt1++;
+			if(teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && !teilnehmer.get(i).isIstKommandant())
+				belegt2++;
+		}
+		
+		for(int i=0; i<teilnehmer.size();i++){
+			if(teilnehmer.get(i).getUltimate() != null) {
+				if(teilnehmer.get(i).getUltimate().getEffectKey() == "spezialkommando" && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).getKommandoWert()>belegt1) {
+					teilnehmer.add(ves.erstelle("Ves", Main.getSpieler1()));
+				}
+				if(teilnehmer.get(i).getUltimate().getEffectKey() == "spezialkommando" && teilnehmer.get(i).getBesitzer() == Main.getSpieler2() && teilnehmer.get(i).getKommandoWert()>belegt2) {
+					teilnehmer.add(ves.erstelle("Ves", Main.getSpieler2()));
+				}	
+			}
+		}
+		
+		
 		Main.battlelog.add("Passive Effekte werden ausgeführt:");
 		Main.battlelog.add("---------------------------------------------------");
 		

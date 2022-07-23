@@ -601,11 +601,36 @@ public class Teilnehmer {
 		
 		this.name = "Blaue Streifen";
 		this.pictureURI = "/source/blauestreifen.png";
-		this.id = 2;
+		this.id = 4;
 		this.leben = 2250;
 		this.schaden = 225;
 		this.ruestungProzent = 15;
 		this.init = 180;
+		this.counter = 0; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Blutsbruder");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer ves(Spieler besitzer) {
+		
+		this.name = "Blaue Streifen";
+		this.pictureURI = "/source/ves.png";
+		this.id = 4;
+		this.leben = 2200;
+		this.schaden = 240;
+		this.ruestungProzent = 15;
+		this.init = 185;
 		this.counter = 0; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
 		
 		this.lebenActual = leben;
@@ -960,6 +985,8 @@ public class Teilnehmer {
 			return this.ancraitlangschiff(besitzer);
 		if(name.equals("Spion"))
 			return this.spy(besitzer);
+		if(name.equals("Ves"))
+			return this.ves(besitzer);
 		
 		return null;
 	}

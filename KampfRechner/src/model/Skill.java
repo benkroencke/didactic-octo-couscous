@@ -360,6 +360,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill elite() {
+		
+		this.name = "Elitetruppe";
+		this.effectKey = "buffDamageSpecificUnit";
+		this.schadensmulitplikator = 4; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 35; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/elite.png";
+		
+		this.beschreibung = name + ": Der Schaden von Blauen Streifen und Ves wird um " + damageBonus + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill stratege() {
 		
 		this.name = "Stratege";
@@ -480,6 +504,7 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	
 	public Skill ultiemhyr1() {
 		
 		this.name = "Der auf den Gräbern seiner Feinde tanzt";
@@ -522,6 +547,30 @@ public class Skill {
 		this.pictureURI = "/source/spionage.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Ersetzt eine zufällige Einheit des gegnerischen Kommandanten durch einen Spion.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill spezialkommando() {
+		
+		this.name = "Spezialkommando";
+		this.effectKey = "spezialkommando";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 1; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/spezialkommando.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Füllt einen leeren Platzt mit Ves auf. (Eine Blaue Streifen Variante).";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -666,6 +715,30 @@ public class Skill {
 		this.pictureURI = "/source/finalerschlag.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill attentat() {
+		
+		this.name = "Attentat";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 10;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 3;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/finalerschlag.png";
+
+		this.beschreibung = "Ultimate: " + name + " - Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -866,6 +939,31 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill schwerttraining() {
+		
+		this.name = "Schwerttraining";
+		this.effectKey = "doubleAttack";
+		this.schadensmulitplikator = 40;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/doubleattack.png";
+
+		this.beschreibung = name + ": Dieser Kommandant hat eine " + (100-cooldown) + "% Chance 2 Mal anzugreifen.";
+		
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill gesicht() {
 		
 		this.name = "Hübsches Gesicht";
@@ -908,6 +1006,30 @@ public class Skill {
 		this.pictureURI = "/source/nordwind.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Die Rüstung von allen gegnerischen Einheiten wird in Runde " + cooldown + " um " + damageBonus + "% verringert";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill bluestripes() {
+		
+		this.name = "Anführer der Blauen Streifen";
+		this.effectKey = "united";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 10;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/general.png";
+
+		this.beschreibung = name + ": Für jeden Blauen Streifen oder Ves, wird der Schaden um " + damageBonus + " erhöht";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1308,6 +1430,17 @@ public class Skill {
 			return this.foltestsstolz();
 		if(name.equals("Taktische Höhenlage"))
 			return this.highground();
+		if(name.equals("Anführer der Blauen Streifen"))
+			return this.bluestripes();
+		if(name.equals("Schwerttraining"))
+			return this.schwerttraining();
+		if(name.equals("Elitetruppe"))
+			return this.elite();
+		if(name.equals("Spezialkommando"))
+			return this.spezialkommando();
+		if(name.equals("Attentat"))
+			return this.attentat();
+		
 		
 		
 		
