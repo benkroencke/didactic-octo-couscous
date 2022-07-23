@@ -119,6 +119,24 @@ public class Effekt {
 		}
 	}
 	
+	public static void debuffArmorAll(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, Teilnehmer teilnehmer) {
+		
+		ArrayList<String> diverseUnits = new ArrayList<String>();
+		
+		List<String> newList = calcDiversity(einheiten, teilnehmer, diverseUnits);
+		
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()-bonus);
+				Main.battlelog.add("Der Rüstungswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()+bonus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
+	
 	public static void debuffDamageHero(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -167,6 +185,18 @@ public class Effekt {
 				einheiten.get(i).getSkill1().setCooldown(cdNew);
 				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
 				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
+
+			}
+		}
+	}
+	
+	public static void buffSkillSpecificUnitTargets(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).getSkill1().setNumberOfTargets(cdNew);
+				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " trifft nun " + einheiten.get(i).getSkill1().getCooldown() + "!");
 
 			}
 		}
@@ -327,21 +357,26 @@ public class Effekt {
 			for (int i = 0; i<einheiten.size(); i++) {
 				
 				
-				
-				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
-					int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
-					einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
-					int actualHeal = 0;
-					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
-						actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
-						einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
-					} else {
-						actualHeal = heal;
+				if(einheiten.get(i).getHealable() == 0) {
+					if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+						int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
+						einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
+						int actualHeal = 0;
+						if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
+							actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
+							einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
+						} else {
+							actualHeal = heal;
+						}
+						
+						Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
+						caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
 					}
-					
-					Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
-					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
 				}
+				else {
+					Main.battlelog.add("Effekt von: " + skill.getName() + " kann nicht ausgelöst werden, da " + einheiten.get(i).getName() + " nicht geheilt werden können!");
+				}
+				
 			}
 		}
 		
@@ -350,20 +385,25 @@ public class Effekt {
 			for (int i = 0; i<einheiten.size(); i++) {
 				
 				
-				
-				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant() && einheiten.get(i).getId() == id1 || einheiten.get(i).getId() == id2) {
-					int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
-					einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
-					int actualHeal = 0;
-					if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
-						actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
-						einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
-					} else {
-						actualHeal = heal;
+				if(einheiten.get(i).getHealable() == 0) {
+
+					if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant() && einheiten.get(i).getId() == id1 || einheiten.get(i).getId() == id2) {
+						int heal = (einheiten.get(i).getLeben()*skill.getHealPercent())/100;
+						einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
+						int actualHeal = 0;
+						if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
+							actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
+							einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
+						} else {
+							actualHeal = heal;
+						}
+						
+						Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
+						caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
 					}
-					
-					Main.battlelog.add("Effekt von: " + skill.getName() + " - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
-					caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
+				}
+				else {
+					Main.battlelog.add("Effekt von: " + skill.getName() + " kann nicht ausgelöst werden, da " + einheiten.get(i).getName() + " nicht geheilt werden können!");
 				}
 			}
 		}
@@ -453,6 +493,103 @@ public class Effekt {
 					}
 					
 		}
+		
+		public static void damageHealReduction(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+	
+			//Falls Skill == Überfall
+			if(skill.getName() == "Überfall") {
+				ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+				for(int i=0;i<einheiten.size();i++) {
+					if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+						uberfallTargets.add(einheiten.get(i));
+				}
+				targets = uberfallTargets;
+				
+			}
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
+				
+				if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+					damage = reduceDamagePercent(targets.get(i), damage);
+				}
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				targets.get(i).setHealable(skill.getHealPercent());
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden " + ". Die Heilung wird " + skill.getHealPercent() + " Runden verhindert!");
+				
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+		}
+		
+		public static void damageStun(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+	
+			//Falls Skill == Überfall
+			if(skill.getName() == "Überfall") {
+				ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+				for(int i=0;i<einheiten.size();i++) {
+					if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+						uberfallTargets.add(einheiten.get(i));
+				}
+				targets = uberfallTargets;
+				
+			}
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = ((teilnehmer.getSchadenActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
+				
+				if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+					damage = reduceDamagePercent(targets.get(i), damage);
+				}
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				if(targets.get(i).getTurnsStunned() < skill.getDamageReduction())
+					targets.get(i).setTurnsStunned(skill.getDamageReduction());
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden " + ". Sie wurden " + skill.getDamageReduction() + " Runden betäubt!");
+				
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+		}	
+		
+		
 		
 		public static int reduceDamagePercent(Teilnehmer teilnehmer, int damage) {
 			
@@ -806,10 +943,14 @@ public class Effekt {
 				debuffArmorAllDependent(einheiten, skill.getArmorBoost(), spieler, teilnehmer);
 			if(effectKey == "risk")
 				risk(einheiten, skill.getDamageBonus(), spieler, skill.getArmorBoost());
-			
-			
-			
-			
+			if(effectKey == "debuffArmorAll")
+				debuffArmorAll(einheiten, skill.getArmorBoost(), spieler, teilnehmer);
+			if(effectKey == "damageHealReduction")
+				damageHealReduction(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "damageStun")
+				damageStun(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "buffSkillSpecificUnitTargets")
+				buffSkillSpecificUnitTargets(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
 			
 			
 			

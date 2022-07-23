@@ -40,6 +40,7 @@ public class Teilnehmer {
 	private int geheilterSchaden;
 	
 	private int turnsStunned = 0;
+	private int healable = 0;
 	
 	private Skill skillFabrik = new Skill();
 	
@@ -1282,6 +1283,14 @@ public class Teilnehmer {
 
 	public void setTurnsStunned(int turnsStunned) {
 		this.turnsStunned = turnsStunned;
+	}
+
+	public int getHealable() {
+		return healable;
+	}
+
+	public void setHealable(int healable) {
+		this.healable = healable;
 	}
 
 

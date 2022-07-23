@@ -359,8 +359,9 @@ public class Kampf {
 				}
 					
 				
+				if(teilnehmer.get(i).getHealable()>0)
+					teilnehmer.get(i).setHealable(teilnehmer.get(i).getHealable()-1);
 				
-
 			}
 			
 			Main.battlelog.add("---------------------------------------------------");

@@ -240,6 +240,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill wikinger() {
+		
+		this.name = "Wikinger";
+		this.effectKey = "damageInitBuffCommander";
+		this.schadensmulitplikator = 35;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 35;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/wikinger.png";
+		
+		this.beschreibung = name + ": Der Schaden/Initiative des Kommandanten wird um " + damageBonus + "/" + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill loyal() {
 		
 		this.name = "Loyal";
@@ -280,6 +304,30 @@ public class Skill {
 		this.isActive = false;
 		this.isPassive = true;
 		this.pictureURI = "/source/hexerausruestung.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden des Kommandanten wird um " + schadensmulitplikator + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill berserker() {
+		
+		this.name = "Berserker";
+		this.effectKey = "damageBuffCommander";
+		this.schadensmulitplikator = 85;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/berserker.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Der Schaden des Kommandanten wird um " + schadensmulitplikator + " erhöht";
 		
@@ -528,6 +576,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill flotte() {
+		
+		this.name = "Flottenführer";
+		this.effectKey = "buffDamageArmorSpecificUnit";
+		this.schadensmulitplikator = 3; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 5;
+		this.damageBonus = 15; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/flotte.png";
+		
+		this.beschreibung = name + ": Der Schaden/Rüstung der An Craite Langschiffe wird um " + damageBonus + "/" + armorBoost + " erhöht.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	
 	public Skill ultiemhyr1() {
 		
@@ -649,6 +721,31 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill drakkar() {
+		
+		this.name = "Drakkar";
+		this.effectKey = "buffSkillSpecificUnitTargets";
+		this.schadensmulitplikator = 3; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 2;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/drakkar.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Pfeilhagel von An Craite Langschiffen trifft nun 2 Gegner.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
 	public Skill highground() {
 		
 		this.name = "Taktische Höhenlage";
@@ -739,6 +836,54 @@ public class Skill {
 		this.pictureURI = "/source/dezimieren.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill tiefewunden() {
+		
+		this.name = "Tiefe Wunden";
+		this.effectKey = "damageHealReduction";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 2;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 2;
+		this.numberOfTargets = 2;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/wunden.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen. Heilung der Ziele wird für " + healPercent + " Runden verhindert.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill kopfschlag() {
+		
+		this.name = "Kopfschlag";
+		this.effectKey = "damageStun";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 1;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 3;
+		this.numberOfTargets = 2;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/kopfschlag.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen. Sie werden für " + damageReduction + " Runde betäubt.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -930,7 +1075,7 @@ public class Skill {
 		this.isPassive = false;
 		this.pictureURI = "/source/lazarett.png";
 
-		this.beschreibung = name + ": Ein Feldlazarett heilt deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel.";
+		this.beschreibung = name + ": Ein Feldlazarett heilt deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel (Kann nicht verhindert werden).";
 		
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -1004,7 +1149,31 @@ public class Skill {
 		this.isPassive = true;
 		this.pictureURI = "/source/waffenexpertise.png";
 		
-		this.beschreibung = name + ": Die Rüstung von allen gegnerischen Einheiten wird um " + damageBonus + "% für jede Unterschiedliche Einheit in deinem Kommando verringert.";
+		this.beschreibung = name + ": Die Rüstung von allen gegnerischen Einheiten wird um " + armorBoost + "% für jede Unterschiedliche Einheit in deinem Kommando verringert.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill zerkrachen() {
+		
+		this.name = "Rüstung zerkrachen";
+		this.effectKey = "debuffArmorAll";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 10;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/waffenexpertise.png";
+		
+		this.beschreibung = name + ": Die Rüstung von allen gegnerischen Einheiten wird um " + armorBoost + "% verringert.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1148,7 +1317,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = false;
 		this.isPassive = false;
-		this.beschreibung = name + ": Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert erhöht sich um 100%.";
+		this.beschreibung = name + ": Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert erhöht sich um 100% (Kann nicht verhindert werden).";
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -1237,7 +1406,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		this.beschreibung = name + ": Mächtige Heilkräuter heilen deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel.";
+		this.beschreibung = name + ": Mächtige Heilkräuter heilen deine Einheiten um " + " +" + healPercent + "%, wenn ihre Leben unter 50% fallen. Trifft " + numberOfTargets + " Ziel (Kann nicht verhindert werden).";
 		
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -1544,6 +1713,21 @@ public class Skill {
 			return this.risiko();
 		if(name.equals("Zwergensöldner"))
 			return this.zwergensoeldner();
+		if(name.equals("Rüstung zerkrachen"))
+			return this.zerkrachen();
+		if(name.equals("Flottenführer"))
+			return this.flotte();
+		if(name.equals("Tiefe Wunden"))
+			return this.tiefewunden();
+		if(name.equals("Kopfschlag"))
+			return this.kopfschlag();
+		if(name.equals("Wikinger"))
+			return this.wikinger();
+		if(name.equals("Drakkar"))
+			return this.drakkar();
+		if(name.equals("Berserker"))
+			return this.berserker();
+		
 		
 		
 		

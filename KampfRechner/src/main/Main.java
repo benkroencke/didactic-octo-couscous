@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Window;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import kampfrechner.Kampf;
@@ -155,11 +156,26 @@ public class Main {
 		previewSkills.add(skillPool.waffenexpertise());
 		previewSkills.add(skillPool.risiko());
 		previewSkills.add(skillPool.zwergensoeldner());
+		previewSkills.add(skillPool.zerkrachen());
+		previewSkills.add(skillPool.flotte());
+		previewSkills.add(skillPool.tiefewunden());
+		previewSkills.add(skillPool.kopfschlag());
+		previewSkills.add(skillPool.wikinger());
+		previewSkills.add(skillPool.drakkar());
+		previewSkills.add(skillPool.berserker());
 
 		
 		
 		
-		
+		Collections.sort(previewTruppen, new Comparator<Teilnehmer>() {
+
+			@Override
+			public int compare(Teilnehmer arg0, Teilnehmer arg1) {
+				// TODO Auto-generated method stub
+				return ((arg1.getName()).compareTo(arg0.getName()));
+			}
+			
+		});
 		
 		
 		
