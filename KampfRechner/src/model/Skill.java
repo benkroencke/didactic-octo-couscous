@@ -1570,7 +1570,7 @@ public class Skill {
 		
 		this.name = "Stampede";
 		this.effectKey = "damageSpecificRound";
-		this.schadensmulitplikator = 6;
+		this.schadensmulitplikator = 5;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;

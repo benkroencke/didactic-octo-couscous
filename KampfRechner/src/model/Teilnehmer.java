@@ -579,7 +579,7 @@ public class Teilnehmer {
 		this.pictureURI = "/source/foltestpride.png";
 		this.id = 4;
 		this.leben = 1500;
-		this.schaden = 300;
+		this.schaden = 250;
 		this.ruestungProzent = 8;
 		this.init = 45;
 		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
