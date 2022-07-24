@@ -185,6 +185,29 @@ public class Effekt {
 		}
 	}
 	
+	public static void magischeBombe(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id && einheiten.get(i).getUltimate().getName() == "Magische Bombe") {
+				
+				Teilnehmer held = einheiten.get(i);
+				if(held.getSkill1().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill1().setCooldown(cdNew);
+				if(held.getSkill2().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill2().setCooldown(cdNew);
+				if(held.getSkill3().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill3().setCooldown(cdNew);
+				if(held.getSkill4().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill4().setCooldown(cdNew);
+	
+				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
+	
+			}
+		}
+		
+	}
+	
 	public static void buffDamageSkillSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -197,21 +220,7 @@ public class Effekt {
 
 			}
 			
-			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id && einheiten.get(i).getUltimate().getName() == "Magische Bombe") {
-				
-				Teilnehmer held = einheiten.get(i);
-				if(held.getSkill1().getName() == "Magieexplosion")
-					einheiten.get(i).getSkill1().setCooldown(cdNew);
-				if(held.getSkill2().getName() == "Magieexplosion")
-					einheiten.get(i).getSkill2().setCooldown(cdNew);
-				if(held.getSkill3().getName() == "Magieexplosion")
-					einheiten.get(i).getSkill3().setCooldown(cdNew);
-				if(held.getSkill4().getName() == "Magieexplosion")
-					einheiten.get(i).getSkill4().setCooldown(cdNew);
-
-				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
-
-			}
+			
 			
 		}
 	}
@@ -1103,7 +1112,8 @@ public class Effekt {
 				magicDamage(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "setAll50percent")
 				setAll50percent(einheiten, spieler, skill, teilnehmer);
-			
+			if(effectKey == "magischeBombe")
+				magischeBombe(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
 			
 			
 			

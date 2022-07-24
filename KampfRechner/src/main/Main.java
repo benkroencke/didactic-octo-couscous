@@ -176,15 +176,15 @@ public class Main {
 		
 		
 		
-		Collections.sort(previewTruppen, new Comparator<Teilnehmer>() {
-
-			@Override
-			public int compare(Teilnehmer arg0, Teilnehmer arg1) {
-				// TODO Auto-generated method stub
-				return ((arg1.getName()).compareTo(arg0.getName()));
-			}
-			
-		});
+//		Collections.sort(previewTruppen, new Comparator<Teilnehmer>() {
+//
+//			@Override
+//			public int compare(Teilnehmer arg0, Teilnehmer arg1) {
+//				// TODO Auto-generated method stub
+//				return ((arg1.getName()).compareTo(arg0.getName()));
+//			}
+//			
+//		});
 		
 		
 		

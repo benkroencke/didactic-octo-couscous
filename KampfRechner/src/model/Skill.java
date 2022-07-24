@@ -821,7 +821,7 @@ public class Skill {
 	public Skill magischebombe() {
 		
 		this.name = "Magische Bombe";
-		this.effectKey = "buffDamageSkillSpecificUnit";
+		this.effectKey = "magischeBombe";
 		this.schadensmulitplikator = 100; //Kann auch id für Einheit sein, die gebufft wird
 		this.healPercent = 0;
 		this.damageReduction = 0;
