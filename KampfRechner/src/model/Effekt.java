@@ -705,32 +705,30 @@ public class Effekt {
 			
 			for(int i = 0;i<einheiten.size();i++) {
 				
-				if(einheiten.get(i).getBesitzer() == teilnehmer.getBesitzer())
+				if(einheiten.get(i).getBesitzer() == teilnehmer.getBesitzer() && !einheiten.get(i).isIstKommandant())
 					counter++;
 				
 			}
+			System.out.println(counter);
 			
 			int changed = 0;
-			while(changed < counter-1) {
 				
-				for(int a=0; a<einheiten.size();a++) {
+			for(int a=0; a<einheiten.size();a++) {
 					
-					if(!skill.isActive()) {
-						for(int i = 0;i<einheiten.size();i++) {
+				if(!skill.isActive()) {
+					for(int i = 0;i<einheiten.size();i++) {
+						if(changed < counter) {
 							if(!einheiten.get(i).isIstKommandant()) {
 								einheiten.get(i).setLebenActual(einheiten.get(i).getLeben()/2);
 								Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + einheiten.get(i).getBesitzer().getName() + " " + einheiten.get(i).getName() + " wurden auf " + einheiten.get(i).getLebenActual()  + " gesetzt!");
 							}
+							changed++;
 						}
-						skill.setActive(true);
 					}
+					skill.setActive(true);
 				}
-				
-				changed++;
 			}
-			
 
-			
 		}
 		
 		public static void magicDamage(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
