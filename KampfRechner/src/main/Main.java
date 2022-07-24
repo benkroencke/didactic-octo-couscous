@@ -107,9 +107,31 @@ public class Main {
 		previewTruppen.add(teilnehmerPool.svulblodfanatiker(main));
 		
 
-		previewArtefakte.add(artefaktPool.donner());
-		previewArtefakte.add(artefaktPool.koenigsamulett());
-		previewArtefakte.add(artefaktPool.krummsaebel());
+		previewArtefakte.add(artefaktPool.donner1());
+		previewArtefakte.add(artefaktPool.koenigsamulett1());
+		previewArtefakte.add(artefaktPool.krummsaebel1());
+		previewArtefakte.add(artefaktPool.donner2());
+		previewArtefakte.add(artefaktPool.koenigsamulett2());
+		previewArtefakte.add(artefaktPool.krummsaebel2());
+		previewArtefakte.add(artefaktPool.donner3());
+		previewArtefakte.add(artefaktPool.koenigsamulett3());
+		previewArtefakte.add(artefaktPool.krummsaebel3());
+		previewArtefakte.add(artefaktPool.ploetze1());
+		previewArtefakte.add(artefaktPool.ploetze2());
+		previewArtefakte.add(artefaktPool.ploetze3());
+		previewArtefakte.add(artefaktPool.emmentaler1());
+		previewArtefakte.add(artefaktPool.emmentaler2());
+		previewArtefakte.add(artefaktPool.emmentaler3());
+		previewArtefakte.add(artefaktPool.standarte1());
+		previewArtefakte.add(artefaktPool.standarte2());
+		previewArtefakte.add(artefaktPool.standarte3());
+		previewArtefakte.add(artefaktPool.aerondight1());
+		previewArtefakte.add(artefaktPool.aerondight2());
+		previewArtefakte.add(artefaktPool.aerondight3());
+		previewArtefakte.add(artefaktPool.aerondight4());
+
+		
+		
 		
 		previewSkills.add(skillPool.dezimieren());
 		previewSkills.add(skillPool.schlachtruf());
@@ -198,6 +220,16 @@ public class Main {
 
 			@Override
 			public int compare(Skill arg0, Skill arg1) {
+				// TODO Auto-generated method stub
+				return ((arg0.getName()).compareTo(arg1.getName()));
+			}
+			
+		});
+		
+		Collections.sort(previewArtefakte, new Comparator<Artefakt>() {
+
+			@Override
+			public int compare(Artefakt arg0, Artefakt arg1) {
 				// TODO Auto-generated method stub
 				return ((arg0.getName()).compareTo(arg1.getName()));
 			}

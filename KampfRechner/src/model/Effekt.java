@@ -465,6 +465,22 @@ public class Effekt {
 		
 		}
 		
+		
+		public static void speedBuffUnits(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+					
+					einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()+bonus);
+					Main.battlelog.add("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()-bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
+					
+				}
+					
+			}
+		
+		}
+		
 		public static void damageBuffCommander(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 			
 			for (int i = 0; i<einheiten.size(); i++) {
@@ -709,7 +725,6 @@ public class Effekt {
 					counter++;
 				
 			}
-			System.out.println(counter);
 			
 			int changed = 0;
 				
@@ -1304,9 +1319,24 @@ public class Effekt {
 		
 			if(effectKey == "damageBuffall")
 				damageBuffAll(einheiten, bonus, spieler);
+			if(effectKey == "damageBuffCommander")
+				damageBuffCommander(einheiten, bonus, spieler);
 			if(effectKey == "speedBuffall")
 				speedBuffAll(einheiten, bonus, spieler);
-		
+			if(effectKey == "speedBuffCommander")
+				speedBuffCommander(einheiten, bonus, spieler);
+			if(effectKey == "speedBuffUnits")
+				speedBuffUnits(einheiten, bonus, spieler);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	}
 
 		public static void skillAufloesen(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, String effectKey, Teilnehmer teilnehmer) {
