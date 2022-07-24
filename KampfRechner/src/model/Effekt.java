@@ -574,22 +574,35 @@ public class Effekt {
 		public static void setAll50percent(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
 			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			int counter = 0;
 			
-			
+			for(int i = 0;i<einheiten.size();i++) {
 				
-			
-			for(int a=0; a<einheiten.size();a++) {
+				if(einheiten.get(i).getBesitzer() == teilnehmer.getBesitzer())
+					counter++;
 				
-				if(!skill.isActive()) {
-					for(int i = 0;i<einheiten.size();i++) {
-						if(!einheiten.get(i).isIstKommandant()) {
-							einheiten.get(i).setLebenActual(einheiten.get(i).getLeben()/2);
-							Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + einheiten.get(i).getBesitzer().getName() + " " + einheiten.get(i).getName() + " wurden auf " + einheiten.get(i).getLebenActual()  + " gesetzt!");
-						}
-					}
-					skill.setActive(true);
-				}
 			}
+			
+			int changed = 0;
+			while(changed < counter-1) {
+				
+				for(int a=0; a<einheiten.size();a++) {
+					
+					if(!skill.isActive()) {
+						for(int i = 0;i<einheiten.size();i++) {
+							if(!einheiten.get(i).isIstKommandant()) {
+								einheiten.get(i).setLebenActual(einheiten.get(i).getLeben()/2);
+								Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + einheiten.get(i).getBesitzer().getName() + " " + einheiten.get(i).getName() + " wurden auf " + einheiten.get(i).getLebenActual()  + " gesetzt!");
+							}
+						}
+						skill.setActive(true);
+					}
+				}
+				
+				changed++;
+			}
+			
+
 			
 		}
 		
@@ -622,8 +635,6 @@ public class Effekt {
 			for (int i = 0; i<targets.size(); i++) {
 				
 				int damage = skill.getSchadensMulitplikator();
-				if(targets.get(i).getId() == 3)
-					damage = damage*skill.getDamageBonus();
 				
 				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
 				
@@ -681,7 +692,7 @@ public class Effekt {
 				
 				int healed = damage;
 				
-				if(friendly.get(i).getLebenActual()>friendly.get(i).getLeben()) {
+				if(friendly.get(i).getLebenActual()>friendly.get(i).getLeben() && friendly.get(i).getHealable() == 0) {
 					healed = damage-(friendly.get(i).getLebenActual()-friendly.get(i).getLeben());
 					friendly.get(i).setLebenActual(friendly.get(i).getLeben());
 				}

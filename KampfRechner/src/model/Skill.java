@@ -738,7 +738,7 @@ public class Skill {
 		this.isPassive = false;
 		this.pictureURI = "/source/graber.png";
 		
-		this.beschreibung = "Ultimate: " + name + ": Setzt die Leben aller Einheiten auf 50% (auch Verbündete) ihres Standardwertes, wenn die Einheit nicht bereits Tod ist.";
+		this.beschreibung = "Ultimate: " + name + ": Setzt die Leben aller Einheiten auf 50% (auch Verbündete) ihres Standardwertes, wenn die Einheit nicht bereits Tod ist. Betrifft allerdings maximal nur so viele Einheiten, die auch unter Mäussacks Kommando sind.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1639,7 +1639,7 @@ public class Skill {
 		this.name = "Heilkraut";
 		this.effectKey = "healTargetsUnder50";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 7;
+		this.healPercent = 6;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;

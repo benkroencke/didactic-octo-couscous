@@ -855,7 +855,7 @@ public class Teilnehmer {
 		this.pictureURI = "/source/ancraitlangschiff.png";
 		this.id = 3;
 		this.leben = 2000;
-		this.schaden = 250;
+		this.schaden = 210;
 		this.ruestungProzent = 20;
 		this.init = 125;
 		this.counter = 1; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3
