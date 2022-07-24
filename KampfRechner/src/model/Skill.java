@@ -1035,6 +1035,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill vampirrauch() {
+		
+		this.name = "Vampirrauch";
+		this.effectKey = "magicDamageLifeSteal";
+		this.schadensmulitplikator = 300;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 2;
+		this.numberOfTargets = 2;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/vampirrauch.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen. Die gleiche Anzahl Verbündeter Truppenverbände wird geheilt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	
 	public Skill tiefewunden() {
 		
@@ -1964,6 +1988,9 @@ public class Skill {
 			return this.illusionsmagie();
 		if(name.equals("Magische Bombe"))
 			return this.magischebombe();
+		if(name.equals("Vampirrauch"))
+			return this.vampirrauch();
+		
 		
 		
 		

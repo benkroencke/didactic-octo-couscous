@@ -172,19 +172,20 @@ public class Main {
 		previewSkills.add(skillPool.pilze());
 		previewSkills.add(skillPool.illusionsmagie());
 		previewSkills.add(skillPool.magischebombe());
+		previewSkills.add(skillPool.vampirrauch());
 
 		
 		
 		
-//		Collections.sort(previewTruppen, new Comparator<Teilnehmer>() {
-//
-//			@Override
-//			public int compare(Teilnehmer arg0, Teilnehmer arg1) {
-//				// TODO Auto-generated method stub
-//				return ((arg1.getName()).compareTo(arg0.getName()));
-//			}
-//			
-//		});
+		Collections.sort(previewSkills, new Comparator<Skill>() {
+
+			@Override
+			public int compare(Skill arg0, Skill arg1) {
+				// TODO Auto-generated method stub
+				return ((arg0.getName()).compareTo(arg1.getName()));
+			}
+			
+		});
 		
 		
 		

@@ -635,6 +635,65 @@ public class Effekt {
 			
 		}
 		
+		public static void magicDamageLifeSteal(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			ArrayList<Teilnehmer> friendly = new ArrayList<Teilnehmer>();
+
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() == teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					friendly.add(einheiten.get(a));
+			}
+			
+			
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+			
+			while(friendly.size()>skill.getNumberOfTargets())
+				friendly.remove(friendly.size()-1);
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = skill.getSchadensMulitplikator();
+				if(targets.get(i).getId() == 3)
+					damage = damage*skill.getDamageBonus();
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+			for (int i = 0; i<friendly.size(); i++) {
+				
+				int damage = skill.getSchadensMulitplikator();
+				
+				friendly.get(i).setLebenActual(friendly.get(i).getLebenActual()+damage);
+				
+				int healed = damage;
+				
+				if(friendly.get(i).getLebenActual()>friendly.get(i).getLeben()) {
+					healed = damage-(friendly.get(i).getLebenActual()-friendly.get(i).getLeben());
+					friendly.get(i).setLebenActual(friendly.get(i).getLeben());
+				}
+				
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + friendly.get(i).getBesitzer().getName() + " " + friendly.get(i).getName() + " wurden von " + (friendly.get(i).getLebenActual()-healed) + " auf " + friendly.get(i).getLebenActual() + " gesetzt!" + healed + " geheilt!");
+				teilnehmer.setGeheilterSchaden(teilnehmer.getGeheilterSchaden()+healed);
+
+			}
+			
+		}
+		
 		
 		public static void damageHealReduction(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
@@ -1114,7 +1173,8 @@ public class Effekt {
 				setAll50percent(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "magischeBombe")
 				magischeBombe(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
-			
+			if(effectKey == "magicDamageLifeSteal")
+				magicDamageLifeSteal(einheiten, spieler, skill, teilnehmer);
 			
 			
 			
