@@ -812,7 +812,7 @@ public class MainWindow {
 		JTextArea logTextBox = new JTextArea();
 		logTextBox.setEditable(false);
 		logTextBox.setLineWrap(true);
-		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
+		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 14));
 		scrollPane.setViewportView(logTextBox);
 		
 		panelKampfErstellen = new JPanel();

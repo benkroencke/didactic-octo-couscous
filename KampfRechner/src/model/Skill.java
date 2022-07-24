@@ -216,6 +216,31 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	
+	public Skill yrden() {
+		
+		this.name = "Yrden";
+		this.effectKey = "stunOnce";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/yrden.png";
+
+		this.beschreibung = name + ": Betäubt " + numberOfTargets + " Gegner in der " + cooldown + ". Runde für " + schadensmulitplikator + " Runden.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill hoffnung() {
 		
 		this.name = "Hoffnung nehmen";
@@ -842,6 +867,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill mutagene() {
+		
+		this.name = "Mutagene";
+		this.effectKey = "mutagene";
+		this.schadensmulitplikator = 100; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 1;
+		this.armorBoost = 1;
+		this.damageBonus = 1; //Bei Schadensbonus
+		this.cooldown = 1;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/mutagene.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Alle Hexerzeichen verbessen sich in ihrer Wirkung(Igni +25 Magieschaden, Aard +50 Magieschaden, Yrden betäubt für 3 Runden und Axii löst nun jede 2. Runde aus).";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill drakkar() {
 		
 		this.name = "Drakkar";
@@ -963,6 +1012,31 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	
+	public Skill greifentechnik() {
+		
+		this.name = "Greifentechnik";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 4;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/greifentechnik.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill blitzschlag() {
 		
 		this.name = "Blitzschlag";
@@ -1003,6 +1077,31 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/explosion.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
+	public Skill igni() {
+		
+		this.name = "Igni";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 75;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 1;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/igni.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
 		
@@ -1108,6 +1207,80 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	
+	public Skill aard() {
+		
+		this.name = "Aard";
+		this.effectKey = "magicDamageStun";
+		this.schadensmulitplikator = 100;
+		this.healPercent = 0;
+		this.damageReduction = 1;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 3;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/aard.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen. Sie werden für " + damageReduction + " Runde betäubt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill weisserwolf() {
+		
+		this.name = "Weißer Wolf";
+		this.effectKey = "damageStun";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 0;
+		this.damageReduction = 2;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 5;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/weisserwolf.png";
+
+		this.beschreibung = "Ultimate: " + name + " - Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen. Sie werden für " + damageReduction + " Runden betäubt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill barentechnik() {
+		
+		this.name = "Bärentechnik";
+		this.effectKey = "damageStun";
+		this.schadensmulitplikator = 5;
+		this.healPercent = 0;
+		this.damageReduction = 2;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 4;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/barentechnik.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Truppe. Sie werden für " + damageReduction + " Runden betäubt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
 	public Skill finalerschlag() {
 		
 		this.name = "Finaler Schlag";
@@ -1124,6 +1297,31 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/finalerschlag.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
+	public Skill wolfstechnik() {
+		
+		this.name = "Wolfstechnik";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 2;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 2;
+		this.numberOfTargets = 2;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/wolfstechnik.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
 		
@@ -1465,6 +1663,30 @@ public class Skill {
 		this.pictureURI = "/source/nordwind.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Die Rüstung von allen gegnerischen Einheiten wird in Runde " + cooldown + " um " + damageBonus + "% verringert";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill axii() {
+		
+		this.name = "Axii";
+		this.effectKey = "debuffArmorPercent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 100; //Bei Schadensbonus
+		this.cooldown = 4;
+		this.numberOfTargets = 1; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/axii.png";
+		
+		this.beschreibung = name + ": Die Rüstung von einer gegnerischen Einheit wird in Runde " + cooldown + " um " + damageBonus + "% verringert";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1990,7 +2212,24 @@ public class Skill {
 			return this.magischebombe();
 		if(name.equals("Vampirrauch"))
 			return this.vampirrauch();
-		
+		if(name.equals("Bärentechnik"))
+			return this.barentechnik();
+		if(name.equals("Greifentechnik"))
+			return this.greifentechnik();
+		if(name.equals("Wolfstechnik"))
+			return this.wolfstechnik();
+		if(name.equals("Axii"))
+			return this.axii();
+		if(name.equals("Igni"))
+			return this.igni();
+		if(name.equals("Aard"))
+			return this.aard();
+		if(name.equals("Yrden"))
+			return this.yrden();
+		if(name.equals("Weißer Wolf"))
+			return this.weisserwolf();
+		if(name.equals("Mutagene"))
+			return this.mutagene();
 		
 		
 		

@@ -173,6 +173,15 @@ public class Main {
 		previewSkills.add(skillPool.illusionsmagie());
 		previewSkills.add(skillPool.magischebombe());
 		previewSkills.add(skillPool.vampirrauch());
+		previewSkills.add(skillPool.barentechnik());
+		previewSkills.add(skillPool.greifentechnik());
+		previewSkills.add(skillPool.wolfstechnik());
+		previewSkills.add(skillPool.axii());
+		previewSkills.add(skillPool.igni());
+		previewSkills.add(skillPool.aard());
+		previewSkills.add(skillPool.yrden());
+		previewSkills.add(skillPool.weisserwolf());
+		previewSkills.add(skillPool.mutagene());
 
 		
 		

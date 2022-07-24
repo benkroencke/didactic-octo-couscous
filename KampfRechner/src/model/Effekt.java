@@ -164,6 +164,20 @@ public class Effekt {
 	}
 	
 	
+	public static void debuffArmorPercent(ArrayList<Teilnehmer> einheiten, int bonus, int anzahl, Spieler spieler) {
+		
+		for (int i = 0; i<anzahl; i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = einheiten.get(i).getRuestungProzent()*bonus/100;
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()-schadensBonus);
+				Main.battlelog.add("Der Rüstungswert von gegnerischen " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()+schadensBonus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
+	
 	public static void buffDamageSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, Skill skill) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -189,7 +203,7 @@ public class Effekt {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
 
-			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id && einheiten.get(i).getUltimate().getName() == "Magische Bombe") {
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id && einheiten.get(i).getUltimate().getName() == "Magische Bombe" && !einheiten.get(i).getUltimate().isActive()) {
 				
 				Teilnehmer held = einheiten.get(i);
 				if(held.getSkill1().getName() == "Magieexplosion")
@@ -202,11 +216,108 @@ public class Effekt {
 					einheiten.get(i).getSkill4().setCooldown(cdNew);
 	
 				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
+				einheiten.get(i).getUltimate().setActive(true);
+
 	
 			}
+			
+			
 		}
 		
 	}
+	
+	
+	public static void mutagene(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id && !einheiten.get(i).getUltimate().isActive()) {
+				
+				Teilnehmer held = einheiten.get(i);
+				if(held.getSkill1().getName() == "Igni") {
+					einheiten.get(i).getSkill1().setSchadensMulitplikator(100);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " verursacht nun 25 Schaden mehr.");
+				}
+				if(held.getSkill2().getName() == "Igni") {
+					einheiten.get(i).getSkill2().setSchadensMulitplikator(100);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill2().getName() + " verursacht nun 25 Schaden mehr.");
+				}
+				if(held.getSkill3().getName() == "Igni") {
+					einheiten.get(i).getSkill3().setSchadensMulitplikator(100);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill3().getName() + " verursacht nun 25 Schaden mehr.");
+				}
+				if(held.getSkill4().getName() == "Igni") {
+					einheiten.get(i).getSkill4().setSchadensMulitplikator(100);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill4().getName() + " verursacht nun 25 Schaden mehr.");
+				}
+	
+				
+				if(held.getSkill1().getName() == "Aard") {
+					einheiten.get(i).getSkill1().setSchadensMulitplikator(200);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " verursacht nun 100 Schaden mehr.");
+				}
+				if(held.getSkill2().getName() == "Aard") {
+					einheiten.get(i).getSkill2().setSchadensMulitplikator(200);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill2().getName() + " verursacht nun 100 Schaden mehr.");
+				}
+				if(held.getSkill3().getName() == "Aard") {
+					einheiten.get(i).getSkill3().setSchadensMulitplikator(200);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill3().getName() + " verursacht nun 100 Schaden mehr.");
+				}
+				if(held.getSkill4().getName() == "Aard") {
+					einheiten.get(i).getSkill4().setSchadensMulitplikator(200);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill4().getName() + " verursacht nun 100 Schaden mehr.");
+				}
+				
+				
+				if(held.getSkill1().getName() == "Yrden") {
+					einheiten.get(i).getSkill1().setSchadensMulitplikator(3);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " Betäubt nun 2 Runden.");
+				}
+				if(held.getSkill2().getName() == "Yrden") {
+					einheiten.get(i).getSkill2().setSchadensMulitplikator(3);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill2().getName() + " Betäubt nun 2 Runden.");
+				}
+				if(held.getSkill3().getName() == "Yrden") {
+					einheiten.get(i).getSkill3().setSchadensMulitplikator(3);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill3().getName() + " Betäubt nun 2 Runden.");
+				}
+				if(held.getSkill4().getName() == "Yrden") {
+					einheiten.get(i).getSkill4().setSchadensMulitplikator(3);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill4().getName() + " Betäubt nun 2 Runden.");
+				}
+				
+				
+				if(held.getSkill1().getName() == "Axii") {
+					einheiten.get(i).getSkill1().setCooldown(2);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede 2. Runde aus.");
+				}
+				if(held.getSkill2().getName() == "Axii") {
+					einheiten.get(i).getSkill2().setCooldown(2);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill2().getName() + " löst nun jede 2. Runde aus.");
+				}
+				if(held.getSkill3().getName() == "Axii") {
+					einheiten.get(i).getSkill3().setCooldown(2);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill3().getName() + " löst nun jede 2. Runde aus.");
+				}
+				if(held.getSkill4().getName() == "Axii") {
+					einheiten.get(i).getSkill4().setCooldown(2);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill4().getName() + " löst nun jede 2. Runde aus.");
+				}
+				
+				einheiten.get(i).getUltimate().setActive(true);
+	
+			}
+			
+
+			
+		}
+		
+	}
+	
+	
+	
+	
 	
 	public static void buffDamageSkillSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
 		
@@ -799,6 +910,51 @@ public class Effekt {
 
 			}
 			
+		}
+		
+		
+		public static void magicDamageStun(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+	
+			//Falls Skill == Überfall
+			if(skill.getName() == "Überfall") {
+				ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+				for(int i=0;i<einheiten.size();i++) {
+					if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+						uberfallTargets.add(einheiten.get(i));
+				}
+				targets = uberfallTargets;
+				
+			}
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = skill.getSchadensMulitplikator();
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				if(targets.get(i).getTurnsStunned() < skill.getDamageReduction())
+					targets.get(i).setTurnsStunned(skill.getDamageReduction());
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden " + ". Sie wurden " + skill.getDamageReduction() + " Runden betäubt!");
+				
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
 		}	
 		
 		
@@ -1186,9 +1342,12 @@ public class Effekt {
 				magischeBombe(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
 			if(effectKey == "magicDamageLifeSteal")
 				magicDamageLifeSteal(einheiten, spieler, skill, teilnehmer);
-			
-			
-			
+			if(effectKey == "debuffArmorPercent")
+				debuffArmorPercent(einheiten, skill.getDamageBonus(), skill.getNumberOfTargets(), spieler);
+			if(effectKey == "magicDamageStun")
+				magicDamageStun(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "mutagene")
+				mutagene(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
 			
 		}
 
