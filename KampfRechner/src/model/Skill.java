@@ -70,6 +70,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill abschiedsgeschenk() {
+		
+		this.name = "Abschiedsgeschenk";
+		this.effectKey = "healAll";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 30;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 8;
+		this.numberOfTargets = 99;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/lazarett.png";
+		this.beschreibung = name + ": In runde 8 werden alle Einheiten um 30% geheilt.";
+
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill formationhalten() {
 		
 		this.name = "Formation Halten";
@@ -576,6 +600,54 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill ehrenvollerkampf() {
+		
+		this.name = "Ehrenvoller Kampf";
+		this.effectKey = "buffDamageSpecificUnit";
+		this.schadensmulitplikator = 2; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 30; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/ungeduldige.png";
+		
+		this.beschreibung = name + ": Der Schadenswert von Schildmaiden und Svulblod Fanatikern wird um " + damageBonus + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill pilze() {
+		
+		this.name = "Berauschende Pilze";
+		this.effectKey = "buffDamageSpecificUnit";
+		this.schadensmulitplikator = 2; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 50; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/pilze.png";
+		
+		this.beschreibung = name + ": Der Schadenswert von Svulblod Fanatikern wird um " + damageBonus + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill flotte() {
 		
 		this.name = "Flottenführer";
@@ -649,6 +721,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill illusionsmagie() {
+		
+		this.name = "Mächtige Illusionsmagie";
+		this.effectKey = "setAll50percent";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 2;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/graber.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Setzt die Leben aller Einheiten auf 50% (auch Verbündete) ihres Standardwertes, wenn die Einheit nicht bereits Tod ist.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill spezialkommando() {
 		
 		this.name = "Spezialkommando";
@@ -715,6 +811,31 @@ public class Skill {
 		this.pictureURI = "/source/folteststolz.png";
 		
 		this.beschreibung = "Ultimate: " + name + ": Der Schaden von Foltest Stolz wird um " + damageBonus + " erhöht und Steinhagel wird bereits in Folge 6 ausgelöst.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
+	public Skill magischebombe() {
+		
+		this.name = "Magische Bombe";
+		this.effectKey = "buffDamageSkillSpecificUnit";
+		this.schadensmulitplikator = 100; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0; //Bei Schadensbonus
+		this.cooldown = 4;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/magischebombe.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Magieexplosion wird nun in Runde 4 und 8 ausgelöst.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -841,6 +962,79 @@ public class Skill {
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
 			isPassive, pictureURI);
 	}
+	
+	public Skill blitzschlag() {
+		
+		this.name = "Blitzschlag";
+		this.effectKey = "magicDamageDoubleWeak";
+		this.schadensmulitplikator = 250;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 3;
+		this.numberOfTargets = 2;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/blitzschlag.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen. Der Schaden wird gegen Ritter verdoppelt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill magischerknall() {
+		
+		this.name = "Magischer Knall";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 150;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 2;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/explosion.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill magieexplosion() {
+		
+		this.name = "Magieexplosion";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 500;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 7;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/magieexplosion.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	
 	public Skill tiefewunden() {
 		
@@ -1276,6 +1470,31 @@ public class Skill {
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
 			isPassive, pictureURI);
 	}
+	
+	public Skill drummoldformation() {
+		
+		this.name = "Drummold Formation";
+		this.effectKey = "united";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 10;
+		this.cooldown = 99;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/drakkar.png";
+
+		this.beschreibung = name + ": Für jede Drummold Schildmaild wird der Schaden von Brokvar Bogenschützen um " + damageBonus + " erhöht";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	
 	public Skill diversitaet() {
 		
@@ -1727,7 +1946,24 @@ public class Skill {
 			return this.drakkar();
 		if(name.equals("Berserker"))
 			return this.berserker();
-		
+		if(name.equals("Drummold Formation"))
+			return this.drummoldformation();
+		if(name.equals("Ehrenvoller Kampf"))
+			return this.ehrenvollerkampf();
+		if(name.equals("Abschiedsgeschenk"))
+			return this.abschiedsgeschenk();
+		if(name.equals("Blitzschlag"))
+			return this.blitzschlag();
+		if(name.equals("Magischer Knall"))
+			return this.magischerknall();
+		if(name.equals("Magieexplosion"))
+			return this.magieexplosion();
+		if(name.equals("Berauschende Pilze"))
+			return this.pilze();
+		if(name.equals("Mächtige Illusionsmagie"))
+			return this.illusionsmagie();
+		if(name.equals("Magische Bombe"))
+			return this.magischebombe();
 		
 		
 		

@@ -878,7 +878,7 @@ public class Teilnehmer {
 		
 		this.name = "Svulblod Fanatiker";
 		this.pictureURI = "/source/svulblodfanatiker.png";
-		this.id = 3;
+		this.id = 2;
 		this.leben = 2200;
 		this.schaden = 150;
 		this.ruestungProzent = 0;

@@ -163,6 +163,15 @@ public class Main {
 		previewSkills.add(skillPool.wikinger());
 		previewSkills.add(skillPool.drakkar());
 		previewSkills.add(skillPool.berserker());
+		previewSkills.add(skillPool.drummoldformation());
+		previewSkills.add(skillPool.ehrenvollerkampf());
+		previewSkills.add(skillPool.abschiedsgeschenk());
+		previewSkills.add(skillPool.blitzschlag());
+		previewSkills.add(skillPool.magischerknall());
+		previewSkills.add(skillPool.magieexplosion());
+		previewSkills.add(skillPool.pilze());
+		previewSkills.add(skillPool.illusionsmagie());
+		previewSkills.add(skillPool.magischebombe());
 
 		
 		

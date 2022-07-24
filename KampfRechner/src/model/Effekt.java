@@ -164,14 +164,23 @@ public class Effekt {
 	}
 	
 	
-	public static void buffDamageSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
+	public static void buffDamageSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, Skill skill) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
 			
-			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
-				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
-				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+			if(skill.getName() == "Berauschende Pilze") {
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getName() == "Svulblod Fanatiker") {
+					einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
+					Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
 
+				}
+			}
+			else {
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+					einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
+					Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+	
+				}
 			}
 		}
 	}
@@ -187,6 +196,23 @@ public class Effekt {
 				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
 
 			}
+			
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id && einheiten.get(i).getUltimate().getName() == "Magische Bombe") {
+				
+				Teilnehmer held = einheiten.get(i);
+				if(held.getSkill1().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill1().setCooldown(cdNew);
+				if(held.getSkill2().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill2().setCooldown(cdNew);
+				if(held.getSkill3().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill3().setCooldown(cdNew);
+				if(held.getSkill4().getName() == "Magieexplosion")
+					einheiten.get(i).getSkill4().setCooldown(cdNew);
+
+				Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " löst nun jede " + einheiten.get(i).getSkill1().getCooldown() + " aus.");
+
+			}
+			
 		}
 	}
 	
@@ -494,6 +520,113 @@ public class Effekt {
 					
 		}
 		
+		public static void magicDamageDoubleWeak(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+	
+			//Falls Skill == Überfall
+			if(skill.getName() == "Überfall") {
+				ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+				for(int i=0;i<einheiten.size();i++) {
+					if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+						uberfallTargets.add(einheiten.get(i));
+				}
+				targets = uberfallTargets;
+				
+			}
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = skill.getSchadensMulitplikator();
+				if(targets.get(i).getId() == 3)
+					damage = damage*skill.getDamageBonus();
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+		}
+		
+		public static void setAll50percent(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(!skill.isActive()) {
+					for(int i = 0;i<einheiten.size();i++) {
+						if(!einheiten.get(i).isIstKommandant()) {
+							einheiten.get(i).setLebenActual(einheiten.get(i).getLeben()/2);
+							Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + einheiten.get(i).getBesitzer().getName() + " " + einheiten.get(i).getName() + " wurden auf " + einheiten.get(i).getLebenActual()  + " gesetzt!");
+						}
+					}
+					skill.setActive(true);
+				}
+			}
+			
+		}
+		
+		public static void magicDamage(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+	
+			//Falls Skill == Überfall
+			if(skill.getName() == "Überfall") {
+				ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+				for(int i=0;i<einheiten.size();i++) {
+					if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+						uberfallTargets.add(einheiten.get(i));
+				}
+				targets = uberfallTargets;
+				
+			}
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = skill.getSchadensMulitplikator();
+				if(targets.get(i).getId() == 3)
+					damage = damage*skill.getDamageBonus();
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+		}
+		
+		
 		public static void damageHealReduction(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
 			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
@@ -737,6 +870,19 @@ public class Effekt {
 						Main.battlelog.add("Effekt von: " + spieler.getName() + " " + teilnehmer.getName() + " Schadenswert wurde von " + (teilnehmer.getSchadenActual()-skill.getDamageBonus()) + " auf " + teilnehmer.getSchadenActual() + " gesetzt!");
 					}
 				}
+				
+				if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == 2 && !einheiten.get(i).equals(teilnehmer)) {
+
+					for(int j = 0; j<einheiten.size();j++) {
+						if(skill.getName() == "Drummold Formation" && einheiten.get(j).getId() == 0)
+						{
+							einheiten.get(j).setSchadenActual(einheiten.get(j).getSchadenActual()+skill.getDamageBonus());
+							Main.battlelog.add("Effekt von: " + spieler.getName() + " " + einheiten.get(j).getName() + " Schadenswert wurde von " + (einheiten.get(j).getSchadenActual()-skill.getDamageBonus()) + " auf " + einheiten.get(j).getSchadenActual() + " gesetzt!");
+						}
+					}
+					
+				}
+				
 			}
 		}
 		
@@ -906,7 +1052,7 @@ public class Effekt {
 			if(effectKey == "damageBuffCommander")
 				damageBuffCommander(einheiten, skill.getSchadensMulitplikator(), spieler);
 			if(effectKey == "buffDamageSpecificUnit")
-				buffDamageSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator());
+				buffDamageSpecificUnit(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill);
 			if(effectKey == "buffDamageAllPercent")
 				buffDamageAllPercent(einheiten, skill.getDamageBonus(), spieler);
 			if(effectKey == "stunHero")
@@ -951,6 +1097,15 @@ public class Effekt {
 				damageStun(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "buffSkillSpecificUnitTargets")
 				buffSkillSpecificUnitTargets(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
+			if(effectKey == "magicDamageDoubleWeak")
+				magicDamageDoubleWeak(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "magicDamage")
+				magicDamage(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "setAll50percent")
+				setAll50percent(einheiten, spieler, skill, teilnehmer);
+			
+			
+			
 			
 			
 			
