@@ -98,6 +98,20 @@ public class Effekt {
 		}
 	}
 	
+	
+	public static void debuffArmorAllPercentOnce(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+			
+			if(!einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+				int schadensBonus = bonus;
+				einheiten.get(i).setRuestungProzentActual(einheiten.get(i).getRuestungProzentActual()-schadensBonus);
+				Main.battlelog.add("Der Rüstungswert von " + einheiten.get(i).getBesitzer().getName() + "'s " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getRuestungProzentActual()+schadensBonus) + " auf " + einheiten.get(i).getRuestungProzentActual() + " gesetzt!");
+
+			}
+		}
+	}
+	
 	public static void debuffArmorAllDependent(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, Teilnehmer teilnehmer) {
 		
 		ArrayList<String> diverseUnits = new ArrayList<String>();
@@ -162,6 +176,8 @@ public class Effekt {
 			}
 		}
 	}
+	
+
 	
 	
 	public static void debuffArmorPercent(ArrayList<Teilnehmer> einheiten, int bonus, int anzahl, Spieler spieler) {
@@ -1215,6 +1231,39 @@ public class Effekt {
 			
 		}
 		
+		
+		public static void stunHeroOnce(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+
+			if(!skill.isActive()) {
+			
+				for(int a=0; a<einheiten.size();a++) {
+						
+					if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && einheiten.get(a).isIstKommandant() && einheiten.get(a).getTurnsStunned()<skill.getSchadensMulitplikator())
+							targets.add(einheiten.get(a));
+				}
+				while(targets.size()>skill.getNumberOfTargets())
+					targets.remove(targets.size()-1);
+			
+					
+					
+				for (int i = 0; i<targets.size(); i++) {
+						
+					if(targets.get(i).getTurnsStunned()<skill.getSchadensMulitplikator()) {
+						String mehrere = "Runde";
+						if(skill.getSchadensMulitplikator()>1)
+							mehrere = "Runden";
+						targets.get(i).setTurnsStunned(targets.get(i).getTurnsStunned()+skill.getSchadensMulitplikator());
+						Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " ist für " + skill.getSchadensMulitplikator() + " " + mehrere + " betäubt!");
+						
+					}
+				}
+				skill.setActive(true);
+			}
+			
+		}
+		
 		public static ArrayList<Teilnehmer> spy(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
 			boolean targetFound = false;
@@ -1348,6 +1397,16 @@ public class Effekt {
 				magicDamageStun(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "mutagene")
 				mutagene(einheiten, skill.getDamageBonus(), spieler, skill.getSchadensMulitplikator(), skill.getCooldown());
+			if(effectKey == "stunHeroOnce")
+				stunHeroOnce(einheiten, spieler, skill, teilnehmer);
+			if(effectKey == "debuffArmorAllPercentOnce")
+				debuffArmorAllPercentOnce(einheiten, skill.getDamageBonus(), spieler);
+			
+			
+			
+			
+			
+			
 			
 		}
 

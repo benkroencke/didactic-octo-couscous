@@ -182,6 +182,14 @@ public class Main {
 		previewSkills.add(skillPool.yrden());
 		previewSkills.add(skillPool.weisserwolf());
 		previewSkills.add(skillPool.mutagene());
+		previewSkills.add(skillPool.zeitsprung());
+		previewSkills.add(skillPool.vellaglan());
+		previewSkills.add(skillPool.betauben());
+		previewSkills.add(skillPool.erdrutsch());
+		previewSkills.add(skillPool.feuerball());
+		previewSkills.add(skillPool.feuerbombe());
+		previewSkills.add(skillPool.feuerhagel());
+		previewSkills.add(skillPool.beraterin());
 
 		
 		

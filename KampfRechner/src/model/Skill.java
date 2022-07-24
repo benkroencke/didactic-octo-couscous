@@ -553,6 +553,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill betauben() {
+		
+		this.name = "Betäuben";
+		this.effectKey = "stunHeroOnce";
+		this.schadensmulitplikator = 2;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.pictureURI = "/source/kopfschlag.png";
+
+		this.beschreibung = name + ": Betäubt den generischen Helden in jeder " + cooldown + ". Runde für " + schadensmulitplikator + " Runden.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill belagerung() {
 		
 		this.name = "Belagerung";
@@ -988,6 +1012,31 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	
+	public Skill zeitsprung() {
+		
+		this.name = "Zeitsprung";
+		this.effectKey = "damage";
+		this.schadensmulitplikator = 3;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 5;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/zeitsprung.png";
+
+		this.beschreibung = "Ultimate: " + name + " - Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator*100 + "% Schaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill wilderhieb() {
 		
 		this.name = "Wilder Hieb";
@@ -1065,7 +1114,7 @@ public class Skill {
 		
 		this.name = "Magischer Knall";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 150;
+		this.schadensmulitplikator = 100;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1079,6 +1128,79 @@ public class Skill {
 		this.pictureURI = "/source/explosion.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill vellaglan() {
+		
+		this.name = "Vella Glan";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 380;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 2;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/explosion.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Ziel.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill feuerball() {
+		
+		this.name = "Feuerball";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 440;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 3;
+		this.numberOfTargets = 2;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/feuerball.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Ziel.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
+	public Skill feuerhagel() {
+		
+		this.name = "Merigold Feuerhagel";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 300;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 3;
+		this.numberOfTargets = 8;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/feuerhagel.png";
+
+		this.beschreibung = "Ultimate: " + name + " - Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1104,6 +1226,31 @@ public class Skill {
 		this.pictureURI = "/source/igni.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	
+	public Skill erdrutsch() {
+		
+		this.name = "Erdrutsch";
+		this.effectKey = "magicDamage";
+		this.schadensmulitplikator = 475;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 2;
+		this.cooldown = 5;
+		this.numberOfTargets = 6;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/erdrutsch.png";
+
+		this.beschreibung = "Ultimate: " + name + " - Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -1224,6 +1371,30 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/aard.png";
+
+		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen. Sie werden für " + damageReduction + " Runde betäubt.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill feuerbombe() {
+		
+		this.name = "Feuerbombe";
+		this.effectKey = "magicDamageStun";
+		this.schadensmulitplikator = 300;
+		this.healPercent = 0;
+		this.damageReduction = 1;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 4;
+		this.numberOfTargets = 4;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/feuerbombe.png";
 
 		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen. Sie werden für " + damageReduction + " Runde betäubt.";
 		
@@ -1532,6 +1703,30 @@ public class Skill {
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
+		this.damageBonus = 20; //Bei Schadensbonus
+		this.cooldown = 99;
+		this.numberOfTargets = 0; 
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = true;
+		this.pictureURI = "/source/general.png";
+		
+		this.beschreibung = "Ultimate: " + name + ": Der Schaden von allen gegnerischen Einheiten wird um " + damageBonus + "% verringert,";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
+	public Skill beraterin() {
+		
+		this.name = "Beraterin des Königs";
+		this.effectKey = "debuffArmorAllPercentOnce";
+		this.schadensmulitplikator = 0; //Kann auch id für Einheit sein, die gebufft wird
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 20;
 		this.damageBonus = 20; //Bei Schadensbonus
 		this.cooldown = 99;
 		this.numberOfTargets = 0; 
@@ -2230,7 +2425,22 @@ public class Skill {
 			return this.weisserwolf();
 		if(name.equals("Mutagene"))
 			return this.mutagene();
-		
+		if(name.equals("Zeitsprung"))
+			return this.zeitsprung();
+		if(name.equals("Vella Glan"))
+			return this.vellaglan();
+		if(name.equals("Betäuben"))
+			return this.betauben();
+		if(name.equals("Erdrutsch"))
+			return this.erdrutsch();
+		if(name.equals("Feuerball"))
+			return this.feuerball();
+		if(name.equals("Feuerbombe"))
+			return this.feuerbombe();
+		if(name.equals("Merigold Feuerhagel"))
+			return this.feuerhagel();
+		if(name.equals("Beraterin des Königs"))
+			return this.beraterin();
 		
 		
 		
