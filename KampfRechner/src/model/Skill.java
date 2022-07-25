@@ -192,6 +192,30 @@ public class Skill {
 			isPassive, pictureURI);
 	}
 	
+	public Skill spalten() {
+		
+		this.name = "Spalten";
+		this.effectKey = "damageInit";
+		this.schadensmulitplikator = 3;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 3;
+		this.numberOfTargets = 4;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = true;
+		this.isPassive = false;
+		this.pictureURI = "/source/dezimieren.png";
+		this.beschreibung = name + ": Ein schneller Klingentanz. Alle 3 Runden werden an bis zu 4 Gegnern 300% Schaden (ausgehend der Initiative) angerichtet.";
+
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, pictureURI);
+	}
+	
 	public Skill verhaften() {
 		
 		this.name = "Verhaften";
@@ -2441,7 +2465,8 @@ public class Skill {
 			return this.feuerhagel();
 		if(name.equals("Beraterin des Königs"))
 			return this.beraterin();
-		
+		if(name.equals("Spalten"))
+			return this.spalten();
 		
 		
 		if(name.equals("Svulblod"))

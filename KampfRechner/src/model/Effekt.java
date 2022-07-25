@@ -756,6 +756,54 @@ public class Effekt {
 					
 		}
 		
+		
+		public static void damageInit(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>skill.getNumberOfTargets())
+				targets.remove(targets.size()-1);
+	
+			//Falls Skill == Überfall
+			if(skill.getName() == "Überfall") {
+				ArrayList<Teilnehmer >uberfallTargets = new ArrayList<Teilnehmer>();
+				for(int i=0;i<einheiten.size();i++) {
+					if(einheiten.get(i).getId() == 2 && einheiten.get(i).getBesitzer() != teilnehmer.getBesitzer())
+						uberfallTargets.add(einheiten.get(i));
+				}
+				targets = uberfallTargets;
+				
+			}
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = ((teilnehmer.getInitActual()*skill.getSchadensMulitplikator()) * (100-targets.get(i).getRuestungProzentActual()))/100;
+				
+				if(targets.get(i).getSkill1().getEffectKey() == "reduceDamagePercent") {
+					damage = reduceDamagePercent(targets.get(i), damage);
+				}
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s " + skill.getName() + " - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+}
+		
+		
+		
+		
 		public static void magicDamageDoubleWeak(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
 			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
@@ -1585,7 +1633,8 @@ public class Effekt {
 				stunHeroOnce(einheiten, spieler, skill, teilnehmer);
 			if(effectKey == "debuffArmorAllPercentOnce")
 				debuffArmorAllPercentOnce(einheiten, skill.getDamageBonus(), spieler);
-			
+			if(effectKey == "damageInit")
+				damageInit(einheiten, spieler, skill, teilnehmer);
 			
 			
 			

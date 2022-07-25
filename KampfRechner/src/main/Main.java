@@ -257,6 +257,7 @@ public class Main {
 		previewSkills.add(skillPool.feuerbombe());
 		previewSkills.add(skillPool.feuerhagel());
 		previewSkills.add(skillPool.beraterin());
+		previewSkills.add(skillPool.spalten());
 
 		
 		
