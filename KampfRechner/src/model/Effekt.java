@@ -215,6 +215,36 @@ public class Effekt {
 		}
 	}
 	
+	
+	public static void buffDamageSpecificUnitArtefakt(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
+		
+		if(id == 98)
+			id = 0;
+		if(id == 97)
+			id = 1;
+		if(id == 96)
+			id = 2;
+		if(id == 95)
+			id = 3;
+		
+		for (int i = 0; i<einheiten.size(); i++) {
+
+			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
+				einheiten.get(i).setSchadenActual(einheiten.get(i).getSchadenActual()+bonus);
+				Main.battlelog.add("Der Angriffswert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getSchadenActual()-bonus) + " auf " + einheiten.get(i).getSchadenActual() + " gesetzt!");
+	
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void magischeBombe(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id, int cdNew) {
 		
 		for (int i = 0; i<einheiten.size(); i++) {
@@ -380,6 +410,12 @@ public class Effekt {
 		
 		if(id == 98)
 			id = 0;
+		if(id == 97)
+			id = 1;
+		if(id == 96)
+			id = 2;
+		if(id == 95)
+			id = 3;
 		
 		for (int i = 0; i<einheiten.size(); i++) {
 			
@@ -1311,6 +1347,33 @@ public class Effekt {
 			
 		}
 		
+		public static void stunHeroArtefact(ArrayList<Teilnehmer> einheiten, Spieler spieler, int bonus, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+
+			for(int a=0; a<einheiten.size();a++) {
+					
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && einheiten.get(a).isIstKommandant() && einheiten.get(a).getTurnsStunned()<bonus)
+						targets.add(einheiten.get(a));
+			}
+			while(targets.size()>1)
+				targets.remove(targets.size()-1);
+		
+				
+				
+			for (int i = 0; i<targets.size(); i++) {
+					
+				if(targets.get(i).getTurnsStunned()<bonus) {
+					String mehrere = "Runde";
+					if(bonus>1)
+						mehrere = "Runden";
+					targets.get(i).setTurnsStunned(targets.get(i).getTurnsStunned()+bonus);
+					Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s Artefakt - " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " ist für " + bonus + " " + mehrere + " betäubt!");
+					
+				}
+			}
+			
+		}
 		
 		public static void stunHeroOnce(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
@@ -1406,10 +1469,12 @@ public class Effekt {
 				magicDamageArtefakt(einheiten, spieler, bonus, caster);
 			if(effectKey == "buffArmorSpecificUnit")
 				buffArmorSpecificUnit(einheiten, bonus, spieler, cooldown);
+			if(effectKey == "buffDamageSpecificUnitArtefakt")
+				buffDamageSpecificUnitArtefakt(einheiten, bonus, spieler, cooldown);
+			if(effectKey == "stunArtefact")
+				stunHeroArtefact(einheiten, spieler, bonus, caster);
 			
 			
-			
-
 	}
 
 		public static void skillAufloesen(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, String effectKey, Teilnehmer teilnehmer) {

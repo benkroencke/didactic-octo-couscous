@@ -156,6 +156,17 @@ public class Main {
 		previewArtefakte.add(artefaktPool.brustharnisch1());
 		previewArtefakte.add(artefaktPool.brustharnisch2());
 		previewArtefakte.add(artefaktPool.brustharnisch3());
+		previewArtefakte.add(artefaktPool.kovirlangschwert1());
+		previewArtefakte.add(artefaktPool.kovirlangschwert2());
+		previewArtefakte.add(artefaktPool.kovirlangschwert3());
+		previewArtefakte.add(artefaktPool.arbalest1());
+		previewArtefakte.add(artefaktPool.arbalest2());
+		previewArtefakte.add(artefaktPool.arbalest3());
+		previewArtefakte.add(artefaktPool.speer1());
+		previewArtefakte.add(artefaktPool.speer2());
+		previewArtefakte.add(artefaktPool.speer3());
+		previewArtefakte.add(artefaktPool.dimeritium1());
+		previewArtefakte.add(artefaktPool.dimeritium2());
 
 		
 

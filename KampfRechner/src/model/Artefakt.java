@@ -488,7 +488,7 @@ public class Artefakt {
 		this.effectKey = "magicDamageArtefakt";
 		this.bonus = 240;
 		this.istKampfEffekt = true;
-		this.cooldown = 3;
+		this.cooldown = 99;
 		this.beschreibung = name + ": " + "Stab eines Zauberadepten. Fügt " + bonus + " Magieschaden vor beginn der Schlacht an 3 Zielen hinzu.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -501,7 +501,7 @@ public class Artefakt {
 		this.effectKey = "magicDamageArtefakt";
 		this.bonus = 360;
 		this.istKampfEffekt = true;
-		this.cooldown = 3;
+		this.cooldown = 99;
 		this.beschreibung = name + ": " + "Stab eines Zauberadepten. Fügt " + bonus + " Magieschaden vor beginn der Schlacht an 3 Zielen hinzu.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -514,7 +514,7 @@ public class Artefakt {
 		this.effectKey = "magicDamageArtefakt";
 		this.bonus = 480;
 		this.istKampfEffekt = true;
-		this.cooldown = 3;
+		this.cooldown = 99;
 		this.beschreibung = name + ": " + "Stab eines Zauberadepten. Fügt " + bonus + " Magieschaden vor beginn der Schlacht an 3 Zielen hinzu.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -527,7 +527,7 @@ public class Artefakt {
 		this.effectKey = "buffArmorSpecificUnit";
 		this.bonus = 4;
 		this.istKampfEffekt = true;
-		this.cooldown = 2;
+		this.cooldown = 96;
 		this.beschreibung = name + ": " + "Eine solide Rüstung. Rüstung +" + bonus + " Für schwere Infanterie.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -540,7 +540,7 @@ public class Artefakt {
 		this.effectKey = "buffArmorSpecificUnit";
 		this.bonus = 6;
 		this.istKampfEffekt = false;
-		this.cooldown = 2;
+		this.cooldown = 96;
 		this.beschreibung = name + ": " + "Eine solide Rüstung. Rüstung +" + bonus + " Für schwere Infanterie.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -553,7 +553,7 @@ public class Artefakt {
 		this.effectKey = "buffArmorSpecificUnit";
 		this.bonus = 8;
 		this.istKampfEffekt = false;
-		this.cooldown = 2;
+		this.cooldown = 96;
 		this.beschreibung = name + ": " + "Eine solide Rüstung. Rüstung +" + bonus + " Für schwere Infanterie.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -605,8 +605,8 @@ public class Artefakt {
 		this.effectKey = "buffArmorSpecificUnit";
 		this.bonus = 4;
 		this.istKampfEffekt = false;
-		this.cooldown = 1;
-		this.beschreibung = name + ": " + "Redanischer Brustharnisch. Perfekt für Pikeniere. Rüstung +" + bonus + " Für Pikeniere und Druiden.";
+		this.cooldown = 97;
+		this.beschreibung = name + ": " + "Ein Brustharnisch. Perfekt für Pikeniere. Rüstung +" + bonus + " Für Pikeniere und Druiden.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
 	}
@@ -618,8 +618,8 @@ public class Artefakt {
 		this.effectKey = "buffArmorSpecificUnit";
 		this.bonus = 6;
 		this.istKampfEffekt = false;
-		this.cooldown = 1;
-		this.beschreibung = name + ": " + "Redanischer Brustharnisch. Perfekt für Pikeniere. Rüstung +" + bonus + " Für Pikeniere und Druiden.";
+		this.cooldown = 97;
+		this.beschreibung = name + ": " + "Ein Brustharnisch. Perfekt für Pikeniere. Rüstung +" + bonus + " Für Pikeniere und Druiden.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
 	}
@@ -631,14 +631,154 @@ public class Artefakt {
 		this.effectKey = "buffArmorSpecificUnit";
 		this.bonus = 8;
 		this.istKampfEffekt = false;
-		this.cooldown = 1;
-		this.beschreibung = name + ": " + "Redanischer Brustharnisch. Perfekt für Pikeniere. Rüstung +" + bonus + " Für Pikeniere und Druiden.";
+		this.cooldown = 97;
+		this.beschreibung = name + ": " + "Ein Brustharnisch. Perfekt für Pikeniere. Rüstung +" + bonus + " Für Pikeniere und Druiden.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
 	}
 	
+	public Artefakt kovirlangschwert1() {
+		
+		this.name = "Kovir Langschwert";
+		this.pictureURI = "/source/kovirlangschwert.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 8;
+		this.istKampfEffekt = false;
+		this.cooldown = 95;
+		this.beschreibung = name + ": " + "Ein recht solides Langschwert. Schaden +" + bonus + " Für Ritter und An Craite Langschiffe.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
 	
+	public Artefakt kovirlangschwert2() {
+		
+		this.name = "Kovir Langschwert+1";
+		this.pictureURI = "/source/kovirlangschwert.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 12;
+		this.istKampfEffekt = false;
+		this.cooldown = 95;
+		this.beschreibung = name + ": " + "Ein recht solides Langschwert. Schaden +" + bonus + " Für Ritter und An Craite Langschiffe.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
 	
+	public Artefakt kovirlangschwert3() {
+		
+		this.name = "Kovir Langschwert+2";
+		this.pictureURI = "/source/kovirlangschwert.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 16;
+		this.istKampfEffekt = false;
+		this.cooldown = 95;
+		this.beschreibung = name + ": " + "Ein recht solides Langschwert. Schaden +" + bonus + " Für Ritter und An Craite Langschiffe.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt arbalest1() {
+		
+		this.name = "Temerische Arbaleste";
+		this.pictureURI = "/source/arbalest.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 12;
+		this.istKampfEffekt = false;
+		this.cooldown = 98;
+		this.beschreibung = name + ": " + "Diese Temerische Arbaleste hat schon einige Schädel gespickt. Schaden +" + bonus + " Für Fernkämpfer.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt arbalest2() {
+		
+		this.name = "Temerische Arbaleste+1";
+		this.pictureURI = "/source/arbalest.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 18;
+		this.istKampfEffekt = false;
+		this.cooldown = 98;
+		this.beschreibung = name + ": " + "Diese Temerische Arbaleste hat schon einige Schädel gespickt. Schaden +" + bonus + " Für Fernkämpfer.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt arbalest3() {
+		
+		this.name = "Temerische Arbaleste+2";
+		this.pictureURI = "/source/arbalest.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 24;
+		this.istKampfEffekt = false;
+		this.cooldown = 98;
+		this.beschreibung = name + ": " + "Diese Temerische Arbaleste hat schon einige Schädel gespickt. Schaden +" + bonus + " Für Fernkämpfer.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt speer1() {
+		
+		this.name = "Ard Feain Speer";
+		this.pictureURI = "/source/speer.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 12;
+		this.istKampfEffekt = false;
+		this.cooldown = 97;
+		this.beschreibung = name + ": " + "Diese Niflgaardischen Speere sind besonders Effizient, wenn sie in einer Formation verwendet werden. Schaden +" + bonus + " Für Pikeniere und Druiden.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt speer2() {
+		
+		this.name = "Ard Feain Speer+1";
+		this.pictureURI = "/source/speer.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 18;
+		this.istKampfEffekt = false;
+		this.cooldown = 97;
+		this.beschreibung = name + ": " + "Diese Niflgaardischen Speere sind besonders Effizient, wenn sie in einer Formation verwendet werden. Schaden +" + bonus + " Für Pikeniere und Druiden.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt speer3() {
+		
+		this.name = "Ard Feain Speer+2";
+		this.pictureURI = "/source/speer.png";
+		this.effectKey = "buffDamageSpecificUnitArtefakt";
+		this.bonus = 24;
+		this.istKampfEffekt = false;
+		this.cooldown = 97;
+		this.beschreibung = name + ": " + "Diese Niflgaardischen Speere sind besonders Effizient, wenn sie in einer Formation verwendet werden. Schaden +" + bonus + " Für Pikeniere und Druiden.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt dimeritium1() {
+		
+		this.name = "Dimeritium Handfesseln";
+		this.pictureURI = "/source/dimeritium.png";
+		this.effectKey = "stunArtefact";
+		this.bonus = 1;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Handfesseln aus Dimeritium. Sie betäuben den gegnerischen Kommandanten in der ersten Runde.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt dimeritium2() {
+		
+		this.name = "Dimeritium Handfesseln+1";
+		this.pictureURI = "/source/dimeritium.png";
+		this.effectKey = "stunArtefact";
+		this.bonus = 2;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Handfesseln aus Dimeritium. Sie betäuben den gegnerischen Kommandanten in den ersten 2 Runden.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
 	
 	
 
@@ -751,6 +891,31 @@ public class Artefakt {
 			return this.brustharnisch2();
 		if(name.equals("Redanischer Brustharnisch+2"))
 			return this.brustharnisch3();
+		if(name.equals("Kovir Langschwert"))
+			return this.kovirlangschwert1();
+		if(name.equals("Kovir Langschwert+1"))
+			return this.kovirlangschwert2();
+		if(name.equals("Kovir Langschwert+2"))
+			return this.kovirlangschwert3();
+		if(name.equals("Temerische Arbaleste"))
+			return this.arbalest1();
+		if(name.equals("Temerische Arbaleste+1"))
+			return this.arbalest2();
+		if(name.equals("Temerische Arbaleste+2"))
+			return this.arbalest3();
+		if(name.equals("Ard Feain Speer"))
+			return this.speer1();
+		if(name.equals("Ard Feain Speer+1"))
+			return this.speer2();
+		if(name.equals("Ard Feain Speer+2"))
+			return this.speer3();
+		if(name.equals("Dimeritium Handfesseln"))
+			return this.dimeritium1();
+		if(name.equals("Dimeritium Handfesseln+1"))
+			return this.dimeritium2();
+		
+		
+		
 		
 		
 		
