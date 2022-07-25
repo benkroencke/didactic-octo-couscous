@@ -780,8 +780,87 @@ public class Artefakt {
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
 	}
 	
-	
+	public Artefakt teufelsbovist1() {
+		
+		this.name = "Teufelsbovist";
+		this.pictureURI = "/source/teufelsbovist.png";
+		this.effectKey = "debuffArmorAll";
+		this.bonus = 4;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Eine Bombe aus dem Hexerrepertoire. Sie verringert die Rüstung aller Gegner um " + bonus + ".";
 
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+
+	public Artefakt teufelsbovist2() {
+		
+		this.name = "Teufelsbovist+1";
+		this.pictureURI = "/source/teufelsbovist.png";
+		this.effectKey = "debuffArmorAll";
+		this.bonus = 6;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Eine Bombe aus dem Hexerrepertoire. Sie verringert die Rüstung aller Gegner um " + bonus + ".";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt teufelsbovist3() {
+		
+		this.name = "Teufelsbovist+2";
+		this.pictureURI = "/source/teufelsbovist.png";
+		this.effectKey = "debuffArmorAll";
+		this.bonus = 8;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Eine Bombe aus dem Hexerrepertoire. Sie verringert die Rüstung aller Gegner um " + bonus + ".";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt barenfalle1() {
+		
+		this.name = "Bärenfalle";
+		this.pictureURI = "/source/barenfalle.png";
+		this.effectKey = "debuffHeroInit";
+		this.bonus = 10;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Eine gemeine Falle die den Gegner Lähmt. Gegnerischer Kommandant -" + bonus + " Initative.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt barenfalle2() {
+		
+		this.name = "Bärenfalle+1";
+		this.pictureURI = "/source/barenfalle.png";
+		this.effectKey = "debuffHeroInit";
+		this.bonus = 15;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Eine gemeine Falle die den Gegner Lähmt. Gegnerischer Kommandant -" + bonus + " Initative.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	public Artefakt barenfalle3() {
+		
+		this.name = "Bärenfalle+2";
+		this.pictureURI = "/source/barenfalle.png";
+		this.effectKey = "debuffHeroInit";
+		this.bonus = 20;
+		this.istKampfEffekt = false;
+		this.cooldown = 99;
+		this.beschreibung = name + ": " + "Eine gemeine Falle die den Gegner Lähmt. Gegnerischer Kommandant -" + bonus + " Initative.";
+
+		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
+	}
+	
+	
+	
+	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, int damageBonus, Spieler spieler, String effectKey, Teilnehmer caster) {
 
 		Effekt.aufloesen(einheiten, damageBonus, spieler, effectKey, caster, cooldown);
@@ -913,11 +992,18 @@ public class Artefakt {
 			return this.dimeritium1();
 		if(name.equals("Dimeritium Handfesseln+1"))
 			return this.dimeritium2();
-		
-		
-		
-		
-		
+		if(name.equals("Teufelsbovist"))
+			return this.teufelsbovist1();
+		if(name.equals("Teufelsbovist+1"))
+			return this.teufelsbovist2();
+		if(name.equals("Teufelsbovist+2"))
+			return this.teufelsbovist3();
+		if(name.equals("Bärenfalle"))
+			return this.barenfalle1();
+		if(name.equals("Bärenfalle+1"))
+			return this.barenfalle2();
+		if(name.equals("Bärenfalle+2"))
+			return this.barenfalle3();
 		
 		return null;
 	}

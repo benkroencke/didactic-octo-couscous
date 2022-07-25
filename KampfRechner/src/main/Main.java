@@ -167,6 +167,12 @@ public class Main {
 		previewArtefakte.add(artefaktPool.speer3());
 		previewArtefakte.add(artefaktPool.dimeritium1());
 		previewArtefakte.add(artefaktPool.dimeritium2());
+		previewArtefakte.add(artefaktPool.teufelsbovist1());
+		previewArtefakte.add(artefaktPool.teufelsbovist2());
+		previewArtefakte.add(artefaktPool.teufelsbovist3());
+		previewArtefakte.add(artefaktPool.barenfalle1());
+		previewArtefakte.add(artefaktPool.barenfalle2());
+		previewArtefakte.add(artefaktPool.barenfalle3());
 
 		
 

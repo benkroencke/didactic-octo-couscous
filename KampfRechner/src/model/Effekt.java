@@ -504,6 +504,21 @@ public class Effekt {
 		
 		}
 		
+		public static void debuffHeroInit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				if(!einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).isIstKommandant()) {
+					
+					einheiten.get(i).setInitActual(einheiten.get(i).getInitActual()-bonus);
+					Main.battlelog.add("Der Initwert von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getInitActual()+bonus) + " auf " + einheiten.get(i).getInitActual() + " gesetzt!");
+					
+				}
+					
+			}
+		
+		}
+		
 		
 		public static void speedBuffUnits(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler) {
 			
@@ -1473,7 +1488,10 @@ public class Effekt {
 				buffDamageSpecificUnitArtefakt(einheiten, bonus, spieler, cooldown);
 			if(effectKey == "stunArtefact")
 				stunHeroArtefact(einheiten, spieler, bonus, caster);
-			
+			if(effectKey == "debuffArmorAll")
+				debuffArmorAll(einheiten, bonus, spieler, caster);
+			if(effectKey == "debuffHeroInit")
+				debuffHeroInit(einheiten, bonus, spieler);
 			
 	}
 
