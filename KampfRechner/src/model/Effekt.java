@@ -378,6 +378,9 @@ public class Effekt {
 	
 	public static void buffArmorSpecificUnit(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, int id) {
 		
+		if(id == 98)
+			id = 0;
+		
 		for (int i = 0; i<einheiten.size(); i++) {
 			
 			if(einheiten.get(i).getBesitzer().equals(spieler) && einheiten.get(i).getId() == id) {
@@ -557,6 +560,36 @@ public class Effekt {
 				
 			}
 		}
+		
+		
+		public static void heallAllArtefakt(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, Teilnehmer caster) {
+			
+			for (int i = 0; i<einheiten.size(); i++) {
+				
+				
+				if(einheiten.get(i).getHealable() == 0) {
+					if(einheiten.get(i).getBesitzer().equals(spieler) && !einheiten.get(i).isIstKommandant()) {
+						int heal = (einheiten.get(i).getLeben()*bonus)/100;
+						einheiten.get(i).setLebenActual(einheiten.get(i).getLebenActual()+heal);
+						int actualHeal = 0;
+						if(einheiten.get(i).getLebenActual()>einheiten.get(i).getLeben()) {
+							actualHeal = heal-(einheiten.get(i).getLebenActual()-einheiten.get(i).getLeben());
+							einheiten.get(i).setLebenActual(einheiten.get(i).getLeben());
+						} else {
+							actualHeal = heal;
+						}
+						
+						Main.battlelog.add("Artefakteffekt - Die Leben von " + spieler.getName() + " " + einheiten.get(i).getName() + " wurde von " + (einheiten.get(i).getLebenActual()-actualHeal) + " auf " + einheiten.get(i).getLebenActual() + " gesetzt!");
+						caster.setGeheilterSchaden(caster.getGeheilterSchaden()+actualHeal);
+					}
+				}
+				else {
+					Main.battlelog.add("Artefakteffekt kann nicht ausgelöst werden, da " + einheiten.get(i).getName() + " nicht geheilt werden können!");
+				}
+				
+			}
+		}
+		
 		
 		public static void heal2Units(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer caster, int id1, int id2) {
 			
@@ -785,6 +818,40 @@ public class Effekt {
 			}
 			
 		}
+		
+		
+		public static void magicDamageArtefakt(ArrayList<Teilnehmer> einheiten, Spieler spieler, int bonus, Teilnehmer teilnehmer) {
+			
+			ArrayList<Teilnehmer> targets = new ArrayList<Teilnehmer>();
+			
+			
+				
+			
+			for(int a=0; a<einheiten.size();a++) {
+				
+				if(einheiten.get(a).getBesitzer() != teilnehmer.getBesitzer() && !targets.contains(einheiten.get(a)) && einheiten.get(a).getLebenActual()>0 && !einheiten.get(a).isIstKommandant())
+					targets.add(einheiten.get(a));
+			}
+			while(targets.size()>3)
+				targets.remove(targets.size()-1);
+			
+			for (int i = 0; i<targets.size(); i++) {
+				
+				int damage = bonus;
+				
+				targets.get(i).setLebenActual(targets.get(i).getLebenActual()-damage);
+				
+				Main.battlelog.add("Effekt von: " + teilnehmer.getBesitzer().getName() + " " + teilnehmer.getName() + "'s Artefakteffekt - Die Leben von " + targets.get(i).getBesitzer().getName() + " " + targets.get(i).getName() + " wurden von " + (targets.get(i).getLebenActual()+damage) + " auf " + targets.get(i).getLebenActual() + " gesetzt!" + damage + " Schaden!");
+				teilnehmer.setAngerichteterSchaden(teilnehmer.getAngerichteterSchaden()+damage);
+				targets.get(i).setErlittenerSchaden(targets.get(i).getErlittenerSchaden()+damage);
+
+			}
+			
+		}
+		
+		
+		
+		
 		
 		public static void magicDamageLifeSteal(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, Teilnehmer teilnehmer) {
 			
@@ -1315,7 +1382,7 @@ public class Effekt {
 			return einheiten;
 		}
 		
-		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey) {
+		public static void aufloesen(ArrayList<Teilnehmer> einheiten, int bonus, Spieler spieler, String effectKey, Teilnehmer caster, int cooldown) {
 		
 			if(effectKey == "damageBuffall")
 				damageBuffAll(einheiten, bonus, spieler);
@@ -1327,16 +1394,22 @@ public class Effekt {
 				speedBuffCommander(einheiten, bonus, spieler);
 			if(effectKey == "speedBuffUnits")
 				speedBuffUnits(einheiten, bonus, spieler);
+			if(effectKey == "buffDamageArmorAll")
+				buffDamageArmorAll(einheiten, bonus, bonus, spieler, bonus);
+			if(effectKey == "debuffDamageAllPercent")
+				debuffDamageAllPercent(einheiten, bonus, spieler);
+			if(effectKey == "debuffDamageHero")
+				debuffDamageHero(einheiten, bonus, spieler);
+			if(effectKey == "healAll")
+				heallAllArtefakt(einheiten, bonus, spieler, caster);
+			if(effectKey == "magicDamageArtefakt")
+				magicDamageArtefakt(einheiten, spieler, bonus, caster);
+			if(effectKey == "buffArmorSpecificUnit")
+				buffArmorSpecificUnit(einheiten, bonus, spieler, cooldown);
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
+
 	}
 
 		public static void skillAufloesen(ArrayList<Teilnehmer> einheiten, Spieler spieler, Skill skill, String effectKey, Teilnehmer teilnehmer) {

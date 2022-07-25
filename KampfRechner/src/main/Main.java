@@ -129,8 +129,36 @@ public class Main {
 		previewArtefakte.add(artefaktPool.aerondight2());
 		previewArtefakte.add(artefaktPool.aerondight3());
 		previewArtefakte.add(artefaktPool.aerondight4());
+		previewArtefakte.add(artefaktPool.kriegstrommeln1());
+		previewArtefakte.add(artefaktPool.kriegstrommeln2());
+		previewArtefakte.add(artefaktPool.kriegstrommeln3());
+		previewArtefakte.add(artefaktPool.schaufeln1());
+		previewArtefakte.add(artefaktPool.schaufeln2());
+		previewArtefakte.add(artefaktPool.schaufeln3());
+		previewArtefakte.add(artefaktPool.drachentraum1());
+		previewArtefakte.add(artefaktPool.drachentraum2());
+		previewArtefakte.add(artefaktPool.drachentraum3());
+		previewArtefakte.add(artefaktPool.schwalbe1());
+		previewArtefakte.add(artefaktPool.schwalbe2());
+		previewArtefakte.add(artefaktPool.schwalbe3());
+		previewArtefakte.add(artefaktPool.ringderheilung1());
+		previewArtefakte.add(artefaktPool.ringderheilung2());
+		previewArtefakte.add(artefaktPool.ringderheilung3());
+		previewArtefakte.add(artefaktPool.stabdesadepten1());
+		previewArtefakte.add(artefaktPool.stabdesadepten2());
+		previewArtefakte.add(artefaktPool.stabdesadepten3());
+		previewArtefakte.add(artefaktPool.rabesrustung1());
+		previewArtefakte.add(artefaktPool.rabesrustung2());
+		previewArtefakte.add(artefaktPool.rabesrustung3());
+		previewArtefakte.add(artefaktPool.lederrustung1());
+		previewArtefakte.add(artefaktPool.lederrustung2());
+		previewArtefakte.add(artefaktPool.lederrustung3());
+		previewArtefakte.add(artefaktPool.brustharnisch1());
+		previewArtefakte.add(artefaktPool.brustharnisch2());
+		previewArtefakte.add(artefaktPool.brustharnisch3());
 
 		
+
 		
 		
 		previewSkills.add(skillPool.dezimieren());

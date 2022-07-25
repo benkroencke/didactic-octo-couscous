@@ -106,6 +106,15 @@ public class Kampf {
 				belegt2++;
 		}
 		
+		for(int i=0;i<teilnehmer.size();i++) {
+			
+			teilnehmer.get(i).setAngerichteterSchaden(0);
+			teilnehmer.get(i).setErlittenerSchaden(0);
+			
+		}
+		
+		
+		
 		for(int i=0; i<teilnehmer.size();i++){
 			if(teilnehmer.get(i).getUltimate() != null) {
 				if(teilnehmer.get(i).getUltimate().getEffectKey() == "spezialkommando" && teilnehmer.get(i).getBesitzer() == Main.getSpieler1() && teilnehmer.get(i).getKommandoWert()>belegt1) {
@@ -163,9 +172,8 @@ public class Kampf {
 				
 				if(teilnehmer.get(i).getArtefakte() != null) {
 					for(int j = 0; j<teilnehmer.get(i).getArtefakte().length;j++) {
-						 if(teilnehmer.get(i).getArtefakte()[j] != null && !teilnehmer.get(i).getArtefakte()[j].isIstKampfEffekt()) {
-							 
-								teilnehmer.get(i).getArtefakte()[j].triggerEffekt(teilnehmer, teilnehmer.get(i).getArtefakte()[j].getBonus(), teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getArtefakte()[j].getEffectKey());
+						 if(teilnehmer.get(i).getArtefakte()[j] != null && teilnehmer.get(i).getArtefakte()[j].isIstKampfEffekt() == false) {
+							teilnehmer.get(i).getArtefakte()[j].triggerEffekt(teilnehmer, teilnehmer.get(i).getArtefakte()[j].getBonus(), teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getArtefakte()[j].getEffectKey(), teilnehmer.get(i));
 
 						 }
 						
@@ -191,12 +199,7 @@ public class Kampf {
 		teilnehmer = initRechner(teilnehmer);
 		Main.battlelog.add("---------------------------------------------------");
 		
-		for(int i=0;i<teilnehmer.size();i++) {
-			
-			teilnehmer.get(i).setAngerichteterSchaden(0);
-			teilnehmer.get(i).setErlittenerSchaden(0);
-			
-		}
+
 		
 		this.prioListe = new ArrayList<Teilnehmer>();
 		Main.battlelog.add("Berechnung der Prioritätsliste:");
@@ -304,6 +307,47 @@ public class Kampf {
 					
 					return writeAttackerWin(teilnehmer);
 				}
+				
+				
+				if(teilnehmer.get(i).getArtefakte() != null) {
+					
+					if(teilnehmer.get(i).getArtefakte()[0] != null && runde % teilnehmer.get(i).getArtefakte()[0].getCooldown() == 0 && teilnehmer.get(i).getArtefakte()[0].isIstKampfEffekt() == false) {
+						teilnehmer.get(i).getArtefakte()[0].triggerEffekt(prioListe, teilnehmer.get(i).getArtefakte()[0].getBonus(), teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getArtefakte()[0].getEffectKey(), teilnehmer.get(i));
+					}
+					if(teilnehmer.get(i).getArtefakte()[1] != null && runde % teilnehmer.get(i).getArtefakte()[1].getCooldown() == 0 && teilnehmer.get(i).getArtefakte()[0].isIstKampfEffekt() == false) {
+						teilnehmer.get(i).getArtefakte()[1].triggerEffekt(prioListe, teilnehmer.get(i).getArtefakte()[1].getBonus(), teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getArtefakte()[1].getEffectKey(), teilnehmer.get(i));
+					}
+					if(teilnehmer.get(i).getArtefakte()[2] != null && runde % teilnehmer.get(i).getArtefakte()[2].getCooldown() == 0 && teilnehmer.get(i).getArtefakte()[0].isIstKampfEffekt() == false) {
+						teilnehmer.get(i).getArtefakte()[2].triggerEffekt(prioListe, teilnehmer.get(i).getArtefakte()[2].getBonus(), teilnehmer.get(i).getBesitzer(), teilnehmer.get(i).getArtefakte()[2].getEffectKey(), teilnehmer.get(i));
+					}
+					
+				}
+				
+				
+				
+				
+				for(int j = 0;j<teilnehmer.size();j++) {
+					
+					if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(angreifer))
+						angreiferHasLeben = true;
+					
+					if(teilnehmer.get(j).getLebenActual()>0 && teilnehmer.get(j).isIstKommandant() == false && teilnehmer.get(j).getBesitzer().equals(verteidiger))
+						verteidigerHasLeben = true;
+
+				}
+				
+				if(angreiferHasLeben == false) {
+					
+					return writeDefenderWin(teilnehmer);
+				}
+				
+				if(verteidigerHasLeben == false) {
+					
+					return writeAttackerWin(teilnehmer);
+				}
+
+				
+				
 				
 				
 				if(teilnehmer.get(i).getTurnsStunned() <= 0) {
