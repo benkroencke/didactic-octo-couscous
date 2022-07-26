@@ -845,7 +845,7 @@ public class Teilnehmer {
 		this.name = "Temerische Heckenschützen";
 		this.pictureURI = "/source/Heckenschuetzen.png";
 		this.id = 0;
-		this.leben = 1000;
+		this.leben = 1250;
 		this.schaden = 200;
 		this.ruestungProzent = 5;
 		this.init = 150;
@@ -870,7 +870,7 @@ public class Teilnehmer {
 		this.name = "Tridam Infanterie";
 		this.pictureURI = "/source/hueter.png";
 		this.id = 2;
-		this.leben = 1800;
+		this.leben = 2050;
 		this.schaden = 110;
 		this.ruestungProzent = 20;
 		this.init = 100;
@@ -895,7 +895,7 @@ public class Teilnehmer {
 		this.name = "Temerische Pikeniere";
 		this.pictureURI = "/source/pikeniere.png";
 		this.id = 1;
-		this.leben = 2000;
+		this.leben = 2250;
 		this.schaden = 140;
 		this.ruestungProzent = 12;
 		this.init = 115;
@@ -920,7 +920,7 @@ public class Teilnehmer {
 		this.name = "Foltests Stolz";
 		this.pictureURI = "/source/foltestpride.png";
 		this.id = 4;
-		this.leben = 1500;
+		this.leben = 1750;
 		this.schaden = 250;
 		this.ruestungProzent = 8;
 		this.init = 45;
@@ -970,7 +970,7 @@ public class Teilnehmer {
 		this.name = "Blaue Streifen";
 		this.pictureURI = "/source/ves.png";
 		this.id = 4;
-		this.leben = 2200;
+		this.leben = 2400;
 		this.schaden = 240;
 		this.ruestungProzent = 15;
 		this.init = 185;
@@ -995,7 +995,7 @@ public class Teilnehmer {
 		this.name = "Ard Feain Infanterie";
 		this.pictureURI = "/source/ardfeain.png";
 		this.id = 2;
-		this.leben = 1950;
+		this.leben = 2200;
 		this.schaden = 85;
 		this.ruestungProzent = 25;
 		this.init = 90;
@@ -1020,7 +1020,7 @@ public class Teilnehmer {
 		this.name = "Impera Armbrustschützen";
 		this.pictureURI = "/source/imperaarmbrueste.png";
 		this.id = 0;
-		this.leben = 1250;
+		this.leben = 1500;
 		this.schaden = 175;
 		this.ruestungProzent = 7;
 		this.init = 120;
@@ -1045,7 +1045,7 @@ public class Teilnehmer {
 		this.name = "Ard Feain Schildkröte";
 		this.pictureURI = "/source/ardfeainschildkroete.png";
 		this.id = 1;
-		this.leben = 2500;
+		this.leben = 2750;
 		this.schaden = 130;
 		this.ruestungProzent = 14;
 		this.init = 105;
@@ -1070,7 +1070,7 @@ public class Teilnehmer {
 		this.name = "Nilfgaardische Ritter";
 		this.pictureURI = "/source/nilfgaardritter.png";
 		this.id = 3;
-		this.leben = 1650;
+		this.leben = 1900;
 		this.schaden = 165;
 		this.ruestungProzent = 17;
 		this.init = 175;
@@ -1096,7 +1096,7 @@ public class Teilnehmer {
 		this.name = "Impera Brigade";
 		this.pictureURI = "/source/imperabrigade.png";
 		this.id = 4;
-		this.leben = 3000;
+		this.leben = 3250;
 		this.schaden = 75;
 		this.ruestungProzent = 30;
 		this.init = 50;
@@ -1121,7 +1121,7 @@ public class Teilnehmer {
 		this.name = "Brokvar Bogenschütze";
 		this.pictureURI = "/source/brokvarbogenschutze.png";
 		this.id = 0;
-		this.leben = 1100;
+		this.leben = 1350;
 		this.schaden = 190;
 		this.ruestungProzent = 4;
 		this.init = 155;
@@ -1146,7 +1146,7 @@ public class Teilnehmer {
 		this.name = "Drummond Schildmaid";
 		this.pictureURI = "/source/drummondschildmaid.png";
 		this.id = 2;
-		this.leben = 1750;
+		this.leben = 2000;
 		this.schaden = 130;
 		this.ruestungProzent = 20;
 		this.init = 95;
@@ -1196,7 +1196,7 @@ public class Teilnehmer {
 		this.name = "An Crait Langschiff";
 		this.pictureURI = "/source/ancraitlangschiff.png";
 		this.id = 3;
-		this.leben = 2000;
+		this.leben = 2250;
 		this.schaden = 210;
 		this.ruestungProzent = 20;
 		this.init = 125;
@@ -1221,7 +1221,7 @@ public class Teilnehmer {
 		this.name = "Svulblod Fanatiker";
 		this.pictureURI = "/source/svulblodfanatiker.png";
 		this.id = 2;
-		this.leben = 2200;
+		this.leben = 2450;
 		this.schaden = 150;
 		this.ruestungProzent = 0;
 		this.init = 150;
@@ -1246,7 +1246,7 @@ public class Teilnehmer {
 		this.name = "Spion";
 		this.pictureURI = "/source/spy.png";
 		this.id = 2;
-		this.leben = 1850;
+		this.leben = 2000;
 		this.schaden = 120;
 		this.ruestungProzent = 12;
 		this.init = 160;
@@ -1271,7 +1271,7 @@ public class Teilnehmer {
 		this.name = "Zwergensöldner";
 		this.pictureURI = "/source/zwergensoeldner.png";
 		this.id = 2;
-		this.leben = 2850;
+		this.leben = 3100;
 		this.schaden = 80;
 		this.ruestungProzent = 28;
 		this.init = 90;
