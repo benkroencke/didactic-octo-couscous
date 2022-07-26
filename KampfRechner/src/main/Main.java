@@ -89,7 +89,22 @@ public class Main {
 		previewKommandanten.add(teilnehmerPool.crach(main));
 		previewKommandanten.add(teilnehmerPool.cerys(main));
 		previewKommandanten.add(teilnehmerPool.maussack(main));
-		
+		previewKommandanten.add(teilnehmerPool.falibor(main));
+		previewKommandanten.add(teilnehmerPool.skellen(main));
+		previewKommandanten.add(teilnehmerPool.korys(main));
+		previewKommandanten.add(teilnehmerPool.draug(main));
+		previewKommandanten.add(teilnehmerPool.waldschrat(main));
+		previewKommandanten.add(teilnehmerPool.kikimore(main));
+		previewKommandanten.add(teilnehmerPool.dettlaff(main));
+		previewKommandanten.add(teilnehmerPool.auberon(main));
+		previewKommandanten.add(teilnehmerPool.eredin(main));
+		previewKommandanten.add(teilnehmerPool.caranthir(main));
+		previewKommandanten.add(teilnehmerPool.imlerith(main));
+
+
+
+
+
 		previewTruppen.add(teilnehmerPool.heckenschuetzen(main));
 		previewTruppen.add(teilnehmerPool.hueter(main));
 		previewTruppen.add(teilnehmerPool.pikeniere(main));
