@@ -281,20 +281,20 @@ public class Effekt {
 				
 				Teilnehmer held = einheiten.get(i);
 				if(held.getSkill1().getName() == "Igni") {
-					einheiten.get(i).getSkill1().setSchadensMulitplikator(100);
-					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " verursacht nun 25 Schaden mehr.");
+					einheiten.get(i).getSkill1().setSchadensMulitplikator(125);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill1().getName() + " verursacht nun 50 Schaden mehr.");
 				}
 				if(held.getSkill2().getName() == "Igni") {
-					einheiten.get(i).getSkill2().setSchadensMulitplikator(100);
-					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill2().getName() + " verursacht nun 25 Schaden mehr.");
+					einheiten.get(i).getSkill2().setSchadensMulitplikator(125);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill2().getName() + " verursacht nun 50 Schaden mehr.");
 				}
 				if(held.getSkill3().getName() == "Igni") {
-					einheiten.get(i).getSkill3().setSchadensMulitplikator(100);
-					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill3().getName() + " verursacht nun 25 Schaden mehr.");
+					einheiten.get(i).getSkill3().setSchadensMulitplikator(125);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill3().getName() + " verursacht nun 50 Schaden mehr.");
 				}
 				if(held.getSkill4().getName() == "Igni") {
-					einheiten.get(i).getSkill4().setSchadensMulitplikator(100);
-					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill4().getName() + " verursacht nun 25 Schaden mehr.");
+					einheiten.get(i).getSkill4().setSchadensMulitplikator(125);
+					Main.battlelog.add(spieler.getName() + " " + einheiten.get(i).getName() + " " + einheiten.get(i).getSkill4().getName() + " verursacht nun 50 Schaden mehr.");
 				}
 	
 				
