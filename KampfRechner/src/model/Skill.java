@@ -1114,7 +1114,7 @@ public class Skill {
 		
 		this.name = "Blitzschlag";
 		this.effectKey = "magicDamageDoubleWeak";
-		this.schadensmulitplikator = 250;
+		this.schadensmulitplikator = 200;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1138,7 +1138,7 @@ public class Skill {
 		
 		this.name = "Magischer Knall";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 100;
+		this.schadensmulitplikator = 75;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1162,7 +1162,7 @@ public class Skill {
 		
 		this.name = "Vella Glan";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 380;
+		this.schadensmulitplikator = 290;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1186,7 +1186,7 @@ public class Skill {
 		
 		this.name = "Feuerball";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 440;
+		this.schadensmulitplikator = 345;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1211,7 +1211,7 @@ public class Skill {
 		
 		this.name = "Merigold Feuerhagel";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 300;
+		this.schadensmulitplikator = 245;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1261,7 +1261,7 @@ public class Skill {
 		
 		this.name = "Erdrutsch";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 475;
+		this.schadensmulitplikator = 375;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1285,7 +1285,7 @@ public class Skill {
 		
 		this.name = "Magieexplosion";
 		this.effectKey = "magicDamage";
-		this.schadensmulitplikator = 500;
+		this.schadensmulitplikator = 400;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1309,7 +1309,7 @@ public class Skill {
 		
 		this.name = "Vampirrauch";
 		this.effectKey = "magicDamageLifeSteal";
-		this.schadensmulitplikator = 300;
+		this.schadensmulitplikator = 250;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
@@ -1407,7 +1407,7 @@ public class Skill {
 		
 		this.name = "Feuerbombe";
 		this.effectKey = "magicDamageStun";
-		this.schadensmulitplikator = 300;
+		this.schadensmulitplikator = 225;
 		this.healPercent = 0;
 		this.damageReduction = 1;
 		this.armorBoost = 0;
