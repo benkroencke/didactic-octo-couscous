@@ -410,7 +410,7 @@ public class Artefakt {
 		this.effectKey = "healAll";
 		this.bonus = 4;
 		this.istKampfEffekt = true;
-		this.cooldown = 2;
+		this.cooldown = 3;
 		this.beschreibung = name + ": " + "Ein Heiltrank der Hexeralchemie. Heilt " + bonus + "% der Leben aller Einheiten jede " + cooldown + ". Runde.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -423,7 +423,7 @@ public class Artefakt {
 		this.effectKey = "healAll";
 		this.bonus = 6;
 		this.istKampfEffekt = true;
-		this.cooldown = 2;
+		this.cooldown = 3;
 		this.beschreibung = name + ": " + "Ein Heiltrank der Hexeralchemie. Heilt " + bonus + "% der Leben aller Einheiten jede " + cooldown + ". Runde.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
@@ -436,7 +436,7 @@ public class Artefakt {
 		this.effectKey = "healAll";
 		this.bonus = 8;
 		this.istKampfEffekt = true;
-		this.cooldown = 2;
+		this.cooldown = 3;
 		this.beschreibung = name + ": " + "Ein Heiltrank der Hexeralchemie. Heilt " + bonus + "% der Leben aller Einheiten jede " + cooldown + ". Runde.";
 
 		return new Artefakt(name, beschreibung, pictureURI, effectKey, bonus, istKampfEffekt, cooldown);
