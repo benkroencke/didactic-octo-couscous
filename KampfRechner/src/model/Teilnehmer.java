@@ -1291,6 +1291,308 @@ public class Teilnehmer {
 				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
 	}
 	
+	public Teilnehmer wildejagdkrieger(Spieler besitzer) {
+		
+		this.name = "Krieger der Wilden Jagd";
+		this.pictureURI = "/source/wildejagdkrieger.png";
+		this.id = 2;
+		this.leben = 2600;
+		this.schaden = 140;
+		this.ruestungProzent = 28;
+		this.init = 70;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3, Impera Brigade = 4
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Stahlpanzer");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+		
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer wildejagdschlager(Spieler besitzer) {
+		
+		this.name = "Schläger der Wilden Jagd";
+		this.pictureURI = "/source/wildejagdschlager.png";
+		this.id = 3;
+		this.leben = 1900;
+		this.schaden = 200;
+		this.ruestungProzent = 18;
+		this.init = 50;
+		this.counter = 1; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3, Impera Brigade = 4
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Festnageln");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+		
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer wildejagdhund(Spieler besitzer) {
+		
+		this.name = "Hunde der Wilden Jagd";
+		this.pictureURI = "/source/wildejagdhund.png";
+		this.id = 1;
+		this.leben = 1500;
+		this.schaden = 180;
+		this.ruestungProzent = 8;
+		this.init = 150;
+		this.counter = 1; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3, Impera Brigade = 4
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("No Ability");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+		
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer nekker(Spieler besitzer) {
+		
+		this.name = "Nekker";
+		this.pictureURI = "/source/nekker.png";
+		this.id = 2;
+		this.leben = 1400;
+		this.schaden = 100;
+		this.ruestungProzent = 16;
+		this.init = 110;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Festnageln");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer ghul(Spieler besitzer) {
+		
+		this.name = "Ghul";
+		this.pictureURI = "/source/ghul.png";
+		this.id = 2;
+		this.leben = 1250;
+		this.schaden = 100;
+		this.ruestungProzent = 20;
+		this.init = 145;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Blutsbruder");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer wiederganger(Spieler besitzer) {
+		
+		this.name = "Wiedergänger";
+		this.pictureURI = "/source/wiederganger.png";
+		this.id = 2;
+		this.leben = 1250;
+		this.schaden = 110;
+		this.ruestungProzent = 18;
+		this.init = 95;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("No Ability");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	
+	
+	public Teilnehmer sucher(Spieler besitzer) {
+		
+		this.name = "Navigatoren der Wilden Jagd";
+		this.pictureURI = "/source/sucher.png";
+		this.id = 0;
+		this.leben = 1000;
+		this.schaden = 25;
+		this.ruestungProzent = 10;
+		this.init = 100;
+		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Blitzschlag");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer harpy(Spieler besitzer) {
+		
+		this.name = "Harpyien";
+		this.pictureURI = "/source/harpy.png";
+		this.id = 0;
+		this.leben = 900;
+		this.schaden = 145;
+		this.ruestungProzent = 6;
+		this.init = 155;
+		this.counter = 3; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Doppelschlag");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer wyvern(Spieler besitzer) {
+		
+		this.name = "Wyvern";
+		this.pictureURI = "/source/wyvern.png";
+		this.id = 3;
+		this.leben = 1950;
+		this.schaden = 120;
+		this.ruestungProzent = 17;
+		this.init = 100;
+		this.counter = 1; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Feuerball");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer bruxa(Spieler besitzer) {
+		
+		this.name = "Bruxa";
+		this.pictureURI = "/source/bruxa.png";
+		this.id = 3;
+		this.leben = 1920;
+		this.schaden = 185;
+		this.ruestungProzent = 21;
+		this.init = 125;
+		this.counter = 1; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Vampirrauch");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer katakan(Spieler besitzer) {
+		
+		this.name = "Katakan";
+		this.pictureURI = "/source/katakan.png";
+		this.id = 1;
+		this.leben = 2200;
+		this.schaden = 170;
+		this.ruestungProzent = 12;
+		this.init = 150;
+		this.counter = 1; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Blut trinken");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
+	public Teilnehmer geist(Spieler besitzer) {
+		
+		this.name = "Geister";
+		this.pictureURI = "/source/geist.png";
+		this.id = 0;
+		this.leben = 1100;
+		this.schaden = 145;
+		this.ruestungProzent = 12;
+		this.init = 120;
+		this.counter = 3; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
+		
+		this.lebenActual = leben;
+		this.schadenActual = schaden;
+		this.ruestungProzentActual = ruestungProzent;
+		this.initActual = init;
+		this.istKommandant = false;
+		this.skill1 = skillFabrik.erstelle("Vorbereitung");
+		this.beschreibung = this.name + " - Leben: " + this.leben + ", Schaden: " + this.schaden + ", Rüstung: " + this.ruestungProzent + "%, Initiative: " + this.init + " - Fähigkeit: " + skill1.getBeschreibung();
+
+		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
+				null, null, null, schaden, init, 0,
+				null, istKommandant, id, leben, ruestungProzent,
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+	}
+	
 	
 	public Teilnehmer erstelle(String name, Spieler besitzer) {
 		
@@ -1379,6 +1681,31 @@ public class Teilnehmer {
 			return this.ves(besitzer);
 		if(name.equals("Zwergensöldner"))
 			return this.zwergensoeldner(besitzer);
+		if(name.equals("Krieger der Wilden Jagd"))
+			return this.wildejagdkrieger(besitzer);
+		if(name.equals("Schläger der Wilden Jagd"))
+			return this.wildejagdschlager(besitzer);
+		if(name.equals("Hunde der Wilden Jagd"))
+			return this.wildejagdhund(besitzer);
+		if(name.equals("Nekker"))
+			return this.nekker(besitzer);
+		if(name.equals("Ghul"))
+			return this.ghul(besitzer);
+		if(name.equals("Navigatoren der Wilden Jagd"))
+			return this.sucher(besitzer);
+		if(name.equals("Wiedergänger"))
+			return this.wiederganger(besitzer);
+		if(name.equals("Harpyien"))
+			return this.harpy(besitzer);
+		if(name.equals("Wyvern"))
+			return this.wyvern(besitzer);
+		if(name.equals("Geister"))
+			return this.geist(besitzer);
+		if(name.equals("Bruxa"))
+			return this.bruxa(besitzer);
+		if(name.equals("Katakan"))
+			return this.katakan(besitzer);
+		
 		
 		return null;
 	}

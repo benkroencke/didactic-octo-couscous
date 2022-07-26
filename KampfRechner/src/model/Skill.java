@@ -1199,7 +1199,7 @@ public class Skill {
 		this.isPassive = false;
 		this.pictureURI = "/source/feuerball.png";
 
-		this.beschreibung = name + ": Dieser Kommandant verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Ziel.";
+		this.beschreibung = name + ": Verursacht in jeder " + cooldown + ". Runde " + schadensmulitplikator + " Magieschaden an " + numberOfTargets + " Zielen.";
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
 			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
@@ -2009,6 +2009,29 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill bluttrinken() {
+		
+		this.name = "Blut trinken";
+		this.effectKey = "pinchBoostFactorHeal";
+		this.schadensmulitplikator = 1;
+		this.healPercent = 25;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 1;
+		this.numberOfTargets = 0;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.beschreibung = name + ": Sollte diese Einheit auf 50% Leben oder darunter fallen, verwandelt sie sich in einen Bären. Ihr Angriffswert erhöht sich um 100% (Kann nicht verhindert werden).";
+
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	public Skill blutsbruder() {
 		
 		this.name = "Blutsbruder";
@@ -2298,6 +2321,28 @@ public class Skill {
 			isPassive, "");
 	}
 	
+	public Skill noability() {
+		
+		this.name = "No Ability";
+		this.effectKey = "nichts";
+		this.schadensmulitplikator = 0;
+		this.healPercent = 0;
+		this.damageReduction = 0;
+		this.armorBoost = 0;
+		this.damageBonus = 0;
+		this.cooldown = 99;
+		this.numberOfTargets = 1;
+		this.hatEile = false;
+		this.ignoresArmor = false;
+		this.isActive = false;
+		this.isPassive = false;
+		this.beschreibung = "Diese Einheit besitzt keine Fähigkeit.";
+		
+		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
+			cooldown, numberOfTargets, hatEile, ignoresArmor, isActive,
+			isPassive, "");
+	}
+	
 	
 	public void triggerEffekt(ArrayList<Teilnehmer> einheiten, Spieler spieler, String effectKey, Teilnehmer teilnehmer) {
 
@@ -2497,7 +2542,10 @@ public class Skill {
 			return this.steinhagel();
 		if(name.equals("Festnageln"))
 			return this.festnageln();
-		
+		if(name.equals("No Ability"))
+			return this.noability();
+		if(name.equals("Blut trinken"))
+			return this.bluttrinken();
 		
 		return null;
 	}

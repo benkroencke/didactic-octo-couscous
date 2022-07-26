@@ -349,6 +349,8 @@ public class MainWindow {
 		panelStatistik.add(hpC2E7);
 		
 		healthAllRight = new JProgressBar();
+		healthAllRight.setFont(new Font("Tahoma", Font.BOLD, 14));
+		healthAllRight.setStringPainted(true);
 		healthAllRight.setValue(60);
 		healthAllRight.setForeground(Color.BLUE);
 		healthAllRight.setBackground(new Color(128, 0, 0));
@@ -521,6 +523,9 @@ public class MainWindow {
 		panelStatistik.add(hpC1E1);
 		
 		healthAllLeft = new JProgressBar();
+		healthAllLeft.setFont(new Font("Tahoma", Font.BOLD, 14));
+		healthAllLeft.setStringPainted(true);
+		healthAllLeft.setToolTipText("");
 		healthAllLeft.setMaximum(2500);
 		healthAllLeft.setForeground(Color.BLUE);
 		healthAllLeft.setBackground(new Color(128, 0, 0));

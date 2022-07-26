@@ -120,6 +120,19 @@ public class Main {
 		previewTruppen.add(teilnehmerPool.druiden(main));
 		previewTruppen.add(teilnehmerPool.ancraitlangschiff(main));
 		previewTruppen.add(teilnehmerPool.svulblodfanatiker(main));
+		previewTruppen.add(teilnehmerPool.wildejagdhund(main));
+		previewTruppen.add(teilnehmerPool.wildejagdkrieger(main));
+		previewTruppen.add(teilnehmerPool.wildejagdschlager(main));
+		previewTruppen.add(teilnehmerPool.sucher(main));
+		previewTruppen.add(teilnehmerPool.nekker(main));
+		previewTruppen.add(teilnehmerPool.ghul(main));
+		previewTruppen.add(teilnehmerPool.wiederganger(main));
+		previewTruppen.add(teilnehmerPool.harpy(main));
+		previewTruppen.add(teilnehmerPool.geist(main));
+		previewTruppen.add(teilnehmerPool.wyvern(main));
+		previewTruppen.add(teilnehmerPool.katakan(main));
+		previewTruppen.add(teilnehmerPool.bruxa(main));
+
 		
 
 		previewArtefakte.add(artefaktPool.donner1());
