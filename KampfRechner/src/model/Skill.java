@@ -51,7 +51,7 @@ public class Skill {
 		this.name = "Schlachtruf";
 		this.effectKey = "healAll";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 10;
+		this.healPercent = 8;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -62,7 +62,7 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/schlachtruf.png";
-		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 10% der fehlenden Leben).";
+		this.beschreibung = name + ": Ein motivierender Schrei. Verbündete Truppen fühlen sich danach regeneriert (Heilt alle 3 Runden 8% der fehlenden Leben).";
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -75,7 +75,7 @@ public class Skill {
 		this.name = "Abschiedsgeschenk";
 		this.effectKey = "healAll";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 30;
+		this.healPercent = 25;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -86,7 +86,7 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/lazarett.png";
-		this.beschreibung = name + ": In runde 8 werden alle Einheiten um 30% geheilt.";
+		this.beschreibung = name + ": In runde 8 werden alle Einheiten um 25% geheilt.";
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -99,7 +99,7 @@ public class Skill {
 		this.name = "Formation Halten";
 		this.effectKey = "heal2Units";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 5;
+		this.healPercent = 4;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -123,7 +123,7 @@ public class Skill {
 		this.name = "Verstärkung";
 		this.effectKey = "healAll";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 20;
+		this.healPercent = 14;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -134,7 +134,7 @@ public class Skill {
 		this.isActive = true;
 		this.isPassive = false;
 		this.pictureURI = "/source/verstarkung.png";
-		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 20% Leben.";
+		this.beschreibung = name + ": Bei einem Ruf nach Verstärkungen werden die Truppen aufgestockt. Heilt alle 4 Runden 14% Leben.";
 
 		
 		return new Skill(name, effectKey, beschreibung, schadensmulitplikator, healPercent, damageReduction, armorBoost, damageBonus,
@@ -1674,7 +1674,7 @@ public class Skill {
 		this.name = "Feldlazarett";
 		this.effectKey = "healTargetsUnder50";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 10;
+		this.healPercent = 6;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
@@ -2103,7 +2103,7 @@ public class Skill {
 		this.name = "Heilkraut";
 		this.effectKey = "healTargetsUnder50";
 		this.schadensmulitplikator = 0;
-		this.healPercent = 6;
+		this.healPercent = 4;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
 		this.damageBonus = 0;
