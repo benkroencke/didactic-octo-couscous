@@ -1,12 +1,17 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import main.Main;
 
-public class Teilnehmer {
+public class Teilnehmer implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Spieler besitzer;
 	private String name;
 	private String beschreibung;

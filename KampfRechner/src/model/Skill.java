@@ -1,9 +1,14 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Skill {
+public class Skill implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3274697180679172860L;
 	private String name;
 	private String effectKey;
 	private String beschreibung;
@@ -207,7 +212,7 @@ public class Skill {
 		this.ignoresArmor = false;
 		this.isActive = true;
 		this.isPassive = false;
-		this.pictureURI = "/source/dezimieren.png";
+		this.pictureURI = "/source/hammer.png";
 		this.beschreibung = name + ": Ein schneller Klingentanz. Alle 3 Runden werden an bis zu 4 Gegnern 300% Schaden (ausgehend der Initiative) angerichtet.";
 
 		

@@ -13,7 +13,17 @@ import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import javax.swing.JLayeredPane;
@@ -30,6 +40,7 @@ import javax.swing.plaf.synth.SynthFormattedTextFieldUI;
 import kampfrechner.Kampf;
 import main.Main;
 import model.Artefakt;
+import model.HistoryDataStorage;
 import model.Skill;
 import model.Spieler;
 import model.Teilnehmer;
@@ -45,6 +56,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Button;
 
 public class MainWindow {
 
@@ -169,6 +181,9 @@ public class MainWindow {
 	private JLabel  lblSpieler1Name;
 	private JLabel lblSpieler2Name;
 	
+	private JComboBox loadComboBox;
+	JTextArea logTextBox;
+	
 	public MainWindow() {
 		initialize();
 	}
@@ -196,6 +211,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				
 				panelStatistik.hide();
+				loadComboBox.hide();
 				panelMainMenu.show();
 				
 			}
@@ -206,15 +222,70 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				if(panelLog.isVisible()) {
 					panelLog.hide();
+
 					btnKampfbericht.setBackground(new Color(230, 230, 250));
 				}
 				else {
+
 					panelLog.show();
+					
 					btnKampfbericht.setBackground(Color.BLACK);
+					
 				}
 				
 			}
 		});
+		
+		loadComboBox = new JComboBox();
+		loadComboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+				resetStatistik();
+				
+				String fileName = "" + loadComboBox.getSelectedItem();
+				
+				try {
+					
+					FileInputStream fis = new FileInputStream("./src/saves/" + fileName);
+					BufferedInputStream bis = new BufferedInputStream(fis);
+					ObjectInputStream ois = new ObjectInputStream(bis);
+					
+					HistoryDataStorage hStorage = (HistoryDataStorage)ois.readObject();
+					
+					ArrayList<Teilnehmer> savedTeilnehmer = hStorage.teilnehmer;
+					String t = hStorage.battleLog;
+					Spieler s1 = hStorage.s1;
+					Spieler s2 = hStorage.s2;
+					heldSpieler1 = hStorage.held1;
+					heldSpieler2 = hStorage.held2;
+					
+
+					
+					
+					
+					//setDataForStatistik(savedTeilnehmer, heldSpieler1, heldSpieler2);
+					setDataforHistory(savedTeilnehmer, heldSpieler1, heldSpieler2, t);
+					lblSpieler1Name.setText(s1.getName());
+					lblSpieler2Name.setText(s2.getName());
+					lblCommander1Statistik.setToolTipText(heldSpieler1.getBeschreibung());
+					lblCommander2Statistik.setToolTipText(heldSpieler2.getBeschreibung());
+					lblAfterCommander1Name.setText(heldSpieler1.getName());
+					lblAfterCommander2Name.setText(heldSpieler2.getName());
+					lblSpieler1Name.setForeground(heldSpieler1.getBesitzer().getFarbe());
+					lblSpieler2Name.setForeground(heldSpieler2.getBesitzer().getFarbe());
+					
+					ois.close();
+				}catch(IOException ex) {
+					ex.printStackTrace();
+				}catch(ClassNotFoundException ex) {
+					ex.printStackTrace();
+				}
+				
+			}
+		});
+		loadComboBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
+		loadComboBox.setBounds(369, 156, 446, 50);
+		panelStatistik.add(loadComboBox);
 		
 		lblSpieler2Name = new JLabel("Spieler 2");
 		lblSpieler2Name.setForeground(Color.WHITE);
@@ -814,7 +885,7 @@ public class MainWindow {
 		scrollPane.setBounds(10, 11, 1144, 379);
 		panelLog.add(scrollPane);
 		
-		JTextArea logTextBox = new JTextArea();
+		logTextBox = new JTextArea();
 		logTextBox.setEditable(false);
 		logTextBox.setLineWrap(true);
 		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 14));
@@ -913,6 +984,8 @@ public class MainWindow {
 		JButton btnBerechne = new JButton("Berechne");
 		btnBerechne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				statisticZuruck.show();
 				
 				resetStatistik();
 				
@@ -1018,9 +1091,13 @@ public class MainWindow {
 				logTextBox.setText(t);
 				Main.battlelog.clear();
 				
-				setDataForStatistik(teilnehmer);
+				
+				setDataForStatistik(teilnehmer, heldSpieler1, heldSpieler2);
+				
+				saveToHistory(heldSpieler1.getName(), heldSpieler2.getName(), teilnehmer, t, heldSpieler1.getBesitzer(), heldSpieler2.getBesitzer(), heldSpieler1, heldSpieler2);
 				
 				panelKampfErstellen.hide();
+				loadComboBox.hide();
 				panelStatistik.show();
 				
 			}
@@ -1764,7 +1841,7 @@ public class MainWindow {
 		frame.getContentPane().add(panelMainMenu);
 		panelMainMenu.setLayout(null);
 		
-		JLabel lblVersion = new JLabel("V0.9.1_ALPHA");
+		JLabel lblVersion = new JLabel("V0.9.2_ALPHA");
 		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblVersion.setForeground(new Color(255, 255, 255));
 		lblVersion.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1781,6 +1858,9 @@ public class MainWindow {
 		JButton btnKampferstellen_1 = new JButton("Kampf erstellen");
 		btnKampferstellen_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				heldSpieler1 = null;
+				heldSpieler2 = null;
 				
 				//Fülle Combobox für Truppen
 				String[] einheitenNamen = new String[main.getPreviewTroops().size()];
@@ -1830,6 +1910,33 @@ public class MainWindow {
 		panelMainMenu.add(btnKampferstellen_1);
 		
 		JButton btnKampfHistorie_1 = new JButton("Kampfhistorie");
+		btnKampfHistorie_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				statisticZuruck.hide();
+				
+				resetStatistik();
+				
+				File folder = new File("./src/saves");
+				File[] listOfFiles = folder.listFiles();
+
+				for (int i = 0; i < listOfFiles.length; i++) {
+				  if (listOfFiles[i].isFile()) {
+				  } else if (listOfFiles[i].isDirectory()) {
+				  }
+				}
+				
+				for(int i = 0; i<listOfFiles.length;i++) {
+					loadComboBox.addItem(listOfFiles[i].getName());
+					
+				}
+				
+				loadComboBox.show();
+				panelStatistik.show();
+				panelMainMenu.hide();
+				
+			}
+		});
 		btnKampfHistorie_1.setForeground(Color.BLACK);
 		btnKampfHistorie_1.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 28));
 		btnKampfHistorie_1.setBackground(new Color(230, 230, 250));
@@ -1858,6 +1965,34 @@ public class MainWindow {
 		frame.setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	protected void saveToHistory(String held1Name, String held2Name, ArrayList<Teilnehmer> teilnehmer, String battleLog, Spieler s1, Spieler s2, Teilnehmer held1, Teilnehmer held2) {
+		
+		Date date = new Date();
+		
+		try {
+			
+			FileOutputStream fos = new FileOutputStream("./src/saves/" + date.getTime() + " - " + held1Name + " - vs. - " + held2Name + " " + ".dat");
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			ObjectOutputStream oos = new ObjectOutputStream(bos);
+			
+			HistoryDataStorage hStorage = new HistoryDataStorage();
+			
+			hStorage.teilnehmer = (ArrayList<Teilnehmer>) teilnehmer.clone();
+			hStorage.battleLog = battleLog;
+			hStorage.s1 = s1;
+			hStorage.s2 = s2;
+			hStorage.held1 = held1;
+			hStorage.held2 = held2;
+			
+			oos.writeObject(hStorage);
+			oos.close();
+			
+		}catch(IOException ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 
 	protected void removeSkill(Teilnehmer held, DefaultListModel model, String seite) {
@@ -2165,7 +2300,190 @@ public class MainWindow {
         lblCommanderArtefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
 	}
 	
-	private void setDataForStatistik(ArrayList<Teilnehmer> teilnehmer){
+	private void setDataforHistory(ArrayList<Teilnehmer> teilnehmeriche, Teilnehmer held1, Teilnehmer held2, String t) {
+		
+		int hp1 = 0;
+		int hp1actual = 0;
+		int hp2 = 0;
+		int hp2actual = 0;
+		
+		for(int i=0;i<teilnehmeriche.size();i++) {
+			
+			if(teilnehmeriche.get(i).getBesitzer() == held1.getBesitzer() && !teilnehmeriche.get(i).isIstKommandant()) {
+				hp1 += teilnehmeriche.get(i).getLeben();
+				hp1actual += teilnehmeriche.get(i).getLebenActual();
+			}
+			
+			if(teilnehmeriche.get(i).getBesitzer() == held2.getBesitzer() && !teilnehmeriche.get(i).isIstKommandant()) {
+				hp2 += teilnehmeriche.get(i).getLeben();
+				hp2actual += teilnehmeriche.get(i).getLebenActual();
+			}
+			
+			
+		}
+		if(hp1actual <= 0) {
+			hp1actual = 0;
+			lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/defeat.png")));
+		}
+		if(hp2actual <= 0) {
+			hp2actual = 0;
+			lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/victory.png")));
+		}
+		if(hp1actual>0 && hp2actual>0)
+			lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/draw.png")));
+
+		lblCommander1Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(held1.getPictureURI())));			
+		lblCommander2Statistik.setIcon(new ImageIcon(MainWindow.class.getResource(held2.getPictureURI())));
+		
+		healthAllLeft.setMaximum(hp1);
+		healthAllLeft.setValue(hp1actual);
+		healthAllLeft.setToolTipText(hp1actual + "/" + hp1);
+
+		healthAllRight.setMaximum(hp2);
+		healthAllRight.setValue(hp2actual);
+		healthAllRight.setToolTipText(hp2actual + "/" + hp2);
+		
+		
+			
+		ArrayList<JLabel> unitIcons1 = new ArrayList<JLabel>();
+		unitIcons1.add(lblCommander1Einheit1Statistik);
+		unitIcons1.add(lblCommander1Einheit2Statistik);
+		unitIcons1.add(lblCommander1Einheit3Statistik);
+		unitIcons1.add(lblCommander1Einheit4Statistik);
+		unitIcons1.add(lblCommander1Einheit5Statistik);
+		unitIcons1.add(lblCommander1Einheit6Statistik);
+		unitIcons1.add(lblCommander1Einheit7Statistik);
+		unitIcons1.add(lblCommander1Einheit8Statistik);
+		
+		ArrayList<JLabel> unitIcons2 = new ArrayList<JLabel>();
+		unitIcons2.add(lblCommander2Einheit1Statistik);
+		unitIcons2.add(lblCommander2Einheit2Statistik);
+		unitIcons2.add(lblCommander2Einheit3Statistik);
+		unitIcons2.add(lblCommander2Einheit4Statistik);
+		unitIcons2.add(lblCommander2Einheit5Statistik);
+		unitIcons2.add(lblCommander2Einheit6Statistik);
+		unitIcons2.add(lblCommander2Einheit7Statistik);
+		unitIcons2.add(lblCommander2Einheit8Statistik);
+		
+		ArrayList<JProgressBar> unitHPbars1 = new ArrayList<JProgressBar>();
+		unitHPbars1.add(hpC1E1);
+		unitHPbars1.add(hpC1E2);
+		unitHPbars1.add(hpC1E3);
+		unitHPbars1.add(hpC1E4);
+		unitHPbars1.add(hpC1E5);
+		unitHPbars1.add(hpC1E6);
+		unitHPbars1.add(hpC1E7);
+		unitHPbars1.add(hpC1E8);
+
+		ArrayList<JProgressBar> unitHPbars2 = new ArrayList<JProgressBar>();
+		unitHPbars2.add(hpC2E1);
+		unitHPbars2.add(hpC2E2);
+		unitHPbars2.add(hpC2E3);
+		unitHPbars2.add(hpC2E4);
+		unitHPbars2.add(hpC2E5);
+		unitHPbars2.add(hpC2E6);
+		unitHPbars2.add(hpC2E7);
+		unitHPbars2.add(hpC2E8);
+		
+		ArrayList<JLabel> artefactIcons1 = new ArrayList<JLabel>();
+		artefactIcons1.add(lblCommander1Artefakt1Statistik);
+		artefactIcons1.add(lblCommander1Artefakt2Statistik);
+		artefactIcons1.add(lblCommander1Artefakt3Statistik);
+		
+		ArrayList<JLabel> artefactIcons2 = new ArrayList<JLabel>();
+		artefactIcons2.add(lblCommander2Artefakt1Statistik);
+		artefactIcons2.add(lblCommander2Artefakt2Statistik);
+		artefactIcons2.add(lblCommander2Artefakt3Statistik);
+
+		
+		for(int b = 0;b<teilnehmeriche.size();b++) {
+		
+			int a = 0;
+			while (unitIcons1.get(a).getIcon() != null && a<unitIcons1.size()) {
+				a++;
+			}
+					
+			if(unitIcons1.get(a).getIcon() == null && teilnehmeriche.get(b).getBesitzer() == held1.getBesitzer() && !teilnehmeriche.get(b).isIstKommandant()) {
+				unitIcons1.get(a).setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmeriche.get(b).getPictureURI())));
+				unitIcons1.get(a).setToolTipText(teilnehmeriche.get(b).getBeschreibung());
+				unitHPbars1.get(a).setMaximum(teilnehmeriche.get(b).getLeben());
+				unitHPbars1.get(a).setValue(teilnehmeriche.get(b).getLebenActual());
+				unitHPbars1.get(a).setToolTipText(teilnehmeriche.get(b).getLebenActual() + "/" + teilnehmeriche.get(b).getLeben());
+
+			}
+		}
+			
+		for(int b = 0;b<teilnehmeriche.size();b++) {
+			
+			int a = 0;
+			while (unitIcons2.get(a).getIcon() != null && a<unitIcons2.size()-1) {
+				a++;
+			}
+					
+			if(unitIcons2.get(a).getIcon() == null && teilnehmeriche.get(b).getBesitzer() == held2.getBesitzer() && !teilnehmeriche.get(b).isIstKommandant()) {
+				unitIcons2.get(a).setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmeriche.get(b).getPictureURI())));
+				unitIcons2.get(a).setToolTipText(teilnehmeriche.get(b).getBeschreibung());
+				unitHPbars2.get(a).setMaximum(teilnehmeriche.get(b).getLeben());
+				unitHPbars2.get(a).setValue(teilnehmeriche.get(b).getLebenActual());
+				unitHPbars2.get(a).setToolTipText(teilnehmeriche.get(b).getLebenActual() + "/" + teilnehmeriche.get(b).getLeben());
+
+			}
+		}		
+		
+		logTextBox.setText(t);
+		
+		int truppenAngerichtet1 = 0;
+		int truppenAngerichtet2 = 0;
+		int erlitten1 = 0;
+		int erlitten2 = 0;
+		int geheilt1 = 0;
+		int geheilt2 = 0;
+		int kommandant1Schaden = held1.getAngerichteterSchaden();
+		int kommandant2Schaden = held2.getAngerichteterSchaden();
+		
+		for(int i=0;i<teilnehmeriche.size();i++) {
+			
+			if(!teilnehmeriche.get(i).isIstKommandant() && teilnehmeriche.get(i).getBesitzer().equals(held1.getBesitzer())) {
+				truppenAngerichtet1 = truppenAngerichtet1 + teilnehmeriche.get(i).getAngerichteterSchaden();
+				erlitten1 = erlitten1 + teilnehmeriche.get(i).getErlittenerSchaden();
+				geheilt1 = geheilt1 + teilnehmeriche.get(i).getGeheilterSchaden();
+			}
+				
+			if(!teilnehmeriche.get(i).isIstKommandant() && teilnehmeriche.get(i).getBesitzer().equals(held2.getBesitzer())) {
+				truppenAngerichtet2 = truppenAngerichtet2 + teilnehmeriche.get(i).getAngerichteterSchaden();
+				erlitten2 = erlitten2 + teilnehmeriche.get(i).getErlittenerSchaden();
+				geheilt2 = geheilt2 + teilnehmeriche.get(i).getGeheilterSchaden();	
+			}
+			
+		}
+		
+		setSchadenValues(truppenAngerichtet1, erlitten1, geheilt1, kommandant1Schaden, lblSchaden11Value, lblSchaden12Value, lblSchaden13Value, lblSchaden14Value);
+		setSchadenValues(truppenAngerichtet2, erlitten2, geheilt2, kommandant2Schaden, lblSchaden21Value, lblSchaden22Value, lblSchaden23Value, lblSchaden24Value);
+		
+		setSkillIconsRaiseLevelHistory(teilnehmeriche, held1, held2);
+		
+		for(int i = 0; i<3;i++) {
+			
+			if(held1.getArtefakte()[i] != null) {
+				
+				artefactIcons1.get(i).setIcon(new ImageIcon(MainWindow.class.getResource(held1.getArtefakte()[i].getPictureURI())));
+				artefactIcons1.get(i).setToolTipText(held1.getArtefakte()[i].getBeschreibung());
+
+			}
+			
+			if(held2.getArtefakte()[i] != null) {
+				
+				artefactIcons2.get(i).setIcon(new ImageIcon(MainWindow.class.getResource(held2.getArtefakte()[i].getPictureURI())));
+				artefactIcons2.get(i).setToolTipText(held2.getArtefakte()[i].getBeschreibung());
+				
+			}
+				
+		}
+		
+		
+	}
+	
+	private void setDataForStatistik(ArrayList<Teilnehmer> teilnehmer, Teilnehmer heldSpieler1, Teilnehmer heldSpieler2){
 		
 		ArrayList<Teilnehmer> spieler1Truppen = new ArrayList<Teilnehmer>();
 		ArrayList<Teilnehmer> spieler2Truppen = new ArrayList<Teilnehmer>();
@@ -2463,6 +2781,69 @@ public class MainWindow {
 		label4.setText("" + geheilt);
 		
 	}
+	
+private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Teilnehmer held1, Teilnehmer held2) {
+		
+		for(int i = 0; i<teilnehmer.size(); i++) {
+			
+			if(teilnehmer.get(i).getSkill1() != null && teilnehmer.get(i).getBesitzer() == held1.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill1.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill1().getPictureURI())));
+				lblCommander1Skill1.setToolTipText(teilnehmer.get(i).getSkill1().getBeschreibung());
+				lblCommander1Level.setText(""+1);
+			}
+			if(teilnehmer.get(i).getSkill2() != null && teilnehmer.get(i).getBesitzer() == held1.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill2.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill2().getPictureURI())));
+				lblCommander1Skill2.setToolTipText(teilnehmer.get(i).getSkill2().getBeschreibung());
+				lblCommander1Level.setText(""+2);
+			}
+			if(teilnehmer.get(i).getSkill3() != null && teilnehmer.get(i).getBesitzer() == held1.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill3.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill3().getPictureURI())));
+				lblCommander1Skill3.setToolTipText(teilnehmer.get(i).getSkill3().getBeschreibung());
+				lblCommander1Level.setText(""+3);
+			}
+			if(teilnehmer.get(i).getSkill4() != null && teilnehmer.get(i).getBesitzer() == held1.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Skill4.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill4().getPictureURI())));
+				lblCommander1Skill4.setToolTipText(teilnehmer.get(i).getSkill4().getBeschreibung());
+				lblCommander1Level.setText(""+4);
+			}
+			if(teilnehmer.get(i).getUltimate() != null && teilnehmer.get(i).getBesitzer() == held1.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander1Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getUltimate().getPictureURI())));
+				lblCommander1Ultimate.setToolTipText(teilnehmer.get(i).getUltimate().getBeschreibung());
+				lblCommander1Level.setText(""+5);
+			}
+			
+			
+			if(teilnehmer.get(i).getSkill1() != null && teilnehmer.get(i).getBesitzer() == held2.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill1.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill1().getPictureURI())));
+				lblCommander2Skill1.setToolTipText(teilnehmer.get(i).getSkill1().getBeschreibung());
+				lblCommander2Level.setText(""+1);
+			}
+			if(teilnehmer.get(i).getSkill2() != null && teilnehmer.get(i).getBesitzer() == held2.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill2.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill2().getPictureURI())));
+				lblCommander2Skill2.setToolTipText(teilnehmer.get(i).getSkill2().getBeschreibung());
+				lblCommander2Level.setText(""+2);
+			}
+			if(teilnehmer.get(i).getSkill3() != null && teilnehmer.get(i).getBesitzer() == held2.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill3.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill3().getPictureURI())));
+				lblCommander2Skill3.setToolTipText(teilnehmer.get(i).getSkill3().getBeschreibung());
+				lblCommander2Level.setText(""+3);
+			}
+			if(teilnehmer.get(i).getSkill4() != null && teilnehmer.get(i).getBesitzer() == held2.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Skill4.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getSkill4().getPictureURI())));
+				lblCommander2Skill4.setToolTipText(teilnehmer.get(i).getSkill4().getBeschreibung());
+				lblCommander2Level.setText(""+4);
+			}
+			if(teilnehmer.get(i).getUltimate() != null && teilnehmer.get(i).getBesitzer() == held2.getBesitzer() && teilnehmer.get(i).isIstKommandant()) {
+				lblCommander2Ultimate.setIcon(new ImageIcon(MainWindow.class.getResource(teilnehmer.get(i).getUltimate().getPictureURI())));
+				lblCommander2Ultimate.setToolTipText(teilnehmer.get(i).getUltimate().getBeschreibung());
+				lblCommander2Level.setText(""+5);
+			}
+			
+		}
+		
+	}
+	
+	
 	
 	private void resetStatistik() {
 		

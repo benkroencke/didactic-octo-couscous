@@ -1,9 +1,14 @@
 package model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class Spieler {
+public class Spieler implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5917812398727975635L;
 	private String name;
 	private int holz;
 	private int muenzen;

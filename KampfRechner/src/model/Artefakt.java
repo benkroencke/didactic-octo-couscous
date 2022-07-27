@@ -1,10 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Artefakt {
+public class Artefakt implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8313457574377101417L;
 	private String name;
 	private String beschreibung;
 	private String pictureURI;
