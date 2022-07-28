@@ -184,6 +184,8 @@ public class MainWindow {
 	private JComboBox loadComboBox;
 	JTextArea logTextBox;
 	
+	private JButton statisticZuruck;
+	
 	public MainWindow() {
 		initialize();
 	}
@@ -721,7 +723,7 @@ public class MainWindow {
 		statisticMainMenu.setBounds(985, 11, 189, 56);
 		panelStatistik.add(statisticMainMenu);
 		
-		JButton statisticZuruck = new JButton("Zur\u00FCck");
+		statisticZuruck = new JButton("Zur\u00FCck");
 		statisticZuruck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -985,7 +987,6 @@ public class MainWindow {
 		btnBerechne.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				statisticZuruck.show();
 				
 				resetStatistik();
 				
@@ -1098,6 +1099,7 @@ public class MainWindow {
 				
 				panelKampfErstellen.hide();
 				loadComboBox.hide();
+				statisticZuruck.show();
 				panelStatistik.show();
 				
 			}

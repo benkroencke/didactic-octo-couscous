@@ -29,6 +29,9 @@ public class Kampf {
 		this.spieler2Kommandant = spieler2Kommandant;
 	}
 	
+	public Kampf() {
+	}
+
 	public ArrayList<Teilnehmer> initRechner(ArrayList<Teilnehmer> teilnehmer){
 		
 		Main.battlelog.add("---------------------------------------------------");
