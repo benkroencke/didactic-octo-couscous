@@ -296,7 +296,7 @@ public class Teilnehmer implements Serializable {
 		this.pictureURI = "/source/voorhis.png";
 		this.id = 100;
 		this.leben = 1;
-		this.schaden = 150;
+		this.schaden = 215;
 		this.rang = 1;
 		this.ruestungProzent = 0;
 		this.init = 175;

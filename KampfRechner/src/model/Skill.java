@@ -1021,7 +1021,7 @@ public class Skill implements Serializable {
 		
 		this.name = "Artilleriebeschuss";
 		this.effectKey = "damage";
-		this.schadensmulitplikator = 5;
+		this.schadensmulitplikator = 4;
 		this.healPercent = 0;
 		this.damageReduction = 0;
 		this.armorBoost = 0;
