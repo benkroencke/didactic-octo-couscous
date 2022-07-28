@@ -1277,7 +1277,7 @@ public class Teilnehmer implements Serializable {
 		this.pictureURI = "/source/zwergensoeldner.png";
 		this.id = 2;
 		this.leben = 3100;
-		this.schaden = 80;
+		this.schaden = 120;
 		this.ruestungProzent = 28;
 		this.init = 90;
 		this.counter = 0; //Heckenschütze = 0, Hellebardier = 1, Hüter = 2, Ritter = 3
