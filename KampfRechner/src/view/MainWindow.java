@@ -188,6 +188,19 @@ public class MainWindow {
 	
 	private JButton statisticZuruck;
 	
+	private JLabel lblSkill1Right;
+	private JLabel lblSkill2Right;
+	private JLabel lblSkill3Right;
+	private JLabel lblSkill4Right;
+	private JLabel lblUltiRight;
+
+	private JLabel lblSkill1Left;
+	private JLabel lblSkill2Left;
+	private JLabel lblSkill3Left;
+	private JLabel lblSkill4Left;
+	private JLabel lblUltiLeft;
+
+	
 	private boolean wiederholung = false;
 	
 	private ArrayList<Teilnehmer> savedTeilnehmer = new ArrayList<Teilnehmer>();
@@ -234,9 +247,11 @@ public class MainWindow {
 						return;
 					}
 					setSkill(heldSpieler2, skill, "r");
-					skillsRight.addElement(skill.getName());
+					
+					setSkillIconsBerechneRechts(skill);
+					
 				}
-				
+			
 			}
 		});
 		btnAddSkillsRight.setToolTipText("Skill hinzuf\u00FCgen");
@@ -259,7 +274,7 @@ public class MainWindow {
 						
 					}
 						removeSkill(heldSpieler1, skillsLeft, "l");
-						
+						entferneSkillsBerechneLinks();
 
 					}
 				
@@ -285,7 +300,7 @@ public class MainWindow {
 						
 					}
 						removeSkill(heldSpieler2, skillsRight, "r");
-						
+						entferneSkillsBerechneRechts();
 
 					}
 				
@@ -542,7 +557,8 @@ public class MainWindow {
 				lblCommander1Einheit1.setBounds(70, 648, 100, 100);
 				panelKampfErstellen.add(lblCommander1Einheit1);
 				
-				JButton btnGiveLeft = new JButton("Gebe links");
+				JButton btnGiveLeft = new JButton("+");
+				btnGiveLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
 				btnGiveLeft.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -570,10 +586,11 @@ public class MainWindow {
 					}
 				});
 				btnGiveLeft.setBackground(new Color(230, 230, 250));
-				btnGiveLeft.setBounds(510, 505, 164, 23);
+				btnGiveLeft.setBounds(510, 505, 72, 55);
 				panelKampfErstellen.add(btnGiveLeft);
 				
-				JButton btnGiveRight = new JButton("Gebe rechts");
+				JButton btnGiveRight = new JButton("+");
+				btnGiveRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
 				btnGiveRight.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -601,10 +618,11 @@ public class MainWindow {
 					}
 				});
 				btnGiveRight.setBackground(new Color(230, 230, 250));
-				btnGiveRight.setBounds(510, 537, 164, 23);
+				btnGiveRight.setBounds(602, 505, 72, 55);
 				panelKampfErstellen.add(btnGiveRight);
 				
-				JButton btnTakeLeft = new JButton("entferne links");
+				JButton btnTakeLeft = new JButton("-");
+				btnTakeLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
 				btnTakeLeft.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -628,10 +646,11 @@ public class MainWindow {
 					}
 				});
 				btnTakeLeft.setBackground(new Color(230, 230, 250));
-				btnTakeLeft.setBounds(510, 570, 164, 23);
+				btnTakeLeft.setBounds(510, 570, 72, 53);
 				panelKampfErstellen.add(btnTakeLeft);
 				
-				JButton btnTakeRight = new JButton("entferne rechts");
+				JButton btnTakeRight = new JButton("-");
+				btnTakeRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
 				btnTakeRight.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -655,7 +674,7 @@ public class MainWindow {
 					}
 				});
 				btnTakeRight.setBackground(new Color(230, 230, 250));
-				btnTakeRight.setBounds(510, 600, 164, 23);
+				btnTakeRight.setBounds(602, 571, 72, 52);
 				panelKampfErstellen.add(btnTakeRight);
 				
 				
@@ -717,25 +736,53 @@ public class MainWindow {
 				panel_1.setBounds(602, 177, 247, 200);
 				panelKampfErstellen.add(panel_1);
 				
+				lblSkill3Right = new JLabel("");
+				lblSkill3Right.setIcon(null);
+				lblSkill3Right.setBounds(50, 135, 40, 40);
+				lblSkill3Right.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel_1.add(lblSkill3Right);
+				
+				lblUltiRight = new JLabel("");
+				lblUltiRight.setIcon(null);
+				lblUltiRight.setBounds(103, 90, 40, 40);
+				lblUltiRight.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel_1.add(lblUltiRight);
+				
+				lblSkill2Right = new JLabel("");
+				lblSkill2Right.setIcon(null);
+				lblSkill2Right.setBounds(157, 45, 40, 40);
+				lblSkill2Right.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel_1.add(lblSkill2Right);
+				
+				lblSkill1Right = new JLabel("");
+				lblSkill1Right.setIcon(null);
+				lblSkill1Right.setBounds(50, 45, 40, 40);
+				lblSkill1Right.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel_1.add(lblSkill1Right);
+				
+				lblSkill4Right = new JLabel("");
+				lblSkill4Right.setIcon(null);
+				lblSkill4Right.setBounds(157, 135, 40, 40);
+				lblSkill4Right.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel_1.add(lblSkill4Right);
+				
 				JLabel lblheadlineSkillsCommander2 = new JLabel("F\u00E4higkeiten des Verteidigers:");
+				lblheadlineSkillsCommander2.setForeground(SystemColor.textHighlightText);
 				lblheadlineSkillsCommander2.setHorizontalAlignment(SwingConstants.CENTER);
-				lblheadlineSkillsCommander2.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+				lblheadlineSkillsCommander2.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 16));
 				lblheadlineSkillsCommander2.setBounds(0, 0, 247, 38);
 				panel_1.add(lblheadlineSkillsCommander2);
 				
-				JList listCommander2Skills = new JList();
-				listCommander2Skills.setModel(new AbstractListModel() {
-					String[] values = new String[] {};
-					public int getSize() {
-						return values.length;
-					}
-					public Object getElementAt(int index) {
-						return values[index];
-					}
-				});
-				listCommander2Skills.setVisibleRowCount(5);
-				listCommander2Skills.setBounds(10, 37, 227, 152);
-				panel_1.add(listCommander2Skills);
+				JLabel lblSkillBackgroundRight = new JLabel("");
+				lblSkillBackgroundRight.setIcon(new ImageIcon(MainWindow.class.getResource("/source/skillBackground.png")));
+				lblSkillBackgroundRight.setBounds(0, 0, 247, 200);
+				lblSkillBackgroundRight.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+				panel_1.add(lblSkillBackgroundRight);
 				
 				JPanel panel = new JPanel();
 				panel.setBackground(UIManager.getColor("Panel.background"));
@@ -743,29 +790,57 @@ public class MainWindow {
 				panelKampfErstellen.add(panel);
 				panel.setLayout(null);
 				
+				lblSkill4Left = new JLabel("");
+				lblSkill4Left.setIcon(null);
+				lblSkill4Left.setBounds(157, 135, 40, 40);
+				lblSkill4Left.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel.add(lblSkill4Left);
+				
+				lblSkill2Left = new JLabel("");
+				lblSkill2Left.setIcon(null);
+				lblSkill2Left.setBounds(157, 45, 40, 40);
+				lblSkill2Left.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel.add(lblSkill2Left);
+				
+				lblUltiLeft = new JLabel("");
+				lblUltiLeft.setIcon(null);
+				lblUltiLeft.setBounds(103, 90, 40, 40);
+				lblUltiLeft.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel.add(lblUltiLeft);
+				
+				lblSkill3Left = new JLabel("");
+				lblSkill3Left.setIcon(null);
+				lblSkill3Left.setBounds(50, 135, 40, 40);
+				lblSkill3Left.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel.add(lblSkill3Left);
+				
+				lblSkill1Left = new JLabel("");
+				lblSkill1Left.setIcon(null);
+				lblSkill1Left.setBounds(50, 45, 40, 40);
+				lblSkill1Left.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+				panel.add(lblSkill1Left);
+				
 				JLabel lblheadlineSkillsCommander1 = new JLabel("F\u00E4higkeiten des Angreifers:");
+				lblheadlineSkillsCommander1.setForeground(SystemColor.textHighlightText);
 				lblheadlineSkillsCommander1.setBackground(Color.WHITE);
 				lblheadlineSkillsCommander1.setHorizontalAlignment(SwingConstants.CENTER);
-				lblheadlineSkillsCommander1.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+				lblheadlineSkillsCommander1.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 16));
 				lblheadlineSkillsCommander1.setBounds(0, 0, 247, 38);
 				panel.add(lblheadlineSkillsCommander1);
 				
-				JList listCommander1Skills = new JList();
-				listCommander1Skills.setBackground(Color.WHITE);
-				listCommander1Skills.setModel(new AbstractListModel() {
-					String[] values = new String[] {};
-					public int getSize() {
-						return values.length;
-					}
-					public Object getElementAt(int index) {
-						return values[index];
-					}
-				});
-				listCommander1Skills.setVisibleRowCount(5);
-				listCommander1Skills.setBounds(10, 37, 227, 152);
-				panel.add(listCommander1Skills);
+				JLabel lblSkillBackgroundLeft = new JLabel("");
+				lblSkillBackgroundLeft.setIcon(new ImageIcon(MainWindow.class.getResource("/source/skillBackground.png")));
+				lblSkillBackgroundLeft.setBounds(0, 0, 247, 200);
+				lblSkillBackgroundLeft.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+				panel.add(lblSkillBackgroundLeft);
 				
 
+				
 
 				
 				JButton btnAddSkillsLeft = new JButton("+");
@@ -784,7 +859,12 @@ public class MainWindow {
 								return;
 							}
 							setSkill(heldSpieler1, skill, "l");
-							skillsLeft.addElement(skill.getName());
+							
+							setSkillIconsBerechneLinks(skill);
+							
+							
+							
+							
 						}
 					}
 				});
@@ -1985,7 +2065,7 @@ public class MainWindow {
 		frame.getContentPane().add(panelMainMenu);
 		panelMainMenu.setLayout(null);
 		
-		JLabel lblVersion = new JLabel("V0.9.2_ALPHA");
+		JLabel lblVersion = new JLabel("V0.9.3_ALPHA");
 		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblVersion.setForeground(new Color(255, 255, 255));
 		lblVersion.setHorizontalAlignment(SwingConstants.LEFT);
@@ -2040,8 +2120,8 @@ public class MainWindow {
 				DefaultComboBoxModel dmSkills = new DefaultComboBoxModel(skillNamen);
 				comboBoxSkills.setModel(dmSkills);
 				
-				listCommander1Skills.setModel(skillsLeft);
-				listCommander2Skills.setModel(skillsRight);
+				//listCommander1Skills.setModel(skillsLeft);
+				//listCommander2Skills.setModel(skillsRight);
 				
 				panelKampfErstellen.show();
 				panelMainMenu.hide();
@@ -2117,6 +2197,130 @@ public class MainWindow {
 
 
 
+
+
+	protected void entferneSkillsBerechneLinks() {
+
+		if(lblUltiLeft.getIcon() != null) {
+			lblUltiLeft.setIcon(null);
+			lblUltiLeft.setToolTipText("");
+			return;
+		}
+		if(lblSkill4Left.getIcon() != null) {
+			lblSkill4Left.setIcon(null);
+			lblSkill4Left.setToolTipText("");
+			return;
+		}
+		if(lblSkill3Left.getIcon() != null) {
+			lblSkill3Left.setIcon(null);
+			lblSkill3Left.setToolTipText("");
+			return;
+		}
+		if(lblSkill2Left.getIcon() != null) {
+			lblSkill2Left.setIcon(null);
+			lblSkill2Left.setToolTipText("");
+			return;
+		}
+		if(lblSkill1Left.getIcon() != null) {
+			lblSkill1Left.setIcon(null);
+			lblSkill1Left.setToolTipText("");
+			return;
+		}
+	
+	}
+	
+	protected void entferneSkillsBerechneRechts() {
+
+		if(lblUltiRight.getIcon() != null) {
+			lblUltiRight.setIcon(null);
+			lblUltiRight.setToolTipText("");
+			return;
+		}
+		if(lblSkill4Right.getIcon() != null) {
+			lblSkill4Right.setIcon(null);
+			lblSkill4Right.setToolTipText("");
+			return;
+		}
+		if(lblSkill3Right.getIcon() != null) {
+			lblSkill3Right.setIcon(null);
+			lblSkill3Right.setToolTipText("");
+			return;
+		}
+		if(lblSkill2Right.getIcon() != null) {
+			lblSkill2Right.setIcon(null);
+			lblSkill2Right.setToolTipText("");
+			return;
+		}
+		if(lblSkill1Right.getIcon() != null) {
+			lblSkill1Right.setIcon(null);
+			lblSkill1Right.setToolTipText("");
+			return;
+		}
+	
+	}
+
+	protected void setSkillIconsBerechneRechts(Skill skill) {
+
+		if(lblSkill1Right.getIcon() == null) {
+			lblSkill1Right.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill1Right.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblSkill2Right.getIcon() == null) {
+			lblSkill2Right.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill2Right.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblSkill3Right.getIcon() == null) {
+			lblSkill3Right.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill3Right.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblSkill4Right.getIcon() == null) {
+			lblSkill4Right.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill4Right.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblUltiRight.getIcon() == null) {
+			lblUltiRight.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblUltiRight.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		
+		
+	}
+	
+	protected void setSkillIconsBerechneLinks(Skill skill) {
+
+		if(lblSkill1Left.getIcon() == null) {
+			lblSkill1Left.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill1Left.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblSkill2Left.getIcon() == null) {
+			lblSkill2Left.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill2Left.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblSkill3Left.getIcon() == null) {
+			lblSkill3Left.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill3Left.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblSkill4Left.getIcon() == null) {
+			lblSkill4Left.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblSkill4Left.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		if(lblUltiLeft.getIcon() == null) {
+			lblUltiLeft.setIcon(new ImageIcon(MainWindow.class.getResource(skill.getPictureURI())));
+			lblUltiLeft.setToolTipText(skill.getBeschreibung());
+			return;
+		}
+		
+		
+	}
+
 	protected void resetTroops(ArrayList<JLabel> units1, ArrayList<JLabel> units2) {
 
 		for(int i=0;i<units1.size();i++) {
@@ -2161,7 +2365,6 @@ public class MainWindow {
 	protected void removeSkill(Teilnehmer held, DefaultListModel model, String seite) {
 		if(!(held.getUltimate() == null)) {
 			held.setUltimate(null);
-			model.remove(4);
 			if(seite.equals("l"))
 				s1Ulti = null;
 			else
@@ -2170,7 +2373,6 @@ public class MainWindow {
 		}
 		if(!(held.getSkill4() == null)) {
 			held.setSkill4(null);
-			model.remove(3);
 			if(seite.equals("l"))
 				s1skill4 = null;
 			else
@@ -2179,7 +2381,6 @@ public class MainWindow {
 		}
 		if(!(held.getSkill3() == null)) {
 			held.setSkill3(null);
-			model.remove(2);
 			if(seite.equals("l"))
 				s1skill3 = null;
 			else
@@ -2188,7 +2389,6 @@ public class MainWindow {
 		}
 		if(!(held.getSkill2() == null)) {
 			held.setSkill2(null);
-			model.remove(1);
 			if(seite.equals("l"))
 				s1skill2 = null;
 			else
@@ -2197,7 +2397,6 @@ public class MainWindow {
 		}
 		if(!(held.getSkill1() == null)) {
 			held.setSkill1(null);
-			model.remove(0);
 			if(seite.equals("l"))
 				s1skill1 = null;
 			else
@@ -3176,6 +3375,8 @@ private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Te
 		
 	}
 	
+
+	
 	public void setSave(ArrayList<Teilnehmer> savedTeilnehmer) {
 		this.savedTeilnehmer = (ArrayList<Teilnehmer>) savedTeilnehmer.clone();
 	}
@@ -3186,5 +3387,4 @@ private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Te
 		sound.play();
 		
 	}
-	
 }
