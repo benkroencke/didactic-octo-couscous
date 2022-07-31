@@ -9,6 +9,11 @@ import javax.swing.border.EmptyBorder;
 
 
 import javax.swing.JComboBox;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,8 +32,17 @@ public class Test extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * @throws LineUnavailableException 
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+		
+		
+		
+		
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -56,7 +70,7 @@ public class Test extends JFrame {
 		comboBox.setBounds(118, 96, 200, 41);
 		contentPane.add(comboBox);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Speichern");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -76,5 +90,32 @@ public class Test extends JFrame {
 		});
 		btnNewButton.setBounds(229, 148, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnAudio = new JButton("Abspielen");
+		btnAudio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					File file = new File("./fx/battlecry.wav");
+					AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+					Clip clip = AudioSystem.getClip();
+					clip.open(audioStream);
+					
+					clip.start();
+				} catch (UnsupportedAudioFileException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (LineUnavailableException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		btnAudio.setBounds(118, 148, 89, 23);
+		contentPane.add(btnAudio);
 	}
 }

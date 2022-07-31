@@ -39,6 +39,7 @@ import javax.swing.plaf.synth.SynthFormattedTextFieldUI;
 
 import kampfrechner.Kampf;
 import main.Main;
+import main.Sound;
 import model.Artefakt;
 import model.HistoryDataStorage;
 import model.Skill;
@@ -91,6 +92,7 @@ public class MainWindow {
 	private Skill s2skill4 = null;
 	private Skill s2Ulti = null;
 	private JPanel panelLog;
+	private Sound sound = new Sound();
 	
 	private JLabel lblFraktionLinks;
 	private JLabel lblFraktionRechts;
@@ -416,6 +418,7 @@ public class MainWindow {
 				loadComboBox.hide();
 				statisticZuruck.show();
 				panelStatistik.show();
+				
 				
 			}
 		});
@@ -2112,6 +2115,8 @@ public class MainWindow {
 
 
 
+
+
 	protected void resetTroops(ArrayList<JLabel> units1, ArrayList<JLabel> units2) {
 
 		for(int i=0;i<units1.size();i++) {
@@ -2681,6 +2686,12 @@ public class MainWindow {
 			}
 			
 		}
+		
+		if(actual1*100/max1>actual2*100/max2)
+			playSound(heldSpieler1.getWinSound());
+		
+		if(actual2*100/max2>actual1*100/max1)
+			playSound(heldSpieler2.getWinSound());
 
 		lblAfterCommander1Name.setText(heldSpieler1.getName());
 		lblAfterCommander2Name.setText(heldSpieler2.getName());
@@ -3167,6 +3178,13 @@ private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Te
 	
 	public void setSave(ArrayList<Teilnehmer> savedTeilnehmer) {
 		this.savedTeilnehmer = (ArrayList<Teilnehmer>) savedTeilnehmer.clone();
+	}
+	
+	private void playSound(int i) {
+
+		sound.setFile(i);
+		sound.play();
+		
 	}
 	
 }

@@ -34,6 +34,7 @@ public class Teilnehmer implements Serializable {
 	private int leben;
 	private int ruestungProzent;
 	private int counter;
+	private int winSound;
 	
 	private int lebenActual;
 	private int schadenActual;
@@ -66,7 +67,7 @@ public class Teilnehmer implements Serializable {
 	public Teilnehmer(Spieler besitzer, String name, String beschreibung, String klasse, String pictureURI, int rang, List<Skill> skillListe, Skill skill1, Skill skill2,
 			Skill skill3, Skill skill4, Skill ultimate, int schaden, int init, int kommandoWert,
 			ArrayList<Teilnehmer> einheitenListe, boolean istKommandant, int id, int leben, int ruestungProzent,
-			int counter, int lebenActual, int schadenActual, int ruestungProzentActual, int initActual) {
+			int counter, int lebenActual, int schadenActual, int ruestungProzentActual, int initActual, int winSound) {
 		super();
 		this.besitzer = besitzer;
 		this.name = name;
@@ -93,6 +94,7 @@ public class Teilnehmer implements Serializable {
 		this.schadenActual = schadenActual;
 		this.ruestungProzentActual = ruestungProzentActual;
 		this.initActual = initActual;
+		this.winSound = winSound;
 	}
 
 	
@@ -117,6 +119,8 @@ public class Teilnehmer implements Serializable {
 		this.kommandoWert = 6;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
 		
+		this.winSound = 12;
+		
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -127,7 +131,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -148,6 +152,8 @@ public class Teilnehmer implements Serializable {
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
 		
+		this.winSound = 11;
+		
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -158,7 +164,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 				null, null, null, schaden, init, kommandoWert,
 				einheitenListe, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -178,7 +184,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 190;
 		this.kommandoWert = 6;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 25;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -189,7 +196,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -209,7 +216,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 150;
 		this.kommandoWert = 7;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 22;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -220,7 +228,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -240,7 +248,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 200;
 		this.kommandoWert = 7;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 20;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -251,7 +260,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -271,7 +280,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 100;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 8;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -282,7 +292,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -302,7 +312,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 175;
 		this.kommandoWert = 7;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 18;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -313,7 +324,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -333,7 +344,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 115;
 		this.kommandoWert = 6;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 16;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -344,7 +356,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -364,7 +376,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 140;
 		this.kommandoWert = 7;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 19;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -375,7 +388,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -395,7 +408,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 175;
 		this.kommandoWert = 6;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 4;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -406,7 +420,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -426,7 +440,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 155;
 		this.kommandoWert = 7;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 5;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -437,7 +452,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -457,7 +472,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 145;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 3;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -468,7 +484,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -488,7 +504,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 55;
 		this.kommandoWert = 6;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 17;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -499,7 +516,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -519,7 +536,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 150;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 10;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -530,7 +548,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -539,7 +557,7 @@ public class Teilnehmer implements Serializable {
 		this.skillListe = new ArrayList<Skill>();
 		this.einheitenListe = new ArrayList<Teilnehmer>();
 				
-		this.name = "Stefan Skellen";
+		this.name = "Hochland Kriegsherr";
 		this.klasse = "Deserteur";
 		this.pictureURI = "/source/skellen.png";
 		this.id = 100;
@@ -550,7 +568,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 125;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 13;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -561,7 +580,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -570,7 +589,7 @@ public class Teilnehmer implements Serializable {
 		this.skillListe = new ArrayList<Skill>();
 		this.einheitenListe = new ArrayList<Teilnehmer>();
 				
-		this.name = "Korys";
+		this.name = "Stefan Skellen";
 		this.klasse = "Deserteur";
 		this.pictureURI = "/source/korys.png";
 		this.id = 100;
@@ -581,7 +600,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 175;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 21;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -592,7 +612,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -612,7 +632,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 75;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 14;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -623,7 +644,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -643,7 +664,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 170;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 2;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -654,7 +676,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -674,7 +696,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 190;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 9;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -685,7 +708,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -705,7 +728,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 200;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 1;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -716,7 +740,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -736,7 +760,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 185;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 6;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -747,7 +772,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -767,7 +792,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 145;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 15;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -778,7 +804,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -798,7 +824,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 165;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 24;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -809,7 +836,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -829,7 +856,8 @@ public class Teilnehmer implements Serializable {
 		this.init = 35;
 		this.kommandoWert = 8;
 		this.counter = 100; //Armbrust = 0, Hellebardier = 1, Schwertkämpfer = 2, Ritter = 3, None = 100
-		
+		this.winSound = 7;
+
 		this.lebenActual = leben;
 		this.schadenActual = schaden;
 		this.ruestungProzentActual = ruestungProzent;
@@ -840,7 +868,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, klasse, pictureURI, rang, skillListe, null, null,
 			null, null, null, schaden, init, kommandoWert,
 			einheitenListe, istKommandant, id, leben, ruestungProzent,
-			counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+			counter, lebenActual, schadenActual, ruestungProzentActual, initActual, winSound);
 		
 	}
 	
@@ -867,7 +895,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer hueter(Spieler besitzer) {
@@ -892,7 +920,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer pikeniere(Spieler besitzer) {
@@ -917,7 +945,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer kuerassiere(Spieler besitzer) {
@@ -942,7 +970,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer blaueStreifen(Spieler besitzer) {
@@ -967,7 +995,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer ves(Spieler besitzer) {
@@ -992,7 +1020,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer ardfeain(Spieler besitzer) {
@@ -1017,7 +1045,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer imperaArmbrueste(Spieler besitzer) {
@@ -1042,7 +1070,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer ardfeainSchildkroete(Spieler besitzer) {
@@ -1067,7 +1095,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer nilfgaardRitter(Spieler besitzer) {
@@ -1093,7 +1121,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer imperaBrigade(Spieler besitzer) {
@@ -1118,7 +1146,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer brokvarbogenschutze(Spieler besitzer) {
@@ -1143,7 +1171,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer drummondschildmaid(Spieler besitzer) {
@@ -1168,7 +1196,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer druiden(Spieler besitzer) {
@@ -1193,7 +1221,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer ancraitlangschiff(Spieler besitzer) {
@@ -1218,7 +1246,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer svulblodfanatiker(Spieler besitzer) {
@@ -1243,7 +1271,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer spy(Spieler besitzer) {
@@ -1268,7 +1296,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer zwergensoeldner(Spieler besitzer) {
@@ -1293,7 +1321,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer wildejagdkrieger(Spieler besitzer) {
@@ -1318,7 +1346,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer wildejagdschlager(Spieler besitzer) {
@@ -1343,7 +1371,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer wildejagdhund(Spieler besitzer) {
@@ -1368,7 +1396,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer nekker(Spieler besitzer) {
@@ -1393,7 +1421,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer ghul(Spieler besitzer) {
@@ -1418,7 +1446,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer wiederganger(Spieler besitzer) {
@@ -1443,7 +1471,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	
@@ -1470,7 +1498,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer harpy(Spieler besitzer) {
@@ -1495,7 +1523,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer wyvern(Spieler besitzer) {
@@ -1520,7 +1548,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer bruxa(Spieler besitzer) {
@@ -1545,7 +1573,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer katakan(Spieler besitzer) {
@@ -1570,7 +1598,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	public Teilnehmer geist(Spieler besitzer) {
@@ -1595,7 +1623,7 @@ public class Teilnehmer implements Serializable {
 		return new Teilnehmer(besitzer, name, beschreibung, "", pictureURI, 0, null, skill1, null,
 				null, null, null, schaden, init, 0,
 				null, istKommandant, id, leben, ruestungProzent,
-				counter, lebenActual, schadenActual, ruestungProzentActual, initActual);
+				counter, lebenActual, schadenActual, ruestungProzentActual, initActual, 99);
 	}
 	
 	
@@ -1629,9 +1657,9 @@ public class Teilnehmer implements Serializable {
 			return this.maussack(besitzer);
 		if(name.equals("Falibor"))
 			return this.falibor(besitzer);
-		if(name.equals("Stefan Skellen"))
+		if(name.equals("Hochland Kriegsherr"))
 			return this.skellen(besitzer);
-		if(name.equals("Korys"))
+		if(name.equals("Stefan Skellen"))
 			return this.korys(besitzer);
 		if(name.equals("Imlerith"))
 			return this.imlerith(besitzer);
@@ -1987,6 +2015,14 @@ public class Teilnehmer implements Serializable {
 
 	public void setHealable(int healable) {
 		this.healable = healable;
+	}
+
+	public int getWinSound() {
+		return winSound;
+	}
+
+	public void setWinSound(int winSound) {
+		this.winSound = winSound;
 	}
 
 

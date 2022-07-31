@@ -8,6 +8,7 @@ import java.util.Random;
 import javax.swing.ImageIcon;
 
 import main.Main;
+import main.Sound;
 import model.Spieler;
 import model.Teilnehmer;
 import view.MainWindow;
@@ -20,6 +21,7 @@ public class Kampf {
 	private ArrayList<Teilnehmer> spieler2Einheiten = new ArrayList<Teilnehmer>();
 	private Teilnehmer spieler2Kommandant;
 	private ArrayList<Teilnehmer> prioListe = new ArrayList<Teilnehmer>();
+	private Sound sound = new Sound();
 	
 	public Kampf(ArrayList<Teilnehmer> einheiten1, ArrayList<Teilnehmer> einheiten2, Teilnehmer spieler1Kommandant, Teilnehmer spieler2Kommandant) {
 		super();
@@ -220,6 +222,8 @@ public class Kampf {
 	
 	public ArrayList<Teilnehmer> kriegsPhase(ArrayList<Teilnehmer> teilnehmer, Spieler angreifer, Spieler verteidiger) {
 		
+		playSound(0);
+		
 		boolean angreiferHasLeben = false;
 		boolean verteidigerHasLeben = false;
 		
@@ -410,11 +414,9 @@ public class Kampf {
 					teilnehmer.get(i).setHealable(teilnehmer.get(i).getHealable()-1);
 				
 			}
-			
 			Main.battlelog.add("---------------------------------------------------");
 			
 		}
-		
 		
 		Main.battlelog.add("---------------------------------------------------");
 		Main.battlelog.add("Die Schlacht endet...");
@@ -432,6 +434,13 @@ public class Kampf {
 		
 	}
 
+	private void playSound(int i) {
+		
+		sound.setFile(i);
+		sound.play();
+		
+	}
+
 	private ArrayList<Teilnehmer> writeDefenderWin(ArrayList<Teilnehmer> teilnehmer) {
 		Main.battlelog.add("---------------------------------------------------");
 		Main.battlelog.add("Die Schlacht endet...");
@@ -444,7 +453,7 @@ public class Kampf {
 		Main.battlelog.add("---------------------------------------------------");
 		MainWindow.lblVictory.setIcon(new ImageIcon(MainWindow.class.getResource("/source/defeat.png")));
 		showDamage(teilnehmer);
-		
+
 		return teilnehmer;
 	}
 
