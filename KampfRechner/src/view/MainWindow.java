@@ -1434,9 +1434,24 @@ public class MainWindow {
 				artefakte2.add(lblCommander2Artefakt2);
 				artefakte2.add(lblCommander2Artefakt3);
 				
+				ArrayList<JLabel> skills1 = new ArrayList<JLabel>();
+				ArrayList<JLabel> skills2 = new ArrayList<JLabel>();
+
+				skills1.add(lblSkill1Left);
+				skills1.add(lblSkill2Left);
+				skills1.add(lblSkill3Left);
+				skills1.add(lblSkill4Left);
+				skills1.add(lblUltiLeft);
+				
+				skills2.add(lblSkill1Right);
+				skills2.add(lblSkill2Right);
+				skills2.add(lblSkill3Right);
+				skills2.add(lblSkill4Right);
+				skills2.add(lblUltiRight);
+
 				resetTroops(units1, units2);
 				
-				setGraphicsForWiederholung(heldSpieler1, heldSpieler2, spieler1kampfEinheiten, spieler2kampfEinheiten, units1, units2, artefakte1, artefakte2, lblCommander1, lblCommander2);
+				setGraphicsForWiederholung(heldSpieler1, heldSpieler2, spieler1kampfEinheiten, spieler2kampfEinheiten, units1, units2, artefakte1, artefakte2, lblCommander1, lblCommander2, skills1, skills2);
 				
 				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
 				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
@@ -2136,6 +2151,42 @@ public class MainWindow {
 		JButton btnKampfHistorie_1 = new JButton("Kampfhistorie");
 		btnKampfHistorie_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Fülle Combobox für Truppen
+				String[] einheitenNamen = new String[main.getPreviewTroops().size()];
+				
+				for(int i=0;i<main.getPreviewTroops().size();i++) {
+					
+					einheitenNamen[i] = main.getPreviewTroops().get(i).getName();
+					
+				}
+				DefaultComboBoxModel dm = new DefaultComboBoxModel(einheitenNamen);
+				comboBoxTroops.setModel(dm);
+				
+				//Fülle Combobox für Artefakte
+				String[] artefaktNamen = new String[main.getPreviewArtefakte().size()];
+				
+				for(int i=0;i<main.getPreviewArtefakte().size();i++) {
+					
+					artefaktNamen[i] = main.getPreviewArtefakte().get(i).getName();
+					
+				}
+				DefaultComboBoxModel dmArtefakte = new DefaultComboBoxModel(artefaktNamen);
+				comboBoxArtefakte1.setModel(dmArtefakte);
+				comboBoxArtefakte2.setModel(dmArtefakte);
+				
+				//Fülle Combobox für Skills
+				String[] skillNamen = new String[main.getPreviewSkills().size()];
+				
+				for(int i=0;i<main.getPreviewSkills().size();i++) {
+					
+					skillNamen[i] = main.getPreviewSkills().get(i).getName();
+					
+				}
+				DefaultComboBoxModel dmSkills = new DefaultComboBoxModel(skillNamen);
+				comboBoxSkills.setModel(dmSkills);
+				
+				
 				
 				statisticZuruck.hide();
 				
@@ -3329,7 +3380,7 @@ private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Te
 	}
 	
 	protected void setGraphicsForWiederholung(Teilnehmer heldSpieler12, Teilnehmer heldSpieler22,
-			ArrayList<Teilnehmer> spieler1kampfEinheiten2, ArrayList<Teilnehmer> spieler2kampfEinheiten2, ArrayList<JLabel> units1, ArrayList<JLabel> units2, ArrayList<JLabel> artefakte1, ArrayList<JLabel> artefakte2, JLabel held1, JLabel held2) {
+			ArrayList<Teilnehmer> spieler1kampfEinheiten2, ArrayList<Teilnehmer> spieler2kampfEinheiten2, ArrayList<JLabel> units1, ArrayList<JLabel> units2, ArrayList<JLabel> artefakte1, ArrayList<JLabel> artefakte2, JLabel held1, JLabel held2, ArrayList<JLabel> skills1, ArrayList<JLabel> skills2) {
 
 		held1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getPictureURI())));
 		held1.setToolTipText(heldSpieler12.getBeschreibung());
@@ -3369,9 +3420,56 @@ private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Te
 			}
 		}
 		
+		for(int i=0;i<skills1.size();i++) {
+			
+			skills1.get(i).setIcon(null);
+			skills2.get(i).setIcon(null);
+			skills1.get(i).setToolTipText("");
+			skills2.get(i).setToolTipText("");
+			
+		}
 		
+		if(heldSpieler12.getSkill1() != null) {
+			skills1.get(0).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getSkill1().getPictureURI())));
+			skills1.get(0).setToolTipText(heldSpieler12.getSkill1().getBeschreibung());
+		}
+		if(heldSpieler12.getSkill2() != null) {
+			skills1.get(1).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getSkill2().getPictureURI())));
+			skills1.get(1).setToolTipText(heldSpieler12.getSkill2().getBeschreibung());
+		}
+		if(heldSpieler12.getSkill3() != null) {
+			skills1.get(2).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getSkill3().getPictureURI())));
+			skills1.get(2).setToolTipText(heldSpieler12.getSkill3().getBeschreibung());
+		}
+		if(heldSpieler12.getSkill4() != null) {
+			skills1.get(3).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getSkill4().getPictureURI())));
+			skills1.get(3).setToolTipText(heldSpieler12.getSkill4().getBeschreibung());
+		}
+		if(heldSpieler12.getUltimate() != null) {
+			skills1.get(4).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getUltimate().getPictureURI())));
+			skills1.get(4).setToolTipText(heldSpieler12.getUltimate().getBeschreibung());
+		}
 		
-		
+		if(heldSpieler22.getSkill1() != null) {
+			skills2.get(0).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getSkill1().getPictureURI())));
+			skills2.get(0).setToolTipText(heldSpieler22.getSkill1().getBeschreibung());
+		}
+		if(heldSpieler22.getSkill2() != null) {
+			skills2.get(1).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getSkill2().getPictureURI())));
+			skills2.get(1).setToolTipText(heldSpieler22.getSkill2().getBeschreibung());
+		}
+		if(heldSpieler22.getSkill3() != null) {
+			skills2.get(2).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getSkill3().getPictureURI())));
+			skills2.get(2).setToolTipText(heldSpieler22.getSkill3().getBeschreibung());
+		}
+		if(heldSpieler22.getSkill4() != null) {
+			skills2.get(3).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getSkill4().getPictureURI())));
+			skills2.get(3).setToolTipText(heldSpieler22.getSkill4().getBeschreibung());
+		}
+		if(heldSpieler22.getUltimate() != null) {
+			skills2.get(4).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getUltimate().getPictureURI())));
+			skills2.get(4).setToolTipText(heldSpieler22.getUltimate().getBeschreibung());
+		}
 		
 	}
 	
