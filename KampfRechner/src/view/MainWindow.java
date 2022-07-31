@@ -186,6 +186,10 @@ public class MainWindow {
 	
 	private JButton statisticZuruck;
 	
+	private boolean wiederholung = false;
+	
+	private ArrayList<Teilnehmer> savedTeilnehmer = new ArrayList<Teilnehmer>();
+	
 	public MainWindow() {
 		initialize();
 	}
@@ -201,6 +205,953 @@ public class MainWindow {
 		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.getContentPane().setForeground(Color.DARK_GRAY);
 		frame.getContentPane().setLayout(null);
+		
+		panelKampfErstellen = new JPanel();
+		panelKampfErstellen.setBounds(0, 0, 1184, 761);
+		frame.getContentPane().add(panelKampfErstellen);
+		panelKampfErstellen.setLayout(null);
+		panelKampfErstellen.hide();
+		
+		JComboBox comboBoxSkills = new JComboBox();
+		comboBoxSkills.setBounds(510, 383, 164, 40);
+		panelKampfErstellen.add(comboBoxSkills);
+		
+		JButton btnAddSkillsRight = new JButton("+");
+		btnAddSkillsRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Skill skill = null;
+				skill = declareSkill(comboBoxSkills, skill);
+				
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(!(heldSpieler2.getUltimate() == null)) {
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
+						return;
+					}
+					setSkill(heldSpieler2, skill, "r");
+					skillsRight.addElement(skill.getName());
+				}
+				
+			}
+		});
+		btnAddSkillsRight.setToolTipText("Skill hinzuf\u00FCgen");
+		btnAddSkillsRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnAddSkillsRight.setBackground(new Color(230, 230, 250));
+		btnAddSkillsRight.setBounds(684, 383, 70, 40);
+		panelKampfErstellen.add(btnAddSkillsRight);
+		
+		JButton btnRemoveSkillsLeft = new JButton("-");
+		btnRemoveSkillsLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(heldSpieler1 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(heldSpieler1.getSkill1() == null)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Skills zum entfernen!");
+					else {
+						
+					}
+						removeSkill(heldSpieler1, skillsLeft, "l");
+						
+
+					}
+				
+			}
+		});
+		btnRemoveSkillsLeft.setToolTipText("Skill entfernen");
+		btnRemoveSkillsLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnRemoveSkillsLeft.setBackground(new Color(230, 230, 250));
+		btnRemoveSkillsLeft.setBounds(430, 383, 70, 40);
+		panelKampfErstellen.add(btnRemoveSkillsLeft);
+		
+		JButton btnRemoveSkillsRight = new JButton("-");
+		btnRemoveSkillsRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(heldSpieler2 == null)
+					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+				else {
+				
+					if(heldSpieler2.getSkill1() == null)
+						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Skills zum entfernen!");
+					else {
+						
+					}
+						removeSkill(heldSpieler2, skillsRight, "r");
+						
+
+					}
+				
+			}
+		});
+		btnRemoveSkillsRight.setToolTipText("Skill entfernen");
+		btnRemoveSkillsRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+		btnRemoveSkillsRight.setBackground(new Color(230, 230, 250));
+		btnRemoveSkillsRight.setBounds(779, 383, 70, 40);
+		panelKampfErstellen.add(btnRemoveSkillsRight);
+		
+
+		JButton btnBerechne = new JButton("Berechne");
+		btnBerechne.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				resetStatistik();
+				
+				Spieler spieler1 = Main.getSpieler1();
+				Spieler spieler2 = Main.getSpieler2();
+				
+				ArrayList<Teilnehmer> spieler1Einheiten = new ArrayList<Teilnehmer>();
+				ArrayList<Teilnehmer> spieler2Einheiten = new ArrayList<Teilnehmer>();
+				
+				
+				Artefakt[] artefakte1 = artefakteSpieler1;
+				Artefakt[] artefakte2 = artefakteSpieler2;
+				
+				
+				if(heldSpieler1 == null || heldSpieler2 == null || heldSpieler1.getEinheitenListe() == null || heldSpieler2.getEinheitenListe() == null) {
+					JOptionPane.showMessageDialog(null, "Bitte Konfiguriere eine Schlacht!");
+					return;
+				}
+				
+				for(int i=0; i<spieler1kampfEinheiten.size();i++) {
+					spieler1Einheiten.add(teilnehmerFabrik.erstelle(spieler1kampfEinheiten.get(i).getName(), spieler1));
+				}
+				for(int i=0; i<spieler2kampfEinheiten.size();i++) {
+					spieler2Einheiten.add(teilnehmerFabrik.erstelle(spieler2kampfEinheiten.get(i).getName(), spieler2));
+				}
+				for(int i=0; i<artefakte1.length;i++) {
+					if(!(artefakte1[i] == null))
+						artefakte1[i] = artefaktFabrik.erstelle(heldSpieler1.getArtefakte()[i].getName());
+				}
+				for(int i=0; i<artefakte2.length;i++) {
+					if(!(artefakte2[i] == null))
+						artefakte2[i] = artefaktFabrik.erstelle(heldSpieler2.getArtefakte()[i].getName());
+				}
+				
+				
+				heldSpieler1 = teilnehmerFabrik.erstelle(heldSpieler1.getName(), spieler1);
+				heldSpieler2 = teilnehmerFabrik.erstelle(heldSpieler2.getName(), spieler2);
+				heldSpieler1.setEinheitenListe(spieler1Einheiten);
+				heldSpieler2.setEinheitenListe(spieler2Einheiten);
+				heldSpieler1.setArtefakte(artefakte1);
+				heldSpieler2.setArtefakte(artefakte2);
+				
+				
+				if(!(s1skill1 == null))
+					heldSpieler1.setSkill1(skillFabrik.erstelle(s1skill1.getName()));
+				if(!(s1skill2 == null))
+					heldSpieler1.setSkill2(skillFabrik.erstelle(s1skill2.getName()));
+				if(!(s1skill3 == null))
+					heldSpieler1.setSkill3(skillFabrik.erstelle(s1skill3.getName()));
+				if(!(s1skill4 == null))
+					heldSpieler1.setSkill4(skillFabrik.erstelle(s1skill4.getName()));
+				if(!(s1Ulti == null))
+					heldSpieler1.setUltimate(skillFabrik.erstelle(s1Ulti.getName()));
+				
+				if(!(s2skill1 == null))
+					heldSpieler2.setSkill1(skillFabrik.erstelle(s2skill1.getName()));
+				if(!(s2skill2 == null))
+					heldSpieler2.setSkill2(skillFabrik.erstelle(s2skill2.getName()));
+				if(!(s2skill3 == null))
+					heldSpieler2.setSkill3(skillFabrik.erstelle(s2skill3.getName()));
+				if(!(s2skill4 == null))
+					heldSpieler2.setSkill4(skillFabrik.erstelle(s2skill4.getName()));
+				if(!(s2Ulti == null))
+					heldSpieler2.setUltimate(skillFabrik.erstelle(s2Ulti.getName()));
+				
+				
+				ArrayList<Teilnehmer> teilnehmer = new ArrayList<Teilnehmer>();
+				for(int i=0; i<spieler1Einheiten.size();i++) {
+					teilnehmer.add(spieler1Einheiten.get(i));
+				}
+				for(int i=0; i<spieler2Einheiten.size();i++) {
+					teilnehmer.add(spieler2Einheiten.get(i));
+				}
+				teilnehmer.add((Teilnehmer) heldSpieler1);
+				teilnehmer.add((Teilnehmer) heldSpieler2);
+				
+				
+				Kampf kampf = new Kampf(spieler1Einheiten, spieler2Einheiten, heldSpieler1, heldSpieler2);
+				
+					
+				
+				Main.battlelog.add("---------------------------------------------------");
+				Main.battlelog.add("                                                   ");
+				Main.battlelog.add("                                                   ");
+				Main.battlelog.add("---------------------------------------------------");
+				
+				Main.battlelog.add("Kampf erstellen...");
+				
+				teilnehmer = kampf.vorKriegsPhase(teilnehmer);
+		
+				teilnehmer = kampf.kriegsPhase(teilnehmer, spieler1, spieler2);
+				
+				String t = "";
+				
+				for(int i = 0; i<Main.battlelog.size(); i++) {
+					
+					if(i==0)
+						t = Main.battlelog.get(i);
+					else
+						t = t + System.getProperty("line.separator") + Main.battlelog.get(i);
+				}
+				
+				logTextBox.setText(t);
+				Main.battlelog.clear();
+				
+				
+				setDataForStatistik(teilnehmer, heldSpieler1, heldSpieler2);
+				
+				saveToHistory(heldSpieler1.getName(), heldSpieler2.getName(), teilnehmer, t, heldSpieler1.getBesitzer(), heldSpieler2.getBesitzer(), heldSpieler1, heldSpieler2);
+				
+				savedTeilnehmer = (ArrayList<Teilnehmer>) teilnehmer.clone();
+				
+				panelKampfErstellen.hide();
+				loadComboBox.hide();
+				statisticZuruck.show();
+				panelStatistik.show();
+				
+			}
+		});
+		btnBerechne.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 18));
+		btnBerechne.setBackground(new Color(230, 230, 250));
+		btnBerechne.setBounds(984, 13, 190, 56);
+		panelKampfErstellen.add(btnBerechne);
+		
+		JButton btnNewButton = new JButton("Zur\u00FCck");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				panelKampfErstellen.hide();
+				panelMainMenu.show();
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+		btnNewButton.setBackground(new Color(230, 230, 250));
+		btnNewButton.setBounds(10, 13, 189, 56);
+		panelKampfErstellen.add(btnNewButton);
+		
+		JLabel lblUnitPreview = new JLabel("");
+		lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
+		lblUnitPreview.setBounds(542, 634, 100, 100);
+		panelKampfErstellen.add(lblUnitPreview);
+		
+		JComboBox comboBoxTroops = new JComboBox();
+		comboBoxTroops.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+				Teilnehmer einheit = null;
+				
+				einheit = declareUnit(comboBoxTroops, einheit);
+				lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
+				
+			}
+		});
+		
+				comboBoxTroops.setBounds(510, 454, 164, 40);
+				panelKampfErstellen.add(comboBoxTroops);
+				
+				JLabel lblCommander2Einheit2 = new JLabel("");
+				lblCommander2Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit2.setBounds(904, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit2);
+				
+				JLabel lblCommander2Einheit1 = new JLabel("");
+				lblCommander2Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit1.setBounds(1014, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit1);
+				
+				JLabel lblCommander2Einheit6 = new JLabel("");
+				lblCommander2Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit6.setBounds(684, 537, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit6);
+				
+				JLabel lblCommander2Einheit4 = new JLabel("");
+				lblCommander2Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit4.setBounds(684, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit4);
+				
+				JLabel lblCommander2Einheit3 = new JLabel("");
+				lblCommander2Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit3.setBounds(794, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit3);
+				
+				JLabel lblCommander2Einheit8 = new JLabel("");
+				lblCommander2Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit8.setBounds(684, 431, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit8);
+				
+				JLabel lblCommander2Einheit5 = new JLabel("");
+				lblCommander2Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit5.setBounds(794, 537, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit5);
+				
+				JLabel lblCommander2Einheit7 = new JLabel("");
+				lblCommander2Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander2Einheit7.setBounds(794, 431, 100, 100);
+				panelKampfErstellen.add(lblCommander2Einheit7);
+				
+				JLabel lblCommander1Einheit7 = new JLabel("");
+				
+				lblCommander1Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit7.setBounds(290, 431, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit7);
+				
+				JLabel lblCommander1Einheit8 = new JLabel("");
+				lblCommander1Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit8.setBounds(400, 431, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit8);
+				
+				JLabel lblCommander1Einheit4 = new JLabel("");
+				lblCommander1Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit4.setBounds(400, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit4);
+				
+				JLabel lblCommander1Einheit6 = new JLabel("");
+				lblCommander1Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit6.setBounds(400, 537, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit6);
+				
+				JLabel lblCommander1Einheit2 = new JLabel("New label");
+				lblCommander1Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit2.setBounds(180, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit2);
+				
+				JLabel lblCommander1Einheit3 = new JLabel("New label");
+				lblCommander1Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit3.setBounds(290, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit3);
+				
+				JLabel lblCommander1Einheit5 = new JLabel("");
+				lblCommander1Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit5.setBounds(290, 537, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit5);
+				
+				JLabel lblCommander1Einheit1 = new JLabel("New label");
+				lblCommander1Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+				lblCommander1Einheit1.setBounds(70, 648, 100, 100);
+				panelKampfErstellen.add(lblCommander1Einheit1);
+				
+				JButton btnGiveLeft = new JButton("Gebe links");
+				btnGiveLeft.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Teilnehmer einheit = null;
+						einheit = declareUnit(comboBoxTroops, einheit);
+						
+						if(heldSpieler1 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+						
+							if(spieler1kampfEinheiten.size()>=heldSpieler1.getKommandoWert())
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Einheiten befehligen!");
+							else if(spieler1kampfEinheiten.size()<heldSpieler1.getKommandoWert() && spieler1kampfEinheiten != null) {
+								
+								spieler1kampfEinheiten.add(einheit);
+								
+								setTroopIconsLeft(lblCommander1Einheit7, lblCommander1Einheit8, lblCommander1Einheit4,
+										lblCommander1Einheit6, lblCommander1Einheit2, lblCommander1Einheit3,
+										lblCommander1Einheit5, lblCommander1Einheit1, einheit);
+								
+							}
+						}
+						
+						
+					}
+				});
+				btnGiveLeft.setBackground(new Color(230, 230, 250));
+				btnGiveLeft.setBounds(510, 505, 164, 23);
+				panelKampfErstellen.add(btnGiveLeft);
+				
+				JButton btnGiveRight = new JButton("Gebe rechts");
+				btnGiveRight.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Teilnehmer einheit = null;
+						einheit = declareUnit(comboBoxTroops, einheit);
+						
+						if(heldSpieler2 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+						
+							if(spieler2kampfEinheiten.size()>=heldSpieler2.getKommandoWert())
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Einheiten befehligen!");
+							else if(spieler2kampfEinheiten.size()<heldSpieler2.getKommandoWert() && spieler2kampfEinheiten != null) {
+								
+								spieler2kampfEinheiten.add(einheit);
+								
+								setTroopIconsRight(lblCommander2Einheit2, lblCommander2Einheit1, lblCommander2Einheit6,
+										lblCommander2Einheit4, lblCommander2Einheit3, lblCommander2Einheit8,
+										lblCommander2Einheit5, lblCommander2Einheit7, einheit);
+								
+							}
+						}
+						
+						
+					}
+				});
+				btnGiveRight.setBackground(new Color(230, 230, 250));
+				btnGiveRight.setBounds(510, 537, 164, 23);
+				panelKampfErstellen.add(btnGiveRight);
+				
+				JButton btnTakeLeft = new JButton("entferne links");
+				btnTakeLeft.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if(heldSpieler1 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+						
+							if(spieler1kampfEinheiten.size() == 0)
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Einheiten zum befehligen!");
+							else if(spieler1kampfEinheiten.size()>0 && spieler1kampfEinheiten != null) {
+								
+								spieler1kampfEinheiten.remove(spieler1kampfEinheiten.size()-1);
+								
+								removeTroopIconsLeft(lblCommander1Einheit7, lblCommander1Einheit8, lblCommander1Einheit4,
+										lblCommander1Einheit6, lblCommander1Einheit2, lblCommander1Einheit3,
+										lblCommander1Einheit5, lblCommander1Einheit1);
+								
+							}
+						}
+						
+					}
+				});
+				btnTakeLeft.setBackground(new Color(230, 230, 250));
+				btnTakeLeft.setBounds(510, 570, 164, 23);
+				panelKampfErstellen.add(btnTakeLeft);
+				
+				JButton btnTakeRight = new JButton("entferne rechts");
+				btnTakeRight.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if(heldSpieler2 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+						
+							if(spieler2kampfEinheiten.size() == 0)
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Einheiten zum befehligen!");
+							else if(spieler2kampfEinheiten.size()>0 && spieler2kampfEinheiten != null) {
+								
+								spieler2kampfEinheiten.remove(spieler2kampfEinheiten.size()-1);
+								
+								removeTroopIconsRight(lblCommander2Einheit2, lblCommander2Einheit1, lblCommander2Einheit6,
+										lblCommander2Einheit4, lblCommander2Einheit3, lblCommander2Einheit8,
+										lblCommander2Einheit5, lblCommander2Einheit7);
+								
+							}
+						}
+						
+					}
+				});
+				btnTakeRight.setBackground(new Color(230, 230, 250));
+				btnTakeRight.setBounds(510, 600, 164, 23);
+				panelKampfErstellen.add(btnTakeRight);
+				
+				
+				JLabel lblCommander2Name = new JLabel("Bitte w\u00E4hlen");
+				lblCommander2Name.setHorizontalAlignment(SwingConstants.RIGHT);
+				lblCommander2Name.setForeground(Color.WHITE);
+				lblCommander2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
+				lblCommander2Name.setBounds(602, 110, 512, 67);
+				panelKampfErstellen.add(lblCommander2Name);
+				
+				JLabel lblCommander1Name = new JLabel("Bitte w\u00E4hlen");
+				lblCommander1Name.setHorizontalAlignment(SwingConstants.LEFT);
+				lblCommander1Name.setForeground(Color.WHITE);
+				lblCommander1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
+				lblCommander1Name.setBounds(70, 110, 512, 67);
+				panelKampfErstellen.add(lblCommander1Name);
+				
+				JComboBox comboBoxArtefakte2 = new JComboBox();
+				comboBoxArtefakte2.setBounds(914, 537, 200, 30);
+				panelKampfErstellen.add(comboBoxArtefakte2);
+				
+				JComboBox comboBoxArtefakte1 = new JComboBox();
+				comboBoxArtefakte1.setBounds(70, 537, 200, 30);
+				panelKampfErstellen.add(comboBoxArtefakte1);
+				
+				JLabel lblCommander2Artefakt3 = new JLabel("");
+				lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+				lblCommander2Artefakt3.setBounds(1054, 454, 60, 60);
+				panelKampfErstellen.add(lblCommander2Artefakt3);
+				
+				JLabel lblCommander2Artefakt2 = new JLabel("");
+				lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+				lblCommander2Artefakt2.setBounds(984, 454, 60, 60);
+				panelKampfErstellen.add(lblCommander2Artefakt2);
+				
+				JLabel lblCommander2Artefakt1 = new JLabel("");
+				lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+				lblCommander2Artefakt1.setBounds(914, 454, 60, 60);
+				panelKampfErstellen.add(lblCommander2Artefakt1);
+				
+				JLabel lblCommander1Artefakt2 = new JLabel("");
+				lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+				lblCommander1Artefakt2.setBounds(139, 454, 60, 60);
+				panelKampfErstellen.add(lblCommander1Artefakt2);
+				
+				JLabel lblCommander1Artefakt3 = new JLabel("");
+				lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+				lblCommander1Artefakt3.setBounds(209, 454, 60, 60);
+				panelKampfErstellen.add(lblCommander1Artefakt3);
+				
+				JLabel lblCommander1Artefakt1 = new JLabel("");
+				lblCommander1Artefakt1.setToolTipText("Krumms\u00E4bel: (+25 Angriff f\u00FCr den Helden)");
+				lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+				lblCommander1Artefakt1.setBounds(70, 454, 60, 60);
+				panelKampfErstellen.add(lblCommander1Artefakt1);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setLayout(null);
+				panel_1.setBounds(602, 177, 247, 200);
+				panelKampfErstellen.add(panel_1);
+				
+				JLabel lblheadlineSkillsCommander2 = new JLabel("F\u00E4higkeiten des Verteidigers:");
+				lblheadlineSkillsCommander2.setHorizontalAlignment(SwingConstants.CENTER);
+				lblheadlineSkillsCommander2.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+				lblheadlineSkillsCommander2.setBounds(0, 0, 247, 38);
+				panel_1.add(lblheadlineSkillsCommander2);
+				
+				JList listCommander2Skills = new JList();
+				listCommander2Skills.setModel(new AbstractListModel() {
+					String[] values = new String[] {};
+					public int getSize() {
+						return values.length;
+					}
+					public Object getElementAt(int index) {
+						return values[index];
+					}
+				});
+				listCommander2Skills.setVisibleRowCount(5);
+				listCommander2Skills.setBounds(10, 37, 227, 152);
+				panel_1.add(listCommander2Skills);
+				
+				JPanel panel = new JPanel();
+				panel.setBackground(UIManager.getColor("Panel.background"));
+				panel.setBounds(335, 177, 247, 200);
+				panelKampfErstellen.add(panel);
+				panel.setLayout(null);
+				
+				JLabel lblheadlineSkillsCommander1 = new JLabel("F\u00E4higkeiten des Angreifers:");
+				lblheadlineSkillsCommander1.setBackground(Color.WHITE);
+				lblheadlineSkillsCommander1.setHorizontalAlignment(SwingConstants.CENTER);
+				lblheadlineSkillsCommander1.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+				lblheadlineSkillsCommander1.setBounds(0, 0, 247, 38);
+				panel.add(lblheadlineSkillsCommander1);
+				
+				JList listCommander1Skills = new JList();
+				listCommander1Skills.setBackground(Color.WHITE);
+				listCommander1Skills.setModel(new AbstractListModel() {
+					String[] values = new String[] {};
+					public int getSize() {
+						return values.length;
+					}
+					public Object getElementAt(int index) {
+						return values[index];
+					}
+				});
+				listCommander1Skills.setVisibleRowCount(5);
+				listCommander1Skills.setBounds(10, 37, 227, 152);
+				panel.add(listCommander1Skills);
+				
+
+
+				
+				JButton btnAddSkillsLeft = new JButton("+");
+				btnAddSkillsLeft.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Skill skill = null;
+						skill = declareSkill(comboBoxSkills, skill);
+						
+						if(heldSpieler1 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+						
+							if(!(heldSpieler1.getUltimate() == null)) {
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
+								return;
+							}
+							setSkill(heldSpieler1, skill, "l");
+							skillsLeft.addElement(skill.getName());
+						}
+					}
+				});
+				btnAddSkillsLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+				btnAddSkillsLeft.setToolTipText("Skill hinzuf\u00FCgen");
+				btnAddSkillsLeft.setBackground(new Color(230, 230, 250));
+				btnAddSkillsLeft.setBounds(335, 383, 70, 40);
+				panelKampfErstellen.add(btnAddSkillsLeft);
+				
+				
+				JLabel lblCommander2Specialty = new JLabel("-----");
+				lblCommander2Specialty.setHorizontalAlignment(SwingConstants.CENTER);
+				lblCommander2Specialty.setForeground(Color.WHITE);
+				lblCommander2Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+				lblCommander2Specialty.setBounds(914, 388, 200, 55);
+				panelKampfErstellen.add(lblCommander2Specialty);
+				
+				JLabel lblCommander1Specialty = new JLabel("-----");
+				lblCommander1Specialty.setForeground(new Color(255, 255, 255));
+				lblCommander1Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
+				lblCommander1Specialty.setHorizontalAlignment(SwingConstants.CENTER);
+				lblCommander1Specialty.setBounds(70, 388, 200, 55);
+				panelKampfErstellen.add(lblCommander1Specialty);
+				
+				JLabel lblCommander2 = new JLabel("");
+				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
+				lblCommander2.setBounds(914, 177, 200, 200);
+				panelKampfErstellen.add(lblCommander2);
+				
+				JLabel lblCommander1 = new JLabel("New label");
+				lblCommander1.setToolTipText("");
+				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
+				lblCommander1.setBounds(70, 177, 200, 200);
+				panelKampfErstellen.add(lblCommander1);
+				
+				JButton btnCommander2ArtefaktPlus = new JButton("+");
+				btnCommander2ArtefaktPlus.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Artefakt artefakt = null;
+						artefakt = declareArtefakt(comboBoxArtefakte2, artefakt);
+						 
+						if(heldSpieler2 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+							Artefakt[] artefakte = heldSpieler2.getArtefakte();
+							if(artefakte[2] != null) {
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
+								return;
+							}
+
+							if(artefakte[0] == null) {
+								
+								artefakte[0] = artefakt;
+								setIconArtefakt("2-1", artefakt);
+							}
+							else if(artefakte[1] == null) {
+								
+								artefakte[1] = artefakt;
+								setIconArtefakt("2-2", artefakt);
+							}
+							else if(artefakte[2] == null) {
+								
+								artefakte[2] = artefakt;
+								setIconArtefakt("2-3", artefakt);
+							}
+							heldSpieler2.setArtefakte(artefakte);
+							artefakteSpieler2 = artefakte;
+						}
+							
+					}
+					
+					private void setIconArtefakt(String labelID, Artefakt artefakt) {
+						if(labelID.equals("2-1")) {
+							lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+							lblCommander2Artefakt1.setToolTipText(artefakt.getBeschreibung());
+						}
+						if(labelID.equals("2-2")) {
+							lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+							lblCommander2Artefakt2.setToolTipText(artefakt.getBeschreibung());
+						}
+						if(labelID.equals("2-3")) {
+							lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+							lblCommander2Artefakt3.setToolTipText(artefakt.getBeschreibung());
+						}
+					
+					}
+				});
+				btnCommander2ArtefaktPlus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+				btnCommander2ArtefaktPlus.setBackground(new Color(230, 230, 250));
+				btnCommander2ArtefaktPlus.setBounds(914, 589, 89, 34);
+				panelKampfErstellen.add(btnCommander2ArtefaktPlus);
+				
+				JButton btnCommander2ArtefaktMinus = new JButton("-");
+				btnCommander2ArtefaktMinus.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Artefakt artefakt = null;
+						artefakt = declareArtefakt(comboBoxArtefakte2, artefakt);
+						 
+						
+						if(heldSpieler2 == null) {
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+							return;
+						}
+						if(heldSpieler2.getArtefakte()[0] == null)
+							JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Artefakte!");
+						else if (heldSpieler2.getArtefakte()[0] != null && heldSpieler2 != null) {
+						
+
+							
+							Artefakt[] artefakte = heldSpieler2.getArtefakte();
+							
+							if(artefakte[1] == null)
+								artefakte[0] = null;
+							if(artefakte[2] == null)
+								artefakte[1] = null;
+							if(artefakte[2] != null)
+								artefakte[2] = null;
+								
+							heldSpieler2.setArtefakte(artefakte);
+							artefakteSpieler2 = artefakte;
+								
+								resetArtefakt1Icons(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1,
+										artefakt, artefakte);
+								
+							
+						}
+						
+					}
+				});
+				btnCommander2ArtefaktMinus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+				btnCommander2ArtefaktMinus.setBackground(new Color(230, 230, 250));
+				btnCommander2ArtefaktMinus.setBounds(1025, 589, 89, 34);
+				panelKampfErstellen.add(btnCommander2ArtefaktMinus);
+				
+				JButton btnCommander1ArtefaktPlus = new JButton("+");
+				btnCommander1ArtefaktPlus.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Artefakt artefakt = null;
+						artefakt = declareArtefakt(comboBoxArtefakte1, artefakt);
+						 
+						if(heldSpieler1 == null)
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+						else {
+							Artefakt[] artefakte = heldSpieler1.getArtefakte();
+							if(artefakte[2] != null) {
+								JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
+								return;
+							}
+
+							if(artefakte[0] == null) {
+								
+								artefakte[0] = artefakt;
+								setIconArtefakt("1-1", artefakt);
+							}
+							else if(artefakte[1] == null) {
+								
+								artefakte[1] = artefakt;
+								setIconArtefakt("1-2", artefakt);
+							}
+							else if(artefakte[2] == null) {
+								
+								artefakte[2] = artefakt;
+								setIconArtefakt("1-3", artefakt);
+							}
+							heldSpieler1.setArtefakte(artefakte);
+							artefakteSpieler1 = artefakte;
+						}
+						
+						
+					}
+					
+					private void setIconArtefakt(String labelID, Artefakt artefakt) {
+						if(labelID.equals("1-1")) {
+							lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+							lblCommander1Artefakt1.setToolTipText(artefakt.getBeschreibung());
+						}
+						if(labelID.equals("1-2")) {
+							lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+							lblCommander1Artefakt2.setToolTipText(artefakt.getBeschreibung());
+						}
+						if(labelID.equals("1-3")) {
+							lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
+							lblCommander1Artefakt3.setToolTipText(artefakt.getBeschreibung());
+						}
+					}
+
+				});
+				btnCommander1ArtefaktPlus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+				btnCommander1ArtefaktPlus.setBackground(new Color(230, 230, 250));
+				btnCommander1ArtefaktPlus.setBounds(70, 589, 89, 34);
+				panelKampfErstellen.add(btnCommander1ArtefaktPlus);
+				
+				JButton btnCommander1ArtefaktMinus = new JButton("-");
+				btnCommander1ArtefaktMinus.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						Artefakt artefakt = null;
+						artefakt = declareArtefakt(comboBoxArtefakte1, artefakt);
+						 
+						
+						if(heldSpieler1 == null) {
+							JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
+							return;
+						}
+						if(heldSpieler1.getArtefakte()[0] == null)
+							JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Artefakte!");
+						else if (heldSpieler1.getArtefakte()[0] != null && heldSpieler1 != null) {
+						
+
+							
+							Artefakt[] artefakte = heldSpieler1.getArtefakte();
+							
+							if(artefakte[1] == null)
+								artefakte[0] = null;
+							if(artefakte[2] == null)
+								artefakte[1] = null;
+							if(artefakte[2] != null)
+								artefakte[2] = null;
+							
+							heldSpieler1.setArtefakte(artefakte);
+							artefakteSpieler1 = artefakte;
+								
+								resetArtefakt1Icons(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1,
+										artefakt, artefakte);
+								
+							
+						}
+						
+					}
+				});
+				btnCommander1ArtefaktMinus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
+				btnCommander1ArtefaktMinus.setBackground(new Color(230, 230, 250));
+				btnCommander1ArtefaktMinus.setBounds(181, 589, 89, 34);
+				panelKampfErstellen.add(btnCommander1ArtefaktMinus);
+				
+				
+				JButton btnCommander1Down = new JButton("");
+				btnCommander1Down.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						heldSpieler1 = null;
+						
+						if(arrayCommander1Stelle==0)
+							arrayCommander1Stelle=main.getPreviewCommanders().size()-1;
+						else
+							arrayCommander1Stelle--;
+						
+						heldSpieler1 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander1Stelle).getName(), main.getSpieler1());
+						lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
+						lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
+						lblCommander1Name.setText(heldSpieler1.getName());
+						lblCommander1Specialty.setText(heldSpieler1.getKlasse());
+						
+						clearArtefakteSkills(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1, artefakteSpieler1, skillsLeft);
+						
+						if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
+							JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
+						
+						
+						
+					}
+
+
+				});
+				btnCommander1Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
+				btnCommander1Down.setBackground(new Color(0, 0, 0));
+				btnCommander1Down.setBounds(280, 308, 45, 40);
+				panelKampfErstellen.add(btnCommander1Down);
+				
+				JButton btnCommander1Up = new JButton("");
+				btnCommander1Up.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						heldSpieler1 = null;
+						
+						if(arrayCommander1Stelle==main.getPreviewCommanders().size()-1)
+							arrayCommander1Stelle=0;
+						else
+							arrayCommander1Stelle++;
+						
+						heldSpieler1 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander1Stelle).getName(), main.getSpieler1());
+						lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
+						lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
+						lblCommander1Name.setText(heldSpieler1.getName());
+						lblCommander1Specialty.setText(heldSpieler1.getKlasse());
+						
+						clearArtefakteSkills(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1, artefakteSpieler1, skillsLeft);
+						
+						if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
+							JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
+						
+					}
+				});
+				btnCommander1Up.setBackground(new Color(0, 0, 0));
+				btnCommander1Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
+				btnCommander1Up.setBounds(280, 206, 45, 40);
+				panelKampfErstellen.add(btnCommander1Up);
+				
+				JButton btnCommander2Down = new JButton("");
+				btnCommander2Down.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						heldSpieler2 = null;
+						
+						if(arrayCommander2Stelle==0)
+							arrayCommander2Stelle=main.getPreviewCommanders().size()-1;
+						else
+							arrayCommander2Stelle--;
+						
+						heldSpieler2 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander2Stelle).getName(), main.getSpieler2());
+						lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
+						lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
+						lblCommander2Name.setText(heldSpieler2.getName());
+						lblCommander2Specialty.setText(heldSpieler2.getKlasse());
+						
+						clearArtefakteSkills(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1, artefakteSpieler2, skillsRight);
+
+						
+						if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
+							JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
+						
+					}
+				});
+				btnCommander2Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
+				btnCommander2Down.setBackground(Color.BLACK);
+				btnCommander2Down.setBounds(859, 308, 45, 40);
+				panelKampfErstellen.add(btnCommander2Down);
+				
+				JButton btnCommander2Up = new JButton("");
+				btnCommander2Up.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						heldSpieler2 = null;
+						
+						if(arrayCommander2Stelle==main.getPreviewCommanders().size()-1)
+							arrayCommander2Stelle=0;
+						else
+							arrayCommander2Stelle++;
+						
+						heldSpieler2 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander2Stelle).getName(), main.getSpieler2());
+						lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
+						lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
+						lblCommander2Name.setText(heldSpieler2.getName());
+						lblCommander2Specialty.setText(heldSpieler2.getKlasse());
+						
+						clearArtefakteSkills(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1, artefakteSpieler2, skillsRight);
+						
+						if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
+							JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
+						
+					}
+				});
+				btnCommander2Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
+				btnCommander2Up.setBackground(Color.BLACK);
+				btnCommander2Up.setBounds(859, 206, 45, 40);
+				panelKampfErstellen.add(btnCommander2Up);
+				
+				JLabel lblUberschriftCreateBattle = new JLabel("Kampf erstellen");
+				lblUberschriftCreateBattle.setHorizontalAlignment(SwingConstants.CENTER);
+				lblUberschriftCreateBattle.setForeground(Color.WHITE);
+				lblUberschriftCreateBattle.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 52));
+				lblUberschriftCreateBattle.setBounds(10, 22, 1164, 77);
+				panelKampfErstellen.add(lblUberschriftCreateBattle);
+				
+				JLabel lblNewLabel = new JLabel("");
+				lblNewLabel.setIcon(new ImageIcon(MainWindow.class.getResource("/source/700286-best-medieval-battle-wallpaper-1920x1080.jpg")));
+				lblNewLabel.setBounds(0, 0, 1184, 761);
+				panelKampfErstellen.add(lblNewLabel);
 		
 		panelStatistik = new JPanel();
 		panelStatistik.setBounds(0, 0, 1184, 761);
@@ -255,6 +1206,7 @@ public class MainWindow {
 					HistoryDataStorage hStorage = (HistoryDataStorage)ois.readObject();
 					
 					ArrayList<Teilnehmer> savedTeilnehmer = hStorage.teilnehmer;
+					setSave(savedTeilnehmer);
 					String t = hStorage.battleLog;
 					Spieler s1 = hStorage.s1;
 					Spieler s2 = hStorage.s2;
@@ -262,7 +1214,7 @@ public class MainWindow {
 					heldSpieler2 = hStorage.held2;
 					
 
-					
+					savedTeilnehmer = (ArrayList<Teilnehmer>) hStorage.teilnehmer.clone();
 					
 					
 					//setDataForStatistik(savedTeilnehmer, heldSpieler1, heldSpieler2);
@@ -275,16 +1227,148 @@ public class MainWindow {
 					lblAfterCommander2Name.setText(heldSpieler2.getName());
 					lblSpieler1Name.setForeground(heldSpieler1.getBesitzer().getFarbe());
 					lblSpieler2Name.setForeground(heldSpieler2.getBesitzer().getFarbe());
-					
+										
 					ois.close();
 				}catch(IOException ex) {
 					ex.printStackTrace();
 				}catch(ClassNotFoundException ex) {
 					ex.printStackTrace();
 				}
+
+			}
+		});
+		
+		JButton btnWeiterkampfen = new JButton("Weiterk\u00E4mpfen");
+		btnWeiterkampfen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				wiederholung = true;
+				
+				ArrayList<Teilnehmer> neuerKampfTeilnehmer = new ArrayList<Teilnehmer>();
+				
+				for(int i=0; i<savedTeilnehmer.size();i++) {
+					if(savedTeilnehmer.get(i).getLebenActual()>0)
+						neuerKampfTeilnehmer.add(savedTeilnehmer.get(i));
+				}
+				savedTeilnehmer = neuerKampfTeilnehmer;
+				
+				
+				heldSpieler1 = null;
+				heldSpieler2 = null;
+				spieler1kampfEinheiten.clear();
+				spieler2kampfEinheiten.clear();
+				artefakteSpieler1 = null;
+				artefakteSpieler2 = null;
+				
+				s1skill1 = null;
+				s1skill2 = null;
+				s1skill3 = null;
+				s1skill4 = null;
+				s1Ulti = null;
+				s2skill1 = null;
+				s2skill2 = null;
+				s2skill3 = null;
+				s2skill4 = null;
+				s2Ulti = null;
+				
+				for(int i=0;i<savedTeilnehmer.size();i++) {
+					
+					if(savedTeilnehmer.get(i).isIstKommandant()) {
+
+						if(heldSpieler1 == null && savedTeilnehmer.get(i).isIstKommandant()) {
+							heldSpieler1 = savedTeilnehmer.get(i);
+							i++;
+						}
+						
+						if(heldSpieler2 == null && savedTeilnehmer.get(i).isIstKommandant())
+							heldSpieler2 = savedTeilnehmer.get(i);
+
+					}
+					
+				}
+				
+				for(int i=0;i<savedTeilnehmer.size();i++) {
+					
+					if(!savedTeilnehmer.get(i).isIstKommandant()) {
+
+						if(savedTeilnehmer.get(i).getBesitzer() == heldSpieler1.getBesitzer()) {
+							spieler1kampfEinheiten.add(savedTeilnehmer.get(i));
+						}
+						
+						if(savedTeilnehmer.get(i).getBesitzer() == heldSpieler2.getBesitzer()) {
+							spieler2kampfEinheiten.add(savedTeilnehmer.get(i));
+						}
+
+					}
+					
+				}
+				
+				
+				artefakteSpieler1 = heldSpieler1.getArtefakte();
+				artefakteSpieler2 = heldSpieler2.getArtefakte();
+				
+				s1skill1 = heldSpieler1.getSkill1();
+				s1skill2 = heldSpieler1.getSkill2();
+				s1skill3 = heldSpieler1.getSkill3();
+				s1skill4 = heldSpieler1.getSkill4();
+				s1Ulti = heldSpieler1.getUltimate();
+				
+				s2skill1 = heldSpieler2.getSkill1();
+				s2skill2 = heldSpieler2.getSkill2();
+				s2skill3 = heldSpieler2.getSkill3();
+				s2skill4 = heldSpieler2.getSkill4();
+				s2Ulti = heldSpieler2.getUltimate();
+				
+				ArrayList<JLabel> units1 = new ArrayList<JLabel>();
+				ArrayList<JLabel> units2 = new ArrayList<JLabel>();
+				
+				units1.add(lblCommander1Einheit1);
+				units1.add(lblCommander1Einheit2);
+				units1.add(lblCommander1Einheit3);
+				units1.add(lblCommander1Einheit4);
+				units1.add(lblCommander1Einheit5);
+				units1.add(lblCommander1Einheit6);
+				units1.add(lblCommander1Einheit7);
+				units1.add(lblCommander1Einheit8);
+
+				units2.add(lblCommander2Einheit1);
+				units2.add(lblCommander2Einheit2);
+				units2.add(lblCommander2Einheit3);
+				units2.add(lblCommander2Einheit4);
+				units2.add(lblCommander2Einheit5);
+				units2.add(lblCommander2Einheit6);
+				units2.add(lblCommander2Einheit7);
+				units2.add(lblCommander2Einheit8);
+				
+				ArrayList<JLabel> artefakte1 = new ArrayList<JLabel>();
+				ArrayList<JLabel> artefakte2 = new ArrayList<JLabel>();
+				
+				artefakte1.add(lblCommander1Artefakt1);
+				artefakte1.add(lblCommander1Artefakt2);
+				artefakte1.add(lblCommander1Artefakt3);
+
+				artefakte2.add(lblCommander2Artefakt1);
+				artefakte2.add(lblCommander2Artefakt2);
+				artefakte2.add(lblCommander2Artefakt3);
+				
+				resetTroops(units1, units2);
+				
+				setGraphicsForWiederholung(heldSpieler1, heldSpieler2, spieler1kampfEinheiten, spieler2kampfEinheiten, units1, units2, artefakte1, artefakte2, lblCommander1, lblCommander2);
+				
+				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
+				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
+				lblCommander1Name.setText(heldSpieler1.getName());
+				lblCommander2Name.setText(heldSpieler2.getName());
+				
+				panelStatistik.hide();
+				panelKampfErstellen.show();
 				
 			}
 		});
+		btnWeiterkampfen.setBackground(new Color(230, 230, 250));
+		btnWeiterkampfen.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
+		btnWeiterkampfen.setBounds(369, 11, 446, 40);
+		panelStatistik.add(btnWeiterkampfen);
 		loadComboBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 18));
 		loadComboBox.setBounds(369, 156, 446, 50);
 		panelStatistik.add(loadComboBox);
@@ -893,951 +1977,6 @@ public class MainWindow {
 		logTextBox.setFont(new Font("Microsoft New Tai Lue", Font.PLAIN, 14));
 		scrollPane.setViewportView(logTextBox);
 		
-		panelKampfErstellen = new JPanel();
-		panelKampfErstellen.setBounds(0, 0, 1184, 761);
-		frame.getContentPane().add(panelKampfErstellen);
-		panelKampfErstellen.setLayout(null);
-		panelKampfErstellen.hide();
-		
-		JComboBox comboBoxSkills = new JComboBox();
-		comboBoxSkills.setBounds(510, 383, 164, 40);
-		panelKampfErstellen.add(comboBoxSkills);
-		
-		JButton btnAddSkillsRight = new JButton("+");
-		btnAddSkillsRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Skill skill = null;
-				skill = declareSkill(comboBoxSkills, skill);
-				
-				if(heldSpieler2 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(!(heldSpieler2.getUltimate() == null)) {
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
-						return;
-					}
-					setSkill(heldSpieler2, skill, "r");
-					skillsRight.addElement(skill.getName());
-				}
-				
-			}
-		});
-		btnAddSkillsRight.setToolTipText("Skill hinzuf\u00FCgen");
-		btnAddSkillsRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnAddSkillsRight.setBackground(new Color(230, 230, 250));
-		btnAddSkillsRight.setBounds(684, 383, 70, 40);
-		panelKampfErstellen.add(btnAddSkillsRight);
-		
-		JButton btnRemoveSkillsLeft = new JButton("-");
-		btnRemoveSkillsLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if(heldSpieler1 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(heldSpieler1.getSkill1() == null)
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Skills zum entfernen!");
-					else {
-						
-					}
-						removeSkill(heldSpieler1, skillsLeft, "l");
-						
-
-					}
-				
-			}
-		});
-		btnRemoveSkillsLeft.setToolTipText("Skill entfernen");
-		btnRemoveSkillsLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnRemoveSkillsLeft.setBackground(new Color(230, 230, 250));
-		btnRemoveSkillsLeft.setBounds(430, 383, 70, 40);
-		panelKampfErstellen.add(btnRemoveSkillsLeft);
-		
-		JButton btnRemoveSkillsRight = new JButton("-");
-		btnRemoveSkillsRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if(heldSpieler2 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(heldSpieler2.getSkill1() == null)
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Skills zum entfernen!");
-					else {
-						
-					}
-						removeSkill(heldSpieler2, skillsRight, "r");
-						
-
-					}
-				
-			}
-		});
-		btnRemoveSkillsRight.setToolTipText("Skill entfernen");
-		btnRemoveSkillsRight.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnRemoveSkillsRight.setBackground(new Color(230, 230, 250));
-		btnRemoveSkillsRight.setBounds(779, 383, 70, 40);
-		panelKampfErstellen.add(btnRemoveSkillsRight);
-		
-
-		JButton btnBerechne = new JButton("Berechne");
-		btnBerechne.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				resetStatistik();
-				
-				Spieler spieler1 = Main.getSpieler1();
-				Spieler spieler2 = Main.getSpieler2();
-				
-				ArrayList<Teilnehmer> spieler1Einheiten = new ArrayList<Teilnehmer>();
-				ArrayList<Teilnehmer> spieler2Einheiten = new ArrayList<Teilnehmer>();
-				
-				
-				Artefakt[] artefakte1 = artefakteSpieler1;
-				Artefakt[] artefakte2 = artefakteSpieler2;
-				
-				
-				if(heldSpieler1 == null || heldSpieler2 == null || heldSpieler1.getEinheitenListe() == null || heldSpieler2.getEinheitenListe() == null) {
-					JOptionPane.showMessageDialog(null, "Bitte Konfiguriere eine Schlacht!");
-					return;
-				}
-				
-				for(int i=0; i<spieler1kampfEinheiten.size();i++) {
-					spieler1Einheiten.add(teilnehmerFabrik.erstelle(spieler1kampfEinheiten.get(i).getName(), spieler1));
-				}
-				for(int i=0; i<spieler2kampfEinheiten.size();i++) {
-					spieler2Einheiten.add(teilnehmerFabrik.erstelle(spieler2kampfEinheiten.get(i).getName(), spieler2));
-				}
-				for(int i=0; i<artefakte1.length;i++) {
-					if(!(artefakte1[i] == null))
-						artefakte1[i] = artefaktFabrik.erstelle(heldSpieler1.getArtefakte()[i].getName());
-				}
-				for(int i=0; i<artefakte2.length;i++) {
-					if(!(artefakte2[i] == null))
-						artefakte2[i] = artefaktFabrik.erstelle(heldSpieler2.getArtefakte()[i].getName());
-				}
-				
-				
-				heldSpieler1 = teilnehmerFabrik.erstelle(heldSpieler1.getName(), spieler1);
-				heldSpieler2 = teilnehmerFabrik.erstelle(heldSpieler2.getName(), spieler2);
-				heldSpieler1.setEinheitenListe(spieler1Einheiten);
-				heldSpieler2.setEinheitenListe(spieler2Einheiten);
-				heldSpieler1.setArtefakte(artefakte1);
-				heldSpieler2.setArtefakte(artefakte2);
-				
-				
-				if(!(s1skill1 == null))
-					heldSpieler1.setSkill1(skillFabrik.erstelle(s1skill1.getName()));
-				if(!(s1skill2 == null))
-					heldSpieler1.setSkill2(skillFabrik.erstelle(s1skill2.getName()));
-				if(!(s1skill3 == null))
-					heldSpieler1.setSkill3(skillFabrik.erstelle(s1skill3.getName()));
-				if(!(s1skill4 == null))
-					heldSpieler1.setSkill4(skillFabrik.erstelle(s1skill4.getName()));
-				if(!(s1Ulti == null))
-					heldSpieler1.setUltimate(skillFabrik.erstelle(s1Ulti.getName()));
-				
-				if(!(s2skill1 == null))
-					heldSpieler2.setSkill1(skillFabrik.erstelle(s2skill1.getName()));
-				if(!(s2skill2 == null))
-					heldSpieler2.setSkill2(skillFabrik.erstelle(s2skill2.getName()));
-				if(!(s2skill3 == null))
-					heldSpieler2.setSkill3(skillFabrik.erstelle(s2skill3.getName()));
-				if(!(s2skill4 == null))
-					heldSpieler2.setSkill4(skillFabrik.erstelle(s2skill4.getName()));
-				if(!(s2Ulti == null))
-					heldSpieler2.setUltimate(skillFabrik.erstelle(s2Ulti.getName()));
-				
-				
-				ArrayList<Teilnehmer> teilnehmer = new ArrayList<Teilnehmer>();
-				for(int i=0; i<spieler1Einheiten.size();i++) {
-					teilnehmer.add(spieler1Einheiten.get(i));
-				}
-				for(int i=0; i<spieler2Einheiten.size();i++) {
-					teilnehmer.add(spieler2Einheiten.get(i));
-				}
-				teilnehmer.add((Teilnehmer) heldSpieler1);
-				teilnehmer.add((Teilnehmer) heldSpieler2);
-				
-				
-				Kampf kampf = new Kampf(spieler1Einheiten, spieler2Einheiten, heldSpieler1, heldSpieler2);
-				
-					
-				
-				Main.battlelog.add("---------------------------------------------------");
-				Main.battlelog.add("                                                   ");
-				Main.battlelog.add("                                                   ");
-				Main.battlelog.add("---------------------------------------------------");
-				
-				Main.battlelog.add("Kampf erstellen...");
-				
-				teilnehmer = kampf.vorKriegsPhase(teilnehmer);
-		
-				teilnehmer = kampf.kriegsPhase(teilnehmer, spieler1, spieler2);
-				
-				String t = "";
-				
-				for(int i = 0; i<Main.battlelog.size(); i++) {
-					
-					if(i==0)
-						t = Main.battlelog.get(i);
-					else
-						t = t + System.getProperty("line.separator") + Main.battlelog.get(i);
-				}
-				
-				logTextBox.setText(t);
-				Main.battlelog.clear();
-				
-				
-				setDataForStatistik(teilnehmer, heldSpieler1, heldSpieler2);
-				
-				saveToHistory(heldSpieler1.getName(), heldSpieler2.getName(), teilnehmer, t, heldSpieler1.getBesitzer(), heldSpieler2.getBesitzer(), heldSpieler1, heldSpieler2);
-				
-				panelKampfErstellen.hide();
-				loadComboBox.hide();
-				statisticZuruck.show();
-				panelStatistik.show();
-				
-			}
-		});
-		btnBerechne.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 18));
-		btnBerechne.setBackground(new Color(230, 230, 250));
-		btnBerechne.setBounds(984, 13, 190, 56);
-		panelKampfErstellen.add(btnBerechne);
-		
-		JButton btnNewButton = new JButton("Zur\u00FCck");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				panelKampfErstellen.hide();
-				panelMainMenu.show();
-				
-			}
-		});
-		btnNewButton.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
-		btnNewButton.setBackground(new Color(230, 230, 250));
-		btnNewButton.setBounds(10, 13, 189, 56);
-		panelKampfErstellen.add(btnNewButton);
-		
-		JLabel lblUnitPreview = new JLabel("");
-		lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource("/source/Heckenschuetzen.png")));
-		lblUnitPreview.setBounds(542, 634, 100, 100);
-		panelKampfErstellen.add(lblUnitPreview);
-		
-		JComboBox comboBoxTroops = new JComboBox();
-		comboBoxTroops.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				
-				Teilnehmer einheit = null;
-				
-				einheit = declareUnit(comboBoxTroops, einheit);
-				lblUnitPreview.setIcon(new ImageIcon(MainWindow.class.getResource(einheit.getPictureURI())));
-				
-			}
-		});
-
-		comboBoxTroops.setBounds(510, 454, 164, 40);
-		panelKampfErstellen.add(comboBoxTroops);
-		
-		JLabel lblCommander2Einheit2 = new JLabel("");
-		lblCommander2Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit2.setBounds(904, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit2);
-		
-		JLabel lblCommander2Einheit1 = new JLabel("");
-		lblCommander2Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit1.setBounds(1014, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit1);
-		
-		JLabel lblCommander2Einheit6 = new JLabel("");
-		lblCommander2Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit6.setBounds(684, 537, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit6);
-		
-		JLabel lblCommander2Einheit4 = new JLabel("");
-		lblCommander2Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit4.setBounds(684, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit4);
-		
-		JLabel lblCommander2Einheit3 = new JLabel("");
-		lblCommander2Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit3.setBounds(794, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit3);
-		
-		JLabel lblCommander2Einheit8 = new JLabel("");
-		lblCommander2Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit8.setBounds(684, 431, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit8);
-		
-		JLabel lblCommander2Einheit5 = new JLabel("");
-		lblCommander2Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit5.setBounds(794, 537, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit5);
-		
-		JLabel lblCommander2Einheit7 = new JLabel("");
-		lblCommander2Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander2Einheit7.setBounds(794, 431, 100, 100);
-		panelKampfErstellen.add(lblCommander2Einheit7);
-		
-		JLabel lblCommander1Einheit7 = new JLabel("");
-		
-		lblCommander1Einheit7.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit7.setBounds(290, 431, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit7);
-		
-		JLabel lblCommander1Einheit8 = new JLabel("");
-		lblCommander1Einheit8.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit8.setBounds(400, 431, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit8);
-		
-		JLabel lblCommander1Einheit4 = new JLabel("");
-		lblCommander1Einheit4.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit4.setBounds(400, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit4);
-		
-		JLabel lblCommander1Einheit6 = new JLabel("");
-		lblCommander1Einheit6.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit6.setBounds(400, 537, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit6);
-		
-		JLabel lblCommander1Einheit2 = new JLabel("New label");
-		lblCommander1Einheit2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit2.setBounds(180, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit2);
-		
-		JLabel lblCommander1Einheit3 = new JLabel("New label");
-		lblCommander1Einheit3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit3.setBounds(290, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit3);
-		
-		JLabel lblCommander1Einheit5 = new JLabel("");
-		lblCommander1Einheit5.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit5.setBounds(290, 537, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit5);
-		
-		JLabel lblCommander1Einheit1 = new JLabel("New label");
-		lblCommander1Einheit1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
-		lblCommander1Einheit1.setBounds(70, 648, 100, 100);
-		panelKampfErstellen.add(lblCommander1Einheit1);
-		
-		JButton btnGiveLeft = new JButton("Gebe links");
-		btnGiveLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Teilnehmer einheit = null;
-				einheit = declareUnit(comboBoxTroops, einheit);
-				
-				if(heldSpieler1 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(spieler1kampfEinheiten.size()>=heldSpieler1.getKommandoWert())
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Einheiten befehligen!");
-					else if(spieler1kampfEinheiten.size()<heldSpieler1.getKommandoWert() && spieler1kampfEinheiten != null) {
-						
-						spieler1kampfEinheiten.add(einheit);
-						
-						setTroopIconsLeft(lblCommander1Einheit7, lblCommander1Einheit8, lblCommander1Einheit4,
-								lblCommander1Einheit6, lblCommander1Einheit2, lblCommander1Einheit3,
-								lblCommander1Einheit5, lblCommander1Einheit1, einheit);
-						
-					}
-				}
-				
-				
-			}
-		});
-		btnGiveLeft.setBackground(new Color(230, 230, 250));
-		btnGiveLeft.setBounds(510, 505, 164, 23);
-		panelKampfErstellen.add(btnGiveLeft);
-		
-		JButton btnGiveRight = new JButton("Gebe rechts");
-		btnGiveRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Teilnehmer einheit = null;
-				einheit = declareUnit(comboBoxTroops, einheit);
-				
-				if(heldSpieler2 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(spieler2kampfEinheiten.size()>=heldSpieler2.getKommandoWert())
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Einheiten befehligen!");
-					else if(spieler2kampfEinheiten.size()<heldSpieler2.getKommandoWert() && spieler2kampfEinheiten != null) {
-						
-						spieler2kampfEinheiten.add(einheit);
-						
-						setTroopIconsRight(lblCommander2Einheit2, lblCommander2Einheit1, lblCommander2Einheit6,
-								lblCommander2Einheit4, lblCommander2Einheit3, lblCommander2Einheit8,
-								lblCommander2Einheit5, lblCommander2Einheit7, einheit);
-						
-					}
-				}
-				
-				
-			}
-		});
-		btnGiveRight.setBackground(new Color(230, 230, 250));
-		btnGiveRight.setBounds(510, 537, 164, 23);
-		panelKampfErstellen.add(btnGiveRight);
-		
-		JButton btnTakeLeft = new JButton("entferne links");
-		btnTakeLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if(heldSpieler1 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(spieler1kampfEinheiten.size() == 0)
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Einheiten zum befehligen!");
-					else if(spieler1kampfEinheiten.size()>0 && spieler1kampfEinheiten != null) {
-						
-						spieler1kampfEinheiten.remove(spieler1kampfEinheiten.size()-1);
-						
-						removeTroopIconsLeft(lblCommander1Einheit7, lblCommander1Einheit8, lblCommander1Einheit4,
-								lblCommander1Einheit6, lblCommander1Einheit2, lblCommander1Einheit3,
-								lblCommander1Einheit5, lblCommander1Einheit1);
-						
-					}
-				}
-				
-			}
-		});
-		btnTakeLeft.setBackground(new Color(230, 230, 250));
-		btnTakeLeft.setBounds(510, 570, 164, 23);
-		panelKampfErstellen.add(btnTakeLeft);
-		
-		JButton btnTakeRight = new JButton("entferne rechts");
-		btnTakeRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if(heldSpieler2 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(spieler2kampfEinheiten.size() == 0)
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Einheiten zum befehligen!");
-					else if(spieler2kampfEinheiten.size()>0 && spieler2kampfEinheiten != null) {
-						
-						spieler2kampfEinheiten.remove(spieler2kampfEinheiten.size()-1);
-						
-						removeTroopIconsRight(lblCommander2Einheit2, lblCommander2Einheit1, lblCommander2Einheit6,
-								lblCommander2Einheit4, lblCommander2Einheit3, lblCommander2Einheit8,
-								lblCommander2Einheit5, lblCommander2Einheit7);
-						
-					}
-				}
-				
-			}
-		});
-		btnTakeRight.setBackground(new Color(230, 230, 250));
-		btnTakeRight.setBounds(510, 600, 164, 23);
-		panelKampfErstellen.add(btnTakeRight);
-		
-		
-		JLabel lblCommander2Name = new JLabel("Bitte w\u00E4hlen");
-		lblCommander2Name.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCommander2Name.setForeground(Color.WHITE);
-		lblCommander2Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
-		lblCommander2Name.setBounds(602, 110, 512, 67);
-		panelKampfErstellen.add(lblCommander2Name);
-		
-		JLabel lblCommander1Name = new JLabel("Bitte w\u00E4hlen");
-		lblCommander1Name.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCommander1Name.setForeground(Color.WHITE);
-		lblCommander1Name.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 42));
-		lblCommander1Name.setBounds(70, 110, 512, 67);
-		panelKampfErstellen.add(lblCommander1Name);
-		
-		JComboBox comboBoxArtefakte2 = new JComboBox();
-		comboBoxArtefakte2.setBounds(914, 537, 200, 30);
-		panelKampfErstellen.add(comboBoxArtefakte2);
-		
-		JComboBox comboBoxArtefakte1 = new JComboBox();
-		comboBoxArtefakte1.setBounds(70, 537, 200, 30);
-		panelKampfErstellen.add(comboBoxArtefakte1);
-		
-		JLabel lblCommander2Artefakt3 = new JLabel("");
-		lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
-		lblCommander2Artefakt3.setBounds(1054, 454, 60, 60);
-		panelKampfErstellen.add(lblCommander2Artefakt3);
-		
-		JLabel lblCommander2Artefakt2 = new JLabel("");
-		lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
-		lblCommander2Artefakt2.setBounds(984, 454, 60, 60);
-		panelKampfErstellen.add(lblCommander2Artefakt2);
-		
-		JLabel lblCommander2Artefakt1 = new JLabel("");
-		lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
-		lblCommander2Artefakt1.setBounds(914, 454, 60, 60);
-		panelKampfErstellen.add(lblCommander2Artefakt1);
-		
-		JLabel lblCommander1Artefakt2 = new JLabel("");
-		lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
-		lblCommander1Artefakt2.setBounds(139, 454, 60, 60);
-		panelKampfErstellen.add(lblCommander1Artefakt2);
-		
-		JLabel lblCommander1Artefakt3 = new JLabel("");
-		lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
-		lblCommander1Artefakt3.setBounds(209, 454, 60, 60);
-		panelKampfErstellen.add(lblCommander1Artefakt3);
-		
-		JLabel lblCommander1Artefakt1 = new JLabel("");
-		lblCommander1Artefakt1.setToolTipText("Krumms\u00E4bel: (+25 Angriff f\u00FCr den Helden)");
-		lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
-		lblCommander1Artefakt1.setBounds(70, 454, 60, 60);
-		panelKampfErstellen.add(lblCommander1Artefakt1);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBounds(602, 177, 247, 200);
-		panelKampfErstellen.add(panel_1);
-		
-		JLabel lblheadlineSkillsCommander2 = new JLabel("F\u00E4higkeiten des Verteidigers:");
-		lblheadlineSkillsCommander2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblheadlineSkillsCommander2.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
-		lblheadlineSkillsCommander2.setBounds(0, 0, 247, 38);
-		panel_1.add(lblheadlineSkillsCommander2);
-		
-		JList listCommander2Skills = new JList();
-		listCommander2Skills.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Schlachtruf", "Test1", "Test2", "Test3"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		listCommander2Skills.setVisibleRowCount(5);
-		listCommander2Skills.setBounds(10, 37, 227, 152);
-		panel_1.add(listCommander2Skills);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(UIManager.getColor("Panel.background"));
-		panel.setBounds(335, 177, 247, 200);
-		panelKampfErstellen.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblheadlineSkillsCommander1 = new JLabel("F\u00E4higkeiten des Angreifers:");
-		lblheadlineSkillsCommander1.setBackground(Color.WHITE);
-		lblheadlineSkillsCommander1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblheadlineSkillsCommander1.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 14));
-		lblheadlineSkillsCommander1.setBounds(0, 0, 247, 38);
-		panel.add(lblheadlineSkillsCommander1);
-		
-		JList listCommander1Skills = new JList();
-		listCommander1Skills.setBackground(Color.WHITE);
-		listCommander1Skills.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Dezimieren", "Test1", "Test2", "Test3"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		listCommander1Skills.setVisibleRowCount(5);
-		listCommander1Skills.setBounds(10, 37, 227, 152);
-		panel.add(listCommander1Skills);
-		
-
-
-		
-		JButton btnAddSkillsLeft = new JButton("+");
-		btnAddSkillsLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Skill skill = null;
-				skill = declareSkill(comboBoxSkills, skill);
-				
-				if(heldSpieler1 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-				
-					if(!(heldSpieler1.getUltimate() == null)) {
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant hat bereits eine volle Skillliste (Maximal 5 Skills für einen Kommandanten!");
-						return;
-					}
-					setSkill(heldSpieler1, skill, "l");
-					skillsLeft.addElement(skill.getName());
-				}
-			}
-		});
-		btnAddSkillsLeft.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnAddSkillsLeft.setToolTipText("Skill hinzuf\u00FCgen");
-		btnAddSkillsLeft.setBackground(new Color(230, 230, 250));
-		btnAddSkillsLeft.setBounds(335, 383, 70, 40);
-		panelKampfErstellen.add(btnAddSkillsLeft);
-		
-		
-		JLabel lblCommander2Specialty = new JLabel("-----");
-		lblCommander2Specialty.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCommander2Specialty.setForeground(Color.WHITE);
-		lblCommander2Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
-		lblCommander2Specialty.setBounds(914, 388, 200, 55);
-		panelKampfErstellen.add(lblCommander2Specialty);
-		
-		JLabel lblCommander1Specialty = new JLabel("-----");
-		lblCommander1Specialty.setForeground(new Color(255, 255, 255));
-		lblCommander1Specialty.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 28));
-		lblCommander1Specialty.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCommander1Specialty.setBounds(70, 388, 200, 55);
-		panelKampfErstellen.add(lblCommander1Specialty);
-		
-		JLabel lblCommander2 = new JLabel("");
-		lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
-		lblCommander2.setBounds(914, 177, 200, 200);
-		panelKampfErstellen.add(lblCommander2);
-		
-		JLabel lblCommander1 = new JLabel("New label");
-		lblCommander1.setToolTipText("");
-		lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource("/source/kommandantnichtgewaehkt.png")));
-		lblCommander1.setBounds(70, 177, 200, 200);
-		panelKampfErstellen.add(lblCommander1);
-		
-		JButton btnCommander2ArtefaktPlus = new JButton("+");
-		btnCommander2ArtefaktPlus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Artefakt artefakt = null;
-				artefakt = declareArtefakt(comboBoxArtefakte2, artefakt);
-				 
-				if(heldSpieler2 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-					Artefakt[] artefakte = heldSpieler2.getArtefakte();
-					if(artefakte[2] != null) {
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
-						return;
-					}
-
-					if(artefakte[0] == null) {
-						
-						artefakte[0] = artefakt;
-						setIconArtefakt("2-1", artefakt);
-					}
-					else if(artefakte[1] == null) {
-						
-						artefakte[1] = artefakt;
-						setIconArtefakt("2-2", artefakt);
-					}
-					else if(artefakte[2] == null) {
-						
-						artefakte[2] = artefakt;
-						setIconArtefakt("2-3", artefakt);
-					}
-					heldSpieler2.setArtefakte(artefakte);
-					artefakteSpieler2 = artefakte;
-				}
-					
-			}
-			
-			private void setIconArtefakt(String labelID, Artefakt artefakt) {
-				if(labelID.equals("2-1")) {
-					lblCommander2Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
-					lblCommander2Artefakt1.setToolTipText(artefakt.getBeschreibung());
-				}
-				if(labelID.equals("2-2")) {
-					lblCommander2Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
-					lblCommander2Artefakt2.setToolTipText(artefakt.getBeschreibung());
-				}
-				if(labelID.equals("2-3")) {
-					lblCommander2Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
-					lblCommander2Artefakt3.setToolTipText(artefakt.getBeschreibung());
-				}
-			
-			}
-		});
-		btnCommander2ArtefaktPlus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnCommander2ArtefaktPlus.setBackground(new Color(230, 230, 250));
-		btnCommander2ArtefaktPlus.setBounds(914, 589, 89, 34);
-		panelKampfErstellen.add(btnCommander2ArtefaktPlus);
-		
-		JButton btnCommander2ArtefaktMinus = new JButton("-");
-		btnCommander2ArtefaktMinus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Artefakt artefakt = null;
-				artefakt = declareArtefakt(comboBoxArtefakte2, artefakt);
-				 
-				
-				if(heldSpieler2 == null) {
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-					return;
-				}
-				if(heldSpieler2.getArtefakte()[0] == null)
-					JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Artefakte!");
-				else if (heldSpieler2.getArtefakte()[0] != null && heldSpieler2 != null) {
-				
-
-					
-					Artefakt[] artefakte = heldSpieler2.getArtefakte();
-					
-					if(artefakte[1] == null)
-						artefakte[0] = null;
-					if(artefakte[2] == null)
-						artefakte[1] = null;
-					if(artefakte[2] != null)
-						artefakte[2] = null;
-						
-					heldSpieler2.setArtefakte(artefakte);
-					artefakteSpieler2 = artefakte;
-						
-						resetArtefakt1Icons(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1,
-								artefakt, artefakte);
-						
-					
-				}
-				
-			}
-		});
-		btnCommander2ArtefaktMinus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnCommander2ArtefaktMinus.setBackground(new Color(230, 230, 250));
-		btnCommander2ArtefaktMinus.setBounds(1025, 589, 89, 34);
-		panelKampfErstellen.add(btnCommander2ArtefaktMinus);
-		
-		JButton btnCommander1ArtefaktPlus = new JButton("+");
-		btnCommander1ArtefaktPlus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Artefakt artefakt = null;
-				artefakt = declareArtefakt(comboBoxArtefakte1, artefakt);
-				 
-				if(heldSpieler1 == null)
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-				else {
-					Artefakt[] artefakte = heldSpieler1.getArtefakte();
-					if(artefakte[2] != null) {
-						JOptionPane.showMessageDialog(null, "Dieser Kommandant kann nicht mehr Artefakte tragen!");
-						return;
-					}
-
-					if(artefakte[0] == null) {
-						
-						artefakte[0] = artefakt;
-						setIconArtefakt("1-1", artefakt);
-					}
-					else if(artefakte[1] == null) {
-						
-						artefakte[1] = artefakt;
-						setIconArtefakt("1-2", artefakt);
-					}
-					else if(artefakte[2] == null) {
-						
-						artefakte[2] = artefakt;
-						setIconArtefakt("1-3", artefakt);
-					}
-					heldSpieler1.setArtefakte(artefakte);
-					artefakteSpieler1 = artefakte;
-				}
-				
-				
-			}
-			
-			private void setIconArtefakt(String labelID, Artefakt artefakt) {
-				if(labelID.equals("1-1")) {
-					lblCommander1Artefakt1.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
-					lblCommander1Artefakt1.setToolTipText(artefakt.getBeschreibung());
-				}
-				if(labelID.equals("1-2")) {
-					lblCommander1Artefakt2.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
-					lblCommander1Artefakt2.setToolTipText(artefakt.getBeschreibung());
-				}
-				if(labelID.equals("1-3")) {
-					lblCommander1Artefakt3.setIcon(new ImageIcon(MainWindow.class.getResource(artefakt.getPictureURI())));
-					lblCommander1Artefakt3.setToolTipText(artefakt.getBeschreibung());
-				}
-			}
-
-		});
-		btnCommander1ArtefaktPlus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnCommander1ArtefaktPlus.setBackground(new Color(230, 230, 250));
-		btnCommander1ArtefaktPlus.setBounds(70, 589, 89, 34);
-		panelKampfErstellen.add(btnCommander1ArtefaktPlus);
-		
-		JButton btnCommander1ArtefaktMinus = new JButton("-");
-		btnCommander1ArtefaktMinus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Artefakt artefakt = null;
-				artefakt = declareArtefakt(comboBoxArtefakte1, artefakt);
-				 
-				
-				if(heldSpieler1 == null) {
-					JOptionPane.showMessageDialog(null, "Bitte einen Kommandanten auswählen!");
-					return;
-				}
-				if(heldSpieler1.getArtefakte()[0] == null)
-					JOptionPane.showMessageDialog(null, "Dieser Kommandant hat keine Artefakte!");
-				else if (heldSpieler1.getArtefakte()[0] != null && heldSpieler1 != null) {
-				
-
-					
-					Artefakt[] artefakte = heldSpieler1.getArtefakte();
-					
-					if(artefakte[1] == null)
-						artefakte[0] = null;
-					if(artefakte[2] == null)
-						artefakte[1] = null;
-					if(artefakte[2] != null)
-						artefakte[2] = null;
-					
-					heldSpieler1.setArtefakte(artefakte);
-					artefakteSpieler1 = artefakte;
-						
-						resetArtefakt1Icons(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1,
-								artefakt, artefakte);
-						
-					
-				}
-				
-			}
-		});
-		btnCommander1ArtefaktMinus.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 24));
-		btnCommander1ArtefaktMinus.setBackground(new Color(230, 230, 250));
-		btnCommander1ArtefaktMinus.setBounds(181, 589, 89, 34);
-		panelKampfErstellen.add(btnCommander1ArtefaktMinus);
-		
-		
-		JButton btnCommander1Down = new JButton("");
-		btnCommander1Down.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				heldSpieler1 = null;
-				
-				if(arrayCommander1Stelle==0)
-					arrayCommander1Stelle=main.getPreviewCommanders().size()-1;
-				else
-					arrayCommander1Stelle--;
-				
-				heldSpieler1 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander1Stelle).getName(), main.getSpieler1());
-				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
-				lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
-				lblCommander1Name.setText(heldSpieler1.getName());
-				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
-				
-				clearArtefakteSkills(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1, artefakteSpieler1, skillsLeft);
-				
-				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
-				
-				
-				
-			}
-
-
-		});
-		btnCommander1Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
-		btnCommander1Down.setBackground(new Color(0, 0, 0));
-		btnCommander1Down.setBounds(280, 308, 45, 40);
-		panelKampfErstellen.add(btnCommander1Down);
-		
-		JButton btnCommander1Up = new JButton("");
-		btnCommander1Up.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				heldSpieler1 = null;
-				
-				if(arrayCommander1Stelle==main.getPreviewCommanders().size()-1)
-					arrayCommander1Stelle=0;
-				else
-					arrayCommander1Stelle++;
-				
-				heldSpieler1 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander1Stelle).getName(), main.getSpieler1());
-				lblCommander1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler1.getPictureURI())));
-				lblCommander1.setToolTipText(heldSpieler1.getBeschreibung());
-				lblCommander1Name.setText(heldSpieler1.getName());
-				lblCommander1Specialty.setText(heldSpieler1.getKlasse());
-				
-				clearArtefakteSkills(lblCommander1Artefakt2, lblCommander1Artefakt3, lblCommander1Artefakt1, artefakteSpieler1, skillsLeft);
-				
-				if(spieler1kampfEinheiten.size()>heldSpieler1.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
-				
-			}
-		});
-		btnCommander1Up.setBackground(new Color(0, 0, 0));
-		btnCommander1Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
-		btnCommander1Up.setBounds(280, 206, 45, 40);
-		panelKampfErstellen.add(btnCommander1Up);
-		
-		JButton btnCommander2Down = new JButton("");
-		btnCommander2Down.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				heldSpieler2 = null;
-				
-				if(arrayCommander2Stelle==0)
-					arrayCommander2Stelle=main.getPreviewCommanders().size()-1;
-				else
-					arrayCommander2Stelle--;
-				
-				heldSpieler2 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander2Stelle).getName(), main.getSpieler2());
-				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
-				lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
-				lblCommander2Name.setText(heldSpieler2.getName());
-				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
-				
-				clearArtefakteSkills(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1, artefakteSpieler2, skillsRight);
-
-				
-				if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
-				
-			}
-		});
-		btnCommander2Down.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowDown.png")));
-		btnCommander2Down.setBackground(Color.BLACK);
-		btnCommander2Down.setBounds(859, 308, 45, 40);
-		panelKampfErstellen.add(btnCommander2Down);
-		
-		JButton btnCommander2Up = new JButton("");
-		btnCommander2Up.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				heldSpieler2 = null;
-				
-				if(arrayCommander2Stelle==main.getPreviewCommanders().size()-1)
-					arrayCommander2Stelle=0;
-				else
-					arrayCommander2Stelle++;
-				
-				heldSpieler2 = teilnehmerFabrik.erstelle(main.getPreviewCommanders().get(arrayCommander2Stelle).getName(), main.getSpieler2());
-				lblCommander2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler2.getPictureURI())));
-				lblCommander2.setToolTipText(heldSpieler2.getBeschreibung());
-				lblCommander2Name.setText(heldSpieler2.getName());
-				lblCommander2Specialty.setText(heldSpieler2.getKlasse());
-				
-				clearArtefakteSkills(lblCommander2Artefakt2, lblCommander2Artefakt3, lblCommander2Artefakt1, artefakteSpieler2, skillsRight);
-				
-				if(spieler2kampfEinheiten.size()>heldSpieler2.getKommandoWert())
-					JOptionPane.showMessageDialog(null, "Der Kommandant hat mehr Einheiten ausgewählt, als dieser befehligen kann. Bitte entferne überschüssige Einheiten!");
-				
-			}
-		});
-		btnCommander2Up.setIcon(new ImageIcon(MainWindow.class.getResource("/source/arrowUp.png")));
-		btnCommander2Up.setBackground(Color.BLACK);
-		btnCommander2Up.setBounds(859, 206, 45, 40);
-		panelKampfErstellen.add(btnCommander2Up);
-		
-		JLabel lblUberschriftCreateBattle = new JLabel("Kampf erstellen");
-		lblUberschriftCreateBattle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUberschriftCreateBattle.setForeground(Color.WHITE);
-		lblUberschriftCreateBattle.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 52));
-		lblUberschriftCreateBattle.setBounds(10, 22, 1164, 77);
-		panelKampfErstellen.add(lblUberschriftCreateBattle);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MainWindow.class.getResource("/source/700286-best-medieval-battle-wallpaper-1920x1080.jpg")));
-		lblNewLabel.setBounds(0, 0, 1184, 761);
-		panelKampfErstellen.add(lblNewLabel);
-		
 		panelMainMenu = new JPanel();
 		panelMainMenu.setBounds(0, 0, 1184, 761);
 		frame.getContentPane().add(panelMainMenu);
@@ -1967,6 +2106,23 @@ public class MainWindow {
 		frame.setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 1200, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+
+
+
+
+	protected void resetTroops(ArrayList<JLabel> units1, ArrayList<JLabel> units2) {
+
+		for(int i=0;i<units1.size();i++) {
+			
+			units1.get(i).setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+			units1.get(i).setToolTipText("");
+			units2.get(i).setIcon(new ImageIcon(MainWindow.class.getResource("/source/unknownTroop.png")));
+			units2.get(i).setToolTipText("");
+			
+		}
+		
 	}
 
 	protected void saveToHistory(String held1Name, String held2Name, ArrayList<Teilnehmer> teilnehmer, String battleLog, Spieler s1, Spieler s2, Teilnehmer held1, Teilnehmer held2) {
@@ -2961,4 +3117,56 @@ private void setSkillIconsRaiseLevelHistory(ArrayList<Teilnehmer> teilnehmer, Te
 		
 		
 	}
+	
+	protected void setGraphicsForWiederholung(Teilnehmer heldSpieler12, Teilnehmer heldSpieler22,
+			ArrayList<Teilnehmer> spieler1kampfEinheiten2, ArrayList<Teilnehmer> spieler2kampfEinheiten2, ArrayList<JLabel> units1, ArrayList<JLabel> units2, ArrayList<JLabel> artefakte1, ArrayList<JLabel> artefakte2, JLabel held1, JLabel held2) {
+
+		held1.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getPictureURI())));
+		held1.setToolTipText(heldSpieler12.getBeschreibung());
+		held2.setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getPictureURI())));
+		held2.setToolTipText(heldSpieler22.getBeschreibung());
+
+		for(int i=0;i<spieler1kampfEinheiten2.size();i++) {
+			units1.get(i).setIcon(new ImageIcon(MainWindow.class.getResource(spieler1kampfEinheiten2.get(i).getPictureURI())));
+			units1.get(i).setToolTipText(spieler1kampfEinheiten2.get(i).getBeschreibung() + " - Leben: " + spieler1kampfEinheiten2.get(i).getLebenActual() + "/" + spieler1kampfEinheiten2.get(i).getLeben());
+		}
+		
+		for(int i=0;i<spieler2kampfEinheiten2.size();i++) {
+			units2.get(i).setIcon(new ImageIcon(MainWindow.class.getResource(spieler2kampfEinheiten2.get(i).getPictureURI())));
+			units2.get(i).setToolTipText(spieler2kampfEinheiten2.get(i).getBeschreibung() + " - Leben: " + spieler2kampfEinheiten2.get(i).getLebenActual() + "/" + spieler2kampfEinheiten2.get(i).getLeben());
+
+		}
+		
+		for(int i=0;i<heldSpieler12.getArtefakte().length;i++) {
+			artefakte1.get(i).setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+			artefakte2.get(i).setIcon(new ImageIcon(MainWindow.class.getResource("/source/noitem.png")));
+		}
+		
+		
+		
+		for(int i=0;i<heldSpieler12.getArtefakte().length;i++) {
+			if(heldSpieler12.getArtefakte()[i] != null) {
+				artefakte1.get(i).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler12.getArtefakte()[i].getPictureURI())));
+				artefakte1.get(i).setToolTipText(heldSpieler12.getArtefakte()[i].getBeschreibung());
+			}
+		}
+		
+		for(int i=0;i<heldSpieler22.getArtefakte().length;i++) {
+			if(heldSpieler22.getArtefakte()[i] != null) {
+				artefakte2.get(i).setIcon(new ImageIcon(MainWindow.class.getResource(heldSpieler22.getArtefakte()[i].getPictureURI())));
+				artefakte2.get(i).setToolTipText(heldSpieler22.getArtefakte()[i].getBeschreibung());
+
+			}
+		}
+		
+		
+		
+		
+		
+	}
+	
+	public void setSave(ArrayList<Teilnehmer> savedTeilnehmer) {
+		this.savedTeilnehmer = (ArrayList<Teilnehmer>) savedTeilnehmer.clone();
+	}
+	
 }
