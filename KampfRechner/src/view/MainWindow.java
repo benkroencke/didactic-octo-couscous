@@ -338,9 +338,11 @@ public class MainWindow {
 				
 				for(int i=0; i<spieler1kampfEinheiten.size();i++) {
 					spieler1Einheiten.add(teilnehmerFabrik.erstelle(spieler1kampfEinheiten.get(i).getName(), spieler1));
+					spieler1Einheiten.get(i).setLebenActual(spieler1kampfEinheiten.get(i).getLebenActual());
 				}
 				for(int i=0; i<spieler2kampfEinheiten.size();i++) {
 					spieler2Einheiten.add(teilnehmerFabrik.erstelle(spieler2kampfEinheiten.get(i).getName(), spieler2));
+					spieler2Einheiten.get(i).setLebenActual(spieler2kampfEinheiten.get(i).getLebenActual());
 				}
 				for(int i=0; i<artefakte1.length;i++) {
 					if(!(artefakte1[i] == null))
