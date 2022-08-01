@@ -2082,7 +2082,7 @@ public class MainWindow {
 		frame.getContentPane().add(panelMainMenu);
 		panelMainMenu.setLayout(null);
 		
-		JLabel lblVersion = new JLabel("V0.9.3_ALPHA");
+		JLabel lblVersion = new JLabel("BATLECALC_VER_V1.0.0_ALPHA");
 		lblVersion.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblVersion.setForeground(new Color(255, 255, 255));
 		lblVersion.setHorizontalAlignment(SwingConstants.LEFT);
